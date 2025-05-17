@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-读书笔记/写给大家看的设计书" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">写给大家看的设计书 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/读书笔记/写给大家看的设计书/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="写给大家看的设计书 | Coisini"><meta data-rh="true" name="description" content="设计原则"><meta data-rh="true" property="og:description" content="设计原则"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/读书笔记/写给大家看的设计书/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/读书笔记/写给大家看的设计书/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/读书笔记/写给大家看的设计书/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.67c80736.js" defer="defer"></script>
+<script src="/assets/js/main.cf1a5724.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>写给大家看的设计书</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="设计原则">设计原则<a href="#设计原则" class="hash-link" aria-label="Direct link to 设计原则" title="Direct link to 设计原则">​</a></h2>
+<p>4 大基本原则（CRAP）</p>
+<ul>
+<li>对比 Contrast</li>
+<li>重复 Repetition</li>
+<li>对齐 Alignment</li>
+<li>亲密性 Proximity</li>
+</ul>
+<p>大写首字母于邮件地址、网址当中，用点而不用短线分隔元素</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="对比">对比<a href="#对比" class="hash-link" aria-label="Direct link to 对比" title="Direct link to 对比">​</a></h3>
+<p><strong>页面上不同的元素之间要有对比，达到吸引读者的对比效果</strong></p>
+<p>要实现有效的对比，对比就必须强烈，不要畏畏缩缩。对比不仅可以吸引眼球，还可以用来组织信息、清晰层级、在页面上指引读，制造焦点。</p>
+<p>多种形式的对比：</p>
+<ul>
+<li>大小字体</li>
+<li>旧式体和无衬线字体</li>
+<li>粗细线对比</li>
+<li>冷暖色对比</li>
+<li>平滑材质和粗糙材质</li>
+<li>水平元素和垂直元素</li>
+<li>间隔很宽的文本行与紧凑在一起的文本行形成对比</li>
+<li>小图片与大图片</li>
+</ul>
+<p>要<strong>截然不同</strong></p>
+<p>如果两个元素不同，但区别不大，这时候不是对比了，而是<strong>冲突</strong>，冲突会造成困扰。</p>
+<p>避免页面上元素太过相似。如果元素不相同，那就干脆截然不同。要引人注目，对比通常是最重要的一个因素。</p>
+<p>页面上增加对比能吸引人眼球，我们的眼睛喜欢看到对比的事物，如果页面上放两个完全不同的元素，他们就不能类似。要实现有效的对比，这两个元素必须截然不同。</p>
+<p>不能大概地配色。</p>
+<p>对比的目的：增强页面的效果，助于信息的组织。</p>
+<p>可以通过字体选择、线宽、颜色、形状、大小、空间等来增加对比。对比一定要强烈。</p>
+<p>要提高视觉敏感度。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重复">重复<a href="#重复" class="hash-link" aria-label="Direct link to 重复" title="Direct link to 重复">​</a></h3>
+<p><strong>设计的某些方面需要在整个作品中重复</strong></p>
+<p>重复的元素可能是一种粗字体、一条粗线、某个项目符号、颜色、设计要素、某种格式、空  间关系等。可以把重复看作是一致性。重复还不只是自然的一致，还是一种统一设计各个部分的有意识行为。</p>
+<p>如果哪些元素引起了你的兴趣，那就可以拿来用作重复元素。有时重复的项<em>不一定完全相同</em>，而只是存在明确关联的紧密相关的对象。
+通常，还可以增加实际上与页面主题没有任何关系的重复元素。只要确保，作品看起来是<strong>有意为之</strong>，而不是乱七八糟就好。</p>
+<p>让设计中的视觉要素在整个作品中重复出现。可以是颜色、形状、材质、空间关系、线宽、字体、大小和图片。既能增加条例性，还可以加强统一性。</p>
+<p>元素的重复可以将作品中的各个部分连在一起，从而统一并增强整个作品，否则这些部分只是彼此孤立的单元。多页文档的重复通常称之为保持一致。</p>
+<p>重复的目的就是<strong>统一</strong>，增强视觉效果。把现有的一致性向前更推进一步。</p>
+<p>需要避免太多地重复一个元素。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="对齐">对齐<a href="#对齐" class="hash-link" aria-label="Direct link to 对齐" title="Direct link to 对齐">​</a></h3>
+<p><strong>任何元素都不能在页面上随意安放，每一项都应当与页面上的某个内容存在某种视觉联系。</strong></p>
+<p>如果页面上的一些项是对齐的，这里将会得到一个更为内聚的单元。即使对齐的元素物理位置彼此分离，但在你眼里，他们之间也会有一条看不见的线把彼此连在一起。</p>
+<p>一般来说，左右对齐要好于居中。文本的左对齐或右对齐会让文本联系在一起的那条看不见的线更明显。边界的强度为布局提供了力度。</p>
+<p>居中会让外观显得更为中规中矩，通常也很乏味。
+在长条形的页面上可以使用居中。</p>
+<p>坚持： <strong>只使用一种对齐方式</strong></p>
+<p>绝对不要在左对齐的正文文本上方将标题居中。插图也不要居中，最好拉大填满一行。（公共基线）</p>
+<p>有时完全可以任意打破常规对齐，只要是有意为之。可以打破规则时，效果总是更强烈，影响也更重要。</p>
+<p>规则是用来打破的，但是必须记住，关于打破规则本身也有一条规则：在打破规则之前必须清楚规则是什么。</p>
+<p>每个元素都应当与在页面上的另一个元素有某种视觉联系。这样才能建立一种清晰、精巧且清爽的外观。</p>
+<p>每个元素都应当与另一个元素有视觉联系。</p>
+<p>对齐的目的是统一而且有条理。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="亲密性">亲密性<a href="#亲密性" class="hash-link" aria-label="Direct link to 亲密性" title="Direct link to 亲密性">​</a></h3>
+<p><strong>将相关的项组织在一起</strong></p>
+<p>彼此相关的项应当靠近，归组在一起。如果多个项相互之间存在很近的亲密性，他们就会成为一个视觉单元，而不是孤立的元素。这有助于组织信息，较少混乱。提供清晰的结构。</p>
+<p>空白也能表达关系。</p>
+<p>亲密性的根本目的是实现 <strong>组织性</strong>，使用空白可以更美观和更有条理。</p>
+<p>需要避免：</p>
+<ul>
+<li>一个页面上有太多孤立的元素。</li>
+<li>不要在元素之留出同样大小的空白。</li>
+<li>标题、子标题、图表标题能否归入其相关材料。</li>
+<li>不同属一组的元素之间不要建立关系。如果元素之间彼此无关，要把它分开。</li>
+<li>不要仅仅因为有空白就把元素放在角落或中央。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于设计新闻简报的提示">关于设计新闻简报的提示<a href="#关于设计新闻简报的提示" class="hash-link" aria-label="Direct link to 关于设计新闻简报的提示" title="Direct link to 关于设计新闻简报的提示">​</a></h2>
+<p>新闻简报的最大问题是缺乏对齐、缺少对比，另外适用了太多的 Arial/Helvetica 或 Time New Roman 字体。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="对齐-1">对齐<a href="#对齐-1" class="hash-link" aria-label="Direct link to 对齐" title="Direct link to 对齐">​</a></h3>
+<p>选择一种对齐方式，然后一直坚持这种对齐。如果所有元素都很好地做到了对齐，适当的时候你就能打破这种对齐。不要太畏缩，如果照片没有很好地与列对齐，那就大胆地让它完全冲破列的约束，而不只是稍微超出一点点。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="报纸广告">报纸广告<a href="#报纸广告" class="hash-link" aria-label="Direct link to 报纸广告" title="Direct link to 报纸广告">​</a></h2>
+<p>肯定会看那些有更多空白的广告，而且至少会仔细读那些广告的标题。广告要简单，切中要点。</p>
+<p><strong>空间</strong> 或者间距，是区别业余和专业作品的地方。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="简历">简历<a href="#简历" class="hash-link" aria-label="Direct link to 简历" title="Direct link to 简历">​</a></h2>
+<p>取决于简历的发送对象。仅仅4大基本原则足矣。尝试 <a href="https://CreativeMarket.com" target="_blank" rel="noopener noreferrer">Creative Market</a> 上的模板</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="下划线">下划线<a href="#下划线" class="hash-link" aria-label="Direct link to 下划线" title="Direct link to 下划线">​</a></h2>
+<p>永远不要使用下划线。
+只要把一段文字和其他部分分离开来，就能吸引注意力。</p>
+<p>这并不意味着文字下面永远都不能有任何形式的线，只是不要满足于通过鼠标或使用快捷键就能得到的默认的下划线。</p>
+<p>跟随在有样式的文字后的标点：如果有一个单词的样式是粗体、斜体或者另外一种字体，紧随最后一个字母的标点应该也是同样的样式。正如本段第一句所示，跟随在加粗文字之后的冒号也应该是加粗的文字。</p>
+<p>如果你确实要把文字放进方框里，那就要在四周都留足空间。就算是在文字处理器中创建的方框，你也应该能找到扩展空间的设置。</p>
+<p>使用项目符号而不是连字符。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="字体与人生">字体（与人生）<a href="#字体与人生" class="hash-link" aria-label="Direct link to 字体（与人生）" title="Direct link to 字体（与人生）">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="协调">协调<a href="#协调" class="hash-link" aria-label="Direct link to 协调" title="Direct link to 协调">​</a></h3>
+<p>只使用一个字体系列，在样式、大小、字体粗细等方面没有变化，就会产生协调。看上去平和，但是有时也会乏味。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="冲突">冲突<a href="#冲突" class="hash-link" aria-label="Direct link to 冲突" title="Direct link to 冲突">​</a></h3>
+<p>在样式、大小、字体粗细等方面类似，就会出现一种冲突。这种相似性会造成困扰，因为我们看到的不完全一样，也并非完全不同，所以他们是冲突的。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="对比-1">对比<a href="#对比-1" class="hash-link" aria-label="Direct link to 对比" title="Direct link to 对比">​</a></h3>
+<p>结合多种字体元素和彼此之间的截然不同，就会出现一种对比。引入注目的漂亮设计存在大量的对比，而且这些对比会充分强调。</p>
+<p>协调是一个稳妥的概念，但冲突务必要避免。</p>
+<p>这个世界上所有特性都依赖于比较才能显现。如果没有比较，那么根本没有存在的前提。</p>
+<p>字体对比有6种明显不同的方式：大小、粗细、结构、形状、方向和颜色。</p>
+<p>不要太保守。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="字体类别">字体类别<a href="#字体类别" class="hash-link" aria-label="Direct link to 字体类别" title="Direct link to 字体类别">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="旧式体">旧式体<a href="#旧式体" class="hash-link" aria-label="Direct link to 旧式体" title="Direct link to 旧式体">​</a></h3>
+<ul>
+<li>对角强调线</li>
+<li>斜衬线</li>
+<li>笔画过度缓和</li>
+<li>适合大量文字，阅读</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="现代体">现代体<a href="#现代体" class="hash-link" aria-label="Direct link to 现代体" title="Direct link to 现代体">​</a></h3>
+<ul>
+<li>垂直强调线</li>
+<li>水平且细的衬线</li>
+<li>笔画过度激烈</li>
+<li>醒目</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="粗衬线体">粗衬线体<a href="#粗衬线体" class="hash-link" aria-label="Direct link to 粗衬线体" title="Direct link to 粗衬线体">​</a></h3>
+<ul>
+<li>衬线水平粗</li>
+<li>垂直强调线</li>
+<li>笔画粗细过度不强</li>
+<li>简洁、直观，儿童书</li>
+<li>页面比旧式体更黯</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="无衬线体">无衬线体<a href="#无衬线体" class="hash-link" aria-label="Direct link to 无衬线体" title="Direct link to 无衬线体">​</a></h3>
+<ul>
+<li>无衬线</li>
+<li>等粗</li>
+<li>大幅提升页面效果</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="手写体">手写体<a href="#手写体" class="hash-link" aria-label="Direct link to 手写体" title="Direct link to 手写体">​</a></h3>
+<ul>
+<li>书法</li>
+<li>连体</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="花体">花体<a href="#花体" class="hash-link" aria-label="Direct link to 花体" title="Direct link to 花体">​</a></h3>
+<ul>
+<li>有趣</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="字体对比">字体对比<a href="#字体对比" class="hash-link" aria-label="Direct link to   字体对比" title="Direct link to 字体对比">​</a></h2>
+<p>字体大小对比并不意味着必须让字体大，而只是要求应该有对比。例如看到很大的一张纸种只有一行很小的文本。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="颜色运用">颜色运用<a href="#颜色运用" class="hash-link" aria-label="Direct link to 颜色运用" title="Direct link to 颜色运用">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="互补">互补<a href="#互补" class="hash-link" aria-label="Direct link to 互补" title="Direct link to 互补">​</a></h3>
+<p>色轮上相对的颜色为互补，最佳搭配是：一种用于主色，另一种用于强调。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="三色组">三色组<a href="#三色组" class="hash-link" aria-label="Direct link to 三色组" title="Direct link to 三色组">​</a></h3>
+<p>基色三色组： 红黄蓝</p>
+<p>间色三色组： 绿橙紫</p>
+<p>其他： 橙色 黄绿 蓝紫 | 橙黄 水绿 紫罗兰</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分裂互补三色组">分裂互补三色组<a href="#分裂互补三色组" class="hash-link" aria-label="Direct link to 分裂互补三色组" title="Direct link to 分裂互补三色组">​</a></h3>
+<p>从色轮一边选一种颜色，再在色轮上找出它对面的互补色，不过不是直接使用这个互补色，而是使用该互补色两侧的颜色。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="类似色">类似色<a href="#类似色" class="hash-link" aria-label="Direct link to 类似色" title="Direct link to 类似色">​</a></h3>
+<p>由色轮上彼此相邻的颜色组成。用不同亮色和暗色的组合一组类似色，效果相当醒目。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="暗色和亮色">暗色和亮色<a href="#暗色和亮色" class="hash-link" aria-label="Direct link to 暗色和亮色" title="Direct link to 暗色和亮色">​</a></h3>
+<p>纯色就是色调
+向色调加黑 就是一个暗色
+向色调加白就是一个亮色</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="单色">单色<a href="#单色" class="hash-link" aria-label="Direct link to 单色" title="Direct link to 单色">​</a></h4>
+<p>单色组合由一种色调及其相应的多种亮色和暗色组成。</p>
+<p>正红黄蓝偏向儿童，加暗色可以偏成人。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="注意色质">注意色质<a href="#注意色质" class="hash-link" aria-label="Direct link to 注意色质" title="Direct link to 注意色质">​</a></h3>
+<p>如果设计者要求使用类似色质的色调，一定要尽力避免它们挨在一起，另外每种颜色的色调的用量也不要完全相同。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="暖色和冷色">暖色和冷色<a href="#暖色和冷色" class="hash-link" aria-label="Direct link to 暖色和冷色" title="Direct link to 暖色和冷色">​</a></h3>
+<p>通过加一些红色或黄色“加温”</p>
+<p>相反，增加不同程度的蓝色用来“降温”</p>
+<p>由于冷色是后退型的，所以使用更多的冷色才能产生效果或形成有效的对比。</p>
+<p>不要让冷暖色太过均衡！一定要充分利用这种视觉现象。</p>
+<p>需要印刷的项目应当使用 CMYK</p>
+<p>需要在屏幕上看的内容应使用 RGB</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#设计原则" class="table-of-contents__link toc-highlight">设计原则</a><ul><li><a href="#对比" class="table-of-contents__link toc-highlight">对比</a></li><li><a href="#重复" class="table-of-contents__link toc-highlight">重复</a></li><li><a href="#对齐" class="table-of-contents__link toc-highlight">对齐</a></li><li><a href="#亲密性" class="table-of-contents__link toc-highlight">  亲密性</a></li></ul></li><li><a href="#关于设计新闻简报的提示" class="table-of-contents__link toc-highlight">关于设计新闻简报的提示</a><ul><li><a href="#对齐-1" class="table-of-contents__link toc-highlight">对齐</a></li></ul></li><li><a href="#报纸广告" class="table-of-contents__link toc-highlight">报纸广告</a></li><li><a href="#简历" class="table-of-contents__link toc-highlight">简历</a></li><li><a href="#下划线" class="table-of-contents__link toc-highlight">下划线</a></li><li><a href="#字体与人生" class="table-of-contents__link toc-highlight">字体（与人生）</a><ul><li><a href="#协调" class="table-of-contents__link toc-highlight">协调</a></li><li><a href="#冲突" class="table-of-contents__link toc-highlight">冲突</a></li><li><a href="#对比-1" class="table-of-contents__link toc-highlight">对比</a></li></ul></li><li><a href="#字体类别" class="table-of-contents__link toc-highlight">字体类别</a><ul><li><a href="#旧式体" class="table-of-contents__link toc-highlight">旧式体</a></li><li><a href="#现代体" class="table-of-contents__link toc-highlight">现代体</a></li><li><a href="#粗衬线体" class="table-of-contents__link toc-highlight">粗衬线体</a></li><li><a href="#无衬线体" class="table-of-contents__link toc-highlight">无衬线体</a></li><li><a href="#手写体" class="table-of-contents__link toc-highlight">手写体</a></li><li><a href="#花体" class="table-of-contents__link toc-highlight">花体</a></li></ul></li><li><a href="#字体对比" class="table-of-contents__link toc-highlight">字体对比</a></li><li><a href="#颜色运用" class="table-of-contents__link toc-highlight">颜色运用</a><ul><li><a href="#互补" class="table-of-contents__link toc-highlight">互补</a></li><li><a href="#三色组" class="table-of-contents__link toc-highlight">三色组</a></li><li><a href="#分裂互补三色组" class="table-of-contents__link toc-highlight">分裂互补三色组</a></li><li><a href="#类似色" class="table-of-contents__link toc-highlight">类似色</a></li><li><a href="#暗色和亮色" class="table-of-contents__link toc-highlight">暗色和亮色</a></li><li><a href="#注意色质" class="table-of-contents__link toc-highlight">注意色质</a></li><li><a href="#暖色和冷色" class="table-of-contents__link toc-highlight">暖色和冷色</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
