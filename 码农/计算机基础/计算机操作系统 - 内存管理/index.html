@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/计算机基础/计算机操作系统 - 内存管理" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">计算机操作系统 - 内存管理 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/计算机基础/计算机操作系统 - 内存管理/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="计算机操作系统 - 内存管理 | Coisini"><meta data-rh="true" name="description" content="* 计算机操作系统 - 内存管理"><meta data-rh="true" property="og:description" content="* 计算机操作系统 - 内存管理"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/计算机基础/计算机操作系统 - 内存管理/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/计算机操作系统 - 内存管理/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/计算机操作系统 - 内存管理/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.781bb34e.js" defer="defer"></script>
+<script src="/assets/js/main.52da2336.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>计算机操作系统 - 内存管理</h1></header>
+<ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F---%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86">计算机操作系统 - 内存管理</a>
+<ul>
+<li><a href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98">虚拟内存</a></li>
+<li><a href="#%E5%88%86%E9%A1%B5%E7%B3%BB%E7%BB%9F%E5%9C%B0%E5%9D%80%E6%98%A0%E5%B0%84">分页系统地址映射</a></li>
+<li><a href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95">页面置换算法</a>
+<ul>
+<li><a href="#1-%E6%9C%80%E4%BD%B3">1. 最佳</a></li>
+<li><a href="#2-%E6%9C%80%E8%BF%91%E6%9C%80%E4%B9%85%E6%9C%AA%E4%BD%BF%E7%94%A8">2. 最近最久未使用</a></li>
+<li><a href="#3-%E6%9C%80%E8%BF%91%E6%9C%AA%E4%BD%BF%E7%94%A8">3. 最近未使用</a></li>
+<li><a href="#4-%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA">4. 先进先出</a></li>
+<li><a href="#5-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E7%AE%97%E6%B3%95">5. 第二次机会算法</a></li>
+<li><a href="#6-%E6%97%B6%E9%92%9F">6. 时钟</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E6%AE%B5">分段</a></li>
+<li><a href="#%E6%AE%B5%E9%A1%B5%E5%BC%8F">段页式</a></li>
+<li><a href="#%E5%88%86%E9%A1%B5%E4%B8%8E%E5%88%86%E6%AE%B5%E7%9A%84%E6%AF%94%E8%BE%83">分页与分段的比较</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="虚拟内存">虚拟内存<a href="#虚拟内存" class="hash-link" aria-label="Direct link to 虚拟内存" title="Direct link to 虚拟内存">​</a></h2>
+<p>虚拟内存的目的是为了让物理内存扩充成更大的逻辑内存，从而让程序获得更多的可用内存。</p>
+<p>为了更好的管理内存，操作系统将内存抽象成地址空间。每个程序拥有自己的地址空间，这个地址空间被分割成多个块，每一块称为一页。这些页被映射到物理内存，但不需要映射到连续的物理内存，也不需要所有页都必须在物理内存中。当程序引用到不在物理内存中的页时，由硬件执行必要的映射，将缺失的部分装入物理内存并重新执行失败的指令。</p>
+<p>从上面的描述中可以看出，虚拟内存允许程序不用将地址空间中的每一页都映射到物理内存，也就是说一个程序不需要全部调入内存就可以运行，这使得有限的内存运行大程序成为可能。例如有一台计算机可以产生 16 位地址，那么一个程序的地址空间范围是 0~64K。该计算机只有 32KB 的物理内存，虚拟内  存技术允许该计算机运行一个 64K 大小的程序。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/7b281b1e-0595-402b-ae35-8c91084c33c1-2059502c373ff7374d59d6ba9878a08f.png" width="491" height="441" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="分页系统地址映射">分页系统地址映射<a href="#分页系统地址映射" class="hash-link" aria-label="Direct link to 分页系统地址映射" title="Direct link to 分页系统地址映射">​</a></h2>
+<p>内存管理单元（MMU）管理着地址空间和物理内存的转换，其中的页表（Page table）存储着页（程序地址空间）和页框（物理内存空间）的映射表。</p>
+<p>一个虚拟地址分成两个部分，一部分存储页面号，一部分存储偏移量。</p>
+<p>下图的页表存放着 16 个页，这 16 个页需要用 4 个比特位来进行索引定位。例如对于虚拟地址（0010 000000000100），前 4 位是存储页面号 2，读取表项内容为（110 1），页表项最后一位表示是否存在于内存中，1 表示存在。后 12 位存储偏移量。这个页对应的页框的地址为 （110 000000000100）。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/cf4386a1-58c9-4eca-a17f-e12b1e9770eb-5cbdb170425b3c88a177d409585ffcd3.png" width="643" height="696" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="页面置换算法">页面置换算法<a href="#页面置换算法" class="hash-link" aria-label="Direct link to 页面置换算法" title="Direct link to 页面置换算法">​</a></h2>
+<p>在程序运行过程中，如果要访问的页面不在内存中，就发生缺页中断从而将该页调入内存中。此时如果内存已无空闲空间，系统必须从内存中调出一个页面到磁盘对换区中来腾出空间。</p>
+<p>页面置换算法和缓存淘汰策略类似，可以将内存看成磁盘的缓存。在缓存系统中，缓存的大小有限，当有新的缓存到达时，需要  淘汰一部分已经存在的缓存，这样才有空间存放新的缓存数据。</p>
+<p>页面置换算法的主要目标是使页面置换频率最低（也可以说缺页率最低）。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-最佳">1. 最佳<a href="#1-最佳" class="hash-link" aria-label="Direct link to 1. 最佳" title="Direct link to 1. 最佳">​</a></h3>
+<blockquote>
+<p>OPT, Optimal replacement algorithm</p>
+</blockquote>
+<p>所选择的被换出的页面将是最长时间内不再被访问，通常可以保证获得最低的缺页率。</p>
+<p>是一种理论上的算法，因为无法知道一个页面多长时间不再被访问。</p>
+<p>举例：一个系统为某进程分配了三个物理块，并有如下页面引用序列：</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">7，0，1，2，0，3，0，4，2，3，0，3，2，1，2，0，1，7，0，1</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>开始运行时，先将 7, 0, 1 三个页面装入内存。当进程要访问页面 2 时，产生缺页中断，会将 页面 7 换出，因为页面 7 再次被访问的时间最长。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-最近最久未使用">2. 最近最久未使用<a href="#2-最近最久未使用" class="hash-link" aria-label="Direct link to 2. 最近最久未使用" title="Direct link to 2. 最近最久未使用">​</a></h3>
+<blockquote>
+<p>LRU, Least Recently Used</p>
+</blockquote>
+<p>虽然无法知道将来要使用的页面情况，但是可以知道过去使用页面的情况。LRU 将最近最久未使用的页面换出。</p>
+<p>为了实现 LRU，需要在内存中维护一个所有页面的链表。当一个页面被访问时，将这个页面移到链表表头。这样就能保证链表表尾的页面是最近最久未访问的。</p>
+<p>因为每次访问都需要更新链表，因此这种方式实现的 LRU 代价很高。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">4，7，0，7，1，0，1，2，1，2，6</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" src="/assets/images/eb859228-c0f2-4bce-910d-d9f76929352b-87c4810f0960a9e3caa6194e195c23b6.png" width="537" height="166" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-最近未使用">3. 最近未使用<a href="#3-最近未使用" class="hash-link" aria-label="Direct link to 3. 最近未使用" title="Direct link to 3. 最近未使用">​</a></h3>
+<blockquote>
+<p>NRU, Not Recently Used</p>
+</blockquote>
+<p>每个页面都有两个状态位：R 与 M，当页面被访问时设置页面的 R=1，当页面被修改时设置 M=1。其中 R 位会定时被清零。可以将页面分成以下四类：</p>
+<ul>
+<li>R=0，M=0</li>
+<li>R=0，M=1</li>
+<li>R=1，M=0</li>
+<li>R=1，M=1</li>
+</ul>
+<p>当发生缺页中断时，NRU 算法随机地从类编号最小的非空类中挑选一个页面将它换出。</p>
+<p>NRU 优先换出已经被修改的脏页面（R=0，M=1），而不是被频繁使用的干净页面（R=1，M=0）。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4-先进先出">4. 先进先出<a href="#4-先进先出" class="hash-link" aria-label="Direct link to 4. 先进先出" title="Direct link to 4. 先进先出">​</a></h3>
+<blockquote>
+<p>FIFO, First In First Out</p>
+</blockquote>
+<p>选择换出的页面是最先进入的页面。</p>
+<p>该算法会将那些经常被访问的页面换出，导致缺页率升高。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5-第二次机会算法">5. 第二次机会算法<a href="#5-第二次机会算法" class="hash-link" aria-label="Direct link to 5. 第二次机会算法" title="Direct link to 5. 第二次机会算法">​</a></h3>
+<p>FIFO 算法可能会把经常使用的页面置换出去，为了避免这一问题，对该算法做一个简单的修改：</p>
+<p>当页面被访问 (读或写) 时设置该页面的 R 位为 1。需要替换的时候，检查最老页面的 R 位。如果 R 位是 0，那么这个页面既老又没有被使用，可以立刻置换掉；如果是 1，就将 R 位清 0，并把该页面放到链表的尾端，修  改它的装入时间使它就像刚装入的一样，然后继续从链表的头部开始搜索。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/ecf8ad5d-5403-48b9-b6e7-f2e20ffe8fca-eda518a4d9999907e64cec147dfedd9a.png" width="720" height="312" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="6-时钟">6. 时钟<a href="#6-时钟" class="hash-link" aria-label="Direct link to 6. 时钟" title="Direct link to 6. 时钟">​</a></h3>
+<blockquote>
+<p>Clock</p>
+</blockquote>
+<p>第二次机会算法需要在链表中移动页面，降低了效率。时钟算法使用环形链表将页面连接起来，再使用一个指针指向最老的页面。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/5f5ef0b6-98ea-497c-a007-f6c55288eab1-117acca1a023a173192b7b6c240926bd.png" width="565" height="320" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="分段">分段<a href="#分段" class="hash-link" aria-label="Direct link to 分段" title="Direct link to 分段">​</a></h2>
+<p>虚拟内存采用的是分页技术，也就是将地址空间划分成固定大小的页，每一页再与内存进行映射。</p>
+<p>下图为一个编译器在编译过程中建立的多个表，有 4 个表是动态增长的，如果使用分页系统的一维地址空间，动态增长的特点会导致覆盖问题的出现。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/22de0538-7c6e-4365-bd3b-8ce3c5900216-a0d3a027f38ac87e71797c4fe9aabf13.png" width="452" height="347" class="img_ev3q"></p>
+<p>分段的做法是把每个表分成段，一个段构成一个独立的地址空间。每个段的长度可以不同，并且可以动态增长。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/e0900bb2-220a-43b7-9aa9-1d5cd55ff56e-786295e51ba066ab39c40a2be02cc3cc.png" width="581" height="286" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="段页式">段页式<a href="#段页式" class="hash-link" aria-label="Direct link to 段页式" title="Direct link to 段页式">​</a></h2>
+<p>程序的地址空间划分成多个拥有独立地址空间的段，每个段上的地址空间划分成大小相同的页。这样既拥有分段系统的共享和保护，又拥有分页系统的虚拟内存功能。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="分页与分段的比较">分页与分段的比较<a href="#分页与分段的比较" class="hash-link" aria-label="Direct link to 分页与分段的比较" title="Direct link to 分页与分段的比较">​</a></h2>
+<ul>
+<li>
+<p>对程序员的透明性：分页透明，但是分段需要程序员显式划分每个段。</p>
+</li>
+<li>
+<p>地址空间的维度：分页是一维地址空间，分段是二维的。</p>
+</li>
+<li>
+<p>大小是否可以改变：页的大小不可变，段的大小可以动态改变。</p>
+</li>
+<li>
+<p>出现的原因：分页主要用于实现虚拟内存，从而获得更大的地址空间；分段主要是为了使程序和数据可以被划分为逻辑上独立的地址空间并且有助于共享和保护。</p>
+</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#虚拟内存" class="table-of-contents__link toc-highlight">虚拟内存</a></li><li><a href="#分页系统地址映射" class="table-of-contents__link toc-highlight">分页系统地址映射</a></li><li><a href="#页面置换算法" class="table-of-contents__link toc-highlight">页面置换算法</a><ul><li><a href="#1-最佳" class="table-of-contents__link toc-highlight">1. 最佳</a></li><li><a href="#2-最近最久未使用" class="table-of-contents__link toc-highlight">2. 最近最久未使用</a></li><li><a href="#3-最近未使用" class="table-of-contents__link toc-highlight">3. 最近未使用</a></li><li><a href="#4-先进先出" class="table-of-contents__link toc-highlight">4. 先进先出</a></li><li><a href="#5-第二次机会算法" class="table-of-contents__link toc-highlight">5. 第二次机会算法</a></li><li><a href="#6-时钟" class="table-of-contents__link toc-highlight">6. 时钟</a></li></ul></li><li><a href="#分段" class="table-of-contents__link toc-highlight">分段</a></li><li><a href="#段页式" class="table-of-contents__link toc-highlight">段页式</a></li><li><a href="#分页与分段的比较" class="table-of-contents__link toc-highlight">分页与分段的比较</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

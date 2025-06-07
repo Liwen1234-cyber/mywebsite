@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/计算机基础/Linux" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Linux | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/计算机基础/Linux/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Linux | Coisini"><meta data-rh="true" name="description" content="* Linux"><meta data-rh="true" property="og:description" content="* Linux"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/计算机基础/Linux/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/Linux/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/Linux/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.781bb34e.js" defer="defer"></script>
+<script src="/assets/js/main.52da2336.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Linux</h1></header>
+<ul>
+<li><a href="#linux">Linux</a>
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%B8%80%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E4%BB%A5%E5%8F%8A%E6%A6%82%E5%BF%B5">一、常用操作以及概念</a>
+<ul>
+<li><a href="#%E5%BF%AB%E6%8D%B7%E9%94%AE">快捷键</a></li>
+<li><a href="#%E6%B1%82%E5%8A%A9">求助</a></li>
+<li><a href="#%E5%85%B3%E6%9C%BA">关机</a></li>
+<li><a href="#path">PATH</a></li>
+<li><a href="#sudo">sudo</a></li>
+<li><a href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">包管理工具</a></li>
+<li><a href="#%E5%8F%91%E8%A1%8C%E7%89%88">发行版</a></li>
+<li><a href="#vim-%E4%B8%89%E4%B8%AA%E6%A8%A1%E5%BC%8F">VIM 三个模式</a></li>
+<li><a href="#gnu">GNU</a></li>
+<li><a href="#%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE">开源协议</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C%E7%A3%81%E7%9B%98">二、磁盘</a>
+<ul>
+<li><a href="#%E7%A3%81%E7%9B%98%E6%8E%A5%E5%8F%A3">磁盘接口</a></li>
+<li><a href="#%E7%A3%81%E7%9B%98%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D">磁盘的文件名</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89%E5%88%86%E5%8C%BA">三、分区</a>
+<ul>
+<li><a href="#%E5%88%86%E5%8C%BA%E8%A1%A8">分区表</a></li>
+<li><a href="#%E5%BC%80%E6%9C%BA%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F">开机检测程序</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">四、文件系统</a>
+<ul>
+<li><a href="#%E5%88%86%E5%8C%BA%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">分区与文件系统</a></li>
+<li><a href="#%E7%BB%84%E6%88%90">组成</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96">文件读取</a></li>
+<li><a href="#%E7%A3%81%E7%9B%98%E7%A2%8E%E7%89%87">磁盘碎片</a></li>
+<li><a href="#block">block</a></li>
+<li><a href="#inode">inode</a></li>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E6%97%A5%E5%BF%97">日志</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE">目录配置</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94%E6%96%87%E4%BB%B6">五、文件</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7">文件属性</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C">文件与目录的基本操作</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E6%9D%83%E9%99%90">修改权限</a></li>
+<li><a href="#%E9%BB%98%E8%AE%A4%E6%9D%83%E9%99%90">默认权限</a></li>
+<li><a href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90">目录的权限</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5">链接</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9">获取文件内容</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4%E4%B8%8E%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2">指令与文件搜索</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD%E5%8E%8B%E7%BC%A9%E4%B8%8E%E6%89%93%E5%8C%85">六、压缩与打包</a>
+<ul>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%E5%90%8D">压缩文件名</a></li>
+<li><a href="#%E5%8E%8B%E7%BC%A9%E6%8C%87%E4%BB%A4">压缩指令</a></li>
+<li><a href="#%E6%89%93%E5%8C%85">打包</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%83bash">七、Bash</a>
+<ul>
+<li><a href="#%E7%89%B9%E6%80%A7">特性</a></li>
+<li><a href="#%E5%8F%98%E9%87%8F%E6%93%8D%E4%BD%9C">变量操作</a></li>
+<li><a href="#%E6%8C%87%E4%BB%A4%E6%90%9C%E7%B4%A2%E9%A1%BA%E5%BA%8F">指令搜索顺序</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E9%87%8D%E5%AE%9A%E5%90%91">数据流重定向</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AB%E7%AE%A1%E9%81%93%E6%8C%87%E4%BB%A4">八、管道指令</a>
+<ul>
+<li><a href="#%E6%8F%90%E5%8F%96%E6%8C%87%E4%BB%A4">提取指令</a></li>
+<li><a href="#%E6%8E%92%E5%BA%8F%E6%8C%87%E4%BB%A4">排序指令</a></li>
+<li><a href="#%E5%8F%8C%E5%90%91%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91">双向输出重定向</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%8D%A2%E6%8C%87%E4%BB%A4">字符转换指令</a></li>
+<li><a href="#%E5%88%86%E5%8C%BA%E6%8C%87%E4%BB%A4">分区指令</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B9%9D%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">九、正则表达式</a>
+<ul>
+<li><a href="#grep">grep</a></li>
+<li><a href="#printf">printf</a></li>
+<li><a href="#awk">awk</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%81%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86">十、进程管理</a>
+<ul>
+<li><a href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B">查看进程</a></li>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81">进程状态</a></li>
+<li><a href="#sigchld">SIGCHLD</a></li>
+<li><a href="#wait">wait()</a></li>
+<li><a href="#waitpid">waitpid()</a></li>
+<li><a href="#%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B">孤儿进程</a></li>
+<li><a href="#%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B">僵尸进程</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="前言">前言<a href="#前言" class="hash-link" aria-label="Direct link to 前言" title="Direct link to 前言">​</a></h2>
+<p>为了便于理解，本文从常用操作和概念开始讲起。虽然已经尽量做到简化，但是涉及到的内容还是有点多。在面试中，Linux 知识点相对于网络和操作系统等知识点而言不是那么重要，只需要重点掌握一些原理和命令即可。为了方便大家准备面试，在此先将一些比较重要的知识点列出来：</p>
+<ul>
+<li>能简单使用 cat，grep，cut 等命令进行一些操作；</li>
+<li>文件系统相关的原理，inode 和 block 等概念，数据恢复；</li>
+<li>硬链接与软链接；</li>
+<li>进程管理相关，僵尸进程与孤儿进程，SIGCHLD 。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="一常用操作以及概念">一、常用操作以及概念<a href="#一常用操作以及概念" class="hash-link" aria-label="Direct link to 一、常用操作以及概念" title="Direct link to 一、常用操作以及概念">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="快捷键">快捷键<a href="#快捷键" class="hash-link" aria-label="Direct link to 快捷键" title="Direct link to 快捷键">​</a></h3>
+<ul>
+<li>Tab：命令和文件名补全；</li>
+<li>Ctrl+C：中断正在运行的程序；</li>
+<li>Ctrl+D：结束键盘输入（End Of File，EOF）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="求助">求助<a href="#求助" class="hash-link" aria-label="Direct link to 求助" title="Direct link to 求助">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1---help">1. --help<a href="#1---help" class="hash-link" aria-label="Direct link to 1. --help" title="Direct link to 1. --help">​</a></h4>
+<p>指令的基本用法与选项介绍。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-man">2. man<a href="#2-man" class="hash-link" aria-label="Direct link to 2. man" title="Direct link to 2. man">​</a></h4>
+<p>man 是 manual 的缩写，将指令的具体信息显示出来。</p>
+<p>当执行 <code>man date</code> 时，有 DATE(1) 出现，其中的数字代表指令的类型，常用的数字及其类型如下：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">代号</th><th>类型</th></tr></thead><tbody><tr><td style="text-align:center">1</td><td>用户在 shell 环境中可以操作的指令或者可执行文件</td></tr><tr><td style="text-align:center">5</td><td>配置文件</td></tr><tr><td style="text-align:center">8</td><td>系统管理员可以使用的管理指令</td></tr></tbody></table>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-info">3. info<a href="#3-info" class="hash-link" aria-label="Direct link to 3. info" title="Direct link to 3. info">​</a></h4>
+<p>info 与 man 类似，但是 info 将文档分成一个个页面，每个页面可以跳转。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-doc">4. doc<a href="#4-doc" class="hash-link" aria-label="Direct link to 4. doc" title="Direct link to 4. doc">​</a></h4>
+<p>/usr/share/doc 存放着软件的一整套说明文件。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关机">关机<a href="#关机" class="hash-link" aria-label="Direct link to 关机" title="Direct link to 关机">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-who">1. who<a href="#1-who" class="hash-link" aria-label="Direct link to 1. who" title="Direct link to 1. who">​</a></h4>
+<p>在关机前需要先使用 who 命令查看有没有其它用户在线。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-sync">2. sync<a href="#2-sync" class="hash-link" aria-label="Direct link to 2. sync" title="Direct link to 2. sync">​</a></h4>
+<p>为了加快对磁盘文件的读写速度，位于内存中的文件数据不会立即同步到磁盘，因此关机之前需要先进行 sync 同步操作。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-shutdown">3. shutdown<a href="#3-shutdown" class="hash-link" aria-label="Direct link to 3. shutdown" title="Direct link to 3. shutdown">​</a></h4>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## shutdown [-krhc] 时间 [信息]</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-k ： 不会关机，只是发送警告信息，通知所有在线的用户</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r ： 将系统的服务停掉后就重新启动</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-h ： 将系统的服务停掉后就立即关机</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ： 取消已经在进行的 shutdown</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="path">PATH<a href="#path" class="hash-link" aria-label="Direct link to PATH" title="Direct link to PATH">​</a></h3>
+<p>可以在环境变量 PATH 中声明可执行文件的路径，路径之间用 : 分隔。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/dmtsai/.local/bin:/home/dmtsai/bin</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sudo">sudo<a href="#sudo" class="hash-link" aria-label="Direct link to sudo" title="Direct link to sudo">​</a></h3>
+<p>sudo 允许一般用户使用 root 可执行的命令，不过只有在 /etc/sudoers 配置文件中添加的用户才能使用该指令。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="包管理工具">包管理工具<a href="#包管理工具" class="hash-link" aria-label="Direct link to 包管理工具" title="Direct link to 包管理工具">​</a></h3>
+<p>RPM 和 DPKG 为最常见的两类软件包管理工具：</p>
+<ul>
+<li>RPM 全称为 Redhat Package Manager，最早由 Red Hat 公司制定实施，随后被 GNU 开源操作系统接受并成为许多 Linux 系统的既定软件标准。YUM 基于 RPM，具有依赖管理和软件升级功能。</li>
+<li>与 RPM 竞争的是基于 Debian 操作系统的 DEB 软件包管理工具 DPKG，全称为 Debian Package，功能方面与 RPM 相似。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="发行版">发行版<a href="#发行版" class="hash-link" aria-label="Direct link to 发行版" title="Direct link to 发行版">​</a></h3>
+<p>Linux 发行版是 Linux 内核及各种应用软件的集成版本。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">基于的包管理工具</th><th style="text-align:center">商业发行版</th><th style="text-align:center">社区发行版</th></tr></thead><tbody><tr><td style="text-align:center">RPM</td><td style="text-align:center">Red Hat</td><td style="text-align:center">Fedora / CentOS</td></tr><tr><td style="text-align:center">DPKG</td><td style="text-align:center">Ubuntu</td><td style="text-align:center">Debian</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vim-三个模式">VIM 三个模式<a href="#vim-三个模式" class="hash-link" aria-label="Direct link to VIM 三个模式" title="Direct link to VIM 三个模式">​</a></h3>
+<p><img decoding="async" loading="lazy" src="/assets/images/image-20191209002818626-74e40cf726e9432a0f00dca170158ad0.png" width="1176" height="530" class="img_ev3q"></p>
+<ul>
+<li>一般指令模式（Command mode）：VIM 的默认模式，可以用于移动游标查看内容；</li>
+<li>编辑模式（Insert mode）：按下 &quot;i&quot; 等按键之后进入，可以对文本进行编辑；</li>
+<li>指令列模式（Bottom-line mode）：按下 &quot;:&quot; 按键之后进入，用于保存退出等操作。</li>
+</ul>
+<p>在指令 列模式下，有以下命令用于离开或者保存文件。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">命令</th><th style="text-align:center">作用</th></tr></thead><tbody><tr><td style="text-align:center">:w</td><td style="text-align:center">写入磁盘</td></tr><tr><td style="text-align:center">:w!</td><td style="text-align:center">当文件为只读时，强制写入磁盘。到底能不能写入，与用户对该文件的权限有关</td></tr><tr><td style="text-align:center">:q</td><td style="text-align:center">离开</td></tr><tr><td style="text-align:center">:q!</td><td style="text-align:center">强制离开不保存</td></tr><tr><td style="text-align:center">:wq</td><td style="text-align:center">写入磁盘后离开</td></tr><tr><td style="text-align:center">:wq!</td><td style="text-align:center">强制写入磁盘后离开</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gnu">GNU<a href="#gnu" class="hash-link" aria-label="Direct link to GNU" title="Direct link to GNU">​</a></h3>
+<p>GNU 计划，译为革奴计划，它的目标是创建一套完全自由的操作系统，称为 GNU，其内容软件完全以 GPL 方式发布。其中 GPL 全称为 GNU 通用公共许可协议（GNU General Public License），包含了以下内容：</p>
+<ul>
+<li>以任何目的运行此程序的自由；</li>
+<li>再复制的自由；</li>
+<li>改进此程序，并公开发布改进的自由。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="开源协议">开源协议<a href="#开源协议" class="hash-link" aria-label="Direct link to 开源协议" title="Direct link to 开源协议">​</a></h3>
+<ul>
+<li><a href="https://choosealicense.com/" target="_blank" rel="noopener noreferrer">Choose an open source license</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html" target="_blank" rel="noopener noreferrer">如何选择开源许可证？</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="二磁盘">二、磁盘<a href="#二磁盘" class="hash-link" aria-label="Direct link to 二、磁盘" title="Direct link to 二、磁盘">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="磁盘接口">磁盘接口<a href="#磁盘接口" class="hash-link" aria-label="Direct link to 磁盘接口" title="Direct link to 磁盘接口">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-ide">1. IDE<a href="#1-ide" class="hash-link" aria-label="Direct link to 1. IDE" title="Direct link to 1. IDE">​</a></h4>
+<p>IDE（ATA）全称 Advanced Technology Attachment，接口速度最大为 133MB/s，因为并口线的抗干扰性太差，且排线占用空间较大，不利电脑内部散热，已逐渐被 SATA 所取代。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/924914c0-660c-4e4a-bbc0-1df1146e7516-704a1b3f6781870ddfaad274a26b1740.jpg" width="1294" height="834" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-sata">2. SATA<a href="#2-sata" class="hash-link" aria-label="Direct link to 2. SATA" title="Direct link to 2. SATA">​</a></h4>
+<p>SATA 全称 Serial ATA，也就是使用串口的 ATA 接口，抗干扰性强，且对数据线的长度要求比 ATA 低很多，支持热插拔等功能。SATA-II 的接口速度为 300MB/s，而 SATA-III 标准可达到 600MB/s 的传输速度。SATA 的数据线也比 ATA 的细得多，有利于机箱内的空气流通，整理线材也比较方便。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/f9f2a16b-4843-44d1-9759-c745772e9bcf-88512c22db6b6c9ddd1f58e87739a98a.jpg" width="321" height="138" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-scsi">3. SCSI<a href="#3-scsi" class="hash-link" aria-label="Direct link to 3. SCSI" title="Direct link to 3. SCSI">​</a></h4>
+<p>SCSI 全称是 Small Computer System Interface（小型机系统接口），SCSI 硬盘广为工作站以及个人电脑以及服务器所使用，因此会使用  较为先进的技术，如碟片转速 15000rpm 的高转速，且传输时 CPU 占用率较低，但是单价也比相同容量的 ATA 及 SATA 硬盘更加昂贵。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/f0574025-c514-49f5-a591-6d6a71f271f7-7ceabf5d0509e37582d088ce2ac4d4eb.jpg" width="292" height="221" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-sas">4. SAS<a href="#4-sas" class="hash-link" aria-label="Direct link to 4. SAS" title="Direct link to 4. SAS">​</a></h4>
+<p>SAS（Serial Attached SCSI）是新一代的 SCSI 技术，和 SATA 硬盘相同，都是采取序列式技术以获得更高的传输速度，可达到 6Gb/s。此外也通过缩小连接线改善系统内部空间等。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/6729baa0-57d7-4817-b3aa-518cbccf824c-0ca59f52ec63caa2d90811fa02684a6e.jpg" width="324" height="128" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="磁盘的文件名">磁盘的文件名<a href="#磁盘的文件名" class="hash-link" aria-label="Direct link to 磁盘的文件名" title="Direct link to 磁盘的文件名">​</a></h3>
+<p>Linux 中每个硬件都被当做一个文件，包括磁盘。磁盘以磁盘接口类型进行命名，常见磁盘的文件名如下：</p>
+<ul>
+<li>IDE 磁盘：/dev/hd[a-d]</li>
+<li>SATA/SCSI/SAS 磁盘：/dev/sd[a-p]</li>
+</ul>
+<p>其中文件名后面的序号的确定与系统检测到磁盘的顺序有关，而与磁盘所插入的插槽位置无关。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="三分区">三、分区<a href="#三分区" class="hash-link" aria-label="Direct link to 三、分区" title="Direct link to 三、分区">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分区表">分区表<a href="#分区表" class="hash-link" aria-label="Direct link to 分区表" title="Direct link to 分区表">​</a></h3>
+<p>磁盘分区表主要有两种格式，一种是限制较多的 MBR 分区表，一种是较  新且限制较少的 GPT 分区表。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-mbr">1. MBR<a href="#1-mbr" class="hash-link" aria-label="Direct link to 1. MBR" title="Direct link to 1. MBR">​</a></h4>
+<p>MBR 中，第一个扇区最重要，里面有主要开机记录（Master boot record, MBR）及分区表（partition table），其中主要开机记录占 446 bytes，分区表占 64 bytes。</p>
+<p>分区表只有 64 bytes，最多只能存储 4 个分区，这 4 个分区为主分区（Primary）和扩展分区（Extended）。其中扩展分区只有一个，它使用其它扇区来记录额外的分区表，因此通过扩展分区可以分出更多分区，这些分区称为逻辑分区。</p>
+<p>Linux 也把分区当成文件，分区文件的命名方式为：磁盘文件名 + 编号，例如 /dev/sda1。注意，逻辑分区的编号从 5 开始。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-gpt">2. GPT<a href="#2-gpt" class="hash-link" aria-label="Direct link to 2. GPT" title="Direct link to 2. GPT">​</a></h4>
+<p>扇区是磁盘的最小存储单位，旧磁盘的扇区大小通常为 512 bytes，而最新的磁盘支持 4 k。GPT 为了兼容所有磁盘，在定义扇区上使用逻辑区块地址（Logical Block Address, LBA），LBA 默认大小为 512 bytes。</p>
+<p>GPT 第 1 个区块记录了主要开机记录（MBR），紧接着是 33 个区块记录分区信息，并把最后的 33 个区块用于对分区信息进行备份。这 33 个区块第一个为 GPT 表头纪录，这个部份纪录了分区表本身的位置与大小和备份分区的位置，同时放置了分区表的校验码 (CRC32)，操作系统可以根据这个校验码来判断 GPT 是否正确。若有错误，可以使用备份分区进行恢复。</p>
+<p>GPT 没有扩展分区概念，都是主分区，每个 LBA 可以分 4 个分区，因此总共可以分 4 * 32 = 128 个分区。</p>
+<p>MBR 不支持 2.2 TB 以上的硬盘，GPT 则最多支持到 2<sup>33</sup> TB = 8 ZB。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/GUID_Partition_Table_Scheme.svg-a743bce4ea33c6476a699e52cd3d32cf.png" width="400" height="550" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="开机检测程序">开机检测程序<a href="#开机检测程序" class="hash-link" aria-label="Direct link to 开机检测程序" title="Direct link to 开机检测程序">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-bios">1. BIOS<a href="#1-bios" class="hash-link" aria-label="Direct link to 1. BIOS" title="Direct link to 1. BIOS">​</a></h4>
+<p>BIOS（Basic Input/Output System，基本输入输出系统），它是一个固件（嵌入在硬件中的软件），BIOS 程序存放在断电后内容不会丢失的只读内存中。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/50831a6f-2777-46ea-a571-29f23c85cc21-cae9df3b52e0e6281d2232f768a42186.jpg" width="247" height="172" class="img_ev3q"></p>
+<p>BIOS 是开机的时候计算机执行的第一个程序，这个程序知道可以开机的磁盘，并读取磁盘第一个扇区的主要开机记录（MBR），由主要开机记录（MBR）执行其中的开机管理程序，这个开机管理程序会加载操作系统的核心文件。</p>
+<p>主要开机记录（MBR）中的开机管理程序提供以下功能：选单、载入核心文件以及转交其它开机管理程序。转交这个功能可以用来实现多重引导，只需要将另一个操作系统的开机管理程序安装在其它分区的启动扇区上，在启动开机管理程序时，就可以通过选单选择启动当前的操作系统或者转交给其它开机管理程序从而启动另一个操作系统。</p>
+<p>下图中，第一扇区的主要开机记录（MBR）中的开机管理程序提供了两个选单：M1、M2，M1 指向了 Windows 操作系统，而 M2 指向其它分区的启动扇区，里面包含了另外一个开机管理程序，提供了一个指向 Linux 的选单。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/f900f266-a323-42b2-bc43-218fdb8811a8-789ad3acb7c84ac4af0d55043651d55c.jpg" width="642" height="390" class="img_ev3q"></p>
+<p>安装多重引导，最好先安装 Windows 再安装 Linux。因为安装 Windows 时会覆盖掉主要开机记录（MBR），而 Linux 可以选择将开机管理程序安装在主要开机记录（MBR）或者其它分区的启动扇区，并且可以设置开机管理程序的选单。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-uefi">2. UEFI<a href="#2-uefi" class="hash-link" aria-label="Direct link to 2. UEFI" title="Direct link to 2. UEFI">​</a></h4>
+<p>BIOS 不可以读取 GPT 分区表，而 UEFI 可以。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="四文件系统">四、文件系统<a href="#四文件系统" class="hash-link" aria-label="Direct link to 四、文件系统" title="Direct link to 四、文件系统">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分区与文件系统">分区与文件系统<a href="#分区与文件系统" class="hash-link" aria-label="Direct link to 分区与文件系统" title="Direct link to 分区与文件系统">​</a></h3>
+<p>对分区进行格式化是为了在分区上建立文件系统。一个分区通常只能格式化为一个文件系统，但是磁盘阵列等技术可以将一个分区格式化为多个文件系统。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="组成">组成<a href="#组成" class="hash-link" aria-label="Direct link to 组成" title="Direct link to 组成">​</a></h3>
+<p>最主要的几个组成部分如下：</p>
+<ul>
+<li>inode：一个文件占用一个 inode，记录文件的属性，同时记录此文件的内容所在的 block 编号；</li>
+<li>block：记录文件的内容，文件太大时，会占用多个 block。</li>
+</ul>
+<p>除此之外还包括：</p>
+<ul>
+<li>superblock：记录文件系统的整体信息，包括 inode 和 block 的总量、使用量、剩余量，以及文件系统的格式与相关信息等；</li>
+<li>block bitmap：记录 block 是否被使用的位图。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/BSD_disk-3fb09dbda1a4178f89baf5267fb68c4a.png" width="1768" height="509" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="文件读取">文件读取<a href="#文件读取" class="hash-link" aria-label="Direct link to 文件读取" title="Direct link to 文件读取">​</a></h3>
+<p>对于 Ext2 文件系统，当要读取一个文件的内容时，先在 inode 中查找文件内容所在的所有 block，然后把所有 block 的内容读出来。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/12a65cc6-20e0-4706-9fe6-3ba49413d7f6-f8ce8bfc5829ce722b44713f67d04d07.png" width="783" height="440" class="img_ev3q"></p>
+<p>而对于 FAT 文件系统，它没有 inode，每个 block 中存储着下一个 block 的编号。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/5b718e86-7102-4bb6-8ca5-d1dd791530c5-171d0f9b37c94a121fb4aea75f42d768.png" width="798" height="339" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="磁盘碎片">磁盘碎片<a href="#磁盘碎片" class="hash-link" aria-label="Direct link to 磁盘碎片" title="Direct link to 磁盘碎片">​</a></h3>
+<p>指一个文件内容所在的 block 过于分散，导致磁盘磁头移动距离过大，从而降低磁盘读写性能。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block">block<a href="#block" class="hash-link" aria-label="Direct link to block" title="Direct link to block">​</a></h3>
+<p>在 Ext2 文件系统中所支持的 block 大小有 1K，2K 及 4K 三种，不同的大小限制了单个文件和文件系统的最大大小。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">大小</th><th style="text-align:center">1KB</th><th style="text-align:center">2KB</th><th style="text-align:center">4KB</th></tr></thead><tbody><tr><td style="text-align:center">最大单一文件</td><td style="text-align:center">16GB</td><td style="text-align:center">256GB</td><td style="text-align:center">2TB</td></tr><tr><td style="text-align:center">最大文件系统</td><td style="text-align:center">2TB</td><td style="text-align:center">8TB</td><td style="text-align:center">16TB</td></tr></tbody></table>
+<p>一个 block 只能被一个文件所使用，未使用的部分直接浪费了。因此如果需要存储大量的小文件，那么最好选用比较小的 block。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inode">inode<a href="#inode" class="hash-link" aria-label="Direct link to inode" title="Direct link to inode">​</a></h3>
+<p>inode 具体包含以下信息：</p>
+<ul>
+<li>权限 (read/write/excute)；</li>
+<li>拥有者与群组 (owner/group)；</li>
+<li>容量；</li>
+<li>建立或状态改变的时间 (ctime)；</li>
+<li>最近读取时间 (atime)；</li>
+<li>最近修改时间 (mtime)；</li>
+<li>定义文件特性的旗标 (flag)，如 SetUID...；</li>
+<li>该文件真正内容的指向 (pointer)。</li>
+</ul>
+<p>inode 具有以下特点：</p>
+<ul>
+<li>每个 inode 大小均固定为 128 bytes (新的 ext4 与 xfs 可设定到 256 bytes)；</li>
+<li>每个文件都仅会占用一个 inode。</li>
+</ul>
+<p>inode 中记录了文件内容所在的 block 编号，但是每个 block 非常小，一个大文件随便都需要几十万的 block。而一个 inode 大小有限，无法直接引用这么多 block 编号。因此引入了间接、双间接、三间接引用。间接引用让 inode 记录的引用 block 块记录引用信息。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/inode_with_signatures-6d58f749437f3acdd5233c8ccad4ff23.jpg" width="1379" height="870" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="目录">目录<a href="#目录" class="hash-link" aria-label="Direct link to 目录" title="Direct link to 目录">​</a></h3>
+<p>建立一个目录时，会分配一个 inode 与至少一个 block。block 记录的内容是目录下所有文  件的 inode 编号以及文件名。</p>
+<p>可以看到文件的 inode 本身不记录文件名，文件名记录在目录中，因此新增文件、删除文件、更改文件名这些操作与目录的写权限有关。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="日志">日志<a href="#日志" class="hash-link" aria-label="Direct link to 日志" title="Direct link to 日志">​</a></h3>
+<p>如果突然断电，那么文件系统会发生错误，例如断电前只修改了 block bitmap，而还没有将数据真正写入 block 中。</p>
+<p>ext3/ext4 文件系统引入了日志功能，可以利用日志来修复文件系统。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="挂载">挂载<a href="#挂载" class="hash-link" aria-label="Direct link to 挂载" title="Direct link to 挂载">​</a></h3>
+<p>挂载利用目录作为文件系统的进入点，也就是说，进入目录之后就可以读取文件系统的数据。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="目录配置">目录配置<a href="#目录配置" class="hash-link" aria-label="Direct link to 目录配置" title="Direct link to 目录配置">​</a></h3>
+<p>为了使不同 Linux 发行版本的目录结构保持一致性，Filesystem Hierarchy Standard (FHS) 规定了 Linux 的目录结构。最基础的三个目录如下：</p>
+<ul>
+<li>/ (root, 根目录)</li>
+<li>/usr (unix software resource)：所有系统默认软件都会安装到这个目录；</li>
+<li>/var (variable)：存放系统或程序运行过程中的数据文件。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/linux-filesystem-c10e476d5bf1ecd53f72dbcfe7189a37.png" width="660" height="313" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="五文件">五、文件<a href="#五文件" class="hash-link" aria-label="Direct link to 五、文件" title="Direct link to 五、文件">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="文件属性">文件属性<a href="#文件属性" class="hash-link" aria-label="Direct link to 文件属性" title="Direct link to 文件属性">​</a></h3>
+<p>用户分为三种：文件拥有者、群组以及其它人，对不同的用户有不同的文件权限。</p>
+<p>使用 ls 查看一个文件时，会显示一个文件的信息，例如 <code>drwxr-xr-x 3 root root 17 May 6 00:14 .config</code>，对这个信息的解释如下：</p>
+<ul>
+<li>drwxr-xr-x：文件类型以及权限，第 1 位为文件类型字段，后 9 位为文件权限字段</li>
+<li>3：链接数</li>
+<li>root：文件拥有者</li>
+<li>root：所属群组</li>
+<li>17：文件大小</li>
+<li>May 6 00:14：文件最后被修改的时间</li>
+<li>.config：文件名</li>
+</ul>
+<p>常见的文件类型及其含义有：</p>
+<ul>
+<li>d：目录</li>
+<li>-：文件</li>
+<li>l：链接文件</li>
+</ul>
+<p>9 位的文件权限字段中，每 3 个为一组，共 3 组，每一组分别代表对文件拥有者、所属群组以及其它人的文件权限。一组权限中的 3 位分别为 r、w、x 权限，表示可读、可写、可执行。</p>
+<p>文件时间有以下三种：</p>
+<ul>
+<li>modification time (mtime)：文件的内容更新就会更新；</li>
+<li>status time (ctime)：文件的状态（权限、属性）更新就会更新；</li>
+<li>access time (atime)：读取文件时就会更新。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="文件与目录的基本操作">文件与目录的基本操作<a href="#文件与目录的基本操作" class="hash-link" aria-label="Direct link to 文件与目录的基本操作" title="Direct link to 文件与目录的基本操作">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-ls">1. ls<a href="#1-ls" class="hash-link" aria-label="Direct link to 1. ls" title="Direct link to 1. ls">​</a></h4>
+<p>列出文件或者目录的信息，目录的信息就是其中包含的文件。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ls [-aAdfFhilnrRSt] file|dir</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-a ：列出全部的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ：仅列出目录本身</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-l ：以长数据串行列出，包含文件的属性与权限等等数据</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-cd">2. cd<a href="#2-cd" class="hash-link" aria-label="Direct link to 2. cd" title="Direct link to 2. cd">​</a></h4>
+<p>更换当前目录。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">cd [相对路径或绝对路径]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-mkdir">3. mkdir<a href="#3-mkdir" class="hash-link" aria-label="Direct link to 3. mkdir" title="Direct link to 3. mkdir">​</a></h4>
+<p>创建目录。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## mkdir [-mp] 目录名称</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-m ：配置目录权限</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-p ：递归创建目录</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-rmdir">4. rmdir<a href="#4-rmdir" class="hash-link" aria-label="Direct link to 4. rmdir" title="Direct link to 4. rmdir">​</a></h4>
+<p>删除目录，目录必须为空。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">rmdir [-p] 目录名称</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-p ：递归删除目录</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5-touch">5. touch<a href="#5-touch" class="hash-link" aria-label="Direct link to 5. touch" title="Direct link to 5. touch">​</a></h4>
+<p>更新文件时间或者建立新文件。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## touch [-acdmt] filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-a ： 更新 atime</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ： 更新 ctime，若该文件不存在则不建立新文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-m ： 更新 mtime</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ： 后面可以接更新日期而不使用当前日期，也可以使用 --date=&quot;日期或时间&quot;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ： 后面可以接更新时间而不使用当前时间，格式为[YYYYMMDDhhmm]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="6-cp">6. cp<a href="#6-cp" class="hash-link" aria-label="Direct link to 6. cp" title="Direct link to 6. cp">​</a></h4>
+<p>复制文件。如果源文件有两个以上，则目的文件一定要是目录才行。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">cp [-adfilprsu] source destination</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-a ：相当于 -dr --preserve=all</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ：若来源文件为链接文件，则复制链接文件属性而非文件本身</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-i ：若目标文件已经存在时，在覆盖前会先询问</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-p ：连同文件的属性一起复制过去</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r ：递归复制</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-u ：destination 比 source 旧才更新 destination，或 destination 不存在的情况下才复制</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">--preserve=all ：除了 -p 的权限相关参数外，还加入 SELinux 的属性, links, xattr 等也复制了</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="7-rm">7. rm<a href="#7-rm" class="hash-link" aria-label="Direct link to 7. rm" title="Direct link to 7. rm">​</a></h4>
+<p>删除文件。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## rm [-fir] 文件或目录</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r ：递归删除</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="8-mv">8. mv<a href="#8-mv" class="hash-link" aria-label="Direct link to 8. mv" title="Direct link to 8. mv">​</a></h4>
+<p>移动文件。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## mv [-fiu] source destination</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## mv [options] source1 source2 source3 .... directory</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-f ： force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="修改权限">修改权限<a href="#修改权限" class="hash-link" aria-label="Direct link to 修改权限" title="Direct link to 修改权限">​</a></h3>
+<p>可以将一组权限用数字来表示，此时一组权限的 3 个位当做二进制数字的位，从左到右每个位的权值为 4、2、1，即每个权限对应的数字权值为 r : 4、w : 2、x : 1。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## chmod [-R] xyz dirname/filename</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：将 .bashrc 文件的权限修改为 -rwxr-xr--。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## chmod 754 .bashrc</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>也可以使用符号来设定权限。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## chmod [ugoa]  [+-=] [rwx] dirname/filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- u：拥有者</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- g：所属群组</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- o：其他人</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- a：所有人</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- +：添加权限</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- -：移除权限</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- =：设定权限</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：为 .bashrc 文件的所有用户添加写权限。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## chmod a+w .bashrc</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="默认权限">默认权限<a href="#默认权限" class="hash-link" aria-label="Direct link to 默认权限" title="Direct link to 默认权限">​</a></h3>
+<ul>
+<li>文件默认权限：文件默认没有可执行权限，因此为 666，也就是 -rw-rw-rw- 。</li>
+<li>目录默认权限：目录必须要能够进入，也就是必须拥有可执行权限，因此为 777 ，也就是 drwxrwxrwx。</li>
+</ul>
+<p>可以通过 umask 设置或者查看默认权限，通常以掩码的形式来表示，例如 002 表示其它用户的权限去除了一个 2 的权限，也就是写权限，因此建立新文件时默认的权限为 -rw-rw-r--。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="目录的权限">目录的权限<a href="#目录的权限" class="hash-link" aria-label="Direct link to 目录的权限" title="Direct link to 目录的权限">​</a></h3>
+<p>文件名不是存储在一个文件的内容中，而是存储在一个文件所在的目录中。因此，拥有文件的 w 权限并不能对文件名进行修改。</p>
+<p>目录存储文件列表，一个目录的权限也就是对其文件列表的权限。因此，目录的 r 权限表示可以读取文件列表；w 权限表示可以修改文件列表，具体来说，就是添加删除文件，对文件名进行修改；x 权限可以让该目录成为工作目录，x 权限是 r 和 w 权限的基础，如果不能使一个目录成为工作目录，也就没办法读取文件列表以及对文件列表进行修改了。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="链接">链接<a href="#链接" class="hash-link" aria-label="Direct link to 链接" title="Direct link to 链接">​</a></h3>
+<p><img decoding="async" loading="lazy" src="/assets/images/1e46fd03-0cda-4d60-9b1c-0c256edaf6b2-bef4e12c74c8ec135eb593cf2bd4d287.png" width="699" height="329" class="img_ev3q"></p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ln [-sf] source_filename dist_filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-s ：默认是实体链接，加 -s 为符号链接</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-f ：如果目标文件存在时，先删除目标文件</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-实体链接">1. 实体链接<a href="#1-实体链接" class="hash-link" aria-label="Direct link to 1. 实体链接" title="Direct link to 1. 实体链接">​</a></h4>
+<p>在目录下创建一个条目，记录着文件名与 inode 编号，这个 inode 就是源文件的 inode。</p>
+<p>删除任意一个条目，文件还是存在，只要引用数量不为 0。</p>
+<p>有以下限制：不能跨越文件系统、不能对目录进行链接。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ln /etc/crontab .</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ll -i /etc/crontab crontab</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">34474855 -rw-r--r--. 2 root root 451 Jun 10 2014 crontab</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">34474855 -rw-r--r--. 2 root root 451 Jun 10 2014 /etc/crontab</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-符号链接">2. 符号链接<a href="#2-符号链接" class="hash-link" aria-label="Direct link to 2. 符号链接" title="Direct link to 2. 符号链接">​</a></h4>
+<p>符号链接文件保存着源文件所在的绝对路径，在读取时会定位到源文件上，可以理解为 Windows 的快捷方式。</p>
+<p>当源文件被删除了，链接文件就打不开了。</p>
+<p>因为记录的是路径，所以可以为目录建立符号链接。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ll -i /etc/crontab /root/crontab2</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">34474855 -rw-r--r--. 2 root root 451 Jun 10 2014 /etc/crontab</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">53745909 lrwxrwxrwx. 1 root root 12 Jun 23 22:31 /root/crontab2 -&gt; /etc/crontab</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="获取文件内容">获取文件内容<a href="#获取文件内容" class="hash-link" aria-label="Direct link to 获取文件内容" title="Direct link to 获取文件内容">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-cat">1. cat<a href="#1-cat" class="hash-link" aria-label="Direct link to 1. cat" title="Direct link to 1. cat">​</a></h4>
+<p>取得文件内容。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## cat [-AbEnTv] filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-n ：打印出行号，连同空白行也会有行号，-b 不会</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-tac">2. tac<a href="#2-tac" class="hash-link" aria-label="Direct link to 2. tac" title="Direct link to 2. tac">​</a></h4>
+<p>是 cat 的反向操作，从最后一行开始打印。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-more">3. more<a href="#3-more" class="hash-link" aria-label="Direct link to 3. more" title="Direct link to 3. more">​</a></h4>
+<p>和 cat 不同的是它可以一页一页查看文件内容，比较适合大文件的查看。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-less">4. less<a href="#4-less" class="hash-link" aria-label="Direct link to 4. less" title="Direct link to 4. less">​</a></h4>
+<p>和 more 类似，但是多了一个向前翻页的功能。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5-head">5. head<a href="#5-head" class="hash-link" aria-label="Direct link to 5. head" title="Direct link to 5. head">​</a></h4>
+<p>取得文件前几行。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## head [-n number] filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-n ：后面接数字，代表显示几行的意思</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="6-tail">6. tail<a href="#6-tail" class="hash-link" aria-label="Direct link to 6. tail" title="Direct link to 6. tail">​</a></h4>
+<p>是 head 的反向操作，只是取得是后几行。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="7-od">7. od<a href="#7-od" class="hash-link" aria-label="Direct link to 7. od" title="Direct link to 7. od">​</a></h4>
+<p>以字符或者十六进制的形式显示二进制文件。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="指令与文件搜索">指令与文件搜索<a href="#指令与文件搜索" class="hash-link" aria-label="Direct link to 指令与文件搜索" title="Direct link to 指令与文件搜索">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-which">1. which<a href="#1-which" class="hash-link" aria-label="Direct link to 1. which" title="Direct link to 1. which">​</a></h4>
+<p>指令搜索。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## which [-a] command</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-a ：将所有指令列出，而不是只列第一个</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-whereis">2. whereis<a href="#2-whereis" class="hash-link" aria-label="Direct link to 2. whereis" title="Direct link to 2. whereis">​</a></h4>
+<p>文件搜索。速度比较快，因为它只搜索几个特定的目录。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## whereis [-bmsu] dirname/filename</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-locate">3. locate<a href="#3-locate" class="hash-link" aria-label="Direct link to 3. locate" title="Direct link to 3. locate">​</a></h4>
+<p>文件搜索。可以用关键字或者正则表达式进行搜索。</p>
+<p>locate 使用 /var/lib/mlocate/ 这个数据库来进行搜索，它存储在内存中，并且每天更新一次，所以无法用 locate 搜索新建的文件。可以使用 updatedb 来立即更新数据库。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## locate [-ir] keyword</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r：正则表达式</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-find">4. find<a href="#4-find" class="hash-link" aria-label="Direct link to 4. find" title="Direct link to 4. find">​</a></h4>
+<p>文件搜索。可以使用文件的属性和权限进行搜索。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## find [basedir] [option]</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">example: find . -name &quot;shadow*&quot;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>① 与时间有关的选项</strong></p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-mtime  n ：列出在 n 天前的那一天修改过内容的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-mtime +n ：列出在 n 天之前 (不含 n 天本身) 修改过内容的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-mtime -n ：列出在 n 天之内 (含 n 天本身) 修改过内容的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-newer file ： 列出比 file 更新的文件</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>+4、4 和 -4 的指示的时间范围如下：</p>
+<p><img decoding="async" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgwAAACiCAYAAAAtD5W4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAB4rSURBVHhe7d0J2M11/v/xaFqUShPXNZYYZWpclkQxugqFIWtCMk1No8kSyr7vlMlSQqRkiWQZS/ZllAhjl7UYe5Q1ZBlJ7//1+vzPcfmZw7kZ9/35fs95Pq7rc7nvc77NnPu+v8vr8/m8P9/vdQYAABAHgQEAAMRFYAAAAHERGAAAQFwEBgAAEBeBAQAAxEVgAAAAcREYAABAXAQGAAAQF4EBAADERWAAAABxERgAAEBcBAYAABAXgQEAAMRFYAAAAHERGAAAQFwEBiBkfvnlFzt48KCdPHky8goApD4CAxAiP/zwg02fPt0GDx5s69evj7wKAKmPwACExI8//mgLFy60cuXKWYkSJWzq1KmRdwAg9REYgBDQNMS6deusZcuWlj59eitUqBCBAUCaIjAAIaCahQULFliHDh0sV65cVrRoUQIDgDRFYABCQGFh2rRpruXJk8eKFStGYACQpggMQIBpKmLlypWu0HH16tW2du1aAgMALwgMQECdO3fOFTpqGmLYsGG2fPlyGzdunGXPnt0efPBBGzFihB09ejSyNQCkLgIDEFCnTp2yzZs3W/ny5e3hhx+2kiVLWuHChS1dunR29913W4MGDeyLL76IbA0AqYvAAATU2bNn7dChQ9a7d29r3bq1tW3b1l5++WXLmTOn3XvvvdaxY0fbsGFDZGsASF0EBiCgVL9w5swZ++abb9ySSrWJEye6GgYtq9SUxLFjxyJbA0DqIjAAaeDnn3+277//3g4cOOC+vloKD5UrV7bnn3/+qqcjFEKinwUAUorAAKQijRJoamHTpk02cuRIt7LhfylU1P0YNLKg4sft27dHXr0ye/bssfHjx9vYsWNt9+7d7jMCQDwEBiAVResQ6tSp41Y31KpVy3vdgULLE088Yb/73e/cCgyNOBAaAMRDYABSiaYeNm7c6AoVc+TIYWXLlrVRo0bZ6dOnI1v4oRGOfv36uXs5REODRh0A4HIIDEAq0MjCsmXLrGnTpm4JZJkyZezDDz90UwBBsHXrVuvbt68LDffdd5/16NHDTZsAwKUQGIBrTCMLusmSHhSVP39+d1EeOnRoYMJClEJDr169LG/evO4+Dz179nT3fQCAWAgMwDWksKAahVdffdUN96v33qVLF1u/fr3t3bs3cG3VqlVWv359d28H3T2yW7dutnPnTmoaAPwXAgNwDZ08edIqVKhgt99+u2XLls0qVqzobrAU9FaqVCnLnDmzZc2a1erWrWs//fRT5CcCgP+PwABcI3ruw+LFi+3++++366+/3m644QbLlCmTCw5Bb7fddpv96le/cp9Zj87Wyo7/5X4RABIPgQG4RrQ8cceOHa7QMXfu3JYxY0ZXv9CnTx8bOHCgDRo0KHCtf//+1r17d8uXL5/deuut7l99f+LECffwKwCIIjAA15B65XocdaNGjaxgwYJWokQJd4Ok//UOj6lB0w6qV1Bw0EOtVPio6QndTZIaBgAXIzAAqWDFihXWuHFjV0xYoEABmzJligsNQem1a9nnrl273FJPfUYVaHbt2tWFBQCIhcAApAIFg7Vr11qLFi0sffr0bnmlbsesosgg0C2mNbKQK1cuy5Ahg7snw7Zt2xhZAHBJBAYglSgcaNmi7segOz1qemL48OHeVyDoTo8KCEWKFHEjC6qx0MjCf/7zn8gWAPDfCAxAKlJo0EhDgwYN3CiD7s/g+ymRekz2n//8Z3vooYfcPSI0skBYABAPgQFIZSp2XLJkiXXu3NkGDx7spgN80i2gNcIQHVlgGgJAShAYAABAXAQGAAAQF4EBAADERWAAAABxERgAAEBcBAYAABAXgQEAAMRFYAAAAHERGAAAQFwEBiDJrF+/3r766iv77rvvIq8A4aLnsezYscO1I0eOuKevIvURGIAkoVtUHzt2zBo2bOja9OnTI+8A4aKQMHDgQOvdu7dNnTrVtmzZYocOHbIff/zRhQlud546CAxAkti/f7+98847lidPHqtWrRqBAaH1/fffW+PGje3ee++1X//611awYEH3gLeRI0fa1q1beZhaKiEwAElAIwvLli2zdu3aWdasWa1KlSoEBoSWptMUEH7zm9/YddddZzfffLNly5bNPRG2ZMmSVrduXXv33Xftiy++sB9++IEpi2uEwAAkAT2VUr0vtXvuuYfAgFC7ODBc3LJkyeIe3169enVr3ry5DRkyxObNm+dGH06fPs2UxVUiMAAJbt++ffb555/bJ598YqtWrbJ8+fLFDAwaxtW0xddff02jBbp9+eWXVrt2bcuc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" width="524" height="162" class="img_ev3q"></p>
+<p><strong>② 与文件拥有者和所属群组有关的选项</strong></p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-uid n</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-gid n</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-user name</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-group name</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-nouser ：搜索拥有者不存在 /etc/passwd 的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-nogroup：搜索所属群组不存在于 /etc/group 的文件</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>③ 与文件权限和名称有关的选项</strong></p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-name filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-size [+-]SIZE：搜寻比 SIZE 还要大 (+) 或小 (-) 的文件。这个 SIZE 的规格有：c: 代表 byte，k: 代表 1024bytes。所以，要找比 50KB 还要大的文件，就是 -size +50k</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-type TYPE</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-perm mode  ：搜索权限等于 mode 的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-perm -mode ：搜索权限包含 mode 的文件</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-perm /mode ：搜索权限包含任一 mode 的文件</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="六压缩与打包">六、压缩与打包<a href="#六压缩与打包" class="hash-link" aria-label="Direct link to 六、压缩与打包" title="Direct link to 六、  压缩与打包">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="压缩文件名">压缩文件名<a href="#压缩文件名" class="hash-link" aria-label="Direct link to 压缩文件名" title="Direct link to 压缩文件名">​</a></h3>
+<p>Linux 底下有很多压缩文件名，常见的如下：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>扩展名</th><th>压缩程序</th></tr></thead><tbody><tr><td>*.Z</td><td>compress</td></tr><tr><td>*.zip</td><td>zip</td></tr><tr><td>*.gz</td><td>gzip</td></tr><tr><td>*.bz2</td><td>bzip2</td></tr><tr><td>*.xz</td><td>xz</td></tr><tr><td>*.tar</td><td>tar 程序打包的数据，没有经过压缩</td></tr><tr><td>*.tar.gz</td><td>tar 程序打包的文件，经过 gzip 的压缩</td></tr><tr><td>*.tar.bz2</td><td>tar 程序打包的文件，经过 bzip2 的压缩</td></tr><tr><td>*.tar.xz</td><td>tar 程序打包的文件，经过 xz 的压缩</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="压缩指令">压缩指令<a href="#压缩指令" class="hash-link" aria-label="Direct link to 压缩指令" title="Direct link to 压缩指令">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-gzip">1. gzip<a href="#1-gzip" class="hash-link" aria-label="Direct link to 1. gzip" title="Direct link to 1. gzip">​</a></h4>
+<p>gzip 是 Linux 使用最广的压缩指令，可以解开 compress、zip 与 gzip 所压缩的文件。</p>
+<p>经过 gzip 压缩过，源文件就不存在了。</p>
+<p>有 9 个不同的压缩等级可以使用。</p>
+<p>可以使用 zcat、zmore、zless 来读取压缩文件的内容。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ gzip [-cdtv#] filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ：将压缩的数据输出到屏幕上</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ：解压缩</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ：检验压缩文件是否出错</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-v ：显示压缩比等信息</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-# ： # 为数字的意思，代表压缩等级，数字越大压缩比越高，默认为 6</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-bzip2">2. bzip2<a href="#2-bzip2" class="hash-link" aria-label="Direct link to 2. bzip2" title="Direct link to 2. bzip2">​</a></h4>
+<p>提供比 gzip 更高的压缩比。</p>
+<p>查看命令：bzcat、bzmore、bzless、bzgrep。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ bzip2 [-cdkzv#] filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-k ：保留源文件</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-xz">3. xz<a href="#3-xz" class="hash-link" aria-label="Direct link to 3. xz" title="Direct link to 3. xz">​</a></h4>
+<p>提供比 bzip2 更佳的压缩比。</p>
+<p>可以看到，gzip、bzip2、xz 的压缩比不断优化。不过要注意的是，压缩比越高，压缩的时间也越长。</p>
+<p>查看命令：xzcat、xzmore、xzless、xzgrep。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ xz [-dtlkc#] filename</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="打包">打包<a href="#打包" class="hash-link" aria-label="Direct link to 打包" title="Direct link to 打包">​</a></h3>
+<p>压缩指令只能对一个文件进行压缩，而打包能够将多个文件打包成一个大文件。tar 不仅可以用于打包，也可以使用 gzip、bzip2、xz 将打包文件进行压缩。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ tar [-z|-j|-J] [cv] [-f 新建的 tar 文件] filename...  ==打包压缩</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ tar [-z|-j|-J] [tv] [-f 已有的 tar 文件]              ==查看</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ tar [-z|-j|-J] [xv] [-f 已有的 tar 文件] [-C 目录]    ==解压缩</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-z ：使用 zip；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-j ：使用 bzip2；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-J ：使用 xz；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ：新建打包文件；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ：查看打包文件里面有哪些文件；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-x ：解打包或解压缩的功能；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-v ：在压缩/解压缩的过程中，显示正在处理的文件名；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-f : filename：要处理的文件；</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-C 目录 ： 在特定目录解压缩。</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">使用方式</th><th>命令</th></tr></thead><tbody><tr><td style="text-align:center">打包压缩</td><td>tar -jcv -f filename.tar.bz2 要被压缩的文件或目录名称</td></tr><tr><td style="text-align:center">查 看</td><td>tar -jtv -f filename.tar.bz2</td></tr><tr><td style="text-align:center">解压缩</td><td>tar -jxv -f filename.tar.bz2 -C 要解压缩的目录</td></tr></tbody></table>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="七bash">七、Bash<a href="#七bash" class="hash-link" aria-label="Direct link to 七、Bash" title="Direct link to 七、Bash">​</a></h2>
+<p>可以通过 Shell 请求内核提供服务，Bash 正是 Shell 的一种。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="特性">特性<a href="#特性" class="hash-link" aria-label="Direct link to 特性" title="Direct link to 特性">​</a></h3>
+<ul>
+<li>命令历史：记录使用过的命令</li>
+<li>命令与文件补全：快捷键：tab</li>
+<li>命名别名：例如 ll 是 ls -al 的别名</li>
+<li>shell scripts</li>
+<li>通配符：例如 ls -l /usr/bin/X* 列出 /usr/bin 下面所有以 X 开头的文件</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="变量操作">变量操作<a href="#变量操作" class="hash-link" aria-label="Direct link to 变量操作" title="Direct link to 变量操作">​</a></h3>
+<p>对一个变量赋值直接使用 =。</p>
+<p>对变量取用需要在变量前加上 $ ，也可以用 ${} 的形式；</p>
+<p>输出变量使用 echo 命令。</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ x=abc</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ echo $x</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ echo ${x}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>变量内容如果有空格，必须使用双引号或者单引号。</p>
+<ul>
+<li>双引号内的特殊字符可以保留原本特性，例如 x=&quot;lang is $LANG&quot;，则 x 的值为 lang is zh_TW.UTF-8；</li>
+<li>单引号内的特殊字符就是特殊字符本身，例如 x=&#x27;lang is $LANG&#x27;，则 x 的值为 lang is $LANG。</li>
+</ul>
+<p>可以使用 `指令` 或者 $(指令) 的方式将指令的执行结果赋值给变量。例如 version=$(uname -r)，则 version 的值为 4.15.0-22-generic。</p>
+<p>可以使用 export 命令将自定义变量转成环境变量，环境变量可以在子程序中使用，所谓子程序就是由当前 Bash 而产生的子 Bash。</p>
+<p>Bash 的变量可以声明为数组和整数数字。注意数字类型没有浮点数。如果不进行声明，默认是字符串类型。变量的声明使用 declare 命令：</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ declare [-aixr] variable</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-a ： 定义为数组类型</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-i ： 定义为整数类型</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-x ： 定义为环境变量</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r ： 定义为 readonly 类型</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>使用 [ ] 来对数组进行索引操作：</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ array[1]=a</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ array[2]=b</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ echo ${array[1]}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="指令搜索顺序">指令搜索顺序<a href="#指令搜索顺序" class="hash-link" aria-label="Direct link to 指令搜索顺序" title="Direct link to 指令搜索顺序">​</a></h3>
+<ul>
+<li>以绝对或相对路径来执行指令，例如 /bin/ls 或者 ./ls ；</li>
+<li>由别名找到该指令来执行；</li>
+<li>由 Bash 内置的指令来执行；</li>
+<li>按 $PATH 变量指定的搜索路径的顺序找到第一个指令来执行。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据流重定向">数据流重定向<a href="#数据流重定向" class="hash-link" aria-label="Direct link to 数据流重定向" title="Direct link to 数据流重定向">​</a></h3>
+<p>重定向指的是使用文件代替标准输入、标准输出和标准错误输出。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">1</th><th style="text-align:center">代码</th><th style="text-align:center">运算符</th></tr></thead><tbody><tr><td style="text-align:center">标准输入 (stdin)</td><td style="text-align:center">0</td><td style="text-align:center">&lt; 或 &lt;&lt;</td></tr><tr><td style="text-align:center">标准输出 (stdout)</td><td style="text-align:center">1</td><td style="text-align:center">&gt; 或 &gt;&gt;</td></tr><tr><td style="text-align:center">标准错误输出 (stderr)</td><td style="text-align:center">2</td><td style="text-align:center">2&gt; 或 2&gt;&gt;</td></tr></tbody></table>
+<p>其中，有一个箭头的表示以覆盖的方式重定向，而有两个箭头的表示以追加的方式重定向。</p>
+<p>可以将不需要的标准输出以及标准错误输出重定向到 /dev/null，相当于扔进垃圾箱。</p>
+<p>如果需要将标准输出以及标准错误输出同时重定向到一个文件，需要将某个输出转换为另一个输出，例如 2&gt;&amp;1 表示将标准错误输出转换为标准输出。</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ find /home -name .bashrc &gt; list 2&gt;&amp;1</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="八管道指令">八、管道指令<a href="#八管道指令" class="hash-link" aria-label="Direct link to 八、管道指令" title="Direct link to 八、管道指令">​</a></h2>
+<p>管道是将一个命令的标准输出作为另一个命令的标准输入，在数据需要经过多个步骤的处理之后才能得到我们想要的内容时就可以使用管道。</p>
+<p>在命令之间使用 | 分隔各个管道命令。</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ ls -al /etc | less</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="提取指令">提取指令<a href="#提取指令" class="hash-link" aria-label="Direct link to 提取指令" title="Direct link to 提取指令">​</a></h3>
+<p>cut 对数据进行切分，取出想要的部分。</p>
+<p>切分过程一行一行地进行。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ cut</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ：分隔符</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-f ：经过 -d 分隔后，使用 -f n 取出第 n 个区间</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ：以字符为单位取出区间</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例 1：last 显示登入者的信息，取出用户名。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">root pts/1 192.168.201.101 Sat Feb 7 12:35 still logged in</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">root pts/1 192.168.201.101 Fri Feb 6 12:13 - 18:46 (06:33)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">root pts/1 192.168.201.254 Thu Feb 5 22:37 - 23:53 (01:16)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last | cut -d &#x27; &#x27; -f 1</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例 2：将 export 输出的信息，取出第 12 字符以后的所有字符串。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ export</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">declare -x HISTCONTROL=&quot;ignoredups&quot;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">declare -x HISTSIZE=&quot;1000&quot;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">declare -x HOME=&quot;/home/dmtsai&quot;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">declare -x HOSTNAME=&quot;study.centos.vbird&quot;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">.....(其他省略).....</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ export | cut -c 12-</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="排序指令">排序指令<a href="#排序指令" class="hash-link" aria-label="Direct link to 排序指令" title="Direct link to 排序指令">​</a></h3>
+<p><strong>sort</strong>   用于排序。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ sort [-fbMnrtuk] [file or stdin]</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-f ：忽略大小写</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-b ：忽略最前面的空格</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-M ：以月份的名字来排序，例如 JAN，DEC</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-n ：使用数字</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-r ：反向排序</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-u ：相当于 unique，重复的内容只出现一次</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ：分隔符，默认为 tab</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-k ：指定排序的区间</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：/etc/passwd 文件内容以 : 来分隔，要求以第三列进行排序。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ cat /etc/passwd | sort -t &#x27;:&#x27; -k 3</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">root:x:0:0:root:/root:/bin/bash</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai:x:1000:1000:dmtsai:/home/dmtsai:/bin/bash</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">alex:x:1001:1002::/home/alex:/bin/bash</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">arod:x:1002:1003::/home/arod:/bin/bash</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>uniq</strong>   可以将重复的数据只取一个。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ uniq [-ic]</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-i ：忽略大小写</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ：进行计数</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：取得每个人的登录总次数</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last | cut -d &#x27; &#x27; -f 1 | sort | uniq -c</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">1</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">6 (unknown</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">47 dmtsai</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">4 reboot</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">7 root</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">1 wtmp</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="双向输出重定向">双向输出重定向<a href="#双向输出重定向" class="hash-link" aria-label="Direct link to 双向输出重定向" title="Direct link to 双向输出重定向">​</a></h3>
+<p>输出重定向会将输出内容重定向到文件中，而   <strong>tee</strong>   不仅能够完成这个功能，还能保留屏幕上的输出。也就是说，使用 tee 指令，一个输出会同时传送到文件和屏幕上。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ tee [-a] file</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="字符转换指令">字符转换指令<a href="#字符转换指令" class="hash-link" aria-label="Direct link to 字符转换指令" title="Direct link to 字符转换指令">​</a></h3>
+<p><strong>tr</strong>   用来删除一行中的字符，或者对字符进行替换。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ tr [-ds] SET1 ...</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ： 删除行中 SET1 这个字符串</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例，将 last 输出的信息所有小写转换为大写。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last | tr &#x27;[a-z]&#x27; &#x27;[A-Z]&#x27;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>col</strong>   将 tab 字符转为空格字符。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ col [-xb]</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-x ： 将 tab 键转换成对等的空格键</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>expand</strong>   将 tab 转换一定数量的空格，默认是 8 个。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ expand [-t] file</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ：tab 转为空格的数量</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>join</strong>   将有相同数据的那一行合并在一起。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ join [-ti12] file1 file2</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-t ：分隔符，默认为空格</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-i ：忽略大小写的差异</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-1 ：第一个文件所用的比较字段</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-2 ：第二个文件所用的比较字段</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><strong>paste</strong>   直接将两行粘贴在一起。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ paste [-d] file1 file2</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-d ：分隔符，默认为 tab</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分区指令">分区指令<a href="#分区指令" class="hash-link" aria-label="Direct link to 分区指令" title="Direct link to 分区指令">​</a></h3>
+<p><strong>split</strong>   将一个文件划分成多个文件。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ split [-bl] file PREFIX</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-b ：以大小来进行分区，可加单位，例如 b, k, m 等</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-l ：以行数来进行分区。</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">- PREFIX ：分区文件的前导名称</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="九正则表达式">九、正则表达式<a href="#九正则表达式" class="hash-link" aria-label="Direct link to 九、正则表达式" title="Direct link to 九、正则表达式">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="grep">grep<a href="#grep" class="hash-link" aria-label="Direct link to grep" title="Direct link to grep">​</a></h3>
+<p>g/re/p（globally search a regular expression and print)，使用正则表示式进行全局查找并打印。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ grep [-acinv] [--color=auto] 搜寻字符串 filename</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-c ： 统计匹配到行的个数</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-i ： 忽略大小写</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-n ： 输出行号</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">-v ： 反向选择，也就是显示出没有 搜寻字符串 内容的那一行</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">--color=auto ：找到的关键字加颜色显示</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：把含有 the 字符串的行提取出来（注意默认会有 --color=auto 选项，因此以下内容在 Linux 中有颜色显示 the 字符串）</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ grep -n &#x27;the&#x27; regular_express.txt</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">8:I can&#x27;t finish the test.</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">12:the symbol &#x27;*&#x27; is represented as start.</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">15:You are the best is mean you are the no. 1.</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">16:The world Happy is the same with &quot;glad&quot;.</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">18:google is the best tools for search keyword</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：正则表达式 a{m,n} 用来匹配字符 a m~n 次，这里需要将 { 和 } 进行转义，因为它们在 shell 是有特殊意义的。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ grep -n &#x27;a\{2,5\}&#x27; regular_express.txt</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="printf">printf<a href="#printf" class="hash-link" aria-label="Direct link to printf" title="Direct link to printf">​</a></h3>
+<p>用于格式化输出。它不属于管道命令，在给 printf 传数据时需要使用 $( ) 形式。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ printf &#x27;%10s %5i %5i %5i %8.2f \n&#x27; $(cat printf.txt)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    DmTsai    80    60    92    77.33</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">     VBird    75    55    80    70.00</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">       Ken    60    90    70    73.33</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="awk">awk<a href="#awk" class="hash-link" aria-label="Direct link to awk" title="Direct link to awk">​</a></h3>
+<p>是由 Alfred Aho，Peter Weinberger 和 Brian Kernighan 创造，awk 这个名字就是这三个创始人名字的首字母。</p>
+<p>awk 每次处理一行，处理的最小单位是字段，每个字段的命名方式为：$n，n 为字段号，从 1 开始，$0 表示一整行。</p>
+<p>示例：取出最近五个登录用户的用户名和 IP。首先用 last -n 5 取出用最近五个登录用户的所有信息，可以看到用户名和 IP 分别在第 1 列和第 3 列，我们用 $1 和 $3 就能取出这两个字段，然后用 print 进行打印。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last -n 5</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai pts/0 192.168.1.100 Tue Jul 14 17:32 still logged in</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai pts/0 192.168.1.100 Thu Jul 9 23:36 - 02:58 (03:22)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai pts/0 192.168.1.100 Thu Jul 9 17:23 - 23:36 (06:12)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai pts/0 192.168.1.100 Thu Jul 9 08:02 - 08:17 (00:14)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai tty1 Fri May 29 11:55 - 12:11 (00:15)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last -n 5 | awk &#x27;{print $1 &quot;\t&quot; $3}&#x27;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai   192.168.1.100</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai   192.168.1.100</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai   192.168.1.100</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai   192.168.1.100</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai   Fri</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>可以根据字段的某些条件进行匹配，例如匹配字段小于某个值的那一行数据。</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ awk &#x27;条件类型 1 {动作 1} 条件类型 2 {动作 2} ...&#x27; filename</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：/etc/passwd 文件第三个字段为 UID，对 UID 小于 10 的数据进行处理。</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ cat /etc/passwd | awk &#x27;BEGIN {FS=&quot;:&quot;} $3 &lt; 10 {print $1 &quot;\t &quot; $3}&#x27;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">root 0</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">bin 1</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">daemon 2</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>awk 变量：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">变量名称</th><th>代表意义</th></tr></thead><tbody><tr><td style="text-align:center">NF</td><td>每一行拥有的字段总数</td></tr><tr><td style="text-align:center">NR</td><td>目前所处理的是第几行数据</td></tr><tr><td style="text-align:center">FS</td><td>目前的分隔字符，默认是空格键</td></tr></tbody></table>
+<p>示例：显示正在处理的行号以及每一行有多少字段</p>
+<div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">$ last -n 5 | awk &#x27;{print $1 &quot;\t lines: &quot; NR &quot;\t columns: &quot; NF}&#x27;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai lines: 1 columns: 10</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai lines: 2 columns: 10</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai lines: 3 columns: 10</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai lines: 4 columns: 10</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">dmtsai lines: 5 columns: 9</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="十进程管理">十、进程管理<a href="#十进程管理" class="hash-link" aria-label="Direct link to 十、进程管理" title="Direct link to 十、进程管理">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="查看进程">查看进程<a href="#查看进程" class="hash-link" aria-label="Direct link to 查看进程" title="Direct link to 查看进程">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-ps">1. ps<a href="#1-ps" class="hash-link" aria-label="Direct link to 1. ps" title="Direct link to 1. ps">​</a></h4>
+<p>查看某个时间点的进程信息。</p>
+<p>示例：查看自己的进程</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ps -l</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：查看系统所有进程</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ps aux</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>示例：查看特定的进程</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## ps aux | grep threadx</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-pstree">2. pstree<a href="#2-pstree" class="hash-link" aria-label="Direct link to 2. pstree" title="Direct link to 2. pstree">​</a></h4>
+<p>查看进程树。</p>
+<p>示例：查看所有进程树</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## pstree -A</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-top">3. top<a href="#3-top" class="hash-link" aria-label="Direct link to 3. top" title="Direct link to 3. top">​</a></h4>
+<p>实时显示进程信息。</p>
+<p>示例：两秒钟刷新一次</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## top -d 2</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-netstat">4. netstat<a href="#4-netstat" class="hash-link" aria-label="Direct link to 4. netstat" title="Direct link to 4. netstat">​</a></h4>
+<p>查看占用端口的进程</p>
+<p>示例：查看特定端口的进程</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">## netstat -anp | grep port</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="进程状态">进程状态<a href="#进程状态" class="hash-link" aria-label="Direct link to 进程状态" title="Direct link to 进程状态">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:center">状态</th><th>说明</th></tr></thead><tbody><tr><td style="text-align:center">R</td><td>running or runnable (on run queue)<br>正在执行或者可执行，此时进程位于执行队列中。</td></tr><tr><td style="text-align:center">D</td><td>uninterruptible sleep (usually I/O)<br>不可中断阻塞，通常为 IO 阻塞。</td></tr><tr><td style="text-align:center">S</td><td>interruptible sleep (waiting for an event to complete) <br> 可中断阻塞，此时进程正在等待某个事件完成。</td></tr><tr><td style="text-align:center">Z</td><td>zombie (terminated but not reaped by its parent)<br>僵死，进程已经终止但是尚未被其父进程获取信息。</td></tr><tr><td style="text-align:center">T</td><td>stopped (either by a job control signal or because it is being traced) <br> 结束，进程既可以被作业控制信号结束，也可能是正在被追踪。</td></tr></tbody></table>
+<br>
+<p><img decoding="async" loading="lazy" src="/assets/images/2bab4127-3e7d-48cc-914e-436be859fb05-ac6be01ce466c6de8c63724a755db827.png" width="644" height="372" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sigchld">SIGCHLD<a href="#sigchld" class="hash-link" aria-label="Direct link to SIGCHLD" title="Direct link to SIGCHLD">​</a></h3>
+<p>当一个子进程改变了它的状态时（停止运行，继续运行或者退出），有两件事会发生在父进程中：</p>
+<ul>
+<li>得到 SIGCHLD 信号；</li>
+<li>waitpid() 或者 wait() 调用会返回。</li>
+</ul>
+<p>其中子进程发送的 SIGCHLD 信号包含了子进程的信息，比如进程 ID、进程状态、进程使用 CPU 的时间等。</p>
+<p>在子进程退出时，它的进程描述符不会立即释放，这是为了让父进程得到子进程信息，父进程通过 wait() 和 waitpid() 来获得一个已经退出的子进程的信息。</p>
+<div align="center"> <!-- --> </div><br>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="wait">wait()<a href="#wait" class="hash-link" aria-label="Direct link to wait()" title="Direct link to wait()">​</a></h3>
+<div class="language-c codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-c codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token class-name" style="color:hsl(35, 99%, 36%)">pid_t</span><span class="token plain"> </span><span class="token function" style="color:hsl(221, 87%, 60%)">wait</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token keyword" style="color:hsl(301, 63%, 40%)">int</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">*</span><span class="token plain">status</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>父进程调用 wait() 会一直阻塞，直到收到一个子进程退出的 SIGCHLD 信号，之后 wait() 函数会销毁子进程并返回。</p>
+<p>如果成功，返回被收集的子进程的进程 ID；如果调用进程没有子进程，调用就会失败，此时返回 -1，同时 errno 被置为 ECHILD。</p>
+<p>参数 status 用来保存被收集的子进程退出时的一些状态，如果对这个子进程是如何死掉的毫不在意，只想把这个子进程消灭掉，可以设置这个参数为 NULL。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="waitpid">waitpid()<a href="#waitpid" class="hash-link" aria-label="Direct link to waitpid()" title="Direct link to waitpid()">​</a></h3>
+<div class="language-c codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-c codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token class-name" style="color:hsl(35, 99%, 36%)">pid_t</span><span class="token plain"> </span><span class="token function" style="color:hsl(221, 87%, 60%)">waitpid</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token class-name" style="color:hsl(35, 99%, 36%)">pid_t</span><span class="token plain"> pid</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">int</span><span class="token plain"> </span><span class="token operator" style="color:hsl(221, 87%, 60%)">*</span><span class="token plain">status</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">int</span><span class="token plain"> options</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>作用和 wait() 完全相同，但是多了两个可由用户控制的参数 pid 和 options。</p>
+<p>pid 参数指示一个子进程的 ID，表示只关心这个子进程退出的 SIGCHLD 信号。如果 pid=-1 时，那么和 wait() 作用相同，都是关心所有子进程退出的 SIGCHLD 信号。</p>
+<p>options 参数主要有 WNOHANG 和 WUNTRACED 两个选项，WNOHANG 可以使 waitpid() 调用变成非阻塞的，也就是说它会立即返回，父进程可以继续执行其它任务。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="孤儿进程">孤儿进程<a href="#孤儿进程" class="hash-link" aria-label="Direct link to 孤儿进程" title="Direct link to 孤儿进程">​</a></h3>
+<p>一个父进程退出，而它的一个或多个子进程还在运行，那么这些子进程将成为孤儿进程。</p>
+<p>孤儿进程将被 init 进程（进程号为 1）所收养，并由 init 进程对它们完成状态收集工作。</p>
+<p>由于孤儿进程会被 init 进程收养，所以孤儿进程不会对系统造成危害。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="僵尸进程">僵尸进程<a href="#僵尸进程" class="hash-link" aria-label="Direct link to 僵尸进程" title="Direct link to 僵尸进程">​</a></h3>
+<p>一个子进程的进程描述符在子进程退出时不会释放，只有当父进程通过 wait() 或 waitpid() 获取了子进程信息后才会释放。如果子进程退出，而父进程并没有调用 wait() 或 waitpid()，那么子进程的进程描述符仍然保存在系统中，这种进程称之为僵尸进程。</p>
+<p>僵尸进程通过 ps 命令显示出来的状态为 Z（zombie）。</p>
+<p>系统所能使用的进程号是有限的，如果产生大量僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程。</p>
+<p>要消灭系统中大量的僵尸进程，只需要将其父进程杀死，此时僵尸进程就会变成孤儿进程，从而被 init 进程所收养，这样 init 进程就会释放所有的僵尸进 程所占有的资源，从而结束僵尸进程。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="参考资料">参考资料<a href="#参考资料" class="hash-link" aria-label="Direct link to 参考资料" title="Direct link to 参考资料">​</a></h2>
+<ul>
+<li>鸟哥. 鸟 哥 的 Linux 私 房 菜 基 础 篇 第 三 版[J]. 2009.</li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-rpmdpkg/index.html" target="_blank" rel="noopener noreferrer">Linux 平台上的软件包管理</a></li>
+<li><a href="http://liubigbin.github.io/2016/03/11/Linux-%E4%B9%8B%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E3%80%81%E5%83%B5%E6%AD%BB%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%AD%A4%E5%84%BF%E8%BF%9B%E7%A8%8B/" target="_blank" rel="noopener noreferrer">Linux 之守护进程、僵死进程与孤儿进程</a></li>
+<li><a href="https://stackoverflow.com/questions/185899/what-is-the-difference-between-a-symbolic-link-and-a-hard-link" target="_blank" rel="noopener noreferrer">What is the difference between a symbolic link and a hard link?</a></li>
+<li><a href="https://idea.popcount.org/2012-12-11-linux-process-states/" target="_blank" rel="noopener noreferrer">Linux process states</a></li>
+<li><a href="https://en.wikipedia.org/wiki/GUID_Partition_Table" target="_blank" rel="noopener noreferrer">GUID Partition Table</a></li>
+<li><a href="https://blog.csdn.net/kevinhg/article/details/7001719" target="_blank" rel="noopener noreferrer">详解 wait 和 waitpid 函数</a></li>
+<li><a href="https://blog.csdn.net/tianlesoftware/article/details/6009110" target="_blank" rel="noopener noreferrer">IDE、SATA、SCSI、SAS、FC、SSD 硬盘类型介绍</a></li>
+<li><a href="http://www.mpchunter.com/s3000/akai-ib-301s-scsi-interface-for-s2800s3000/" target="_blank" rel="noopener noreferrer">Akai IB-301S SCSI Interface for S2800,S3000</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Parallel_ATA" target="_blank" rel="noopener noreferrer">Parallel ATA</a></li>
+<li><a href="http://www.thessdreview.com/our-reviews/adata-xpg-sx900-256gb-sata-3-ssd-review-expanded-capacity-and-sandforce-driven-speed/4/" target="_blank" rel="noopener noreferrer">ADATA XPG SX900 256GB SATA 3 SSD Review – Expanded Capacity and SandForce Driven Speed</a></li>
+<li><a href="https://blogs.cisco.com/datacenter/decoding-ucs-invicta-part-1" target="_blank" rel="noopener noreferrer">Decoding UCS Invicta – Part 1</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E7%A1%AC%E7%9B%98" target="_blank" rel="noopener noreferrer">硬盘</a></li>
+<li><a href="http://www.differencebetween.info/difference-between-sas-and-sata" target="_blank" rel="noopener noreferrer">Difference between SAS and SATA</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/BIOS" target="_blank" rel="noopener noreferrer">BIOS</a></li>
+<li><a href="https://www.cs.rutgers.edu/~pxk/416/notes/13-fs-studies.html" target="_blank" rel="noopener noreferrer">File system design case studies</a></li>
+<li><a href="https://classes.soe.ucsc.edu/cmps111/Fall08/proj4.shtml" target="_blank" rel="noopener noreferrer">Programming Project #4</a></li>
+<li><a href="http://web.cs.ucla.edu/classes/fall14/cs111/scribe/11a/index.html" target="_blank" rel="noopener noreferrer">FILE SYSTEM DESIGN</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#前言" class="table-of-contents__link toc-highlight">前言</a></li><li><a href="#一常用操作以及概念" class="table-of-contents__link toc-highlight">一、常用操作以及概念</a><ul><li><a href="#快捷键" class="table-of-contents__link toc-highlight">快捷键</a></li><li><a href="#求助" class="table-of-contents__link toc-highlight">求助</a></li><li><a href="#关机" class="table-of-contents__link toc-highlight">关机</a></li><li><a href="#path" class="table-of-contents__link toc-highlight">PATH</a></li><li><a href="#sudo" class="table-of-contents__link toc-highlight">sudo</a></li><li><a href="#包管理工具" class="table-of-contents__link toc-highlight">包管理工具</a></li><li><a href="#发行版" class="table-of-contents__link toc-highlight">发行版</a></li><li><a href="#vim-三个模式" class="table-of-contents__link toc-highlight">VIM 三个模式</a></li><li><a href="#gnu" class="table-of-contents__link toc-highlight">GNU</a></li><li><a href="#开源协议" class="table-of-contents__link toc-highlight">开源协议</a></li></ul></li><li><a href="#二磁盘" class="table-of-contents__link toc-highlight">二、磁盘</a><ul><li><a href="#磁盘接口" class="table-of-contents__link toc-highlight">磁盘接口</a></li><li><a href="#磁盘的文件名" class="table-of-contents__link toc-highlight">磁盘的文件名</a></li></ul></li><li><a href="#三分区" class="table-of-contents__link toc-highlight">三、分区</a><ul><li><a href="#分区表" class="table-of-contents__link toc-highlight">分区表</a></li><li><a href="#开机检测程序" class="table-of-contents__link toc-highlight">开机检测程序</a></li></ul></li><li><a href="#四文件系统" class="table-of-contents__link toc-highlight">四、文件系统</a><ul><li><a href="#分区与文件系统" class="table-of-contents__link toc-highlight">分区与文件系统</a></li><li><a href="#组成" class="table-of-contents__link toc-highlight">组成</a></li><li><a href="#文件读取" class="table-of-contents__link toc-highlight">文件读取</a></li><li><a href="#磁盘碎片" class="table-of-contents__link toc-highlight">磁盘碎片</a></li><li><a href="#block" class="table-of-contents__link toc-highlight">block</a></li><li><a href="#inode" class="table-of-contents__link toc-highlight">inode</a></li><li><a href="#目录" class="table-of-contents__link toc-highlight">目录</a></li><li><a href="#日志" class="table-of-contents__link toc-highlight">日志</a></li><li><a href="#挂载" class="table-of-contents__link toc-highlight">挂载</a></li><li><a href="#目录配置" class="table-of-contents__link toc-highlight">目录配置</a></li></ul></li><li><a href="#五文件" class="table-of-contents__link toc-highlight">五、文件</a><ul><li><a href="#文件属性" class="table-of-contents__link toc-highlight">文件属性</a></li><li><a href="#文件与目录的基本操作" class="table-of-contents__link toc-highlight">文件与目录的基本操作</a></li><li><a href="#修改权限" class="table-of-contents__link toc-highlight">修改权限</a></li><li><a href="#默认权限" class="table-of-contents__link toc-highlight">默认权限</a></li><li><a href="#目录的权限" class="table-of-contents__link toc-highlight">目录的权限</a></li><li><a href="#链接" class="table-of-contents__link toc-highlight">链接</a></li><li><a href="#获取文件内容" class="table-of-contents__link toc-highlight">获取文件内容</a></li><li><a href="#指令与文件搜索" class="table-of-contents__link toc-highlight">指令与文件搜索</a></li></ul></li><li><a href="#六压缩与打包" class="table-of-contents__link toc-highlight">六、压缩与打包</a><ul><li><a href="#压缩文件名" class="table-of-contents__link toc-highlight">压缩文件名</a></li><li><a href="#压缩指令" class="table-of-contents__link toc-highlight">压缩指令</a></li><li><a href="#打包" class="table-of-contents__link toc-highlight">打包</a></li></ul></li><li><a href="#七bash" class="table-of-contents__link toc-highlight">七、Bash</a><ul><li><a href="#特性" class="table-of-contents__link toc-highlight">特性</a></li><li><a href="#变量操作" class="table-of-contents__link toc-highlight">变量操作</a></li><li><a href="#指令搜索顺序" class="table-of-contents__link toc-highlight">指令搜索顺序</a></li><li><a href="#数据流重定向" class="table-of-contents__link toc-highlight">数据流重定向</a></li></ul></li><li><a href="#八管道指令" class="table-of-contents__link toc-highlight">八、管道指令</a><ul><li><a href="#提取指令" class="table-of-contents__link toc-highlight">提取指令</a></li><li><a href="#排序指令" class="table-of-contents__link toc-highlight">排序指令</a></li><li><a href="#双向输出重定向" class="table-of-contents__link toc-highlight">双向输出重定向</a></li><li><a href="#字符转换指令" class="table-of-contents__link toc-highlight">字符转换指令</a></li><li><a href="#分区指令" class="table-of-contents__link toc-highlight">分区指令</a></li></ul></li><li><a href="#九正则表达式" class="table-of-contents__link toc-highlight">九、正则表达式</a><ul><li><a href="#grep" class="table-of-contents__link toc-highlight">grep</a></li><li><a href="#printf" class="table-of-contents__link toc-highlight">printf</a></li><li><a href="#awk" class="table-of-contents__link toc-highlight">awk</a></li></ul></li><li><a href="#十进程管理" class="table-of-contents__link toc-highlight">十、进程管理</a><ul><li><a href="#查看进程" class="table-of-contents__link toc-highlight">查看进程</a></li><li><a href="#进程状态" class="table-of-contents__link toc-highlight">进程状态</a></li><li><a href="#sigchld" class="table-of-contents__link toc-highlight">SIGCHLD</a></li><li><a href="#wait" class="table-of-contents__link toc-highlight">wait()</a></li><li><a href="#waitpid" class="table-of-contents__link toc-highlight">waitpid()</a></li><li><a href="#孤儿进程" class="table-of-contents__link toc-highlight">孤儿进程</a></li><li><a href="#僵尸进程" class="table-of-contents__link toc-highlight">僵尸进程</a></li></ul></li><li><a href="#参考资料" class="table-of-contents__link toc-highlight">参考资料</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
