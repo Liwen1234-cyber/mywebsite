@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/面试笔记/Database" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">数据库 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/面试笔记/Database/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="数据库 | Coisini"><meta data-rh="true" name="description" content="* 数据库基础"><meta data-rh="true" property="og:description" content="* 数据库基础"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/面试笔记/Database/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/面试笔记/Database/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/面试笔记/Database/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.f8473964.js" defer="defer"></script>
+<script src="/assets/js/main.52da2336.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>数据库</h1></header>
+<ul>
+<li>数据库基础
+<ul>
+<li><a href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E7%89%B9%E6%80%A7">事务的概念和特性？</a></li>
+<li><a href="#%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%B9%B6%E5%8F%91%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98">会出现哪些并发一致性问题？</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB">数据库的四种隔离级别？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81">什么是乐观锁和悲观锁？</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B0%81%E9%94%81%E7%B1%BB%E5%9E%8B">常见的封锁类型？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E7%BA%A7%E5%B0%81%E9%94%81%E5%8D%8F%E8%AE%AE">什么是三级封锁协议？</a></li>
+<li><a href="#%E5%9B%9B%E7%A7%8D%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">四种隔离级别的实现原理？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%A4%E6%AE%B5%E9%94%81%E5%8D%8F%E8%AE%AE">什么是两段锁协议？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-mvcc">什么是 MVCC？</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%8C%83%E5%BC%8F">数据库的范式？</a></li>
+<li><a href="#%E5%88%97%E4%B8%BE%E5%87%A0%E7%A7%8D%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F">列举几种表连接方式？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E7%BC%BA%E7%82%B9">什么是存储过程？有哪些优缺点？</a></li>
+<li><a href="#DropDeleteTruncate%E7%9A%84%E5%8C%BA%E5%88%AB">Drop/Delete/Truncate的区别？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%A7%86%E5%9B%BE%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B8%E6%A0%87">什么是视图？什么是游标？</a></li>
+</ul>
+</li>
+<li>MySQL
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86b%E6%A0%91">数据库索引的实现原理（B+树）</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E7%82%B9">使用索引的优点</a></li>
+<li><a href="#%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E7%B4%A2%E5%BC%95%E4%BC%9A%E5%A4%B1%E6%95%88">哪些情况下索引会失效？</a></li>
+<li><a href="#%E5%9C%A8%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E9%80%82%E5%90%88%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95">在哪些地方适合创建索引？</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%88%86%E7%B1%BB">索引的分类？</a></li>
+<li><a href="#MySQL%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E-InnoDB-%E5%92%8C-MyISAM-%E7%9A%84%E5%8C%BA%E5%88%AB">MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93">如何优化数据库？</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88">什么是主从复制？实现原理是什么？</a></li>
+</ul>
+</li>
+<li>NoSQL/Redis
+<ul>
+<li><a href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8C%BA%E5%88%AB">关系型数据库和非关系型数据库的区别？</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="事务的概念和特性">事务的概念和特性？<a href="#事务的概念和特性" class="hash-link" aria-label="Direct link to 事务的概念和特性？" title="Direct link to 事务的概念和特性？">​</a></h3>
+<p>概念：事务（Transaction）是一个操作序列，不可分割的工作单位，以BEGIN TRANSACTION开始，以ROLLBACK/COMMIT结束</p>
+<p>特性（ACID）：</p>
+<ul>
+<li><strong>原子性</strong>（Atomicity）：逻辑上是不可分割的操作单元，事务的所有操作要么全部提交成功，要么全部失败回滚（用回滚日志实现，反向执行日志中的操作）；</li>
+<li><strong>一致性</strong>（Consistency）：事务的执行必须使数据库保持一致性状态。在一致性状态下，所有事务对一个数据的读取结果都是相同的；</li>
+<li><strong>隔离性</strong>（Isolation）：一个事务所做的修改在最终提交以前，对其它事务是不可见的（并发执行的事务之间不能相互影响）；</li>
+<li><strong>持久性</strong>（Durability）：一旦事务提交成功，对数据的修改是永久性的</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="会出现哪些并发一致性问题">会出现哪些并发一致性问题？<a href="#会出现哪些并发一致性问题" class="hash-link" aria-label="Direct link to 会出现哪些并发一致性问题？" title="Direct link to 会出现哪些并发一致性问题？">​</a></h3>
+<ul>
+<li><strong>丢失修改</strong>：一个事务对数据进行了修改，在事务提交之前，另一个事务对同一个数据进行了修改，覆盖了之前的修改；</li>
+<li><strong>脏读</strong>（Dirty Read）：一个事务读取了被另一个事务修改、但未提交（进行了回滚）的数据，造成两个事务得到的数据不一致；</li>
+<li><strong>不可重复读</strong>（Nonrepeatable Read）：在同一个事务中，某查询操作在一个时间读取某一行数据和之后一个时间读取该行数据，发现数据已经发生修改（针对<strong>update</strong>操作）；</li>
+<li><strong>幻读</strong>（Phantom Read）：当同一查询多次执行时，由于其它事务在这个数据范围内执行了插入操作，会导致每次返回不同的结果集（和不可重复读的区别：针对的是一个数据整体/范围；并且针对<strong>insert</strong>操作）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库的四种隔离级别">数据库的四种隔离级别？<a href="#数据库的四种隔离级别" class="hash-link" aria-label="Direct link to 数据库的四种隔离级别？" title="Direct link to 数据库的四种隔离级别？">​</a></h3>
+<ul>
+<li><strong>未提交读</strong>（Read Uncommited）：在一个事务提交之前，它的执行结果对其它事务也是可见的。会导致脏读、不可重复读、幻读；</li>
+<li><strong>提交读</strong>（Read Commited）：一个事务只能看见已经提交的事务所作的改变。 可避免脏读问题；</li>
+<li><strong>可重复读</strong>（Repeatable Read）：可以确保同一个事务在多次读取同样的数据时得到相同的结果。（MySQL的默认隔离级别）。可避免不可重复读；</li>
+<li><strong>可串行化</strong>（Serializable）：强制事务串行执行，使之不可能相互冲突，从而解决幻读问题。可能导致大量的超时现象和锁竞争，实际很少使用。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是乐观锁和悲观锁">什么是乐观锁和悲观锁？<a href="#什么是乐观锁和悲观锁" class="hash-link" aria-label="Direct link to 什么是乐观锁和悲观锁？" title="Direct link to 什么是乐观锁和悲观锁？">​</a></h3>
+<ul>
+<li>悲观锁：认为数据随时会被修改，因此每次读取数据之前都会上锁，防止其它事务读取或修改数据；应用于<strong>数据更新比较频繁</strong>的场景；</li>
+<li>乐观锁：操作数据时不会上锁，但是更新时会判断在此期间有没有别的事务更新这个数据，若被更新过，则失败重试；适用于<strong>读多写少</strong>的场景。乐观锁的实现方式有：
+<ul>
+<li>加一个版本号或者时间戳字段，每次数据更新时同时更新这个字段；</li>
+<li>先读取想要更新的字段或者所有字段，更新的时候比较一下，只有字段没有变化才进行更新</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="常见的封锁类型">常见的封锁类型？<a href="#常见的封锁类型" class="hash-link" aria-label="Direct link to 常见的封锁类型？" title="Direct link to 常见的封锁类型？">​</a></h3>
+<p>意向锁是 InnoDB 自动加的， 不需用户干预。
+对于 UPDATE、 DELETE 和 INSERT 语句， InnoDB
+会自动给涉及数据集加排他锁(X)；
+对于普通 SELECT 语句，InnoDB 不会加任何锁；
+事务可以通过以下语句显式给记录集加共享锁或排他锁：
+共享锁（S）：SELECT * FROM table_name WHERE ... LOCK IN SHARE MODE。 其他 session 仍然可以查询记录，并也可以对该记录加 share mode 的共享锁。但是如果当前事务需要对该记录进行更新操作，则很有可能造成死锁。
+排他锁(X)：SELECT * FROM table_name WHERE ... FOR UPDATE。其他 session 可以查询该记录，但是不能对该记录加共享锁或排他锁，而是等待获得锁</p>
+<ul>
+<li><strong>排它锁</strong>（Exclusive Lock）/ X锁：事务对数据加上X锁时，只允许此事务读取和修改此数据，并且其它事务不能对该数据加任何锁；</li>
+<li><strong>共享锁</strong>（Shared Lock）/ S锁：加了S锁后，该事务只能对数据进行读取而不能修改，并且其它事务只能加S锁，不能加X锁</li>
+<li><strong>意向锁</strong>（Intention Locks）：
+<ul>
+<li>一个事务在获得某个<strong>数据行</strong>对象的 S 锁之前，必须先获得<strong>整个表</strong>的 IS 锁或更强的锁；</li>
+<li>一个事务在获得某个数据行对象的 X 锁之前，必须先获得整个表的 IX 锁；</li>
+<li>IS/IX 锁之间都是兼容的；</li>
+<li>好处：如果一个事务想要对整个表加X锁，就需要先检测是否有其它事务对该表或者该表中的某一行加了锁，这种检测非常耗时。有了意向锁之后，只需要检测整个表是否存在IX/IS/X/S锁就行了</li>
+</ul>
+</li>
+</ul>
+<p>锁的作用：用于管理对共享资源的并发访问，保证数据库的完整性和一致性</p>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>封锁粒度的概念</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<p>MySQL 中提供了两种封锁粒度：<strong>行级锁</strong>以及<strong>表级锁</strong>。</p>
+<p>封锁粒度小：</p>
+<ul>
+<li>好处：锁定的数据量越少，发生锁争用的可能就越小，系统的<strong>并发程度</strong>就越高；</li>
+<li>坏处：<strong>系统开销</strong>大（加  锁、释放锁、检查锁的状态都需要消耗资源）</li>
+</ul>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>MySQL加锁</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">SELECT ... LOCK In SHARE MODE;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">SELECT ... FOR UPDATE;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是三级封锁协议">什么是三级封锁协议？<a href="#什么是三级封锁协议" class="hash-link" aria-label="Direct link to 什么是三级封锁协议？" title="Direct link to 什么是三级封锁协议？">​</a></h3>
+<ul>
+<li>一级封锁协议：事务在修改数据之前必须先对其加X锁，直到事务结束才释放。可以解决丢失修改问题（两个事务不能同时对一个数据加X锁，避免了修改被覆盖）；</li>
+<li>二级封锁协议：在一  级的基础上，事务在读取数据之前必须先加S锁，读完后释放。可以解决脏读问题（如果已经有事务在修改数据，就意味着已经加了X锁，此时想要读取数据的事务并不能加S锁，也就无法进行读取，避免了读取脏数据）；</li>
+<li>三级封锁协议：在二级的基础上，事务在读取数据之前必须先加S锁，直到事务结束才能释放。可以解决不可重复读问题（避免了在事务结束前其它事务对数据加X锁进行修改，保证了事务期间数据不会被其它事务更新）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="四种隔离级别的实现原理">四种隔离级别的实现原理？<a href="#四种隔离级别的实现原理" class="hash-link" aria-label="Direct link to 四种隔离级别的实现原理？" title="Direct link to 四种隔离级别的实现原理？">​</a></h3>
+<ul>
+<li>未提交读（Read Uncommited）：啥都不做。；</li>
+<li>（一级封锁协议 ----&gt; 解决丢失修改）；</li>
+<li>提交读（Read Commited）：二级封锁协议 ----&gt; 解决脏读。；</li>
+<li>可重复读（Repeatable Read）:  三级封锁协议 ----&gt; 解决不可重复读。；</li>
+<li>可串行化（Serializable）：强制事务串行执行 ----&gt; 解决幻读问题。；</li>
+<li>（其中提交读和可重复读也可以由MVCC实现）；</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是两段锁协议">什么是两段锁协议？<a href="#什么是两段锁协议" class="hash-link" aria-label="Direct link to 什么是两段锁协议？" title="Direct link to 什么是两段锁协议？">​</a></h3>
+<p>事务必须严格分为两个阶段对数据进行<strong>加锁和解锁</strong>的操作，第一阶段加锁，第二阶段解锁。也就是说一个事务中一旦释放了锁，就不能再申请新锁了。</p>
+<p><strong>可串行化调度</strong>是指，通过并发控制，使得并发执行的事务结果与某个串行执行的  事务结果相同。事务遵循两段锁协议是保证可串行化调度的充分条件。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是-mvcc">什么是 MVCC？<a href="#什么是-mvcc" class="hash-link" aria-label="Direct link to 什么是 MVCC？" title="Direct link to 什么是 MVCC？">​</a></h3>
+<p>多版本并发控制（Multi-Version Concurrency Control, MVCC），MVCC在每行记录后面都保存有两个隐藏的列，用来存储<strong>创建版本号</strong>和<strong>删除版本号</strong>。</p>
+<ul>
+<li>创建版本号：创建一个数据行时的事务版本号（<strong>事务版本号</strong>：事务开始时的系统版本号；系统版本号：每开始一个新的事务，系统版本号就会自动递增）；</li>
+<li>删除版本号：删除操作时的事务版本号；</li>
+<li>各种操作：
+<ul>
+<li>插入操作时，记录创建版本号；</li>
+<li>删除操作时，记录删除版本号；</li>
+<li>更新操作时，先记录删除版本号，再新增一行记录创建版本号；</li>
+<li>查询操作时，要符合以下条件才能被查询出来：删除版本号未定义或大于当前事务版本号（删除操作是在当前事务启动之后做的）；创建版本号小于或等于当前事务版本号（创建操作是事务完成或者在事务启动之前完成）</li>
+</ul>
+</li>
+</ul>
+<p>通过版本号减少了锁的争用，<strong>提高了系统性能</strong>；可以实现<strong>提交读</strong>和<strong>可重复读</strong>两种隔离级别，未提交读无需使用MVCC</p>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>快照读与当前读</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<p>使用 MVCC 读取的是快照中的数据，这样可以减少加锁所带来的开销：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from table ...;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>当前读读取的是最新的数据，需要加锁。以下第一个语句需要加 S 锁，其它都需要加 X 锁：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from table where ? lock in share mode;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from table where ? for update;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">update;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">delete;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库的范式">数据库的范式？<a href="#数据库的范式" class="hash-link" aria-label="Direct link to 数据库的范式？" title="Direct link to 数据库的范式？">​</a></h3>
+<ul>
+<li><strong>第一范式</strong>（1NF，Normal Form）：<strong>属性不应该是可分的</strong>。举例：如果将“电话”作为一个属性（一列），是不符合1NF的，因为电话这个属性可以分解为家庭电话和移动电话...如果将“移动电话”作为一个属性，就符合1NF；</li>
+<li><strong>第二范式</strong> 2NF：每个非主属性<strong>完全依赖</strong>于主属性集（候选键集）；
+<ul>
+<li>B完全依赖于A，就是说A中的所有属性唯一决定B，属性少了就不能唯一决定，属性多了则有冗余（叫依赖不叫完全依赖）。举例：（学号，课程名）这个主属性集可以唯一决定成绩，但是对于学生姓名这个属性，（学号，课程名）这个属性集就是冗余的，所以学生姓名不完全依赖于（学号，课程名）这一属性集；</li>
+<li>主属性集/候选码集：某一组属性能够唯一确定其它的属性（主键就是从候选键集中选的一个键），而其子集不能，这样的属性组中的属性就是主属性；不在候选码集中的属性成为非主属性；</li>
+<li>可以通过分解来满足 2NF：将（学号，课程名，成绩）做成一张 表；（学号，学生姓名）做成另一张表，避免大量的数据冗余；
+满足1NF后，要求表中的所有列，都必须依赖于主键，而不能有任何一列与主键没有关系，也就是说一个表只描述一件事情；</li>
+</ul>
+</li>
+<li><strong>第三范式</strong> 3NF：在 2NF 的基础上，非主属性<strong>不传递依赖</strong>于主属性
+<ul>
+<li>传递依赖：如果C依赖于B，B依赖于A，那么C传递依赖于A；</li>
+<li>3NF在2NF的基础上，消除了非主属性之间的依赖；比如一个表中，主属性有（学号），非主属性有（姓名，院系，院长名），可以看到院长名这个非主属性依赖于院系，传递依赖于学号。消除的办法是分解。
+必须先满足第二范式（2NF），要求：表中的每一列只与主键直接相关而不是间接相关，（表中的每一列只能依赖于主键）；</li>
+</ul>
+</li>
+</ul>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>不符合范式会出现哪些异常？</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>冗余数据：某些同样的数据多次出现（如学生姓名）；</li>
+<li>修改异常：修改了一个记录中的信息，另一个记录中相同的信息却没有修改；</li>
+<li>删除异常：删除一个信息，那么也会丢失其它信息（删除一个课程，丢失了一个学生的信息）；</li>
+<li>插入异常：无法插入（插入一个还没有课程信息的学生）</li>
+</ul>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="列举几种表连接方式">列举几种表连接方式？<a href="#列举几种表连接方式" class="hash-link" aria-label="Direct link to 列举几种表连接方式？" title="Direct link to 列举几种表连接方式？">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="SQL连接" src="/assets/images/20191207081711185_20242-3ae470508256d96ac6e42be3cf09bb16.png" width="600" height="472" class="img_ev3q"></p>
+<ul>
+<li>内连接（Inner Join）：仅将两个表中满足连接条件的行组合起来作为结果集
+<ul>
+<li>自然连接：只考虑属性相同的元组对；</li>
+<li>等值连接：给定条件进行查询</li>
+</ul>
+</li>
+<li>外连接（Outer Join）
+<ul>
+<li>左连接：左边表的所有数据都有显示出来，右边的表数据只显示共同有的那部分，没有对应的部分补NULL；</li>
+<li>右连接：和左连接相反；</li>
+<li>全外连接（Full Outer Join）：查询出左表和右表所有数据，但是去除两表的重复数据</li>
+</ul>
+</li>
+<li>交叉连接（Cross Join）：返回两表的笛卡尔积（对于所含数据分别为m、n的表，返回m*n的结果）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是存储过程有哪些优缺点">什么是存储过程？有哪些优缺点？<a href="#什么是存储过程有哪些优缺点" class="hash-link" aria-label="Direct link to 什么是存储过程？有哪些优缺点？" title="Direct link to 什么是存储过程？有哪些优缺点？">​</a></h3>
+<p>存储过程是事先经过编译并存储在数据库中的一段SQL语句的集合。想要实现相应的功能时，只需要调用这个存储过程就行了（类似于函数，输入具有输出参数）。</p>
+<p>优点：</p>
+<ul>
+<li>预先编译，而不需要每次运行时编译，提高了数据库执行<strong>效率</strong>；</li>
+<li>封装了一系列操作，对于一些数据交互比较多的操作，相比于单独执行SQL语句，可以<strong>减少网络通信量</strong>；</li>
+<li>具有<strong>可复用性</strong>，减少了数据库开发的工作量；</li>
+<li><strong>安全性高</strong>，可以让没有权限的用户通过存储过程间接操作数据库；</li>
+<li>更<strong>易于维护</strong></li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>可移植性差</strong>，存储过程将应用程序绑定到了数据库上；</li>
+<li><strong>开发调试复杂</strong>：没有好的IDE；</li>
+<li><strong>修改复杂</strong>，需要重新编译，有时还需要更新程序中的代码以更新调用</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dropdeletetruncate的区别">Drop/Delete/Truncate的区别？<a href="#dropdeletetruncate的区别" class="hash-link" aria-label="Direct link to Drop/Delete/Truncate的区别？" title="Direct link to Drop/Delete/Truncate的区别？">​</a></h3>
+<ul>
+<li><strong>Delete</strong>用来删除表的全部或者<strong>部分数据</strong>，执行delete之后，用户<strong>需要提交</strong>之后才会执行，会触发表上的DELETE<strong>触发器</strong>（包含一个OLD的虚拟表，可以只读访问被删除的数据），DELETE之后表结构还在，删除很慢，一行一行地删，因为会记录日志，可以利用日志还原数据；</li>
+<li><strong>Truncate</strong>删除表中的所有数据，这个操作<strong>不能回滚</strong>，也不会触发这个表上的触发器。操作比DELETE快很多（直接把表drop掉，再创建一个新表，删除的数据不能找回）。如果表中有自增（AUTO_INCREMENT）列，则重置为1；</li>
+<li><strong>Drop</strong>命令从数据库中<strong>删除表</strong>，所有的数据行，索引和约束都会被删除；不能回滚，不会触发触发器；</li>
+</ul>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>什么是触发器？</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<p>触发器（TRIGGER）是由事件（比如INSERT/UPDATE/DELETE）来触发运行的操作（不能被直接调用，不能接收参数）。在数据库里以独立的对象存储，用于<strong>保证数据完整性</strong>（比如可以检验或转换数据）。</p>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>有哪些约束类型？</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<p>约束（Constraint）类型：主键（Primary Key）约束，唯一约束（Unique），检查约束，非空约束，外键（Foreign Key）约束。</p>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是视图什么是游标">什么是视图？什么是游标？<a href="#什么是视图什么是游标" class="hash-link" aria-label="Direct link to 什么是视图？什么是游标？" title="Direct link to 什么是视图？什么是游标？">​</a></h3>
+<ul>
+<li>视图：从数据库的基本表中通过查询选取出来的数据组成的<strong>虚拟表</strong>（数据库中存放视图的定义）。可以对其进行增/删/改/查等操作。视图是对若干张基本表的引用，一张虚表，查询语句执行的结果，不存储具体的数据（基本表数据发生了改变，视图也会跟着改变）；可以跟基本表一样，进行增删改查操作(ps:增删改操作有条件限制)；如连表查询产生的视图无法进行，对视图的增删改会影响原表的数据。好处：
+<ul>
+<li>通过只给用户访问视图的权限，保证数据的<strong>安全性</strong>；</li>
+<li><strong>简化</strong>复杂的SQL操作，隐藏数据的复杂性（比如复杂的连接）；</li>
+</ul>
+</li>
+<li>游标（Cursor）：用于定位在查询返回的<strong>结果集的特定行</strong>，以对特定行进行操作。使用游标可以方便地对结果集进行移动遍历，根据需要滚动或对浏览/修改任意行中的数据。主要用于交互式应用。</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库索引的实现原理b树">数据库索引的实现原理（B+树）<a href="#数据库索引的实现原理b树" class="hash-link" aria-label="Direct link to 数据库索引的实现原理（B+树）" title="Direct link to 数据库索引的实现原理（B+树）">​</a></h3>
+<p>见<a href="https://github.com/wolverinn/Iridescent/blob/master/Data%20Structure.md#b%E6%A0%91" target="_blank" rel="noopener noreferrer">数据结构部分：B树，B+树</a></p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="使用b树和b树的比较">使用B树和B+树的比较<a href="#使用b树和b树的比较" class="hash-link" aria-label="Direct link to 使用B树和B+树的比较" title="Direct link to 使用B树和B+树的比较">​</a></h5>
+<p>InnoDB的索引使用的是B+树实现，B+树对比B树的好处：</p>
+<ul>
+<li>IO次数少：B+树的中间结点只存放索引，数据都存在叶结点中，因此中间结点可以存更多的数据，让索引树更加矮胖；</li>
+<li>范围查询效率更高：B树需要中序遍历整个树，只B+树需要遍历叶结点中的链表；</li>
+<li>查询效率更加稳定：每次查询都需要从根结点到叶结点，路径长度相同，所以每次查询的效率都差不多</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="使用b树索引和哈希索引的比较">使用B树索引和哈希索引的比较<a href="#使用b树索引和哈希索引的比较" class="hash-link" aria-label="Direct link to 使用B树索引和哈希索引的比较" title="Direct link to 使用B树索引和哈希索引的比较">​</a></h5>
+<p>哈希索引能以 O(1) 时间进行查找，但是只支持精确查找，无法用于部分查找和范围查找，无法用于排序与分组；B树索引支持大于小于等于查找，范围查找。哈希索引遇到大量哈希值相等的情况后查找效率会降低。哈希索引不支持数据的排序。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用索引的优点">使用索引的优点<a href="#使用索引的优点" class="hash-link" aria-label="Direct link to 使用索引的优点" title="Direct link to 使用索引的优点">​</a></h3>
+<ul>
+<li>大大加快了数据的<strong>检索速度</strong>；</li>
+<li>可以显著减少查询中<strong>分组和排序</strong>的时间；</li>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性；</li>
+<li>将随机 I/O 变为<strong>顺序 I/O</strong>（B+Tree 索引是有序的，会将相邻的数据都存储在一起）</li>
+</ul>
+<p>缺点：建立和维护索引耗费时间空间，更新索引很慢。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="哪些情况下索引会失效">哪些情况下索引会失效？<a href="#哪些情况下索引会失效" class="hash-link" aria-label="Direct link to 哪些情况下索引会失效？" title="Direct link to 哪些情况下索引会失效？">​</a></h3>
+<ul>
+<li>以“%(表示任意0个或多个字符)”开头的LIKE语句；</li>
+<li>OR语句前后没有同时使用索引；</li>
+<li>数据类型出现隐式转化（如varchar不加单引号的话可能会自动转换为int型）；</li>
+<li>对于多列索引，必须满足 <strong>最左匹配原则</strong>/最左前缀原则 (最左优先，eg：多列索引col1、col2和col3，则 索引生效的情形包括 col1或col1，col2或col1，col2，col3)；</li>
+<li>如果MySQL估计全表扫描比索引快，则不使用索引（比如非常小的表）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="在哪些地方适合创建索引">在哪些地方适合创建索引？<a href="#在哪些地方适合创建索引" class="hash-link" aria-label="Direct link to 在哪些地方适合创建索引？" title="Direct link to 在哪些地方适合创建索引？">​</a></h3>
+<ul>
+<li>某列经常作为最大最小值；</li>
+<li>经常被查询的字段；</li>
+<li>经常用作表连接的字段；</li>
+<li>经常出现在ORDER BY/GROUP BY/DISDINCT后面的字段</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="创建索引时需要注意什么">创建索引时需要注意什么？<a href="#创建索引时需要注意什么" class="hash-link" aria-label="Direct link to 创建索引时需要注意什么？" title="Direct link to 创建索引时需要注意什么？">​</a></h5>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>展开</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>只应建立在<strong>小字段</strong>上，而不要对大文本或图片建立索引（一页存储的数据越多一次IO操作获取的数据越大效率越高）；</li>
+<li>建立索引的字段应该<strong>非空</strong>，在MySQL中，含有空值的列很难进行查询优化，因为它们使得索引、索引的统计信息以及比较运算更加复杂。应该用0、一个特殊的值或者一个空串代替NULL；</li>
+<li>选择<strong>数据密度大</strong>（唯一值占总数的百分比很大）的字段作索引</li>
+</ul>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="索引的分类">索引的分类？<a href="#索引的分类" class="hash-link" aria-label="Direct link to 索引的分类？" title="Direct link to 索引的分类？">​</a></h3>
+<ul>
+<li>普通索引</li>
+<li>唯一索引 UNIQUE：索引列的值必须唯一，但允许有空值；</li>
+<li>主键索引 PRIMARY KEY：必须唯一，不允许空值（是一种特殊的唯一索引；MySQL创建主键时默认为聚集索引，但主键也可以是非聚集索引）；</li>
+<li>单列索引和多列索引/复合索引（Composite）：索引的列数；</li>
+<li>覆盖（Covering）索引：索引包含了所有满足查询所需要的数据，查询的时候只需要读取索引而不需要回表读取数据；</li>
+<li>聚集（Clustered）索引/非聚集索引：对磁盘上存放数据的物理地址重新组织以使这些数据按照指定规则排序的一种索引（数据的物理排列顺序和索引排列顺序一致）。因此每张表只能创建一个聚集索引（因为要改变物理存储顺序）。优点是查询速度快，因为可以直接按照顺序得到需要数据的物理地址。缺点是进行修改的速度较慢。对于需要经常搜索范围的值很有效。非聚集索引只记录逻辑顺序，并不改变物理顺序；</li>
+<li>分区索引（？）</li>
+<li>虚拟索引（Virtual）：模拟索引的存在而不用真正创建一个索引  ，用于快速测试创建索引对执行计划的影响。没有相关的索引段，不增加存储空间的使用</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mysql的两种存储引擎-innodb-和-myisam-的区别">MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？<a href="#mysql的两种存储引擎-innodb-和-myisam-的区别" class="hash-link" aria-label="Direct link to MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？" title="Direct link to MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？">​</a></h3>
+<ul>
+<li>InnoDB<strong>支持事务</strong>，可以进行Commit和Rollback；</li>
+<li>MyISAM 只支持表级锁，而 InnoDB 还<strong>支持行级锁</strong>，提高了并发操作的性能；</li>
+<li>InnoDB <strong>支持外键</strong>；</li>
+<li>MyISAM <strong>崩溃</strong>后发生损坏的概率比 InnoDB 高很多，而且<strong>恢复的速度</strong>也更慢；</li>
+<li>MyISAM 支持<strong>压缩</strong>表和空间数据索引，InnoDB需要更多的内存和存储；</li>
+<li>InnoDB 支持在线<strong>热备份</strong></li>
+</ul>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>应用场景</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li><strong>MyISAM</strong> 管理非事务表。它提供高速存储和检索（MyISAM强调的是性能，每次查询具有原子性，其执行速度比InnoDB更快），以及全文搜索能力。如果表比较小，或者是只读数据（有大量的SELECT），还是可以使用MyISAM；</li>
+<li><strong>InnoDB</strong> 支持事务，并发情况下有很好的性能，基本可以替代MyISAM</li>
+</ul>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>热备份和冷备份</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>热备份：在数据库运行的情况下备份的方法。优点：可按表或用户备份，备份时数据库仍可使用， 可恢复至任一时间点。但是不能出错</li>
+<li>冷备份：数据库正常关闭后，将关键性文件复制到另一位置的备份方式。优点：操作简单快速，恢复简单</li>
+</ul>
+</div></div></details>
+<p>更详细的可以参考：<a href="https://imageslr.github.io/2020/db-engine.html" target="_blank" rel="noopener noreferrer">MySQL 数据库的存储引擎与适用场景 - Images</a></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何优化数据库">如何优化数据库？<a href="#如何优化数据库" class="hash-link" aria-label="Direct link to 如何优化数据库？" title="Direct link to 如何优化数据库？">​</a></h3>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>SQL 语句的优化</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<blockquote>
+<p>分析慢查询日志：记录了在MySQL中响应时间超过阀值long_query_time的SQL语句，通过日志去找出IO大的SQL以及发现未命中索引的SQL</p>
+</blockquote>
+<blockquote>
+<p>使用 Explain 进行分析：通过explain命令可以得到表的读取顺序、数据读取操作的操作类型、哪些索引可以使用、<strong>哪些索引被实际使用</strong>、表之间的引用以及<strong>被扫描的行数</strong>等问题；</p>
+</blockquote>
+<ul>
+<li>应尽量避免在 where 子句中使用<code>!=</code>、<code>&lt;</code>、<code>&gt;</code>操作符或对字段进行null值判断，否则将引擎放弃使用索引而进行全表扫描；</li>
+<li>只返回必要的列：最好不要使用 SELECT * 语句；</li>
+<li>只返回必要的行：使用 LIMIT 语句来限制返回的数据；</li>
+<li>将一个大连接查询分解成对每一个表进行一次单表查询，然后在应用程序中进行关联，这样做的好处有：
+<ul>
+<li>让缓存更高效。对于连接查询，如果其中一个表发生变化，那么整个查询缓存就无法使用。而分解后的多个查询，即使其中一个表发生变化，对其它表的查询缓存依然可以使用；</li>
+<li>分解成多个单表查询，这些单表查询的缓存结果更可能被其它查询使用到，从而减少冗余的查询；</li>
+<li>减少锁竞争</li>
+</ul>
+</li>
+</ul>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>索引的优化</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<p>注意会引起索引失效的情况，以及在适合的地方建立索引</p>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>数据库表结构的优化</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>设计表时遵循<strong>三大范式</strong>；</li>
+<li>选择合适的<strong>数据类型</strong>：尽可能不要存储NULL字段；使用简单的数据类型（int, varchar/ text）；</li>
+<li>表的<strong>水平切分</strong>（Sharding）：将同一个表中的记录拆分到多个结构相同的表中（策略：哈希取模；根据ID范围来分）。当一个表的数据不断增多时，Sharding 是必然的选择，它可以将数据分布到集群的不同节点上，从而缓解单个数据库的压力；</li>
+<li>表的<strong>垂直切分</strong>：将一张表按列切分成多个表。可以将不常用的字段单独放在同一个表中；把大字段独立放入一个表中；或者把经常使用的字段（关系密切的）放在一张表中。垂直切分之后业务更加清晰，系统之间整合或扩展容易，数据维护简单</li>
+</ul>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>系统配置的优化</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>操作系统：增加TCP支持的队列数；</li>
+<li>MySQL配置文件优化：缓存池大小和个数设置</li>
+</ul>
+</div></div></details>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>硬件的优化</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>磁盘性能：固态硬盘；</li>
+<li>CPU：多核且高频；</li>
+<li>内存：增大内存</li>
+</ul>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="什么是主从复制实现原理是什么">什么是主从复制？实现原理是什么？<a href="#什么是主从复制实现原理是什么" class="hash-link" aria-label="Direct link to 什么是主从复制？实现原理是什么？" title="Direct link to 什么是主从复制？实现原理是什么？">​</a></h3>
+<p>主从复制（Replication）是指数据可以从一个MySQL数据库主服务器复制到一个或多个从服务器，从服务器可以复制主服务器中的所有数据库或者特定的数据库，或者特定的表。默认采用异步模式。</p>
+<p>实现原理：</p>
+<ul>
+<li>主服务器 <strong>binary log dump 线程</strong>：将主服务器中的数据更改（增删改）日志写入 Binary log 中；</li>
+<li>从服务器 <strong>I/O 线程</strong>：负责从主服务器读取binary log，并写入本地的 Relay log；</li>
+<li>从服务器 <strong>SQL 线程</strong>：负责读取 Relay log，解析出主服务器已经执行的数据更改，并在从服务器中重新执行（Replay），保证主从数据的一致性</li>
+</ul>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="为什么要主从复制">为什么要主从复制？<a href="#为什么要主从复制" class="hash-link" aria-label="Direct link to 为什么要主从复制？" title="Direct link to 为什么要主从复制？">​</a></h5>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>展开</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<ul>
+<li>读写分离：主服务器负责写，从服务器负责读
+<ul>
+<li>缓解了锁的争用，即使主服务器中加了锁，依然可以进行读操作；</li>
+<li>从服务器可以使用 MyISAM，提升查询性 能以及节约系统开销；</li>
+<li>增加冗余，提高可用性</li>
+</ul>
+</li>
+<li>数据实时备份，当系统中某个节点发生故障时，可以方便的故障切换</li>
+<li>降低单个服务器磁盘I/O访问的频率，提高单个机器的I/O性能</li>
+</ul>
+</div></div></details>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="关系型数据库和非关系型数据库的区别">关系型数据库和非关系型数据库的区别？<a href="#关系型数据库和非关系型数据库的区别" class="hash-link" aria-label="Direct link to 关系型数据库和非关系型数据库的区别？" title="Direct link to 关系型数据库和非关系型数据库的区别？">​</a></h3>
+<ul>
+<li>前者高度组织化结构化数据；后者存储的数据结构不固定更加灵活，可以减少一些空间和时间的开销</li>
+<li>后者更加容易水平扩展</li>
+<li>前者支持结构化查询语言，支持复杂的查询功能和表关联。后者只能进行简单的查询</li>
+<li>前者支持事务，具有ACID特性。后者则是BASE，最终一致性</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="参考">参考<a href="#参考" class="hash-link" aria-label="Direct link to 参考" title="Direct link to 参考">​</a></h3>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_43433032/article/details/89293663" target="_blank" rel="noopener noreferrer">数据库六大范式详解 -- CSDN博客</a></li>
+<li><a href="https://www.cnblogs.com/alice-cj/p/10354737.html" target="_blank" rel="noopener noreferrer">delete，truncate 和 delete之间的区别 -- 博客园</a></li>
+<li><a href="https://baijiahao.baidu.com/s?id=1617888740370098866&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener noreferrer">深度探索MySQL主从复制原理</a></li>
+<li>数据库程序员面试笔试宝典-机械工业出版社</li>
+<li><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86.md" target="_blank" rel="noopener noreferrer">CS-Notes/数据库系统原理 -- GitHub</a></li>
+<li><a href="https://blog.csdn.net/justloveyou_/article/details/78308460" target="_blank" rel="noopener noreferrer">面试/笔试第三弹 —— 数据库面试问题集锦 -- CSDN博客</a></li>
+<li><a href="https://www.cnblogs.com/wenxiaofei/p/9853682.html" target="_blank" rel="noopener noreferrer">史上最全的数据库面试题，不看绝对后悔 -- 博客园</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="待完成">待完成<a href="#待完成" class="hash-link" aria-label="Direct link to 待完成" title="Direct link to 待完成">​</a></h3>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> E-R 模型</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> 数据库的三级模式和二级映像</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/MySQL.md#%E5%9B%9B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B" target="_blank" rel="noopener noreferrer">数据类型</a>：VARCHAR和CHAR的区别，DATETIME和TIMESATMP的区别</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> Redis 面试
+<ul>
+<li><a href="https://github.com/CyC2018/CS-Notes/blob/master/notes/Redis.md" target="_blank" rel="noopener noreferrer">CyC2018</a></li>
+<li><a href="https://blog.csdn.net/Butterfly_resting/article/details/89668661" target="_blank" rel="noopener noreferrer">几率大的Redis面试题（含答案） - CSDN</a></li>
+<li><a href="https://www.jianshu.com/p/65765dd10671" target="_blank" rel="noopener noreferrer">Redis面试题总结 - 简书</a></li>
+<li><a href="https://www.cnblogs.com/jasontec/p/9699242.html" target="_blank" rel="noopener noreferrer">Redis常见面试题 - 博客园</a></li>
+<li><a href="https://github.com/0voice/interview_internal_reference#10" target="_blank" rel="noopener noreferrer">0voice/interview_internal_reference</a></li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://www.cnblogs.com/wenxiaofei/p/9853682.html" target="_blank" rel="noopener noreferrer">史上最全的数据库面试题，不看绝对后悔 -- 博客园</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#事务的概念和特性" class="table-of-contents__link toc-highlight">事务的概念和特性？</a></li><li><a href="#会出现哪些并发一致性问题" class="table-of-contents__link toc-highlight">会出现哪些并发一致性问题？</a></li><li><a href="#数据库的四种隔离级别" class="table-of-contents__link toc-highlight">数据库的四种隔离级别？</a></li><li><a href="#什么是乐观锁和悲观锁" class="table-of-contents__link toc-highlight">什么是乐观锁和悲观锁？</a></li><li><a href="#常见的封锁类型" class="table-of-contents__link toc-highlight">常见的封锁类型？</a></li><li><a href="#什么是三级封锁协议" class="table-of-contents__link toc-highlight">什么是三级封锁协议？</a></li><li><a href="#四种隔离级别的实现原理" class="table-of-contents__link toc-highlight">四种隔离级别的实现原理？</a></li><li><a href="#什么是两段锁协议" class="table-of-contents__link toc-highlight">什么是两段锁协议？</a></li><li><a href="#什么是-mvcc" class="table-of-contents__link toc-highlight">什么是 MVCC？</a></li><li><a href="#数据库的范式" class="table-of-contents__link toc-highlight">数据库的范式？</a></li><li><a href="#列举几种表连接方式" class="table-of-contents__link toc-highlight">列举几种表连接方式？</a></li><li><a href="#什么是存储过程有哪些优缺点" class="table-of-contents__link toc-highlight">什么是存储过程？有哪些优缺点？</a></li><li><a href="#dropdeletetruncate的区别" class="table-of-contents__link toc-highlight">Drop/Delete/Truncate的区别？</a></li><li><a href="#什么是视图什么是游标" class="table-of-contents__link toc-highlight">什么是视图？什么是游标？</a></li><li><a href="#数据库索引的实现原理b树" class="table-of-contents__link toc-highlight">数据库索引的实现原理（B+树）</a></li><li><a href="#使用索引的优点" class="table-of-contents__link toc-highlight">使用索引的优点</a></li><li><a href="#哪些情况下索引会失效" class="table-of-contents__link toc-highlight">哪些情况下索引会失效？</a></li><li><a href="#在哪些地方适合创建索引" class="table-of-contents__link toc-highlight">在哪些地方适合创建索引？</a></li><li><a href="#索引的分类" class="table-of-contents__link toc-highlight">索引的分类？</a></li><li><a href="#mysql的两种存储引擎-innodb-和-myisam-的区别" class="table-of-contents__link toc-highlight">MySQL的两种存储引擎 InnoDB 和 MyISAM 的区别？</a></li><li><a href="#如何优化数据库" class="table-of-contents__link toc-highlight">如何优化数据库？</a></li><li><a href="#什么是主从复制实现原理是什么" class="table-of-contents__link toc-highlight">什么是主从复制？实现原理是什么？</a></li><li><a href="#关系型数据库和非关系型数据库的区别" class="table-of-contents__link toc-highlight">关系型数据库和非关系型数据库的区别？</a></li><li><a href="#参考" class="table-of-contents__link toc-highlight">参考</a></li><li><a href="#待完成" class="table-of-contents__link toc-highlight">待完成</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

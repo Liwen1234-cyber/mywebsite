@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/面试笔记/Git-ComdLine-REST" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Git/RESTful API/命令行 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/面试笔记/Git-ComdLine-REST/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Git/RESTful API/命令行 | Coisini"><meta data-rh="true" name="description" content="* Git"><meta data-rh="true" property="og:description" content="* Git"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/面试笔记/Git-ComdLine-REST/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/面试笔记/Git-ComdLine-REST/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/面试笔记/Git-ComdLine-REST/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.f8473964.js" defer="defer"></script>
+<script src="/assets/js/main.52da2336.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Git/RESTful API/命令行</h1></header>
+<ul>
+<li><a href="#git">Git</a>
+<ul>
+<li><a href="#git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Git 常用命令</a></li>
+<li><a href="#git-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">Git 标签管理</a></li>
+<li><a href="#git-%E6%92%A4%E9%94%80%E4%B8%8E%E5%9B%9E%E6%BB%9A">Git 撤销与回滚</a></li>
+<li><a href="#git-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">Git 分支管理</a></li>
+</ul>
+</li>
+<li><a href="#restful-api">RESTful API</a></li>
+<li><a href="#linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Linux 常用命令</a></li>
+<li><a href="#%E5%8F%82%E8%80%83">参考</a></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="git">Git<a href="#git" class="hash-link" aria-label="Direct link to Git" title="Direct link to Git">​</a></h2>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="git-常用命令">Git 常用命令<a href="#git-常用命令" class="hash-link" aria-label="Direct link to Git 常用命令" title="Direct link to Git 常用命令">​</a></h4>
+<ul>
+<li><code>git init</code></li>
+<li><code>git clone</code></li>
+<li><code>git remote add origin ***.git</code></li>
+<li><code>git push -u origin master</code></li>
+<li>推送到远程仓库的dev分支：<code>git push origin dev</code></li>
+<li><code>git log</code></li>
+<li><code>git log --graph --pretty=oneline --abbrev-commit</code></li>
+<li><code>git status</code></li>
+<li><code>git diff</code></li>
+<li><code>git add *</code></li>
+<li><code>git commit -m &quot;message&quot;</code></li>
+<li>commit之后又改了一个小bug，但是又不想增加一个commit，可以用：<code>git commit --amend --no-edit</code>，直接将改动添加到上一次的commit中</li>
+<li><code>git push</code></li>
+<li><code>git pull</code></li>
+<li><code>touch .gitignore</code></li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="git-标签管理">Git 标签管理<a href="#git-标签管理" class="hash-link" aria-label="Direct link to Git 标签管理" title="Direct link to Git 标签管理">​</a></h4>
+<ul>
+<li>首先切换到需要打标签的分支上，然后使用<code>git tag v1.0</code>就可以在当前commit打上v1.0的标签</li>
+<li><code>git tag v1.0 commitID</code> 对特定commit打标签</li>
+<li>打标签时加上message：<code>git tag -a &lt;tagname&gt; -m &quot;message&quot;</code></li>
+<li><code>git tag</code> 查看所有标签</li>
+<li><code>git show [tagname]</code> 查看标签详细信息</li>
+<li><code>git push origin &lt;tagname&gt;</code> 可以推送一个本地标签到远程仓库</li>
+<li><code>git push origin --tags</code>可以推送全部未推送过的本地标签</li>
+<li><code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签</li>
+<li><code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签（先从本地删除）</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="git-撤销与回滚">Git 撤销与回滚<a href="#git-撤销与回滚" class="hash-link" aria-label="Direct link to Git 撤销与回滚" title="Direct link to Git 撤销与回滚">​</a></h4>
+<ul>
+<li><strong>暂存区</strong>：<code>git add</code>之后commit之前存在的区域；<strong>工作区</strong>：<code>git commit</code>之后存在的区域；<strong>远程仓库</strong>：<code>git push</code>之后；</li>
+<li>作了修改，但还没<code>git add</code>，撤销到上一次提交：<code>git checkout -f -- filename</code>；<code>git checkout -f -- .</code></li>
+<li>作了修改，并且已经<code>git add</code>，但还没<code>git commit</code>：
+<ul>
+<li>先将暂存区的修改撤销：<code>git reset HEAD filename</code>/<code>git reset HEAD</code>；此时修改只存在于工作区，变为了 &quot;unstaged changes&quot;；</li>
+<li>再利用上面的checkout命令从工作区撤销修改</li>
+</ul>
+</li>
+<li><code>git add</code>之后，作了修改，想丢弃这次修改：<code>git checkout -f --filename</code>会回到最近一次<code>git add</code></li>
+<li>作了修改，并且已经<code>git commit</code>了，想撤销这次的修改：
+<ul>
+<li><code>git revert commitID</code>. 其实，<code>git revert</code>可以用来撤销任意一次的修改，不一定要是最近一次</li>
+<li><code>git reset --hard commitID</code>/<code>git reset --hard HEAD^</code>（HEAD表示当前版本，几个^表示倒数第几个版本，倒数第100个版本可以用HEAD~100）；参数<code>--hard</code>：强制将暂存区和工作区都同步到指定的版本</li>
+<li><code>git reset</code> 和<code>git revert</code>的区别是：reset是用来回滚的，将HEAD的指针指向了想要回滚的版本，作为最新的版本，而后面的版本也都没有了；而revert只是用来撤销某一次更改，对之后的更改并没有影响</li>
+<li>然后再用<code>git push -f</code>提交到远程仓库</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="git-分支管理">Git 分支管理<a href="#git-分支管理" class="hash-link" aria-label="Direct link to Git 分支管理" title="Direct link to Git 分支管理">​</a></h4>
+<ul>
+<li>创建分支: <code>git branch test</code></li>
+<li>切换分支: <code>git checkout test</code></li>
+<li>创建并切换分支：<code>git checkout -b test</code></li>
+<li>将test分支的更改合并到master分支：先在test分支上commit、push，再：<code>git checkout master</code>; <code>git merge test</code></li>
+<li>如果合并时产生冲突：先手动解决冲突，再合并</li>
+<li>删除分支：<code>git branch -d test</code></li>
+<li><code>git stash</code>
+<ul>
+<li>如果当前分支还有任务没有做完，也不想提交，但此时需要切换或者创建其它分支，就可以使用stash将当前分支的所有修改（包括暂存区）先储藏起来；然后就可以切换到其它分支</li>
+<li>在其它分支工作完成之后，首先切换回原来的分支，然后使用<code>git stash list</code>命令查看</li>
+<li>可以使用<code>git stash apply &lt;stash number&gt;</code>恢复之前储藏的工作现场，再使用<code>git stash drop &lt;stash number&gt;</code>删除掉储藏的内容</li>
+<li>也可以直接用<code>git stash pop</code>恢复并删除内容</li>
+</ul>
+</li>
+<li>如果在其它分支上做了一个修改（比如修复了一个bug，这次修改有一个commitID），想要将这次修改应用到当前分支上，可以使用：<code>git cherry-pick commitID</code>，可以复制一个特定的提交到当前分支</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="restful-api">RESTful API<a href="#restful-api" class="hash-link" aria-label="Direct link to RESTful API" title="Direct link to RESTful API">​</a></h2>
+<p>REST指Representational State Transfer，可以翻译为“表现层状态转化”</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="主要思想">主要思想<a href="#主要思想" class="hash-link" aria-label="Direct link to 主要思想" title="Direct link to 主要思想">​</a></h4>
+<ul>
+<li>对网络上的所有资源，都有一个<strong>统一资源标识符</strong> URI(Uniform Resource Identifier)；</li>
+<li>这些资源可以有多种表现形式，即REST中的“表现层”Representation，比如，文本可以用txt格式表现，也可以用HTML格式、XML格式、JSON格式表现。URI只代表资源的实体，不代表它的形式；</li>
+<li>“无状态(Stateless)”思想：服务端不应该保存客户端状态，只需要处理当前的请求，不需了解请求的历史，客户端每一次请求中包含处理该请求所需的一切信息；</li>
+<li>客户端使用HTTP协议中的 GET/POST/PUT/DELETE 方法对服务器的资源进行操作，即REST中的”状态转化“</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="设计原则">设计原则<a href="#设计原则" class="hash-link" aria-label="Direct link to 设计原则" title="Direct link to 设计原则">​</a></h4>
+<ul>
+<li>URL设计
+<ul>
+<li>最好只使用名词，而使用 GET/POST/PUT/DELETE 方法的不同表示不同的操作；比如使用<code>POST /user</code>代替<code>/user/create</code></li>
+<li>GET：获取资源；POST：新建/更新资源；PUT：更新资源；DELETE：删除资源；</li>
+<li>对于只支持GET/POST的客户端，使用<code>X-HTTP-Method-Override</code>属性，覆盖POST方法；</li>
+<li>避免多级URL，比如使用<code>GET /authors/12?categories=2</code>代替<code>GET /authors/12/categories/2</code>；</li>
+<li>避免在URI中带上版本号。不同的版本，可以理解成同一种资源的不同表 现形式，所以应该采用同一个URI，版本号可以在HTTP请求头信息的Accept字段中进行区分</li>
+</ul>
+</li>
+<li>状态码：服务器应该返回尽可能精确的状态码，客户端只需查看状态码，就可以判断出发生了什么情况。见计算机网络部分 -- <a href="/码农/面试笔记/Computer Network/#HTTP%E8%AF%B7%E6%B1%82%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81">HTTP请求有哪些常见状态码？</a></li>
+<li>服务器回应：在响应中放上其它API的链接，方便用户寻找</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="linux-常用命令">Linux 常用命令<a href="#linux-常用命令" class="hash-link" aria-label="Direct link to Linux 常用命令" title="Direct link to Linux 常用命令">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="参考">参考<a href="#参考" class="hash-link" aria-label="Direct link to 参考" title="Direct link to 参考">​</a></h3>
+<ul>
+<li><a href="https://learngitbranching.js.org/?demo=&amp;locale=zh_CN" target="_blank" rel="noopener noreferrer">Learn Git Branching - 可视化的学习 Git 操作</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener noreferrer">Git教程 - 廖雪峰的官方网站</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html" target="_blank" rel="noopener noreferrer">RESTful API 最佳实践 - 阮一峰的网络日志</a></li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md" target="_blank" rel="noopener noreferrer">GitHub - jlevy/the-art-of-command-line: Master the command line, in one page</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#git" class="table-of-contents__link toc-highlight">Git</a></li><li><a href="#restful-api" class="table-of-contents__link toc-highlight">RESTful API</a></li><li><a href="#linux-常用命令" class="table-of-contents__link toc-highlight">Linux 常用命令</a><ul><li><a href="#参考" class="table-of-contents__link toc-highlight">参考</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
