@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">如何判断一个数据库是不是出问题了？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="如何判断一个数据库是不是出问题了？ | Coisini"><meta data-rh="true" name="description" content="我在第25和27篇文章中，和你介绍了主备切换流程。通过这些内容的讲解，你应该已经很清楚了：在一主一备的双M架构里，主备切换只需要把客户端流量切到备库；而在一主多从架构里，主备切换除了要把客户端流量切到备库外，还需要把从库接到新主库上。"><meta data-rh="true" property="og:description" content="我在第25和27篇文章中，和你介绍了主备切换流程。通过这些内容的讲解，你应该已经很清楚了：在一主一备的双M架构里，主备切换只需要把客户端流量切到备库；而在一主多从架构里，主备切换除了要把客户端流量切到备库外，还需要把从库接到新主库上。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.64265f83.js" defer="defer"></script>
+<script src="/assets/js/main.48adc223.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><p>我在第<a href="https://time.geekbang.org/column/article/76795" target="_blank" rel="noopener noreferrer">25</a>和<a href="https://time.geekbang.org/column/article/77427" target="_blank" rel="noopener noreferrer">27</a>篇文章中，和你介绍了主备切换流程。通过这些内容的讲解，你应该已经很清楚了：在一主一备的双M架构里，主备切换只需要把客户端流量切到备库；而在一主多从架构里，主备切换除了要把客户端流量切到备库外，还需要把从库接到新主库上。</p>
+<p>主备切换有两种场景，一种是主动切换，一种是被动切换  。而其中被动切换，往往是因为主库出问题了，由HA系统发起的。</p>
+<p>这也就引出了我们今天要讨论的问题：怎么判断一个主库出问题了？</p>
+<p>你一定会说，这很简单啊，连上MySQL，执行个select 1就好了。但是select 1成功返回了，就表示主库没问题吗？</p>
+<header><h1>select 1判断</h1></header>
+<p>实际上，select 1成功返回，只能说明这个库的进程还在，并不能说明主库没问题。现在，我们来看一下这个场景。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">set global innodb_thread_concurrency=3;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">CREATE TABLE `t` (</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `id` int(11) NOT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `c` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  PRIMARY KEY (`id`)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">) ENGINE=InnoDB;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> insert into t values(1,1)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" src="/assets/images/35076dd3d0a0d44d22b76d2a29885255-8f4b444be7f1d449a6ff574fe419b881.png" width="932" height="290" class="img_ev3q"></p>
+<p>图1 查询blocked</p>
+<p>我们设置innodb_thread_concurrency参数的目的是，控制InnoDB的并发线程上限。也就是说，一旦并发线程数达到这个值，InnoDB在接收到新请求的时候，就会进入等待状态，直到有线程退出。</p>
+<p>这里，我把innodb_thread_concurrency设置成3，表示InnoDB只允许3个线程并行执行。而在我们的例子中，前三个session 中的sleep(100)，使得这三个语句都处于“执行”状态，以此来模拟大查询。</p>
+<p>你看到了， session D里面，select 1是能执行成功的，但是查询表t的语句会被堵住。也就是说，如果这时候我们用select 1来检测实例是否正常的话，是检测不出问题的。</p>
+<p>在InnoDB中，innodb_thread_concurrency这个参数的默认值是0，表示不限制并发线程数量。但是，不限制并发线程数肯定是不行的。因为，一个机器的CPU核数有限，线程全冲进来，上下文切换的成本就会太高。</p>
+<p>所以，通常情况下，我们建议把innodb_thread_concurrency设置为64~128之间的值。这时，你一定会有疑问，并发线程上限数设置为128够干啥，线上的并发连接数动不动就上千了。</p>
+<p>产生这个疑问的原因，是搞混了<strong>并发连接和并发查询。</strong></p>
+<p>并发连接和并发查询，并不是同一个概念。你在show processlist的结果里，看到的几千个连接，指的就是并发连接。而“当前正在执行”的语句，才是我们所说的并发查询。</p>
+<p>并发连接数达到几千个影响并不大，就是多占一些内存而已。我们应该关注的是并发查询，因为并发查询太高才是CPU杀手。这也是为什么我们需要设置innodb_thread_concurrency参数的原因。</p>
+<p>然后，你可能还会想起我们在<a href="https://time.geekbang.org/column/article/70215" target="_blank" rel="noopener noreferrer">第7篇文章</a>中讲到的热点更新和死锁检测的时候，如果把innodb_thread_concurrency设置为128的话，那么出现同一行热点更新的问题时，是不是很快就把128消耗完了，这样整个系统是不是就挂了呢？</p>
+<p>实际上，<strong>在线程进入锁等待以后，并发线程的计数会减一</strong>，也就是说等行锁（也包括间隙锁）的线程是不算在128里面的。</p>
+<p>MySQL这样设计是非常有意义的。因为，进入锁等待的线程已经不吃CPU了；更重要的是，必须这么设计，才能避免整个系统锁死。</p>
+<p>为什么呢？假设处于锁等待的线程也占并发线程的计数，你可以设想一下这个场景：</p>
+<ol>
+<li>线程1执行begin; update t set c=c+1 where id=1, 启动了事务trx1， 然后保持这个状态。这时候，线程处于空闲状态，不算在并发线程里面。</li>
+<li>线程2到线程129都执行 update t set c=c+1 where id=1; 由于等行锁，进入等待状态。这样就有128个线程处于等待状态；</li>
+<li>如果处于锁等待状态的线程计数不减一，InnoDB就会认为线程数用满了，会阻止其他语句进入引擎执行，这样线程1不能提交事务。而另外的128个线程又处于锁等待状态，整个系统就堵住了。</li>
+</ol>
+<p>下图2显示的就是这 个状态。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/3206ea18b8a24b546515b1b95dc4a11d-525cda963502714d3b9c72b0dd286339.png" width="1142" height="856" class="img_ev3q"></p>
+<p>图2 系统锁死状态（假设等行锁的语句占用并发计数）</p>
+<p>这时候InnoDB不能响应任何请求，整个系统被锁死。而且，由于所有线程都处于等待状态，此时占用的CPU却是0，而这明显不合理。所以，我们说InnoDB在设计时，遇到进程进入锁等待的情况时，将并发线程的计数减1的设计，是合理而且是必要的。</p>
+<p>虽然说等锁的线程不算在并发线程计数里，但如果它在真正地执行查询，就比如我们上面例子中前三个事务中的select sleep(100) from t，还是要算进并发线程的计数的。</p>
+<p>在这个例子中，同时在执行的语句超过了设置的innodb_thread_concurrency的值，这时候系统其实已经不行了，但是通过select 1来检测系统，会认为系统还是正常的。</p>
+<p>因此，我们使用select 1的判断逻辑要修改一下。</p>
+<h1>查表判断</h1>
+<p>为了能够检测InnoDB并发线程数过多导致的系统不可用情况，我们需要找一个访问InnoDB的场景。一般的做法是，在系统库（mysql库）里创建一个表，比如命名为health_check，里面只放一行数据，然后定期执行：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from mysql.health_check; </span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>使用这个方法，我们可以检测出由于并发线程过多导致的数据库不可用的情况。</p>
+<p>但是，我们马上还会碰到下一个问题，即：空间满了以后，这种方法又会变得不好使。</p>
+<p>我们知道，更新事务要写binlog，而一旦binlog所在磁盘的空间占用率达到100%，那么所有的更新语句和事务提交的commit语句就都会被堵住。但是，系统这时候还是可以正常读数据的。</p>
+<p>因此，我们还是把这条监控语句再改进一下。接下来，我们就看看把查询语句改成更新语句后的效果。</p>
+<h1>更新判断</h1>
+<p>既然要更新，就要放个有意义的字段，常见做法是放一个timestamp字段，用来表示最后一次执行检测的时间。这条更新语句类似于：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; update mysql.health_check set t_modified=now();</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>节点可用性的检测都应该包含主库和备库。如果用更新来检测主库的话，那么备库也要进行更新检测。</p>
+<p>但，备库的检测也是要写binlog的。由于我们一般会把数据库A和B的主备关系设计为双M结构，所以在备库B上执行的检测命令，也要发回给主库A。</p>
+<p>但是，如果主库A和备库B都用相同的更新命令，就可能出现行冲突，也就是可能会导致主备同步停止。所以，现在看来mysql.health_check 这个表就不能只有一行数据了。</p>
+<p>为了让主备之间的更新不产生冲突，我们可以在mysql.health_check表上存入多行数据，并用A、B的server_id做主键。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; CREATE TABLE `health_check` (</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `id` int(11) NOT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `t_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  PRIMARY KEY (`id`)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">) ENGINE=InnoDB;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">/* 检测命令 */</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into mysql.health_check(id, t_modified) values (@@server_id, now()) on duplicate key update t_modified=now();</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>由于MySQL规定了主库和备库的server_id必须不同（否则创建主备关系的时候就会报错），这样就可以保证主、备库各自的检测命令不会发生冲突。</p>
+<p>更新判断是一个相对比较常用的方案了，不过依然存在一些问题。其中，“判定慢”一直是让DBA头疼的问题。</p>
+<p>你一定会疑惑，<strong>更新语句，如果失败或者超时，就可以发起主备切换了，为什么还会有判定慢的问题呢？</strong></p>
+<p>其实，这里涉及到的是服务器IO资源分配的问题。</p>
+<p>首先，所有的检测逻辑都需要一个超时时间N。执行一条update语句，超过N秒后还不返回，就认为系统不可用。</p>
+<p>你可以设想一个日志盘的IO利用率已经是100%的场景。这时候，整个系统响应非常慢，已经需要做主备切换了。</p>
+<p>但是你要知道，IO利用率100%表示系统的IO是在工作的，每个请求都有机会获得IO资源，执行自己的任务。而我们的检测使用的update命令，需要的资源很少，所以可能在拿到IO资源的时候就可以提交成功，并且在超时时间N秒未到达之前就返回给了检测系统。</p>
+<p>检测系统一看，update命令没有超时，于是就得到了“系统正常”的结论。</p>
+<p>也就是说，这时候在业务系统上正常的SQL语句已经执行得很慢了，但是DBA上去一看，HA系统还在正常工作，并且认为主库现在处于可用状态。</p>
+<p>之所以会出现这个现象，根本原因是我们上面说的所有方法，都是基于外部检测的。外部检测天然有一个问题，就是随机性。</p>
+<p>因为，外部检测都需要定时轮询，所以系统可能已经出问题了，但是却需要等到下一个检测发起执行语句的时候，我们才有可能发现问题。而且，如果你的运气不够好的话，可能第一次轮询还不能发现，这就会导致切换慢的问题。</p>
+<p>所以，接下来我要再和你介绍一种在MySQL内部发现数据库问题的方法。</p>
+<h1>内部统计</h1>
+<p>针对磁盘利用率这个问题，如果MySQL可以告诉我们，内部每一次IO请求的时间，那我们判断数据库是否出问题的方法就可靠得多了。</p>
+<p>其实，MySQL 5.6版本以后提供的performance_schema库，就在file_summary_by_event_name表里统计了每次IO请求的时间。</p>
+<p>file_summary_by_event_name表里有很多行数据，我们先来看看event_name=&#x27;wait/io/file/innodb/innodb_log_file’这一行。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/752ccfe43b4eab155be17401838c62dd-2aa1d20ab10cf16f830bc23e29747fb3.png" width="1535" height="641" class="img_ev3q"></p>
+<p>图3 performance_schema.file_summary_by_event_name的一行</p>
+<p>图中这一行表示统计的是redo log的写入时间，第一列EVENT_NAME 表示统计的类型。</p>
+<p>接下来的三组数据，显示的是redo log操作的时间统计。</p>
+<p>第一组五列，是所有IO类型的统计。其中，COUNT_STAR是所有IO的总次数，接下来四列是具体的统计项， 单位是皮秒；前缀SUM、MIN、AVG、MAX，顾名思义指的就是总和、最小值、平均值和最大值。</p>
+<p>第二组六列，是读操作的统计。最后一列SUM_NUMBER_OF_BYTES_READ统计的是，总共从redo log里读了多少个字节。</p>
+<p>第三组六列，统计的是写操作。</p>
+<p>最后的第四组数据，是对其他类型数据的统计。在redo log里，你可以认为它们就是对fsync的统计。</p>
+<p>在performance_schema库的file_summary_by_event_name表里，binlog对应的是event_name = &quot;wait/io/file/sql/binlog&quot;这一行。各个字段的统计逻辑，与redo log的各个字段完全相同。这里，我就不再赘述了。</p>
+<p>因为我们每一次操作数据库，performance_schema都需要额外地统计这些信息，所以我们打开这个统计功能是有性能损耗的。</p>
+<p>我的测试结果是，如果打开所有的performance_schema项，性能大概会下降10%左右。所以，我建议你只打开自己需要的项进行统计。你可以通过下面的方法打开或者关闭某个具体项的统计。</p>
+<p>如果要打开redo log的时间监控，你可以执行这个语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; update setup_instruments set ENABLED=&#x27;YES&#x27;, Timed=&#x27;YES&#x27; where name like &#x27;%wait/io/file/innodb/innodb_log_file%&#x27;;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>假设，现在你已经开启了redo log和binlog这两个统计信息，那要怎么把这个信息用在实例状态诊断上呢？</p>
+<p>很简单，你可以通过MAX_TIMER的值来判断数据库是否出问题了。比如，你可以设定阈值，单次IO请求时间超过200毫秒属于异常，然后使用类似下面这条语句作为检测逻辑。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select event_name,MAX_TIMER_WAIT  FROM performance_schema.file_summary_by_event_name where event_name in (&#x27;wait/io/file/innodb/innodb_log_file&#x27;,&#x27;wait/io/file/sql/binlog&#x27;) and MAX_TIMER_WAIT&gt;200*1000000000;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>发现异常后，取到你需要的信息，再通过下面这条语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; truncate table performance_schema.file_summary_by_event_name;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>把之前的统计信息清空。这样如果后面的监控中，再次出现这个异常，就可以加入监控累积值了。</p>
+<h1>小结</h1>
+<p>今天，我和你介绍了检测一个MySQL实例健康状态的几种方法，以及各种方法存在的问题和演进的逻辑。</p>
+<p>你看完后可能会觉得，select 1这样的方法是不是已经被淘汰了呢，但实际上使用非常广泛的MHA（Master High Availability），默认使用的就是这个方法。</p>
+<p>MHA中的另一个可选方法是只做连接，就是 “如果连接成功就认为主库没问题”。不过据我所知，选择这个方法的很少。</p>
+<p>其实，每个改进  的方案，都会增加额外损耗，并不能用“对错”做直接判断，需要你根据业务实际情况去做权衡。</p>
+<p>我个人比较倾向的方案，是优先考虑update系统表，然后再配合增加检测performance_schema的信息。</p>
+<p>最后，又到了我们的思考题时间。</p>
+<p>今天，我想问你的是：业务系统一般也有高可用的需求，在你开发和维护过的服务中，你是怎么判断服务有没有出问题的呢？</p>
+<p>你可以把你用到的方法和分析写在留言区，我会在下一篇文章中选取有趣的方案一起来分享和分析。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h1>上期问题时间</h1>
+<p>上期的问题是，如果使用GTID等位点的方案做读写分离，在对大表做DDL的时候会怎么样。</p>
+<p>假设，这条语句在主库上要执行10分钟，提交后传到备库就要10分钟（典型的大事务）。那么，在主库DDL之后再提交的事务的GTID，去备库查的时候，就会等10分钟才出现。</p>
+<p>这样，这个读写分离机制在这10分钟之内都会超时，然后走主库。</p>
+<p>这种预期内的操作，应该在业务低峰期的时候，确保主库能够支持所有业务查询，然后把读请求都切到主库，再在主库上做DDL。等备库延迟追上以后，再把读请求切回备库。</p>
+<p>通过这个思考题，我主要想让关注的是，大事务对等位点方案的影响。</p>
+<p>当然了，使用gh-ost方案来解决这个问题也是不错的选择。</p>
+<p>评论区留言点赞板：</p>
+<blockquote>
+<p>@曾剑、@max 同学提到的备库先做，再切主库的方法也是可以的。</p>
+</blockquote>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>某、人</span> 👍（80） 💬（4）<p>目前是只有一台服务器来做判断,是否数据库出问题了,就是采用的update的方式。如果是主从架构就一条语句,如果是双主的话就是两  条update语句。但是这种方式有很大的弊端,只有一个进程来判断数据库出问题的话,会出现单点判断的问题。所以后续准备多个单数进程来做判断,如果超过了半数以上的监控进程都认为数据库出问题,才做切换。
+老师我有两个问题:
+1.innodb_thread_concurrency的设置是不是应该跟计算机核数成正比,一般是1.5倍-2倍左右？
+2.怎么之前遇到空间满了,数据库都登不上了,所有的连接都连不上,更不用执行select语句了,这个是什么原因啊？</p>2019-01-20</li><br><li><span>StarkYanng</span> 👍（54） 💬（2）<p>老师，我有个疑问，您说外部检测是采用定时轮询的方式。那内部检测通过&#x27;mysql&gt; select event_name,MAX_TIMER_WAIT  FROM performance_schema.file_summary_by_event_name where event_name in (&#x27;wait/io/file/innodb/innodb_log_file&#x27;,&#x27;wait/io/file/sql/binlog&#x27;) and MAX_TIMER_WAIT&gt;200*1000000000;
+&#x27;的方法，不是也需要定时轮询来执行这个语句么？</p>2019-02-16</li><br><li><span>老杨同志</span> 👍（32） 💬（5）<p>现在很多公司都是使用dubbo或者类似dubbo的rpc调用。说说我对dubbo的理解        
+dubbo 存活检测感觉分为下面三个层面
+服务端与注册中心的链接状态
+	  通常注册中心是zookeeper，服务端注册临时节点，客户端注册这个节点的watch事件，一但服务端失联，
+	  客户端将把该服务从自己可用服务列表中移除。（一个服务通常有多个提供者，只是把失联的提供者移除）。
+	  zookeeper是通过心跳发现服务提供者失联的，心跳实际上就是以固定的频率（比如每秒）发送检测的数据包；
+</p><p>客户端与注册中心的链接状态
+客户端与zookeeper失联，会暂时使用自己缓存的服务提供者列表。如果每个提供者多次调不通，把它移除。</p>
+<p>客户端与服务单的链接状态
+服务端提供类似于echo的方法，客户定时调用。部分  返回正常，认为服务处于亚健康状态，如果超过阀值，会被降级
+从服务提供者列表移除。被移除的方法可能会在超过一定时间后，拿回来重试，可以恢复成正常服务，也可能继续降级。</p>2019-01-18</li><br><li><span>IceGeek17</span> 👍（17） 💬（10）<p>对于使用 GTID 等位点的方案做读写分离，对大表做DDL的问题，
+有一种做法是先在从库上设置 set_log_bin = off，在从库上先做DDL，完成后做一下主从切换。然后再在之前的主库上同样操作一遍。
+但这会有一个问题，当先在从库上做DDL（大表DDL时间会比较长，比如10分钟），在这段时间内，此时如果读写请求都走主库的话，如果写请求对于DDL的改动是有依赖的，那这些写请求在主库就可能会失败；同样此时对于主库上的读请求，也可能会读到“过期”的数据（读请求希望读到DDL之后的数据，但此时DDL在从库执行，主库上还是DDL之前的），老师怎么看这个问题 ？</p>
+<p></p>2019-01-29</li><br><li><span>强哥</span> 👍（14） 💬（2）<p>1.基础监控，包括硬盘，CPU，网络，内存等。
+2.服务监控，包括jvm，服务端口，接入上下游服务的超时监控等。
+3.业务监控，主要是监控业务的流程是否出现问题。</p>2019-01-18</li><br><li><span>专栏用户</span> 👍（12） 💬（1）<p>问个和本课不太相关的问题，自己开了general log，然后看到有很多set autocommit=0,之后set autocommit=1的日志，查了一下，看说是关闭/开启自动提交模式，所以就有点不懂为何会爱挨着出现这两个语句？</p>2019-03-30</li><br><li><span>长杰</span> 👍（12） 💬（2）<p>老师请教一个问题，在gtid模式下，对于大的ddl操作，采用在备库执行sql_log_bin=0的方式先执行，然后再切换主备的方式在主库再执行，这种情况下，ddl操作是不记录binlog的，不知道对gtid的计数有什么影响，是按顺序递增还是会跳过这个序列号？
+另外补充一下有些dl操作是不适合这个主备切换的方式，比如drop一个列，如果先在备库执行就可能导致主备同步异常。这个场景适合osc方式或把读请求切到主库，先在主库执行这两种方案。</p>2019-01-18</li><br><li><span>Mr.Strive.Z.H.L</span> 👍（10） 💬（6）<p>老师您好：
+关于 主备同步停止 的问题，看了您的回复。
+我是这么理解的：
+insert into mysql.health_check(id, t_modified) values (1, now()) on duplicate key update t_modified=now(); 
+按照您说的场景，主备分别执行这句话后，复制给彼此。
+如果单单看这句话，就算是主库执行备库复制过来的这句话，也不会出现异常呀。（因为如果主键冲突就会更新时间）
+但是这种场景会导致 主备同步停止， 所以实际上主库在应用备库这句话的binlog的时候，发现主键冲突，自然就会报错。
+</p><p>不知道是不是这样，因为如果单单看这句sql，即使主键冲突也没关系呀？</p>2019-01-22</li><br><li><span>慧鑫coming</span> 👍（10） 💬（10）<p>老师，文中提到的“但是，如果主库 A 和备库 B 都用相同的更新命令，就可能出现行冲突，也就是可能会导致主备同步停止。”，这个能展开说一下吗，这个行冲突指什么？它们会都更新各自检测表的同一字段我觉得会带来不准确的问题，怎么导致主从同步停止了呢？</p>2019-01-22</li><br><li><span>路平</span> 👍（9） 💬（3）<p>你好，这两天一路看下来，收获不少。
+提个表设计相关的问题：
+用一个表存储文件全路径，删除某个文件（一行记录）时使用逻辑删除。怎么设计表及其索引（如果有）？
+需要考虑：</p>
+<ol>
+<li>文件被删除后有可能会再创建一个同名的文件；</li>
+<li>新创建的文件也可能再次被逻辑删除；</li>
+<li>第二个文件被删除后还可能创建第三同名文件 ，以此类推；</li>
+<li>未删除的文件路径不能有重复值。</li>
+</ol>
+<p>不知道作者是否还会回复留言。如果回复了，我是会收到提醒吗？</p>2019-04-23</li><br><li><span>一大只😴</span> 👍（7） 💬（2）<p>老师，我想问下，我的ECS上是8核CPU，只跑一个MySQL实例，那innodb_thread_concurrency如果设成2倍，那就是16哈。看并发查询的数量，是不是关注Threads_running是否超过innodb_thread_concurrency就可以了。</p>2019-01-21</li><br><li><span>Mr.Strive.Z.H.L</span> 👍（6） 💬（1）<p>老师您好：</p>
+<p>本章有个疑惑：
+”外部检测的时候，主备使用同一条更新语句，造成行冲突，导致主备同步停止”</p>
+<p>上面这句话实在想不通。外部检测是只是看更新语句的返回时间，health_check表在主库备库都有，为啥会造成行冲突？为啥会导致主备同步停止？即使是相同的binlog，也没啥影响呀。</p>2019-01-22</li><br><li><span>布衣骇客</span> 👍（5） 💬（1）<p>作为一个开发我也很想了解一下我们自己生产库上的监控情况，接触到最多的就是Datasource,以及user，password,port（基本上是基于连接那种级别，最多就是加锁），等等参数，大部分都是基于业务开发。站在个人层面或者业务开发层面（很少能接触到DBA，以及看到DBA是怎么设置这些参数情况，除非库挂掉了就会和DBA一起看这些）怎么去修改和观看以及使用这些参数鸭</p>2019-01-18</li><br><li><span>heat nan</span> 👍（4） 💬（1）<p>老师，一直有个疑问，想咨询下。innodb buffer 会缓存表的数据页和索引页。现在我想知道如何确认一个查询的行已经被缓存在内存中了。  我想了一下，第一种方法是直接去内存中遍历这个表相关的数据页。这样的话，因为内存中的页可能是分散的，可能不构成一个完成的索引结构，可能不能利用b+树叶子节点的路由功能。 这里有点模糊，希望老师有空可以解释一下</p>2019-01-19</li><br><li><span>Geek_73c432</span> 👍（0） 💬（1）<p>假设，这条语句在主库上要执行 10 分钟，提交后传到备库就要 10 分钟（典型的大事务）。那么，在主库 DDL 之后再提交的事务的 GTID，去备库查的时候，就会等 10 分钟才出现。</p>
+<p>这里是指主库执行这个 ddl 事务需要 10 分钟，提交事务后 binlog 传到备库执行也花了 10 分钟吗？传到备库要 10 分钟是不是说错了？</p>2022-12-01</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
