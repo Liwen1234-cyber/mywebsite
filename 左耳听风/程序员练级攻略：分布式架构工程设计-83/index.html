@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-左耳听风/程序员练级攻略：分布式架构工程设计-83" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">83 | 程序员练级攻略：分布式架构工程设计 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/左耳听风/程序员练级攻略：分布式架构工程设计-83/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="83 | 程序员练级攻略：分布式架构工程设计 | Coisini"><meta data-rh="true" name="description" content="你好，我是陈皓，网名左耳朵耗子。"><meta data-rh="true" property="og:description" content="你好，我是陈皓，网名左耳朵耗子。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/左耳听风/程序员练级攻略：分布式架构工程设计-83/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/左耳听风/程序员练级攻略：分布式架构工程设计-83/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/左耳听风/程序员练级攻略：分布式架构工程设计-83/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/">Introduction</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/分享/">分享</a><button aria-label="Expand sidebar category &#x27;分享&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/读书笔记/">读书笔记</a><button aria-label="Expand sidebar category &#x27;读书笔记&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/技巧/">技巧</a><button aria-label="Expand sidebar category &#x27;技巧&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/数学/">数学</a><button aria-label="Expand sidebar category &#x27;数学&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/思考/">思考</a><button aria-label="Expand sidebar category &#x27;思考&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/学习/">学习</a><button aria-label="Expand sidebar category &#x27;学习&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/码 农/">码农</a><button aria-label="Expand sidebar category &#x27;码农&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/毛选/">毛选</a><button aria-label="Expand sidebar category &#x27;毛选&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/左耳听风/">左耳听风</a><button aria-label="Collapse sidebar category &#x27;左耳听风&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员如何用技术变现（上）-01/">01 | 程序员如何用技术变现（上）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员如何用技术变现（下）-02/">02 | 程序员如何用技术变现（下）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Equifax信息泄露始末-03/">03 | Equifax信息泄露始末</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/从Equifax信息泄露看数据安全-04/">04 | 从Equifax信息泄露看数据安全</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/何为技术领导力？-05/">05 | 何为技术领导力？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/如何才能拥有技术领导力？-06/">06 | 如何才能拥有技术领导力？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/推荐阅读：每个程序员都该知道的知识-07/">07 | 推荐阅读：每个程序员都该知道的知识</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go语言，Docker和新技术-08/">08 | Go语言，Docker和新技术</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/答疑解惑：渴望、热情和选择-09/">09 | 答疑解惑：渴望、热情和选择</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/如何成为一个大家愿意追随的Leader？-10/">10 | 如何成为一个大家愿意追随的Leader？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序中的错误处理：错误返回码和异常捕捉-11/">11 | 程序中的错误处理：错误返回码和异常捕捉</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序中的错误处理：异步编程以及我的最佳实践-12/">12 | 程序中的错误处理：异步编程以及我的最佳实践</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/魔数0x5f3759df-13/">13 | 魔数 0x5f3759df</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/推荐阅读：机器学习101-14/">14 | 推荐阅读：机器学习101</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/时间管理：同扭曲时间的事儿抗争-15/">15 | 时间管理：同扭曲时间的事儿抗争</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/时间管理：如何利用好自己的时间？-16/">16 | 时间管理：如何利用好自己的时间？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/故障处理最佳实践：应对故障-17/">17 | 故障处理最佳实践：应对故障</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/故障处理最佳实践：故障改进-18/">18 | 故障处理最佳实践：故障改进</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/答疑解惑：我们应该能够识别的表象和本质-19/">19 | 答疑解惑：我们应该能够识别的表象和本质</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Git协同工作流，你该怎么选？-20/">20 | Git协同工作流，你该怎么选？</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/分布式系统架构的冰与火-21/">21 | 分布式系统架构的冰与火</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/从亚马逊的实践，谈分布式系统的难点-22/">22 | 从亚马逊的实践，谈分布式系统的难点</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/分布式系统的技术栈-23/">23 | 分布式系统的技术栈</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/分布式系统关键技术：全栈监控-24/">24 | 分布式系统关键技术：全栈监控</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/分布式系统关键技术：服务调度-25/">25 | 分布式系统关键技术：服务调度</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/分布式系统关键技术：流量与数据调度-26/">26 | 分布式系统关键技术：流量与数据调度</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/洞悉PaaS平台的本质-27/">27 | 洞悉PaaS平台的本质</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/推荐阅读：分布式系统架构经典资料-28/">28 | 推荐阅读：分布式系统架构经典资料</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/推荐阅读：分布式数据调度相关论文-29/">29 | 推荐阅读：分布式数据调度相关论文</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（1）-起源-30/">30 | 编程范式游记（1）- 起源</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（2）-泛型编程-31/">31 | 编程范式游记（2）- 泛型编程</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（3）-类型系统和泛型的本质-32/">32 | 编程范式游记（3） - 类型系统和泛型的本质</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（4）-函数式编程-33/">33 | 编程范式游记（4）- 函数式编程</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（5）-修饰器模式-34/">34 | 编程范式游记（5）- 修饰器模式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（6）-面向对象编程-35/">35 | 编程范式游记（6）- 面向对象编程</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（7）-基于原型的编程范式-36/">36 | 编程范式游记（7）- 基于原型的编程范式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（8）-Go语言的委托模式-37/">37 | 编程范式游记（8）- Go 语言的委托模  式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（9）-编程的本质-38/">38 | 编程范式游记（9）- 编程的本质</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（10）-逻辑编程范式-39/">39 | 编程范式游记（10）- 逻辑编程范式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/编程范式游记（11）-程序世界里的编程范式-40/">40 | 编程范式游记（11）- 程序世界里的编程范式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“认识故障和弹力设计”-41/">41 | 弹力设计篇之“认识故障和弹力设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“隔离设计”-42/">42 | 弹力设计篇之“隔离设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“异步通讯设计”-43/">43 | 弹力设计篇之“异步通讯设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“幂等性设计”-44/">44 | 弹力设计篇之“幂等性设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“服务的状态”-45/">45 | 弹力设计篇之“服务的状态”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“补偿事务”-46/">46 | 弹力设计篇之“补偿事务”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“重试设计”-47/">47 | 弹力设计篇之“重试设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“熔断设计”-48/">48 | 弹力设计篇之“熔断设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“限流设计”-49/">49 | 弹力设计篇之“限流设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“降级设计”-50/">50 | 弹力设计篇之“降级设计”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/弹力设计篇之“弹力设计总结”-51/">51 | 弹力设计篇之“弹力设计总结”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“分布式锁”-52/">52 | 管理设计篇之“分布式锁”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“配置中心”-53/">53 | 管理设计篇之“配置中心”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“边车模式”-54/">54 | 管理设计篇之“边车模式”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“服务网格”-55/">55 | 管理设计篇之“服务网格”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“网关模式”-56/">56 | 管理设计篇之“网关模式”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/管理设计篇之“部署升级策略”-57/">57 | 管理设计篇之“部署升级策略”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/性能设计篇之“缓存”-58/">58 | 性能设计篇之“缓存”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/性能设计篇之“异步处理”-59/">59 | 性能设计篇之“异步处理”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/性能设计篇之“数据库扩展”-60/">60 | 性能设计篇之“数据库扩展”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/性能设计篇之“秒杀”-61/">61 | 性能设计篇之“秒杀”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/性能设计篇之“边缘计算”-62/">62 | 性能设计篇之“边缘计算”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术的本质-63/">63 | 区块链技术的本质</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术细节：哈希算法-64/">64 | 区块链技术细节：哈希算法</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术细节：加密和挖矿-65/">65 |  区块链技术细节：加密和挖矿</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术细节：去中心化的共识机制-66/">66 | 区块链技术细节：去中心化的共识机制</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术细节：智能合约-67/">67 | 区块链技术细节：智能合约</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/区块链技术-传统金融和虚拟货币-68/">68 | 区块链技术 - 传统金融和虚拟货币</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：开篇词-69/">69 | 程序员练级攻略：开篇词</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：零基础启蒙-70/">70 | 程序员练级攻略：零基础启蒙</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：正式入门-71/">71 | 程序员练级攻略：正式入门</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：程序员修养-72/">72 | 程序员练级攻略：程序员修养</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：编程语言-73/">73 | 程序员练级攻略：编程语言</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：理论学科-74/">74 | 程序员练级攻略：理论学科</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：系统知识-75/">75 | 程序员练级攻略：系统知识</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：软件设计-76/">76 | 程序员练级攻略：软件设计</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：Linux系统、内存和网络-77/">77 | 程序员练级攻略：Linux系统、内存和网络</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：异步I-O模型和Lock-Free编程-78/">78 | 程序员练级攻略：异步I/O模型和Lock-Free编程</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：Java底层知 识-79/">79 | 程序员练级攻略：Java底层知识</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：数据库-80/">80 | 程序员练级攻略：数据库</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：分布式架构入门-81/">81 | 程序员练级攻略：分布式架构入门</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：分布式架构经典图书和论文-82/">82 | 程序员练级攻略：分布式架构经典图书和论文</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/左耳听风/程序员练级攻略：分布式架构工程设计-83/">83 | 程序员练级攻略：分布式架构工程设计</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：微服务-84/">84 | 程序员练级攻略：微服务</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：容器化和自动化运维-85/">85 | 程序员练级攻略：容器化和自动化运维</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：机器学习和人工智能-86/">86 | 程序员练级攻略：机器学习和人工智能</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：前端基础和底层原理-87/">87 | 程序员练级攻略：前端基础和底层原理</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：前端性能优化和框架-88/">88 | 程序员练级攻略：前端性能优化和框架</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：UI-UX设计-89/">89 | 程序员练级攻略：UI/UX设计</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略：技术资源集散地-90/">90 | 程序员练级攻略：技术资源集散地</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员练级攻略的正确打开方式-91/">91 | 程序员练级攻略的正确打开方式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员面试攻略：面试前的准备-92/">92 | 程序员面试攻略：面试前的准备</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员面试攻略：面试中的技巧-93/">93 | 程序员面试攻略：面试中的技巧</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员面试攻略：面试风格-94/">94 | 程序员面试攻略：面试风格</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/程序员面试攻略：实力才是王中王-95/">95 | 程序员面试攻略：实力才是王中王</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效学习：端正学习态度-96/">96 | 高效学习：端正学习态度</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效学习：源头、原理和知识地图-97/">97 | 高效学习：源头、原理和知识地图</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效学习：深度，归纳和坚持实践-98/">98 | 高效学习：深度，归纳和坚持实践</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效学习：如何学习和阅读代码-99/">99 | 高效学习：如何学习和阅读代码</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效学习：面对枯燥和量大的知识-100/">100 | 高效学习：面对枯燥和量大的知识</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：Talk和Code同等重要-101/">101 | 高效沟通：Talk和Code同等重要</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：沟通阻碍和应对方法-102/">102 | 高效沟通：沟通阻碍和应对方法</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：沟通方式及技巧-103/">103 | 高效沟通：沟通方式及技巧</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：沟通技术-104/">104 | 高效沟通：沟通技术</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：好老板要善于提问-105/">105 | 高效沟通：好老板要善于提问</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/高效沟通：好好说话的艺术-106/">106 | 高效沟通：好好说话的艺术</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：切片、接口、时间和性能-107/">107 | Go编程模式：切片、接口、时间和性能</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：错误处理-108/">108 | Go 编程模式：错误处理</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：FunctionalOptions-109/">109 | Go 编程模式：Functional Options</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：委托和反转控制-110/">110 | Go编程模式：委托和反转控制</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：Map-Reduce-111/">111 | Go 编程模式：Map-Reduce</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：GoGeneration-112/">112 | Go 编程模式：Go Generation</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：修饰器-113/">113 | Go编程模式：修饰器</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：Pipeline-114/">114 | Go编程模式：Pipeline</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/Go编程模式：KubernetesVisitor模式-115/">115 | Go 编程模式：Kubernetes Visitor模式</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/谈谈我的“三观”-加餐/">加餐 | 谈谈我的“三观”</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/洞悉技术的本质，享受科技的乐趣-开篇词/">开篇词  |  洞悉技术的本质，享受科技的乐趣</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/业精于勤，行成于思-结束语/">结束语 | 业精于勤，行成于思</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/左耳听风/课程迭代｜全新交付117讲音频/">课程迭代｜全新交付117讲音频</a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/左耳听风/"><span itemprop="name">左耳听风</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">83 | 程序员练级攻略：分布式架构工程设计</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>83 | 程序员练级攻略：分布式架构工程设计</h1></header>
+<p>你好，我是陈皓，网名左耳朵耗子。</p>
+<p>要学好分布式架构，你首先需要学习一些架构指导性的文章和方法论，即分布式架构设计原则。下面是几篇很不错的文章，值得一读。</p>
+<ul>
+<li>
+<p><a href="https://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf" target="_blank" rel="noopener noreferrer">Designs, Lessons and Advice from Building Large Distributed Systems</a>，Google 杰夫·迪恩（Jeff Dean）2009年一次演讲的PPT。2010年，斯坦福大学请杰夫·迪恩到大学里给他们讲了一节课，你可以在YouTube上看一下， <a href="https://www.youtube.com/watch?v=modXC5IWTJI" target="_blank" rel="noopener noreferrer">Building Software Systems At Google and Lessons Learned</a> ，其回顾了Google发展的历史。</p>
+</li>
+<li>
+<p><a href="https://12factor.net/" target="_blank" rel="noopener noreferrer">The Twelve-Factor App</a> ，如今，软件通常会作为一种服务来交付，它们被称为网络应用程序，或软件即服务（SaaS）。12-Factor 为构建SaaS应用提供了方法论，是架构师必读的文章。（ <a href="https://12factor.net/zh_cn/" target="_blank" rel="noopener noreferrer">中译版</a>）这篇文章在业内的影响力很大，必读！</p>
+</li>
+<li>
+<p><a href="http://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/" target="_blank" rel="noopener noreferrer">Notes on Distributed Systems for Young Bloods</a> ，给准备进入分布式系统领域的人的一些忠告。</p>
+</li>
+<li>
+<p><a href="https://www.usenix.org/legacy/event/lisa07/tech/full_papers/hamilton/hamilton_html/index.html" target="_blank" rel="noopener noreferrer">On Designing and Deploying Internet-Scale Services</a>（ <a href="http://darktea.github.io/notes/2014/07/23/On-Designing-and-Deploying-Internet-Scale-Services.html" target="_blank" rel="noopener noreferrer">中译版</a>），微软Windows Live服务平台的一些经验性的总结文章，很值得一读。</p>
+</li>
+<li>
+<p><a href="https://blog.box.com/blog/4-things-to-keep-in-mind-when-building-a-platform-for-the-enterprise/" target="_blank" rel="noopener noreferrer">4 Things to Keep in Mind When Building a Platform for the Enterprise</a> ，Box平台VP海蒂·威廉姆斯（Heidi Williams）撰写的一篇文章，阐述了为企业构建平台时需要牢记的四件关于软件设计方面的事：1. Design Broadly, Build Narrowly； 2. Platforms Are Powerful and Flexible. Choose wisely what to expose when!；3. Build Incrementally, Get Feedback, and Iterate；4. Create a Platform-first Mentality。文章中有详细的解读，推荐看  看。</p>
+</li>
+<li>
+<p><a href="https://www.usenix.org/conference/srecon17americas/program/presentation/rosenthal" target="_blank" rel="noopener noreferrer">Principles of Chaos Engineering</a> ，我们知道，Netflix公司有一个叫Chaos Monkey的东西，这个东西会到分布式系统里“瞎搞”，以此来测试系统的健壮和稳定性。这个视频中，Netflix分享了一些软件架构的经验和原则，值得一看。</p>
+</li>
+<li>
+<p><a href="https://www.igvita.com/2016/05/20/building-fast-and-resilient-web-applications/" target="_blank" rel="noopener noreferrer">Building Fast &amp; Resilient Web Applications</a> ，伊利亚·格里高利克（Ilya Grigorik）在Google I/O 2016上的一次关于如何通过弹力设计来实现快速和可容错的网站架构的演讲，其中有好些经验分享。</p>
+</li>
+<li>
+<p><a href="http://highscalability.com/blog/2012/12/31/designing-for-resiliency-will-be-so-2013.html" target="_blank" rel="noopener noreferrer">Design for Resiliency</a> ，这篇文章带我们全面认识“弹力（Resiliency）”，以及弹力对于系统的重要性，并详细阐述了如何设计和实现系统的弹力。</p>
+</li>
+<li>
+<p>微软的Azure网站上有一系列的 <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/" target="_blank" rel="noopener noreferrer">Design Principle</a> 的文章，你可以看看这几篇： <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing" target="_blank" rel="noopener noreferrer">Design for Self-healing</a> 、 <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out" target="_blank" rel="noopener noreferrer">Design for Scaling Out</a> 和 <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/design-principles/design-for-evolution" target="_blank" rel="noopener noreferrer">Design for Evolution</a> 。</p>
+</li>
+<li>
+<p><a href="https://www.allthingsdistributed.com/2008/12/eventually_consistent.html" target="_blank" rel="noopener noreferrer">Eventually Consistent</a> ，AWS CTO维尔纳·沃格尔斯（Werner Vogels）发布在自己Blog上的一篇关于最终一致性的好文。</p>
+</li>
+<li>
+<p><a href="https://www.codeproject.com/Articles/151520/Write-Scalable-Code" target="_blank" rel="noopener noreferrer">Writing Code that Scales</a> ，Rackspace的一篇很不错的博文，告诉我们一些很不错的写出高扩展和高性能代码的工程原则。</p>
+</li>
+<li>
+<p><a href="https://architecht.io/lessons-from-facebook-on-engineering-for-scale-f5716f0afc7a" target="_blank" rel="noopener noreferrer">Automate and Abstract: Lessons from Facebook on Engineering for Scale</a> ，软件自动化和软件抽象，这是软件工程中最重要的两件事了。通过这篇文章，我们可以看到Facebook的关于这方面的一些经验教训。</p>
+</li>
+</ul>
+<h1>设计模式</h1>
+<p>有了方法论后，你还需要学习一些比较细节的落地的技术。最好的方式就是学习被前人总结出来的设计模式，虽然设计模式也要分场景，但是设计模式可以让你知道一些套路，这些套路对于我们设计的分布式系统有非常大的帮助，不但可以让我们少走一些弯路，而且还能让我们更为系统和健壮地设计我们的架构。</p>
+<p>下面是一些分布式架构设计模式的网站。</p>
+<p>首先，需要重点推荐的是微软云平台 Azure 上的设计模式。 <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/" target="_blank" rel="noopener noreferrer">Cloud Design Patterns</a> ，这个网站上罗列了分布式设计的各种设计模式，可以说是非常全面和完整。对于每一个模式都有详细的说明，并有对其优缺点的讨论，以及适用场景和不适用场景的说明，实在是一个非常不错的学习分布式设计模式的地方。其中有如下分类。</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/availability" target="_blank" rel="noopener noreferrer">设计模式：可用性</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/data-management" target="_blank" rel="noopener noreferrer">设计模式：数据管理</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/design-implementation" target="_blank" rel="noopener noreferrer">设计模式：设计和实现</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/messaging" target="_blank" rel="noopener noreferrer">设计模式：消息</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/management-monitoring" target="_blank" rel="noopener noreferrer">设计模式：管理和监控</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/performance-scalability" target="_blank" rel="noopener noreferrer">设计模式：性能和扩展</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/resiliency" target="_blank" rel="noopener noreferrer">设计模式：系统弹力</a>；</li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/category/security" target="_blank" rel="noopener noreferrer">设计模式：安全</a>。</li>
+</ul>
+<p>除此之外，还有其它的一些关于分布式系统设计模式的网站和相关资料。</p>
+<ul>
+<li>
+<p><a href="http://en.clouddesignpattern.org/index.php/Main_Page" target="_blank" rel="noopener noreferrer">AWS Cloud Pattern</a> ，这里收集了AWS云平台的一些设计模式。</p>
+</li>
+<li>
+<p><a href="https://research.google.com/pubs/archive/45406.pdf" target="_blank" rel="noopener noreferrer">Design patterns for container-based distributed systems</a> ，这是Google给的一篇论文，其中描述了容器化下的分布式架构的设计模式。</p>
+</li>
+<li>
+<p><a href="https://www.slideshare.net/pagsousa/patterns-fro-distributed-systems" target="_blank" rel="noopener noreferrer">Patterns for distributed systems</a> ，这是一个PPT，其中讲了一些分布式系统的架构模式，你可以顺着到Google里去搜索。</p>
+</li>
+</ul>
+<p>我个人觉得微服务也好，SOA也好，都是分布式系统的一部分，这里有两个网站罗列了各种各样的服务架构模式。</p>
+<ul>
+<li>
+<p><a href="http://microservices.io/patterns/index.html" target="_blank" rel="noopener noreferrer">A Pattern Language for Micro-Services</a> ；</p>
+</li>
+<li>
+<p><a href="http://soapatterns.org/" target="_blank" rel="noopener noreferrer">SOA Patterns</a>。</p>
+</li>
+</ul>
+<p>当然，还有我在极客时间上写的那些分布式的设计模式的总结。</p>
+<ul>
+<li>
+<p><strong>弹力设计篇</strong>，内容包括：认识故障和弹力设计、隔离设计、异步通讯设计、幂等性设计、服务的状态、补偿事务、重试设计、熔断设计、限流设计、降级设计、弹力设计总结。</p>
+</li>
+<li>
+<p><strong>管理设计篇</strong>，内容包括：分布式锁、配置中心、边车模式、服务网格、网关模式、部署升级策略等。</p>
+</li>
+<li>
+<p><strong>性能设计篇</strong>，内容包括：缓存、异步处理、数据库扩展、秒杀、边缘计算等。</p>
+</li>
+</ul>
+<h1>设计与工程实践</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="分布式系统的故障测试">分布式系统的故障测试<a href="#分布式系统的故障测试" class="hash-link" aria-label="Direct link to 分布式系统的故障测试" title="Direct link to 分布式系统的故障测试">​</a></h2>
+<ul>
+<li>
+<p><a href="https://medium.com/netflix-techblog/fit-failure-injection-testing-35d8e2a9bb2" target="_blank" rel="noopener noreferrer">FIT: Failure Injection Testing</a> ，Netflix公司的一篇关于做故障注入测试的文章。</p>
+</li>
+<li>
+<p><a href="https://medium.com/netflix-techblog/automated-failure-testing-86c1b8bc841f" target="_blank" rel="noopener noreferrer">Automated Failure Testing</a> ，同样来自Netflix公司的自动化故障测试的一篇博文。</p>
+</li>
+<li>
+<p><a href="https://people.ucsc.edu/~palvaro/socc16.pdf" target="_blank" rel="noopener noreferrer">Automating Failure Testing Research at Internet Scale</a> ，Netflix公司伙同圣克鲁斯加利福尼亚大学和Gremlin游戏公司一同撰写的一篇论文。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="弹性伸缩">弹性伸缩<a href="#弹性伸缩" class="hash-link" aria-label="Direct link to 弹性伸缩" title="Direct link to 弹性伸缩">​</a></h2>
+<ul>
+<li>
+<p><a href="http://highscalability.com/blog/2014/5/12/4-architecture-issues-when-scaling-web-applications-bottlene.html" target="_blank" rel="noopener noreferrer">4 Architecture Issues When Scaling Web Applications: Bottlenecks, Database, CPU, IO</a> ，本文讲解了后端程序的主要性能指标，即响应时间和可伸缩性这两者如何能提高的解决方案，讨论了包括纵向和横向扩展，可伸缩架构、负载均衡、数据库的伸缩、CPU密集型和I/O密集型程序的考量等。</p>
+</li>
+<li>
+<p><a href="http://ithare.com/scaling-stateful-objects/" target="_blank" rel="noopener noreferrer">Scaling Stateful Objects</a> ，这是一本叫《Development&amp;Deployment of Multiplayer Online Games》书中一章内容的节选，讨论了有状态和无状态的节点如何伸缩的问题。虽然还没有写完，但是可以给你一些很不错的基本概念和想法。</p>
+</li>
+<li>
+<p><a href="https://blog.codinghorror.com/scaling-up-vs-scaling-out-hidden-costs/" target="_blank" rel="noopener noreferrer">Scale Up vs Scale Out: Hidden Costs</a> ，Coding Horror上的一篇有趣的文章，详细分析了可伸缩性架构的不同扩展方案（横向扩展或纵向扩展）所带来的成本差异，帮助你更好地选择合理的扩展方案，可以看看。</p>
+</li>
+<li>
+<p><a href="https://www.infoq.cn/article/hiXg6WRDjvNE0VNuwzPg" target="_blank" rel="noopener noreferrer">Best Practices for Scaling Out</a> ，OpenShift的一篇讨论Scale out最佳实践的文章。</p>
+</li>
+<li>
+<p><a href="https://www.infoq.com/articles/scalability-worst-practices" target="_blank" rel="noopener noreferrer">Scalability Worst Practices</a> ，这篇文章讨论了一些最差实践，你需要小心避免。</p>
+</li>
+<li>
+<p><a href="http://highscalability.com/blog/2013/8/26/reddit-lessons-learned-from-mistakes-made-scaling-to-1-billi.html" target="_blank" rel="noopener noreferrer">Reddit: Lessons Learned From Mistakes Made Scaling To 1 Billion Pageviews A Month</a> ，Reddit分享的一些关于系统扩展的经验教训。</p>
+</li>
+<li>
+<p>下面是几篇关于自动化弹性伸缩的文章。</p>
+<ul>
+<li><a href="https://medium.com/@Pinterest_Engineering/auto-scaling-pinterest-df1d2beb4d64" target="_blank" rel="noopener noreferrer">Autoscaling Pinterest</a>；</li>
+<li><a href="https://medium.com/square-corner-blog/autoscaling-based-on-request-queuing-c4c0f57f860f" target="_blank" rel="noopener noreferrer">Square: Autoscaling Based on Request Queuing</a>；</li>
+<li><a href="https://medium.com/paypal-engineering/autoscaling-applications-paypal-fb5bb9fdb821" target="_blank" rel="noopener noreferrer">PayPal: Autoscaling Applications</a>；</li>
+<li><a href="http://tech.trivago.com/2017/02/17/your-definite-guide-for-autoscaling-jenkins/" target="_blank" rel="noopener noreferrer">Trivago: Your Definite Guide For Autoscaling Jenkins</a>；</li>
+<li><a href="https://medium.com/netflix-techblog/scryer-netflixs-predictive-auto-scaling-engine-a3f8fc922270" target="_blank" rel="noopener noreferrer">Scryer: Netflix’s Predictive Auto Scaling Engine</a>。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="一致性哈希">一致性哈希<a href="#一致性哈希" class="hash-link" aria-label="Direct link to 一致性哈希" title="Direct link to 一致性哈希">​</a></h2>
+<ul>
+<li>
+<p><a href="http://www.tom-e-white.com/2007/11/consistent-hashing.html" target="_blank" rel="noopener noreferrer">Consistent Hashing</a> ，这是一个一致性哈希的简单教程，其中还有代码示例。</p>
+</li>
+<li>
+<p><a href="https://medium.com/@dgryski/consistent-hashing-algorithmic-tradeoffs-ef6b8e2fcae8" target="_blank" rel="noopener noreferrer">Consistent Hashing: Algorithmic Tradeoffs</a> ，这篇文章讲述了一致性哈希的一些缺陷和坑，以及各种哈希算法的性能比较，最后还给了一组代码仓库，其中有各种哈希算法的实现。</p>
+</li>
+<li>
+<p><a href="https://medium.com/netflix-techblog/distributing-content-to-open-connect-3e3e391d4dc9" target="_blank" rel="noopener noreferrer">Distributing Content to Open Connect</a> ，Netflix的一个对一致性哈希的实践，提出了Uniform Consistent Hashing，是挺有意思的一篇文章。</p>
+</li>
+<li>
+<p><a href="https://blog.imaginea.com/consistent-hashing-in-cassandra/" target="_blank" rel="noopener noreferrer">Consistent Hashing in Cassandra</a> ，这是Cassandra中使用到的一致性哈希的相关设计。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="数据库分布式">数据库分布式<a href="#数据库分布式" class="hash-link" aria-label="Direct link to 数据库分布式" title="Direct link to 数据库分布式">​</a></h2>
+<ul>
+<li>
+<p><a href="https://queue.acm.org/detail.cfm?id=3025012" target="_blank" rel="noopener noreferrer">Life Beyond Distributed Transactions</a> ，该文是Salesforce的软件架构师帕特·赫兰德（Pat Helland）于2016年12月发表的针对其在2007年CIDR（创新数据库研究会议）上首次发表的同名文章的更新和缩写版本。业界谈到分布式事务通常指两段提交2PC事务（Spring/JEE中JTA等)或者Paxos与Raft，这些事务都有明显缺点和局限性。</p>
+<p>而赫兰德在本文讨论的是另外一种基于本地事务情况下的事务机制，它是基于实体和活动（Activity）的概念，其实类似DDD聚合根和领域事件的概念，这种工作流类型事务虽然需要程序员介入，依靠消息系统实现，但可以实现接近无限扩展的大型系统。赫兰德文中提出了重要的观点：“如果你不能使用分布式事务，那么你就只能使用工作流。”</p>
+</li>
+<li>
+<p><a href="https://medium.com/@jeeyoungk/how-sharding-works-b4dec46b3f6" target="_blank" rel="noopener noreferrer">How Sharding Works</a> ，这是一篇很不错的探讨数据Sharding的文章。基本上来说，数据Sharding可能的问题都在这篇文章里谈到了。</p>
+</li>
+<li>
+<p><a href="https://www.percona.com/blog/2009/08/06/why-you-dont-want-to-shard/" target="_blank" rel="noopener noreferrer">Why you don’t want to shard</a> ，这是Percona的一篇文章，其中表达了，不到万不得已不要做数据库分片。是的，最好还是先按业务来拆分，先把做成微服务的架构，然后把数据集变简单，然后再做Sharding会更好。</p>
+</li>
+<li>
+<p><a href="https://www.percona.com/sites/default/files/presentations/How%20to%20Scale%20Big%20Data%20Applications.pdf" target="_blank" rel="noopener noreferrer">How to Scale Big Data Applications</a> ，这也是Percona给出的一篇关于怎样给大数据应用做架构扩展的文章。值得一读。</p>
+</li>
+<li>
+<p><a href="https://www.percona.com/blog/2016/08/30/mysql-sharding-with-proxysql/" target="_blank" rel="noopener noreferrer">MySQL Sharding with ProxySQL</a> ，用ProxySQL来支撑MySQL数据分片的一篇实践文章。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="缓存">缓存<a href="#缓存" class="hash-link" aria-label="Direct link to 缓存" title="Direct link to 缓存">​</a></h2>
+<ul>
+<li>
+<p><a href="https://coolshell.cn/articles/17416.html" target="_blank" rel="noopener noreferrer">缓存更新的套路</a>，这是我在CoolShell上写的缓存更新的几个设计模式，包括Cache Aside、Read/Write Through、Write Behind Caching。</p>
+</li>
+<li>
+<p><a href="http://highscalability.com/blog/2016/1/25/design-of-a-modern-cache.html" target="_blank" rel="noopener noreferrer">Design Of A Modern Cache</a> ，设计一个现代化的缓存系统需要注意到的东西。</p>
+</li>
+<li>
+<p><a href="https://medium.com/netflix-techblog/caching-for-a-global-netflix-7bcc457012f1" target="_blank" rel="noopener noreferrer">Netflix: Caching for a Global Netflix</a> ，Netflix公司的全局缓存架构实践。</p>
+</li>
+<li>
+<p><a href="https://code.facebook.com/posts/220956754772273/an-analysis-of-facebook-photo-caching/" target="_blank" rel="noopener noreferrer">Facebook: An analysis of Facebook photo caching</a> ，Facebook公司的图片缓存使用分析，这篇文章挺有意思的，用数据来调优不同的缓存大小和算法。</p>
+</li>
+<li>
+<p><a href="https://tech.trivago.com/2017/12/19/how-trivago-reduced-memcached-memory-usage-by-50/" target="_blank" rel="noopener noreferrer">How trivago Reduced Memcached Memory Usage by 50%</a> ，Trivago公司一篇分享自己是如何把Memcached的内存使用率降了一半的实践性文章。很有意思，可以让你学到很多东西。</p>
+</li>
+<li>
+<p><a href="https://engineeringblog.yelp.com/2018/03/caching-internal-service-calls-at-yelp.html" target="_blank" rel="noopener noreferrer">Caching Internal Service Calls at Yelp</a> ，Yelp公司的缓存系统架构。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="消息队列">消息队列<a href="#消息队列" class="hash-link" aria-label="Direct link to 消息队列" title="Direct link to 消息队列">​</a></h2>
+<ul>
+<li>
+<p><a href="https://content.pivotal.io/blog/understanding-when-to-use-rabbitmq-or-apache-kafka" target="_blank" rel="noopener noreferrer">Understanding When to use RabbitMQ or Apache Kafka</a> ，什么时候使用RabbitMQ，什么时候使用Kafka，通过这篇文章可以让你明白如何做技术决策。</p>
+</li>
+<li>
+<p><a href="https://tech.trello.com/why-we-chose-kafka/" target="_blank" rel="noopener noreferrer">Trello: Why We Chose Kafka For The Trello Socket Architecture</a> ，Trello的Kafka架构分享。</p>
+</li>
+<li>
+<p><a href="https://engineering.linkedin.com/kafka/running-kafka-scale" target="_blank" rel="noopener noreferrer">LinkedIn: Running Kafka At Scale</a> ，LinkedIn公司的Kafka架构扩展实践。</p>
+</li>
+<li>
+<p><a href="https://www.confluent.io/blog/put-several-event-types-kafka-topic/" target="_blank" rel="noopener noreferrer">Should You Put Several Event Types in the Same Kafka Topic?</a> ，这个问题可能经常困扰你，这篇文章可以为你找到答案。</p>
+</li>
+<li>
+<p><a href="https://engineeringblog.yelp.com/2016/07/billions-of-messages-a-day-yelps-real-time-data-pipeline.html" target="_blank" rel="noopener noreferrer">Billions of Messages a Day - Yelp’s Real-time Data Pipeline</a> ，Yelp公司每天十亿级实时消息的架构。</p>
+</li>
+<li>
+<p><a href="https://eng.uber.com/reliable-reprocessing/" target="_blank" rel="noopener noreferrer">Uber: Building Reliable Reprocessing and Dead Letter Queues with Kafka</a> ，Uber公司的Kafka应用。</p>
+</li>
+<li>
+<p><a href="https://eng.uber.com/chaperone/" target="_blank" rel="noopener noreferrer">Uber: Introducing Chaperone: How Uber Engineering Audits Kafka End-to-End</a> ，Uber公司对Kafka消息的端到端审计。</p>
+</li>
+<li>
+<p><a href="https://open.nytimes.com/publishing-with-apache-kafka-at-the-new-york-times-7f0e3b7d2077" target="_blank" rel="noopener noreferrer">Publishing with Apache Kafka at The New York Times</a> ，纽约时报的Kafka工程实践。</p>
+</li>
+<li>
+<p><a href="https://blog.heroku.com/kafka-streams-on-heroku" target="_blank" rel="noopener noreferrer">Kafka Streams on Heroku</a> ，Heroku公司的Kafka Streams实践。</p>
+</li>
+<li>
+<p><a href="https://engineering.salesforce.com/how-apache-kafka-inspired-our-platform-events-architecture-2f351fe4cf63" target="_blank" rel="noopener noreferrer">Salesforce: How Apache Kafka Inspired Our Platform Events Architecture</a> ，Salesforce的Kafka工程实践。</p>
+</li>
+<li>
+<p><a href="https://www.confluent.io/blog/exactly-once-semantics-are-possible-heres-how-apache-kafka-does-it/" target="_blank" rel="noopener noreferrer">Exactly-once Semantics are Possible: Here’s How Kafka Does it</a> ，怎样用Kafka让只发送一次的语义变为可能。这是业界中一个很难的工程问题。</p>
+</li>
+<li>
+<p><a href="https://segment.com/blog/exactly-once-delivery/" target="_blank" rel="noopener noreferrer">Delivering billions of messages exactly once</a> 同上，这也是一篇挑战消息只发送一次这个技术难题的文章。</p>
+</li>
+<li>
+<p><a href="https://yahooeng.tumblr.com/post/135321837876/benchmarking-streaming-computation-engines-at" target="_blank" rel="noopener noreferrer">Benchmarking Streaming Computation Engines at Yahoo!</a>。Yahoo!的Storm团队在为他们的流式计算做技术选型时，发现市面上缺乏针对不同计算平台的性能基准测试。于是，他们研究并设计了一种方案来做基准测试，测试了Apache Flink、Apache Storm和Apache Spark这三种平台。文中给出了结论和具体的测试方案。（如果原文链接不可用，请尝试搜索引擎对该网页的快照。）</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于日志方面">关于日志方面<a href="#关于日志方面" class="hash-link" aria-label="Direct link to 关于日志方面" title="Direct link to 关于日志方面">​</a></h2>
+<ul>
+<li>
+<p><a href="https://www.confluent.io/blog/using-logs-to-build-a-solid-data-infrastructure-or-why-dual-writes-are-a-bad-idea/" target="_blank" rel="noopener noreferrer">Using Logs to Build a Solid Data Infrastructure - Martin Kleppmann</a> ，设计基于log结构应用架构的一篇不错的文章。</p>
+</li>
+<li>
+<p><a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2015/building-distributedlog-twitter-s-high-performance-replicated-log-servic.html" target="_blank" rel="noopener noreferrer">Building DistributedLog: High-performance replicated log service</a> ，Distributed是Twitter 2016年5月份开源的一个分布式日志系统。在Twitter内部已经使用2年多。其主页在 <a href="http://distributedlog.io/" target="_blank" rel="noopener noreferrer">distributedlog.io</a>。这篇文章讲述了这个高性能日志系统的一些技术细节。另外，其技术负责人是个中国人，其在微信公众号中也分享过这个系统 <a href="https://mp.weixin.qq.com/s?__biz=MzAwMDU1MTE1OQ==&amp;mid=403051208&amp;idx=1&amp;sn=1694ac05acbcb5ca53c88bfac8a68856&amp;scene=2&amp;srcid=1224xZuQ9QQ4sRmiPVdHTppL" target="_blank" rel="noopener noreferrer">Twitter高性能分布式日志系统架构解析</a>。</p>
+</li>
+<li>
+<p><a href="https://code.facebook.com/posts/357056558062811/logdevice-a-distributed-data-store-for-logs/" target="_blank" rel="noopener noreferrer">LogDevice: a distributed data store for logs</a> ，Facebook分布式日志系统方面的一些工程分享。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于性能方面">关于性能方面<a href="#关于性能方面" class="hash-link" aria-label="Direct link to 关于性能方面" title="Direct link to 关于性能方面">​</a></h2>
+<ul>
+<li>
+<p><a href="http://highscalability.com/latency-everywhere-and-it-costs-you-sales-how-crush-it" target="_blank" rel="noopener noreferrer">Understand Latency</a> ，这篇文章收集并整理了一些和系统响应时间相关的文章，可以让你全面了解和Latency有关的系统架构和设计经验方面的知识。</p>
+</li>
+<li>
+<p><a href="http://highscalability.com/blog/2012/5/16/big-list-of-20-common-bottlenecks.html" target="_blank" rel="noopener noreferrer">Common Bottlenecks</a> ，文中讲述了20个常见的系统瓶颈。</p>
+</li>
+<li>
+<p><a href="https://blog.codinghorror.com/performance-is-a-feature/" target="_blank" rel="noopener noreferrer">Performance is a Feature</a> ，Coding Horror上的一篇让你关注性能的文章。</p>
+</li>
+<li>
+<p><a href="https://codeascraft.com/2014/12/11/make-performance-part-of-your-workflow/" target="_blank" rel="noopener noreferrer">Make Performance Part of Your Workflow</a> ，这篇文章是图书《 <a href="http://shop.oreilly.com/product/0636920033578.do" target="_blank" rel="noopener noreferrer">Designing for Performance</a>》中的节选（国内没有卖的），其中给出来了一些和性能有关的设计上的平衡和美学。</p>
+</li>
+<li>
+<p><a href="https://blog.cloudflare.com/counting-things-a-lot-of-different-things/" target="_blank" rel="noopener noreferrer">CloudFlare: How we built rate limiting capable of scaling to millions of domains</a>，讲述了CloudFlare公司是怎样实现他们的限流功能的。从最简单的每客户IP限流开始分析，进一步讲到anycast，在这种情况下PoP的分布式限流是怎样实现的，并详细解释了具体的算法。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="关于搜索方面">关于搜索方面<a href="#关于搜索方面" class="hash-link" aria-label="Direct link to 关于搜索方面" title="Direct link to 关于搜索方面">​</a></h2>
+<ul>
+<li><a href="https://instagram-engineering.com/search-architecture-eeb34a936d3a" target="_blank" rel="noopener noreferrer">Instagram: Search Architecture</a></li>
+<li><a href="http://www.cs.otago.ac.nz/homepages/andrew/papers/2017-8.pdf" target="_blank" rel="noopener noreferrer">eBay: The Architecture of eBay Search</a></li>
+<li><a href="https://www.ebayinc.com/stories/blogs/tech/making-e-commerce-search-faster/" target="_blank" rel="noopener noreferrer">eBay: Improving Search Engine Efficiency by over 25%</a></li>
+<li><a href="https://engineering.linkedin.com/search/did-you-mean-galene" target="_blank" rel="noopener noreferrer">LinkedIn: Introducing LinkedIn’s new search architecture</a></li>
+<li><a href="https://engineering.linkedin.com/blog/2018/03/search-federation-architecture-at-linkedin" target="_blank" rel="noopener noreferrer">LinkedIn: Search Federation Architecture at LinkedIn</a></li>
+<li><a href="https://slack.engineering/search-at-slack-431f8c80619e" target="_blank" rel="noopener noreferrer">Slack: Search at Slack</a></li>
+<li><a href="https://blog.doordash.com/powering-search-recommendations-at-doordash-8310c5cfd88c" target="_blank" rel="noopener noreferrer">DoorDash: Search and Recommendations at DoorDash</a></li>
+<li><a href="https://blog.twitter.com/engineering/en_us/a/2014/building-a-complete-tweet-index.html" target="_blank" rel="noopener noreferrer">Twitter: Search Service at Twitter (2014)</a></li>
+<li><a href="https://medium.com/@Pinterest_Engineering/manas-a-high-performing-customized-search-system-cf189f6ca40f" target="_blank" rel="noopener noreferrer">Pinterest: Manas: High Performing Customized Search System</a></li>
+<li><a href="https://tech.flipkart.com/sherlock-near-real-time-search-indexing-95519783859d" target="_blank" rel="noopener noreferrer">Sherlock: Near Real Time Search Indexing at Flipkart</a></li>
+<li><a href="https://medium.com/airbnb-engineering/nebula-as-a-storage-platform-to-build-airbnbs-search-backends-ecc577b05f06" target="_blank" rel="noopener noreferrer">Airbnb: Nebula: Storage Platform to Build Search Backends</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="各公司的架构实践">各公司的架构实践<a href="#各公司的架构实践" class="hash-link" aria-label="Direct link to 各公司的架构实践" title="Direct link to 各公司的架构实践">​</a></h2>
+<p><a href="http://highscalability.com/" target="_blank" rel="noopener noreferrer">High Scalability</a> ，这个网站会定期分享一些大规模系统架构是怎样构建的，下面是迄今为止各个公司的架构说明。</p>
+<ul>
+<li><a href="http://highscalability.com/youtube-architecture" target="_blank" rel="noopener noreferrer">YouTube Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2013/4/15/scaling-pinterest-from-0-to-10s-of-billions-of-page-views-a.html" target="_blank" rel="noopener noreferrer">Scaling Pinterest</a></li>
+<li><a href="http://highscalability.com/google-architecture" target="_blank" rel="noopener noreferrer">Google Architecture</a></li>
+<li><a href="http://highscalability.com/scaling-twitter-making-twitter-10000-percent-faster" target="_blank" rel="noopener noreferrer">Scaling Twitter</a></li>
+<li><a href="http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html" target="_blank" rel="noopener noreferrer">The WhatsApp Architecture</a></li>
+<li><a href="http://highscalability.com/flickr-architecture" target="_blank" rel="noopener noreferrer">Flickr Architecture</a></li>
+<li><a href="http://highscalability.com/amazon-architecture" target="_blank" rel="noopener noreferrer">Amazon Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2009/8/5/stack-overflow-architecture.html" target="_blank" rel="noopener noreferrer">Stack Overflow Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2012/5/21/pinterest-architecture-update-18-million-visitors-10x-growth.html" target="_blank" rel="noopener noreferrer">Pinterest Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2012/2/13/tumblr-architecture-15-billion-page-views-a-month-and-harder.html" target="_blank" rel="noopener noreferrer">Tumblr Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html" target="_blank" rel="noopener noreferrer">Instagram Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2011/6/27/tripadvisor-architecture-40m-visitors-200m-dynamic-page-view.html" target="_blank" rel="noopener noreferrer">TripAdvisor Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2013/6/18/scaling-mailbox-from-0-to-one-million-users-in-6-weeks-and-1.html" target="_blank" rel="noopener noreferrer">Scaling Mailbox</a></li>
+<li><a href="http://highscalability.com/blog/2013/9/23/salesforce-architecture-how-they-handle-13-billion-transacti.html" target="_blank" rel="noopener noreferrer">Salesforce Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2013/11/4/espns-architecture-at-scale-operating-at-100000-duh-nuh-nuhs.html" target="_blank" rel="noopener noreferrer">ESPN Architecture</a></li>
+<li><a href="http://highscalability.com/blog/2015/9/14/how-uber-scales-their-real-time-market-platform.html" target="_blank" rel="noopener noreferrer">Uber Architecture</a></li>
+<li><a href="https://www.youtube.com/watch?v=PE4gwstWhmc" target="_blank" rel="noopener noreferrer">Dropbox Design</a></li>
+<li><a href="http://www.splunk.com/view/SP-CAAABF9" target="_blank" rel="noopener noreferrer">Splunk Architecture</a></li>
+</ul>
+<h1>小结</h1>
+<p>今天我们分享的内容是高手成长篇分布式架构部分的最后一篇——分布式架构工程设计，讲述了设计原则、设计模式等方面的内容，尤其整理和推荐了国内外知名企业的设计思路和工程实践，十分具有借鉴意义。</p>
+<p>下篇文章中，我们将分享微服务架构方面的内容。敬请期待。</p>
+<p>下面是《程序员练级攻略》系列文章的目录。</p>
+<ul>
+<li><a href="https://time.geekbang.org/column/article/8136" target="_blank" rel="noopener noreferrer">开篇词</a></li>
+<li>入门篇
+<ul>
+<li><a href="https://time.geekbang.org/column/article/8216" target="_blank" rel="noopener noreferrer">零基础启蒙</a></li>
+<li><a href="https://time.geekbang.org/column/article/8217" target="_blank" rel="noopener noreferrer">正式入门</a></li>
+</ul>
+</li>
+<li>修养篇
+<ul>
+<li><a href="https://time.geekbang.org/column/article/8700" target="_blank" rel="noopener noreferrer">程序员修养</a></li>
+</ul>
+</li>
+<li>专业基础篇
+<ul>
+<li><a href="https://time.geekbang.org/column/article/8701" target="_blank" rel="noopener noreferrer">编程语言</a></li>
+<li><a href="https://time.geekbang.org/column/article/8887" target="_blank" rel="noopener noreferrer">理论学科</a></li>
+<li><a href="https://time.geekbang.org/column/article/8888" target="_blank" rel="noopener noreferrer">系统知识</a></li>
+</ul>
+</li>
+<li>软件设计篇
+<ul>
+<li><a href="https://time.geekbang.org/column/article/9369" target="_blank" rel="noopener noreferrer">软件设计</a></li>
+</ul>
+</li>
+<li>高手成长篇
+<ul>
+<li><a href="https://time.geekbang.org/column/article/9759" target="_blank" rel="noopener noreferrer">Linux系统、内存和网络（系统底层知识）</a></li>
+<li><a href="https://time.geekbang.org/column/article/9851" target="_blank" rel="noopener noreferrer">异步I/O模型和Lock-Free编程（系统底层知识）</a></li>
+<li><a href="https://time.geekbang.org/column/article/10216" target="_blank" rel="noopener noreferrer">Java底层知识</a></li>
+<li><a href="https://time.geekbang.org/column/article/10301" target="_blank" rel="noopener noreferrer">数据库</a></li>
+<li><a href="https://time.geekbang.org/column/article/10603" target="_blank" rel="noopener noreferrer">分布式架构入门（分布式架构）</a></li>
+<li><a href="https://time.geekbang.org/column/article/10604" target="_blank" rel="noopener noreferrer">分布式架构经典图书和论文（分布式架构）</a></li>
+<li><a href="https://time.geekbang.org/column/article/11232" target="_blank" rel="noopener noreferrer">分布式架构工程设计(分布式架构)</a></li>
+<li><a href="https://time.geekbang.org/column/article/11116" target="_blank" rel="noopener noreferrer">微服务</a></li>
+<li><a href="https://time.geekbang.org/column/article/11665" target="_blank" rel="noopener noreferrer">容器化和自动化运维</a></li>
+<li><a href="https://time.geekbang.org/column/article/11669" target="_blank" rel="noopener noreferrer">机器学习和人工智能</a></li>
+<li><a href="https://time.geekbang.org/column/article/12271" target="_blank" rel="noopener noreferrer">前端基础和底层原理（前端方向）</a></li>
+<li><a href="https://time.geekbang.org/column/article/12389" target="_blank" rel="noopener noreferrer">前端性能优化和框架（前端方向）</a></li>
+<li><a href="https://time.geekbang.org/column/article/12486" target="_blank" rel="noopener noreferrer">UI/UX设计（前端方向）</a></li>
+<li><a href="https://time.geekbang.org/column/article/12561" target="_blank" rel="noopener noreferrer">技术资源集散地</a></li>
+</ul>
+</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/左耳听风/程序员练级攻略：分布式架构经典图书和论文-82/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">82 | 程序员练级攻略：分布式架构经典图书和论文</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/左耳听风/程序员练级攻略：微服务-84/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">84 | 程序员练级攻略：微服务</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#分布式系统的故障测试" class="table-of-contents__link toc-highlight">分布式系统的故障测试</a></li><li><a href="#弹性伸缩" class="table-of-contents__link toc-highlight">弹性伸缩</a></li><li><a href="#一致性哈希" class="table-of-contents__link toc-highlight">一致性哈希</a></li><li><a href="#数据库分布式" class="table-of-contents__link toc-highlight">数据库分布式</a></li><li><a href="#缓存" class="table-of-contents__link toc-highlight">缓存</a></li><li><a href="#消息队列" class="table-of-contents__link toc-highlight">消息队列</a></li><li><a href="#关于日志方面" class="table-of-contents__link toc-highlight">关于日志方面</a></li><li><a href="#关于性能方面" class="table-of-contents__link toc-highlight">关于性能方面</a></li><li><a href="#关于搜索方面" class="table-of-contents__link toc-highlight">关于搜索方面</a></li><li><a href="#各公司的架构实践" class="table-of-contents__link toc-highlight">各公司的架构实践</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/join语句怎么优化？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">join语句怎么优化？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/join语句怎么优化？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="join语句怎么优化？ | Coisini"><meta data-rh="true" name="description" content="在上一篇文章中，我和你介绍了join语句的两种算法，分别是Index Nested-Loop Join(NLJ)和Block Nested-Loop Join(BNL)。"><meta data-rh="true" property="og:description" content="在上一篇文章中，我和你介绍了join语句的两种算法，分别是Index Nested-Loop Join(NLJ)和Block Nested-Loop Join(BNL)。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/join语句怎么优化？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/join语句怎么优化？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/join语句怎么优化？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><p>在上一篇文章中，我和你介绍了join语句的两种算法，分别是Index Nested-Loop Join(NLJ)和Block Nested-Loop Join(BNL)。</p>
+<p>我们发现在使用NLJ算法的时候，其实效果还是不错的，比通过应用层拆分成多个语句然后再拼接查询结果更方便，而且性能也不会差。</p>
+<p>但是，BNL算法在大表join的时候性能就差多了，比较次数等于两个表参与join的行数的乘积，很消耗CPU资源。</p>
+<p>当然了，这两个算法都还有继续优化的空间，我们今天就来聊聊这个话题。</p>
+<p>为了便于分析，我还是创建两个表t1、t2来和你展开今天的问题。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create table t1(id int primary key, a int, b int, index(a));</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create table t2 like t1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">drop procedure idata;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">delimiter ;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create procedure idata()</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">begin</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  declare i int;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  set i=1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  while(i&lt;=1000)do</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    insert into t1 values(i, 1001-i, i);</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    set i=i+1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  end while;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  set i=1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  while(i&lt;=1000000)do</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    insert into t2 values(i, i, i);</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    set i=i+1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  end while;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">end;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">delimiter ;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">call idata();</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>为了便于后面量化说明，我在表t1里，插入了1000行数据，每一行的a=1001-id的值。也就是说，表t1中字段a是逆序的。同时，我在表t2中插入了100万行数据。</p>
+<header><h1>Multi-Range Read优化</h1></header>
+<p>在介绍join语句的优化方案之前，我需要先和你介绍一个知识点，即：Multi-Range Read优化(MRR)。这个优化的主要目的是尽量使用顺序读盘。</p>
+<p>在<a href="https://time.geekbang.org/column/article/69236" target="_blank" rel="noopener noreferrer">第4篇文章</a>中，我和你介绍InnoDB的索引结构时，提到了“回表”的概念。我们先来回顾一下这个概念。回表是指，InnoDB在普通索引a上查到主键id的值后，再根据一个个主键id的值到主键索引上去查整行数据的过程。</p>
+<p>然后，有同学在留言区问到，回表过程是一行行地查数据，还是批量地查数据？</p>
+<p>我们先来看看这个问题。假设，我执行这个语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 where a&gt;=1 and a&lt;=100;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>主键索引是一棵B+树，在这棵树上，每次只能根据一个主键id查到一行数据。因此，回表肯定是一行行搜索主键索引的，基本流程如图1所示。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/97ae269061192f6d7a632df56fa03605-318d8f943858751ea22ce821b14c8b8d.png" width="1142" height="880" class="img_ev3q"></p>
+<p>图1 基本回表流程</p>
+<p>如果随着a的值递增顺序查询的话，id的值就变成随机的，那么就会出现随机访问，性能相对较差。虽然“按行查”这个机制不能改，但是调整查询的顺序，还是能够加速的。</p>
+<p><strong>因为大多数的数据都是按照主键递增顺序插入得到的，所以我们可以认为，如果按照主键的递增顺序查询的话，对磁盘的读比较接近顺序读，能够提升读性能。</strong></p>
+<p>这，就是MRR优化的设计思路。此时，语句的执行流程变成了这样：</p>
+<ol>
+<li>根据索引a，定位到满足条件的记录，将id值放入read_rnd_buffer中;</li>
+<li>将read_rnd_buffer中的id进行递增排序；</li>
+<li>排序后的id数组，依次到主键id索引中查记录，并作为结果返回。</li>
+</ol>
+<p>这里，read_rnd_buffer的大小是由read_rnd_buffer_size参数控制的。如果步骤1中，read_rnd_buffer放满了，就会先执行完步骤2和3，然后清空read_rnd_buffer。之后继续找索引a的下个记录，并继续循环。</p>
+<p>另外需要说明的是，如果你想要稳定地使用MRR优化的话，需要设置<code>set optimizer_switch=&quot;mrr_cost_based=off&quot;</code>。（官方文档的说法，是现在的优化器策略，判断消耗的时候，会更倾向于不使用MRR，把mrr_cost_based设置为off，就是固定使用MRR了。）</p>
+<p>下面两幅图就是使用了MRR优化后的执行流程和explain结果。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/d502fbaea7cac6f815c626b078da86c7-14a8e6cea6bb138ce6d1a89c418d80ac.jpg" width="1142" height="880" class="img_ev3q"></p>
+<p>图2 MRR执行流程</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/a513d07ebaf1ae044d44391c89bc6432-7d174a9f94a5b79a5a5b74fb210b8464.png" width="1583" height="149" class="img_ev3q"></p>
+<p>图3 MRR执行流程的explain结果</p>
+<p>从图3的explain结果中，我们可以看到Extra字段多了Using MRR，表示 的是用上了MRR优化。而且，由于我们在read_rnd_buffer中按照id做了排序，所以最后得到的结果集也是按照主键id递增顺序的，也就是与图1结果集中行的顺序相反。</p>
+<p>到这里，我们小结一下。</p>
+<p><strong>MRR能够提升性能的核心</strong>在于，这条查询语句在索引a上做的是一个范围查询（也就是说，这是一个多值查询），可以得到足够多的主键id。这样通过排序以后，再去主键索引查数据，才能体现出“顺序性”的优势。</p>
+<h1>Batched Key Access</h1>
+<p>理解了MRR性能提升的原理，我们就能理解MySQL在5.6版本后开始引入的Batched Key Access(BKA)算法了。这个BKA算法，其实就是对NLJ算法的优化。</p>
+<p>我们再来看看上一篇文章中用到的NLJ算法的流程图：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/10e14e8b9691ac6337d457172b641a3d-32d16971bb5eecea90b1432ebe46a9f2.jpg" width="1142" height="880" class="img_ev3q"></p>
+<p>图4 Index Nested-Loop Join流程图</p>
+<p>NLJ算法执行的逻辑是：从驱动表t1，一行行地取出a的值，再到被驱动表t2去做join。也就是说，对于表t2来说，每次都是匹配一个值。这时，MRR的优势就用不上了。</p>
+<p>那怎么才能一次性地多传些值给表t2呢？方法就是，从表t1里一次性地多拿些行出来，一起传给表t2。</p>
+<p>既然如此，我们就把表t1的数据取出来一部分，先放到一个临时内存。这个临时内存不是别人，就是join_buffer。</p>
+<p>通过上一篇文章，我们知道join_buffer 在BNL算法里的作用，是暂存驱动表的数据。但是在NLJ算法里并没有用。那么，我们刚好就可以复用join_buffer到BKA算法中。</p>
+<p>如图5所示，是上面的NLJ算法优化后的BKA算法的流程。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/682370c5640244fa3474d26cc3bc0388-b7bf14eee3714aecc3bd8f41835c2108.png" width="1142" height="880" class="img_ev3q"></p>
+<p>图5 Batched Key Access流程</p>
+<p>图中，我在join_buffer中放入的数据是P1<del>P100，表示的是只会取查询需要的字段。当然，如果join buffer放不下P1</del>P100的所有数据，就会把这100行数据分成多段执行上图的流程。</p>
+<p>那么，这个BKA算法到底要怎么启用呢？</p>
+<p>如果要使用BKA优化算法的话，你需要在执行SQL语句之前，先设置</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">set optimizer_switch=&#x27;mrr=on,mrr_cost_based=off,batched_key_access=on&#x27;;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>其中，前两个参数的作用是要启用MRR。这么做的原因是，BKA算法的优化要依赖于MRR。</p>
+<h1>BNL算法的性能问题</h1>
+<p>说完了NLJ算法的优化，我们再来看BNL算法的优化。</p>
+<p>我在上一篇文章末尾，给你留下的思考题是，使用Block Nested-Loop Join(BNL)算法时，可能会对被驱动表做多次扫描。如果这个被驱动表是一个大的冷数据表，除了会导致IO压力大以外，还会  对系统有什么影响呢？</p>
+<p>在<a href="https://time.geekbang.org/column/article/79407" target="_blank" rel="noopener noreferrer">第33篇文章</a>中，我们说到InnoDB的LRU算法的时候提到，由于InnoDB对Bufffer Pool的LRU算法做了优化，即：第一次从磁盘读入内存的数据页，会先放在old区域。如果1秒之后这个数据页不再被访问了，就不会被移动到LRU链表头部，这样对Buffer Pool的命中率影响就不大。</p>
+<p>但是，如果一个使用BNL算法的join语句，多次扫描一个冷表，而且这个语句执行时间超过1秒，就会在再次扫描冷表的时候，把冷表的数据页移到LRU链表头部。</p>
+<p>这种情况对应的，是冷表的数据量小于整个Buffer Pool的3/8，能够完全放入old区域的情况。</p>
+<p>如果这个冷表很大，就会出现另外一种情况：业务正常访问的数据页，没有机会进入young区域。</p>
+<p>由于优化机制的存在，一个正常访问的数据页，要进入young区域，需要隔1秒后再次被访问到。但是，由于我们的join语句在循环读磁盘和淘汰内存页，进入old区域的数据页，很可能在1秒之内就被淘汰了。这样，就会导致这个MySQL实例的Buffer Pool在这段时间内，young区域的数据页没有被合理地淘汰。</p>
+<p>也就是说，这两种情况都会影响Buffer Pool的正常运作。</p>
+<p><strong>大表join操作虽然对IO有影响，但是在语句执行结束后，对IO的影响也就结束了。但是，对Buffer Pool的影响就是持续性的，需要依靠后续的查询请求慢慢恢复内存命中率。</strong></p>
+<p>为了减少这种影响，你可以考虑增大join_buffer_size的值，减少对被驱动表的扫描次数。</p>
+<p>也就是说，BNL算法对系统的影响主要包括三个方面：</p>
+<ol>
+<li>可能会多次扫描被驱动表，占用磁盘IO资源；</li>
+<li>判断join条件需要执行M*N次对比（M、N分别是两张表的行数），如果是大 表就会占用非常多的CPU资源；</li>
+<li>可能会导致Buffer Pool的热数据被淘汰，影响内存命中率。</li>
+</ol>
+<p>我们执行语句之前，需要通过理论分析和查看explain结果的方式，确认是否要使用BNL算法。如果确认优化器会使用BNL算法，就需要做优化。优化的常见做法是，给被驱动表的join字段加上索引，把BNL算法转成BKA算法。</p>
+<p>接下来，我们就具体看看，这个优化怎么做？</p>
+<h1>BNL转BKA</h1>
+<p>一些情况下，我们可以直接在被驱动表上建索引，这时就可以直接转成BKA算法了。</p>
+<p>但是，有时候你确实会碰到一些不适合在被驱动表上建索引的情况。比如下面这个语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 join t2 on (t1.b=t2.b) where t2.b&gt;=1 and t2.b&lt;=2000;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>我们在文章开始的时候，在表t2中插入了100万行数据，但是经过where条件过滤后，需要参与join的只有2000行数据。如果这条语 句同时是一个低频的SQL语句，那么再为这个语句在表t2的字段b上创建一个索引就很浪费了。</p>
+<p>但是，如果使用BNL算法来join的话，这个语句的执行流程是这样的：</p>
+<ol>
+<li>
+<p>把表t1的所有字段取出来，存入join_buffer中。这个表只有1000行，join_buffer_size默认值是256k，可以完全存入。</p>
+</li>
+<li>
+<p>扫描表t2，取出每一行数据跟join_buffer中的数据进行对比，</p>
+<ul>
+<li>如果不满足t1.b=t2.b，则跳过；</li>
+<li>如果满足t1.b=t2.b, 再判断其他条件，也就是是否满足t2.b处于[1,2000]的条件，如果是，就作为结果集的一部分返回，否则跳过。</li>
+</ul>
+</li>
+</ol>
+<p>我在上一篇文章中说过，对于表t2的每一行，判断join是否满足的时候，都需要遍历join_buffer中的所有行。因此判断等值条件的次数是1000*100万=10亿次，这个判断的工作量很大。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/92fbdbfc35da3040396401250cb33f60-70cfcdadf568ef466086ccd05754e340.png" width="1776" height="169" class="img_ev3q"></p>
+<p>图6 explain结果</p>
+<p><img decoding="async" loading="lazy" src="data:image/png;base64,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" width="550" height="130" class="img_ev3q"></p>
+<p>图7 语句执行时间</p>
+<p>可以看到，explain结果里Extra字段显示使用了BNL算法。在我的测试环境里，这条语句需要执行1分11秒。</p>
+<p>在表t2的字段b上创建索引会浪费资源，但是不创建索引的话这个语句的等值条件要判断10亿次，想想也是浪费。那么，有没有两全其美的办法呢？</p>
+<p>这时候，我们可以考虑使用临时表。使用临时表的大致思路是：</p>
+<ol>
+<li>把表t2中满足条件的数据放在临时表tmp_t中；</li>
+<li>为了让join使用BKA算法，给临时表tmp_t的字段b加上索引；</li>
+<li>让表t1和tmp_t做join操作。</li>
+</ol>
+<p>此时，对应的SQL语句的写法如下：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create temporary table temp_t(id int primary key, a int, b int, index(b))engine=innodb;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into temp_t select * from t2 where b&gt;=1 and b&lt;=2000;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 join temp_t on (t1.b=temp_t.b);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>图8就是这个语句序列的执行效果。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/a80cdffe8173fa0fd8969ed976ac6ac7-341469a52b07f62ed6ba7c304dc4d40e.png" width="1130" height="547" class="img_ev3q"></p>
+<p>图8 使用临时表的执行效果</p>
+<p>可以看到，整个过程3个语句执行时间的总和还不到1秒，相比于前面的1分11秒，性能得到了大幅提升。接下来，我们一起看一下这个过程的消耗：</p>
+<ol>
+<li>执行insert语句构造temp_t表并插入数据的过程中，对表t2做了全表扫描，这里扫描行数是100万。</li>
+<li>之后的join语句，扫描表t1，这里的扫描行数是1000；join比较过程中，做了1000次带索引的查询。相比于优化前的join语句需要做10亿次条件判断来说，这个优化效果还是很明显的。</li>
+</ol>
+<p>总体来看，不论是在原表上加索引，还是用有索引的临时表，我们的思路都是让join语句能够用上被驱动表上的索引，来触发BKA算法，提升查询性能。</p>
+<h1>扩展-hash join</h1>
+<p>看到这里你可能发现了，其实上面计算10亿次那个操作，看上去有点儿傻。如果join_buffer里面维护的不是一个无序数组，而是一个哈希表的话，那么就不是10亿次判断，而是100万次hash查找。这样的话，整条语句的执行速度就快多了吧？</p>
+<p>确实如此。</p>
+<p>这，也正是MySQL的优化器和执行器一直被诟病的一个原因：不支持哈希join。并且，MySQL官方的roadmap，也是迟迟没有把这个优化排上议程。</p>
+<p>实际上，这个优化思路，我们可以自己实现在业务端。实现流程大致如下：</p>
+<ol>
+<li><code>select * from t1;</code>取得表t1的全部1000行数据，在业务端存入一个hash结构，比如C++里的set、PHP的数组这样的数据结构。</li>
+<li><code>select * from t2 where b&gt;=1 and b&lt;=2000;</code> 获取表t2中满足条件的2000行数据。</li>
+<li>把这2000行数据，一行一行地取到业务端，到hash结构的数据表中寻找匹配的数据。满足匹配的条件的这行数据，就作为结果集的一行。</li>
+</ol>
+<p>理论上，这个过程会比临时表方案的执行速度还要快一些。如果你感兴趣的话，可以自己验证一下。</p>
+<h1>小结</h1>
+<p>今天，我和你分享了Index Nested-Loop Join（NLJ）和Block Nested-Loop Join（BNL）的优化方法。</p>
+<p>在这些优化方法中：</p>
+<ol>
+<li>BKA优化是MySQL已经内置支持的，建议你默认使用；</li>
+<li>BNL算法效率低，建议你都尽量转成BKA算法。优化的方向就是给被驱动表的关联字段加上索引；</li>
+<li>基于临时表的改进方案，对于能够提前过滤出小数据的join语句来说，效果还是很好的；</li>
+<li>MySQL目前的版本还不支持hash join，但你可以配合应用端自己模拟出来，理论上效果要好于临时表的方案。</li>
+</ol>
+<p>最后，我给你留下一道思考题吧。</p>
+<p>我们在讲join语句的这两篇文章中，都只涉及到了两个表的join。那么，现在有一个三个表join的需求，假设这三个表的表结构如下：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">CREATE TABLE `t1` (</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> `id` int(11) NOT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> `a` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> `b` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> `c` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  PRIMARY KEY (`id`)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">) ENGINE=InnoDB;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create table t2 like t1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create table t3 like t2;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into ... //初始化三张表的数据</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>语句的需求实现如下的join逻辑：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 join t2 on(t1.a=t2.a) join t3 on (t2.b=t3.b) where t1.c&gt;=X and t2.c&gt;=Y and t3.c&gt;=Z;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>现在为了得到最快的执行速度，如果让你来设计表t1、t2、t3上的索引，来支持这个join语句，你会加哪些索引呢？</p>
+<p>同时，如果我希望你用straight_join来重写这个语句，配合你创建的索引，你就需要安排连接顺序，你主要考虑的因素是什么呢？</p>
+<p>你可以把你的方案和分析写在留言区，我会在下一篇文章的末尾和你讨论这个问题。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h1>上期问题时间</h1>
+<p>我在上篇文章最后留给你的问题，已经在本篇文章中解答了。</p>
+<p>这里我再根据评论区留言的情况，简单总结下。根据数据量的大小，有这么两种情况：</p>
+<ul>
+<li>@长杰 和 @老杨同志 提到了数据量小于old区域内存的情况；</li>
+<li>@Zzz 同学，很认真地看了其他同学的评论，并且提了一个很深的问题。对被驱动表数据量大于Buffer Pool的场景，做了很细致的推演和分析。</li>
+</ul>
+<p>给这些同学点赞，非常好的思考和讨论。</p>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>老杨同志</span> 👍（64） 💬（5）<p>我准备给
+t1增加索引c
+t2增加组合索引b,c
+t3增加组合索引b,c
+select * from t1 straight_join t2 on(t1.a=t2.a)  straight_join  t3 on (t2.b=t3.b) where t1.c&gt;=X and t2.c&gt;=Y and t3.c&gt;=Z;
+</p><p>另外我还有个问题，开篇提到的这句sql select * from t1 where a&gt;=1 and a&lt;=100;
+a是索引列，如果这句索引有order by a，不使用MRR 优化，查询出来就是按a排序的，使用了mrr优化，是不是要额外排序</p>
+<p></p>2019-02-01</li><br><li><span>Mr.Strive.Z.H.L</span> 👍（53） 💬（1）<p>老师您好，新年快乐~~
+</p><p>关于三表join有一个疑惑点需要确认：</p>
+<p>老师您在评论中说到，三表join不会是前两个表join后得到结果集，再和第三张表join。
+针对这句话，我的理解是：
+假设我们不考虑BKA，就按照一行行数据来判断的话，流程应该如下（我会将server端和innodb端分的很清楚）：
+表是t1 ,t2 ,t3。  t1 straight_join t2 straight_join t3，这样的join顺序。</p>
+<ol>
+<li>调用innodb接口，从t1中取一行数据，数据返回到server端。</li>
+<li>调用innodb接口，从t2中取满足条件的数据，数据返回到server端。</li>
+<li>调用innodb接口，从t3中取满足条件的数据，数据返回到server端。
+上面三步之后，驱动表 t1的一条数据就处理完了，接下来重复上述过程。
+（如果采用BKA进行优化，可以理解为不是一行行数据的提取，而是一个范围内数据的提取）。</li>
+</ol>
+<p>按照我上面的描述，确实没有前两表先join得结果集，然后再join第三张表的过程。
+不知道我上面的描述的流程对不对？（我个人觉得，将innodb的处理和server端的处理分隔清晰，对于sql语句的理解，会透彻很多）</p>2019-02-02</li><br><li><span>天王</span> 👍（34） 💬（4）<p>join语句的优化，NLJ算法的优化，MRR优化器会在join_buffer进行主键的排序，然后去主键索引树上一个个的 查找，因为按照主键顺序去主键索引树上查找，性能会比较高，MRR优化接近顺序读，性能会比较高。BKA算法是对NLJ算法的优化，一次取出一批数据的字段到join_buffer中，然后批量join，性能会比较好。BKA算法依赖于MRR，因为批量join找到被驱动表的非聚集索引字段通过MRR去查找行数据</p>2019-02-13</li><br><li><span>郭健</span> 👍（33） 💬（3）<p>老师，有几个问题还需要请教一下:
+1.上一章t1表100条数据，t21000条数据，mysql会每次都会准确的找出哪张表是合理的驱动表吗？还是需要人为的添加straight_join。
+2.像left join这种，左边一定是驱动表吧？以左边为标准查看右边有符合的条件，拼成一条数据，看到你给其他同学的评论说可能不是，这有些疑惑。
+3.在做join的时候，有些条件是可以放在on中也可以放在where中，比如(t1.yn=1 和t2.yn=1)这种简单判断是否删除的。最主要的是，需要根据两个条件才能join的(productCode和custCode),需要两个都在on里，还是一个在on中，一个在where中更好呢？</p>2019-02-07</li><br><li><span>cfanbo</span> 👍（26） 💬（9）<p>最近遇到这个需求，in里面的值个数有5万左右，出现的情况很少但存在，这种情况怎么处理。？手动创建临时表再join？</p>
+<p>另外in内的值用不用手动排序？</p>2019-02-01</li><br><li><span>HuaMax</span> 👍（20） 💬（2）<p>前提假设：t1.c&gt;=X可以让t1成为小表。同时打开BKA和MRR。
+1、t1表加（c,a)索引。理由：A、t1.c&gt;=X可以使用索引；B、加上a的联合索引，join buffer里放入的是索引（c,a）而不是去主键表取整行，用于与表t2的t1.a = t2.a的join查询，不过返回SELECT * 最终还是需要回表。
+2、t2表加(a,b,c)索引。理由：A、加上a避免与t1表join查询的BNL；B、理由同【1-B】；C、加上c不用回表判断t2.c&gt;=Y的筛选条件
+3、t3表加（b,c）索引。理 由：A、避免与t2表join查询的BNL;C、理由同【2-C】</p>
+<p>问题：
+1、【1-B】和【2-B】由于select *要返回所有列数据，不敢肯定join buffer里是回表的整行数据还是索引（c,a)的数据，需要老师解答一下；不过值得警惕的是，返回的数据列对sql的执行策略有非常大的影响。
+2、在有join查询时，被驱动表是先做join连接查询，还是先筛选数据再从筛选后的临时表做join连接？这将影响上述的理由【2-C】和【3-C】</p>
+<p>使用straight_join强制指定驱动表，我会改写成这样:select * from t2 STRAIGHT_JOIN t1 on(t1.a=t2.a) STRAIGHT_JOIN t3 on (t2.b=t3.b)  where t1.c&gt;=X and t2.c&gt;=Y and t3.c&gt;=Z;
+考虑因素包括：
+1、驱动表使用过滤条件筛选后的数据量，使其成为小表，上面的改写也是基于t2是小表
+2、因为t2是跟t1,t3都有关联查询的，这样的话我猜测对t1,t3的查询是不是可以并行执行，而如果使用t1,t3作为主表的话，是否会先跟t2生成中间表，是个串行的过程？
+3、需要给t1加（a,c)索引，给t2加（c,a,b）索引。</p>2019-02-02</li><br><li><span>WL</span> 👍（18） 💬（2）<p>请教老师两个问题:</p>
+<ol>
+<li>通过主键索引找到的数据会会不会先在内存中查询, 如果没有再去磁盘查询?</li>
+<li>为什么在通过主键索引查询数据时, 符合条件的数据以单条数据的方式读到内存中而不是以一整个数据页的方式读到内存中? <p></p>2019-02-11</li><br><li><span>涛哥哥</span> 👍（15） 💬（1）<p>老师，对于现在的固态硬盘，这样类似顺序读写的数据库优化，不就不起作用了啊？</p>2019-03-20</li><br><li><span>TKbook</span> 👍（12） 💬（1）<p>BNL 算法效率低，建议你都尽量转成 BKA 算法。优化的方向就是给驱动表的关联字段加上索引；
+老师最后总结的时候，这句话后面那句，应该是给被驱动表的关联字段加上索引吧。</p>2019-02-01</li><br><li><span>憶海拾貝</span> 👍（11） 💬（8）<p>节后开工宜补课.</p></li>
+</ol>
+<p>按照文中说明的MRR设计思路, 是否可以反推出: 被驱动表使用非递增主键(比如UUID作为主键),就没有必要开启MRR?</p>2019-02-13</li><br><li><span>dzkk</span> 👍（11） 💬（1）<p>老师，记得我之前看mysql的join是和版本有关系的，另外NLJ是一个统称，被分为了SNLJ(Simple Nested-Loop Join，5.5版本之前采用的，当被驱动表上没有索引的时候使用，该方法比较粗暴，所以后来通过BNLJ进行了优化)、INLJ(Index Nested-Loop Join，被驱动表上有索引)、BNLJ(Block Nested-Loop Join，被驱动表上没有索引)，另外了解到mariadb是支持了hash join的Block Nested Loop Hash (BNLH) join，没有使用过，不知道效果怎么样。不知道我了解的信息对不对。</p>2019-02-01</li><br><li><span>poppy</span> 👍（9） 💬（2）<p>select * from t1 join t2 on(t1.a=t2.a) join t3 on (t2.b=t3.b) where t1.c&gt;=X and t2.c&gt;=Y and t3.c&gt;=Z;
+老师，我的理解是真正做join的三张表的大小实际上是t1.c&gt;=X、t2.c&gt;=Y、t3.c&gt;=Z对应满足条件的行数，为了方便快速定位到满足条件的数据，t1、t2和t3的c字段最好都建索引。对于join操作，按道理mysql应该会优先选择join之后数量比较少的两张表先来进行join操作，例如满足t1.a=t2.a的行数小于满足t2.b=t3.b的行数，那么就会优先将t1和t2进行join，选择t1.c&gt;=X、t2.c&gt;=Y中行数少的表作为驱动表，另外一张作为被驱动表，在被驱动表的a的字段上建立索引，这样就完成了t1和t2的join操作并把结果放入join_buffer准备与t3进行join操作，则在作为被驱动表的t3的b字段上建立索引。不知道举的这个例子分析得是否正确，主要是这里不知道t1、t2、t3三张表的数据量，以及满足t1.c&gt;=X ，t2.c&gt;=Y ，t3.c&gt;=Z的数据量，还有各个字段的区分度如何，是否适合建立索引等。</p>2019-02-01</li><br><li><span>读书看报</span> 👍（8） 💬（2）<p>order by cjsj desc limit 0,20 explain  Extra只是显示 Using where ，执行时间 7秒钟
+order by cjsj desc limit 5000,20 explain  Extra只是显示 Using index condition; Using where; Using filesort,  执行时间 0.1 秒
+有些许的凌乱了@^^@</p>2019-02-01</li><br><li><span>bluefantasy3</span> 👍（7） 💬（4）<p>请教老师一个问题：innodb的Buffer Pool的内存是innodb自己管理还是使用OS的page cache? 我理解应该是innodb自己管理。我在另一个课程里看到如果频繁地把OS的/proc/sys/vm/drop_caches 改成 1会影响MySQL的性能，如果buffer pool是MySQL自己管理，应该不受这个参数影响呀？请解答。</p>2019-02-02</li><br><li><span>库淘淘</span> 👍（6） 💬（1）<p>set optimizer_switch=&#x27;mrr=on,mrr_cost_based=off,batched_key_access=on&#x27;;
+create index idx_c on t2(c);
+create index idx_a_c on t1(a,c);
+create index idx_b_c on t3(b,c);
+mysql&gt; explain select * from t2
+-&gt; straight_join t1 on(t1.a=t2.a)
+-&gt; straight_join t3 on(t2.b=t3.b)<br>
+-&gt; where t1.c&gt; 800 and t2.c&gt;=600 and t3.c&gt;=500;
++----+-------------+-------+------------+---------------------------------------
+| id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra +----------------------------------------
+| 1 | SIMPLE | t2 | NULL | range | idx_c | idx_c | 5 | NULL | 401 | 100.00 | Using index condition; Using where; Using MRR |
+| 1 | SIMPLE | t1 | NULL | ref | idx_a_c | idx_a_c | 5 | test.t2.a | 1 | 33.33 | Using index condition; Using join buffer (Batched Key Access) |
+| 1 | SIMPLE | t3 | NULL | ref | idx_b_c | idx_b_c | 5 | test.t2.b | 1 | 33.33 | Using index condition; Using join buffer (Batched Key Access) |
++----+-------------+-------+------------+-----+---------------------------------------
+3 rows in set, 1 warning (0.00 sec)
+以自己理解如下，有问题请老师能够指出
+1.根据查询因是select * 肯定回表的，其中在表t2创建索引idx_c,为了能够使用ICP,MRR，如果c字段重复率高或取值行数多，可以考虑不建索引
+2.已t2 作为驱动表，一方面考虑其他两表都有关联,t2表放入join buffer后关联t1后，再关联t2 得出结果 再各回t2,t3表取出 得到结果集（之前理解都是t1和t2join得结果集再与t3join，本次理解太确定）
+3.t2、t3表建立联合查询目的能够使用ICP</p>2019-02-01</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/为什么临时表可以重名？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">为什么临时表可以重名？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/为什么临时表可以重名？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="为什么临时表可以重名？ | Coisini"><meta data-rh="true" name="description" content="今天是大年三十，在开始我们今天的学习之前，我要先和你道一声春节快乐！"><meta data-rh="true" property="og:description" content="今天是大年三十，在开始我们今天的学习之前，我要先和你道一声春节快乐！"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么临时表可以重名？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么临时表可以重名？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么临时表可以重名？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><p>今天是大年三十，在开始我们今天的学习之前，我要先和你道一声春节快乐！</p>
+<p>在上一篇文章中，我们在优化join查询的时候使用到了临时表。当时，我们是这么用的：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create temporary table temp_t like t1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">alter table temp_t add index(b);</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into temp_t select * from t2 where b&gt;=1 and b&lt;=2000;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 join temp_t on (t1.b=temp_t.b);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>你可能会有疑问，为什么要用临时表呢？直接用普通表是不是也可以呢？</p>
+<p>今天我们就从这个问题说起：临时表有哪些特征，为什么它适合这个场景？</p>
+<p>这里，我需要先帮你厘清一个容易误解的问题：有的人可能会认为，临时表就是内存表。但是，这两个概念可是完全不同的。</p>
+<ul>
+<li>内存表，指的是使用Memory引擎的表，建表语法是create table … engine=memory。这种表的数据都保存在内存里，系统重启的时候会被清空，但是表结构还在。除了这两个特性看上去比较“奇怪”外，从其他的特征上看，它就是一个正常的表。</li>
+<li>而临时表，可以使用各种引擎类型 。如果是使用InnoDB引擎或者MyISAM引擎的临时表，写数据的时候是写到磁盘上的。当然，临时表也可以使用Memory引 擎。</li>
+</ul>
+<p>弄清楚了内存表和临时表的区别以后，我们再来看看临时表有哪些特征。</p>
+<header><h1>临时表的特性</h1></header>
+<p>为了便于理解，我们来看下下面这个操作序列：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/3cbb2843ef9a84ee582330fb1bd0d6e3-ef16e20b45ae0595fa59bd5b5b3ab863.png" width="934" height="631" class="img_ev3q"></p>
+<p>图1 临时表特性示例</p>
+<p>可以看到，临时表在使用上有以下几个特点：</p>
+<ol>
+<li>建表语法是create temporary table …。</li>
+<li>一个临时表只能被创建它的session访问，对其他线程不可见。所以，图中session A创建的临时表t，对于session B就是不可见的。</li>
+<li>临时表可以与普通表同名。</li>
+<li>session A内有同名的临时表和普通表的时候，show create语句，以及增删改查语句访问的是临时表。</li>
+<li>show tables命令不显示临时表。</li>
+</ol>
+<p>由于临时表只能被创建它的session访问，所以在这个session结束的时候，会自动删除临时表。也正是由于这个特性，<strong>临时表就特别适合我们文章开头的join优化这种场景</strong>。为什么呢？</p>
+<p>原因主要包括以下两个方面：</p>
+<ol>
+<li>不同session的临时表是可以重名的，如果有多个session同时执行join优化，不需要担心表名重复导致建表失败的问题。</li>
+<li>不需要担心数据删除问题。如果使用普通表，在流程执行过程中客户端发生了异常断开，或者数据库发生异常重启，还需要专门来清理中间过程中生成的数据表。而临时表由于会自动回收，所以不需要这个额外的操作。</li>
+</ol>
+<h1>临时表的应用</h1>
+<p>由于不用担心线程之间的重名冲突，临时表经常会被用在复杂查询的优化过程中。其中，分库分表系统的跨库查询就是一个典型的使用场景。</p>
+<p>一般分库分表的场景，就是要把一个逻辑上的大 表分散到不同的数据库实例上。比如。将一个大表ht，按照字段f，拆分成1024个分表，然后分布到32个数据库实例上。如下图所示：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/ddb9c43526dfd9b9a3e6f8c153478181-95d375d86423fd07ffa89180eac7a4ee.jpg" width="1142" height="880" class="img_ev3q"></p>
+<p>图2 分库分表简图</p>
+<p>一般情况下，这种分库分表系统都有一个中间层proxy。不过，也有一些方案会让客户端直接连接数据库，也就是没有proxy这一层。</p>
+<p>在这个架构中，分区key的选择是以“减少跨库和跨表查询”为依据的。如果大部分的语句都会包含f的等值条件，那么就要用f做分区键。这样，在proxy这一层解析完SQL语句以后，就能确定将这条语句路由到哪个分表做查询。</p>
+<p>比如下面这条语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select v from ht where f=N;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>这时，我们就可以通过分表规则（比如，N%1024)来确认需要的数据被放在了哪个分表上。这种语句只需要访问一个分表，是分库分表方案最欢迎的语句形式了。</p>
+<p>但是，如果这个表上还有另外一个索引k，并且查询语句是这样的：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select v from ht where k &gt;= M order by t_modified desc limit 100;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>这时候，由于查询条件里面没有用到分区字段f，只能到所有的分区中去查找满足条件的所有行，然后统一做order by 的操作。这种情况下，有两种比较常用的思路。</p>
+<p>**第一种思路是，**在proxy层的进程代码中实现排序。</p>
+<p>这种方式的优势是处理速度快，拿到分库的数据以后，直接在内存中参与计算。不过，这个方案的缺点也比较明显：</p>
+<ol>
+<li>需要的开发工作量比较大。我们举例的这条语句还算是比较简单的，如果涉及到复杂的操作，比如group by，甚至join这样的操作，对中间层的开发能力要求比较高 ；</li>
+<li>对proxy端的压力比较大，尤其是很容易出现内存不够用和CPU瓶颈的问题。</li>
+</ol>
+<p>**另一种思路就是，**把各个分库拿到的数据，汇总到一个MySQL实例的一个表中，然后在这个汇总实例上做逻辑操作。</p>
+<p>比如上面这条语句，执行流程可以类似这样：</p>
+<ul>
+<li>在汇总库上创建一个临时表temp_ht，表里包含三个字段v、k、t_modified；</li>
+<li>在各个分库上执行</li>
+</ul>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select v,k,t_modified from ht_x where k &gt;= M order by t_modified desc limit 100;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>把分库执行的结果插入到temp_ht表中；</li>
+<li>执行</li>
+</ul>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select v from temp_ht order by t_modified desc limit 100; </span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>得到结果。</p>
+<p>这个过程对应的流程图如下所示：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/f5ebe0f5af37deeb4d0b63d6fb11fc0d-2d125983c0e8d6de6626f83186885dc6.jpg" width="1142" height="880" class="img_ev3q"></p>
+<p>图3 跨库查询流程示意图</p>
+<p>**在实践中，我们往往会发现每个分库的计算量都不饱和，所以会直接把临时表temp_ht放到32个分库中的某一个上。**这时的查询逻辑与图3类似，你可以自己再思考一下具体的流程。</p>
+<h1>为什么临时表可以重名？</h1>
+<p>你可能会问，不同线程可以创建同名的临时表，这是怎么做到的呢？</p>
+<p>接下来，我们就看一下这个问题。</p>
+<p>我们在执行</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create temporary table temp_t(id int primary key)engine=innodb;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>这个语句的时候，MySQL要给这个InnoDB表创建一个frm文件保存表结构定义，还要有地方保存表数据。</p>
+<p><strong>这个frm文件放在临时文件目录下，文件名的后缀是.frm，前缀是“#sql{进程id}_{线程id}_序列号”</strong>。你可以使用select @@tmpdir命令，来显示实例的临时文件目录。</p>
+<p>而关于表中数据的存放方式，在不同的MySQL版本中有着不同的处理方式：</p>
+<ul>
+<li>在5.6以及之前的版本里，MySQL会在临时文件目录下创建一个相同前缀、以.ibd为后缀的文件，用来存放数据文件；</li>
+<li>而从 5.7版本开始，MySQL引入了一个临时文件表空间，专门用来存放临时文件的数据。因此，我们就不需要再创建ibd文件了。</li>
+</ul>
+<p>从文件名的前缀规则，我们可以看到，其实创建一个叫作t1的InnoDB临时表，MySQL在存储上认为我们创建的表名跟普通表t1是不同的，因此同一个库下面已经有普通表t1的情况下，还是可以再创建一个临时表t1的。</p>
+<p>为了便于后面讨论，我先来举一个例子。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/22078eab5c7688c9fbfd6185555bd91b-d4b7114735418f2ab44ccdeb5f45e7eb.png" width="930" height="261" class="img_ev3q"></p>
+<p>图4 临时表的表名</p>
+<p>这个进程的进程号是1234，session A的线程id是4，session B  的线程id是5。所以你看到了，session A和session B创建的临时表，在磁盘上的文件不会重名。</p>
+<p>MySQL维护数据表，除了物理上要有文件外，内存里面也有一套机制区别不同的表，每个表都对应一个table_def_key。</p>
+<ul>
+<li>一个普通表的table_def_key的值是由“库名+表名”得到的，所以如果你要在同一个库下创建两个同名的普通表，创建第二个表的过程中就会发现table_def_key已经存在了。</li>
+<li>而对于临时表，table_def_key在“库名+表名”基础上，又加入了“server_id+thread_id”。</li>
+</ul>
+<p>也就是说，session A和sessionB创建的两个临时表t1，它们的table_def_key不同，磁盘文件名也不同，因此可以并存。</p>
+<p>在实现上，每个线程都维护了自己的临时表链表。这样每次session内操作表的时候，先遍历链表，检查是否有这个名字的临时表，如果有就优先操作临时表，如果没有再操作普通表；在session结束的时候，对链表里的每个临时表，执行 “DROP TEMPORARY TABLE +表名”操作。</p>
+<p>这时候你会发现，binlog中也记录了DROP TEMPORARY TABLE这条命令。你一定会觉得奇怪，临时表只在线程内自己可以访问，为什么需要写到binlog里面？</p>
+<p>这，就需要说到主备复制了。</p>
+<h1>临时表和主备复制</h1>
+<p>既然写binlog，就意味着备库需要。</p>
+<p>你可以设想一下，在主库上执行下面这个语句序列：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create table t_normal(id int primary key, c int)engine=innodb;/*Q1*/</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create temporary table temp_t like t_normal;/*Q2*/</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into temp_t values(1,1);/*Q3*/</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into t_normal select * from temp_t;/*Q4*/</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>如果关于临时表的操作都不记录，那么在备库就只有create table t_normal表和insert into t_normal select * from temp_t这两个语句的binlog日志，备库在执行到insert into t_normal的时候，就会报错“表temp_t不存在”。</p>
+<p>你可能会说，如果把binlog设置为row格式就好了吧？因为binlog是row格式时，在记录insert into t_normal的binlog时，记录的是这个操作的数据，即：write_row event里面记录的逻辑是“插入一行数据（1,1)”。</p>
+<p>确实是这样。如果当前的binlog_format=row，那么跟临时表有关的语句，就不会记录到binlog里。也就是说，只在binlog_format=statment/mixed 的时候，binlog中才会记录临时表的操作。</p>
+<p>这种情况下，创建临时表的语句会传到备库执行，因此备库的同步线程就会创建这个临时表。主库在线程退出的时候，会自动删除临时表，但是备库同步线程是持续在  运行的。所以，这时候我们就需要在主库上再写一个DROP TEMPORARY TABLE传给备库执行。</p>
+<p>**之前有人问过我一个有趣的问题：**MySQL在记录binlog的时候，不论是create table还是alter table语句，都是原样记录，甚至于连空格都不变。但是如果执行drop table t_normal，系统记录binlog就会写成：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">DROP TABLE `t_normal` /* generated by server */</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>也就是改成了标准的格式。为什么要这么做呢 ？</p>
+<p>现在你知道原因了，那就是：drop table命令是可以一次删除多个表的。比如，在上面的例子中，设置binlog_format=row，如果主库上执行 &quot;drop table t_normal, temp_t&quot;这个命令，那么binlog中就只能记录：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">DROP TABLE `t_normal` /* generated by server */</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>因为备库上并没有表temp_t，将这个命令重写后再传到备库执行，才不会导致备库同步线程停止。</p>
+<p>所以，drop table命令记录binlog的时候，就必须对语句做改写。“/* generated by server */”说明了这是一个被服务端改写过的命令。</p>
+<p>说到主备复制，<strong>还有另外一个问题需要解决</strong>：主库上不同的线程创建同名的临时表是没关系的，但是传到备库执行是怎么处理的呢？</p>
+<p>现在，我给你举个例子，下面的序列中实例S是M的备库。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/74e789024f10bcde515f21c0368847ba-d4b32aaa1523c876ea66faa7cbfae0a7.png" width="935" height="293" class="img_ev3q"></p>
+<p>图5 主备关系中的临时表操作</p>
+<p>主库M上的两个session创建了同名的临时表t1，这两个create temporary table t1 语句都会被传到备库S上。</p>
+<p>但是，备库的应用日志线程是共用的，也就是说要在应用线程里面先后执行这个create 语句两次。（即使开了多线程复制，也可能被分配到从库的同一个worker中执行）。那么  ，这会不会导致同步线程报错 ？</p>
+<p>显然是不会的，否则临时表就是一个bug了。也就是说，备库线程在执行的时候，要把这两个t1表当做两个不同的临时表来处理。这，又是怎么实现的呢？</p>
+<p>MySQL在记录binlog的时候，会把主库执行这个语句的线程id写到binlog中。这样，在备库的应用线程就能够知道执行每个语句的主库线程id，并利用这个线程id来构造临时表的table_def_key：</p>
+<ol>
+<li>session A的临时表t1，在备库的table_def_key就是：库名+t1+“M的serverid”+“session A的thread_id”;</li>
+<li>session B的临时表t1，在备库的table_def_key就是 ：库名+t1+“M的serverid”+“session B的thread_id”。</li>
+</ol>
+<p>由于table_def_key不同，所以这两个表在备库的应用线程里面是不会冲突的。</p>
+<h1>小结</h1>
+<p>今天这篇文章，我和你介绍了临时表的用法和特性。</p>
+<p>在实际应用中，临时表一般用于处理比较复杂的计算逻辑。由于临时表是每个线程自己可见的，所以不需要考虑多个线程执行同一个处理逻辑时，临时表的重名问题。在线程退出的时候，临时表也能自动删除，省去了收尾和异常处理的工作。</p>
+<p>在binlog_format=&#x27;row’的时候，临时表的操作不记录到binlog中，也省去了不少麻烦，这也可以成为你选择binlog_format时的一个考虑因素。</p>
+<p>需要注意的是，我们上面说到的这种临时表，是用户自己创建的 ，也可以称为用户临时表。与它相对应的，就是内部临时表，在<a href="https://time.geekbang.org/column/article/73795" target="_blank" rel="noopener noreferrer">第17篇文章</a>中我已经和你介绍过。</p>
+<p>最后，我给你留下一个思考题吧。</p>
+<p>下面的语句序列是创建一个临时表，并将其改名：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/333ad95b2ce16de1931fe347128caff9-d61046a08edf5fff1c92ed7a82a57434.png" width="1087" height="214" class="img_ev3q"></p>
+<p>图6 关于临时表改名的思考题</p>
+<p>可以看到，我们可以使用alter table语法修改临时表的表名，而不能使用rename语法。你知道这是什么原因吗？</p>
+<p>你可以把你的分析写在留言区，我会在下一篇文章的末尾和你讨论这个问题。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h1>上期问题时间</h1>
+<p>上期的问题是，对于下面这个三个表的join语句，</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t1 join t2 on(t1.a=t2.a) join t3 on (t2.b=t3.b) where t1.c&gt;=X and t2.c&gt;=Y and t3.c&gt;=Z;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>如果改写成straight_join，要怎么指定连接顺序，以及怎么给三个表创建索引。</p>
+<p>第一原则是要尽量使用BKA算法。需要注意的是，使用BKA算法的时候，并不是“先计算两个表join的结果，再跟第三个表join”，而是直接嵌套查询的。</p>
+<p>具体实现是： 在t1.c&gt;=X、t2.c&gt;=Y、t3.c&gt;=Z这三个条件里，选择一个经过过滤以后，数据最少的那个表，作为第一个驱动表。此时，可能会出现如下两种情况。</p>
+<p>第一种情况，如果选出来是表t1或者t3，那剩下的部分就固定了。</p>
+<ol>
+<li>如果驱动表是t1，则连接顺序是t1-&gt;t2-&gt;t3，要在被驱动表字段创建上索引，也就是t2.a 和 t3.b上创建索引；</li>
+<li>如果驱动表是t3，则连接顺序是t3-&gt;t2-&gt;t1，需要在t2.b 和 t1.a上创建索引。</li>
+</ol>
+<p>同时，我们还需要在第一个驱动表的字段c上创建索引。</p>
+<p>第二种情况是，如果选出来的第一个驱动表是表t2的话，则需要评估另外两个条件的过滤效果。</p>
+<p>总之，整体的思路就是，尽量让每一次参与join的驱动表的数据集，越小越好，因为这样我们的驱动表就会越小。</p>
+<p>评论区留言点赞板：</p>
+<blockquote>
+<p>@库淘淘 做了实验验证；<br>
+@poppy同学做了很不错的分析；<br>
+@dzkk 同学在评论中介绍了MariaDB支持的hash join，大家可以了解一下；<br>
+@老杨同志提了一个好问题，如果语句使用了索引a，结果还要对a排序，就不用MRR优化了，否则回表完还要增加额外的排序过程，得不偿失。</p>
+</blockquote>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>辣椒</span> 👍（211） 💬（4）<p>老师，不同线程可以使用同名的临时表，这个没有问题。但是如果在程序中，用的是连接池中的连接来操作的，而这些连接不会释放，和数据库保持长连接。这样使用临时表会有问题吗?。</p>2019-02-07</li><br><li><span>老杨同志</span> 👍（65） 💬（5）<p>新年快乐，老师好勤奋！
+有个问题，insert into  select语句好像会给select的表加锁，如果没有索引，就锁全表，是不是这样？什么时候可以大胆的用这类语句？</p>2019-02-04</li><br><li><span>天王</span> 👍（60） 💬（3）<p>临时表建表语法create temporary table ，和普通的表不一样，和内存表也不一样。内存表数据保存到内存里，重启会丢失，临时表会写入到磁盘。临时表只对自己的session中可见，session结束后自动删除表结构和表数据。适用场景是分库分表，查询到的数据在临时表中做聚合。临时表可以重名，实际的存储文件名有线程id，在内存中表的命名有table_ref_key，是由库名加表名加serverid+线程id组成。bin log设置为row模式，临时表不会同步到备库中，设置为statement模式，会同步到备库中。</p>2019-02-26</li><br><li><span>Carisy</span> 👍（44） 💬（2）<p>老师有个问题，如果说创建临时表在主库，查询的时候打到从库上，查询是不是就有问题了，查询主库的线程id跟从库不一致</p>2020-05-18</li><br><li><span>poppy</span> 👍（41） 💬（1）<p>老师，新年快乐。
+关于思考题，alter table temp_t rename to temp_t2,我的理解是mysql直接修改的是table_def_key，而对于rename table temp_t2 to temp_t3,mysql直接去mysql的data目录下该数据库的目录(例如老师实验用的应该是test数据库，所以对应的是test目录)下寻找名为temp_t2.frm的文件去修改名称，所以就出现了&quot;Can&#x27;t find file &#x27;./test/temp_t2.frm&#x27;(errno: 2 - No such file or directory)</p>2019-02-04</li><br><li><span>鸠翱</span> 👍（26） 💬（2）<p>放假结束该补课了😅
+</p><p>评论区有个回答说到了连接池的问题问到会不会有问题……而老师您回答的是会有问题 可是临时表在session结束后不就删除了嘛 那么即使是用同一个线程又有什么问题呢？</p>2019-02-12</li><br><li><span>亮</span> 👍（22） 💬（1）<p>老师您好，在25课里面的置顶留言“6.表上无主键的情况(主库利用索引更改数据,备库回放只能用全表扫描,这种情况可以调整slave_rows_search_algorithms参数适当优化下)”
+为啥会存在无主键的表呢，就算dba没创建主键，Innodb可以用rowid给自动建一个虚拟主键呀，这样不就是所有的表都有主键了吗？</p>2019-02-04</li><br><li><span>undifined</span> 👍（12） 💬（3）<p>老师 有几个问题</p>
+<ol>
+<li>在 session 结束的时候会执行 DROP TEMPORARY TABLE，如果数据库掉电，这个临时表什么时候会被清除</li>
+<li>如果binlog 中记录了临时表的操作，因为 session 不同，在从库中访问不到，这样做的意义是什么</li>
+</ol>
+<p>辛苦老师解答一下，谢谢老师</p>2019-02-11</li><br><li><span>布衣骇客</span> 👍（6） 💬（1）<p>错过得还是得补上，新得一年，新的开始，加油</p>2019-02-11</li><br><li><span>亮</span> 👍（6） 💬（1）<p>老师过年好呀，祝您猪年大吉，财源广进；老师咱们这个课结束后，再开一期好不好啊，没学够啊，这是我的新年愿望哦</p>2019-02-04</li><br><li><span>砖瓦工</span> 👍（5） 💬（1）<p>一点一点刷新着我对mysql的认识，真心谢谢老师！期待老师有更加多的课程！祝福老师！</p>2019-04-11</li><br><li><span>某、人</span> 👍（3） 💬（1）<p>老师，新年快乐。由于自身原因，错过几期精彩的内容，年后上班以后在好好补补。</p>2019-02-04</li><br><li><span>笑着活下去</span> 👍（1） 💬（1）<p>老师，row格式的binlog不记录临时表的操作，那么在备库插入记录（对应主库上面插入到临时表）是插入到哪里呢？</p>2019-11-11</li><br><li><span>土门一哥</span> 👍（1） 💬（1）<p>又要去学习分库分表了，学老师的一节课程从来都不止学一节课……</p>2019-04-06</li><br><li><span>夜空中最亮的星</span> 👍（1） 💬（1）<p>过年的时候课程落下了，给老师拜个年。</p>2019-02-13</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

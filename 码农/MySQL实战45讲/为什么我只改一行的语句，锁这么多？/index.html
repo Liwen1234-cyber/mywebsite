@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">为什么我只改一行的语句，锁这么多？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="为什么我只改一行的语句，锁这么多？ | Coisini"><meta data-rh="true" name="description" content="在上一篇文章中，我和你介绍了间隙锁和next-key lock的概念，但是并没有说明加锁规则。间隙锁的概念理解起来确实有点儿难，尤其在配合上行锁以后，很容易在判断是否会出现锁等待的问题上犯错。"><meta data-rh="true" property="og:description" content="在上一篇文章中，我和你介绍了间隙锁和next-key lock的概念，但是并没有说明加锁规则。间隙锁的概念理解起来确实有点儿难，尤其在配合上行锁以后，很容易在判断是否会出现锁等待的问题上犯错。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><p>在上一篇文章中，我和你介绍了间隙锁和next-key lock的概念，但是并没有说明加锁规则。间隙锁的概念理解起来确实有点儿难，尤其在配合上行锁以后，很容易在判断是否会出现锁等待的问题上犯错。</p>
+<p>所以今天，我们就先从这个加锁规则开始吧。</p>
+<p>首先说明一下，这些加锁规则我没在别的地方看到过有类似的总结，以前我自己判断的时候都是想着代码里面的实现来脑补的。这次为了总结成不看代码的同学也能理解的规则，是我又重新刷了代码临时总结出来的。所以，<strong>这个规则有以下两条前提说明：</strong></p>
+<ol>
+<li>MySQL后面的版本可能会改变加锁策略，所以这个规则只限于截止到现在的最新版本，即5.x系列&lt;=5.7.24，8.0系列 &lt;=8.0.13。</li>
+<li>如果大家在验证中有发现bad case的话，请提出来，我会再补充进这篇文章，使得一起学习本专栏的所有同学都能受益。</li>
+</ol>
+<p>因为间隙锁在可重复读隔离级别下才有效，所以本篇文章接下来的描述，若没有特殊说明，默认是可重复读隔离级别。</p>
+<p><strong>我总结的加锁规则里面，包含了两个“原则”、两个“优化”和一个“bug”。</strong></p>
+<ol>
+<li>原则1：加锁的基本单位是next-key lock。希望你还记得，next-key lock是前开后闭区间。</li>
+<li>原则2：查找过程中访问到的对象才会加锁。</li>
+<li>优化1：索引上的等值查询，给唯一索引加锁的时候，next-key lock退化为行锁。</li>
+<li>优化2：索引上的等值查询，向右遍历时且最后一个值不满足等值条件的时候，next-key lock退化为间隙锁。</li>
+<li>一个bug：唯一索引上的范围查询会访问到不满足条件的第一个值为止。</li>
+</ol>
+<p>我还是以上篇文章的表t为例，和你解释一下这些规则。表t的建表语句和初始化语句如下。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">CREATE TABLE `t` (</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `id` int(11) NOT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `c` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `d` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  PRIMARY KEY (`id`),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  KEY `c` (`c`)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">) ENGINE=InnoDB;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">insert into t values(0,0,0),(5,5,5),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">(10,10,10),(15,15,15),(20,20,20),(25,25,25);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>接下来的例子基本都是配合着图片说明的，所以我建议你可以对照着文稿看，有些例子可能会“毁三观”，也建议你读完文章后亲手实践一下。</p>
+<header><h1>案例一：等值查询间隙锁</h1></header>
+<p>第一个例子是关于等值条件操作间隙：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/585dfa8d0dd71171a6fa16bed4ba816c-bee5bb990c646939c33fbe7bd1899ca6.png" width="936" height="313" class="img_ev3q"></p>
+<p>图1 等值查询的间隙锁</p>
+<p>由于表t中没有id=7的记录，所以用我们上面提到的加锁规则判断一下的话：</p>
+<ol>
+<li>根据原则1，加锁单位是next-key lock，session A加锁范围就是(5,10]；</li>
+<li>同时根据优化2，这是一个等值查询(id=7)，而id=10不满足查询条件，next-key lock退化成间隙锁，因此最终加锁的范围是(5,10)。</li>
+</ol>
+<p>所以，session B要往这个间隙里面插入id=8的记录会被锁住，但是session C修改id=10这行是可以的。</p>
+<h1>案例二：非唯一索引等值锁</h1>
+<p>第二个例子是关于覆盖索引上的锁：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/465990fe8f6b418ca3f9992bd1bb5465-31bc4e1991ee1521ab3e4e8ec1881b4c.png" width="1244" height="462" class="img_ev3q"></p>
+<p>图2 只加在非唯一索引上的锁</p>
+<p>看到这个例子，你是不是有一种“该锁的不锁，不该锁的乱锁”的感觉？我们来分析一下吧。</p>
+<p>这里session A要给索引c上c=5的这一行加上读锁。</p>
+<ol>
+<li>根据原则1，加锁单位是next-key lock，因此会给(0,5]加上next-key lock。</li>
+<li>要注意c是普通索引，因此仅访问c=5这一条记录是不能马上停下来的，需要向右遍历，查到c=10才放弃。根据原则2，访问到的都要加锁，因此要给(5,10]加next-key lock。</li>
+<li>但是同时这个符合优化2：等值判断，向右遍历，最后一个值不满足c=5这个等值条件，因此退化成间隙锁(5,10)。</li>
+<li>根据原则2 ，<strong>只有访问到的对象才会加锁</strong>，这个查询使用覆盖索引，并不需要访问主键索引，所以主键索引上没有加任何锁，这就是为什么session B的update语句可以执行完成。</li>
+</ol>
+<p>但session C要插入一个(7,7,7)的记录，就会被session A的间隙锁(5,10)锁住。</p>
+<p>需要注意，在这个例子中，lock in share mode只锁覆盖索引，但是如果是for update就不一样了。 执行 for update时，系统会认为你接下来要更新数据，因此会顺便给主键索引上满足条件的行加上行锁。</p>
+<p>这个例子说明，锁是加在索引上的；同时，它给我们的指导是，如果你要用lock in share mode来给行加读锁避免数据被更新的话，就必须得绕过覆盖索引的优化，在查询字段中加入索引中不存在的字段。比如，将session A的查询语句改成select d from t where c=5 lock in share mode。你可以自己验证一下效果。</p>
+<h1>案例三：主键索引范围锁</h1>
+<p>第三个例子是关于范围查询的。</p>
+<p>举例之前，你可以先思考一下这个问题：对于我们这个表t，下面这两条查询语句，加锁范围相同吗？</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from t where id=10 for update;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from t where id&gt;=10 and id&lt;11 for update;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>你可能会想，id定义为int类型，这两个语句就是等价的吧？其实，它们并不完全等价。</p>
+<p>在逻辑上，这两条查语句肯定是等价的，但是它们的加锁规则不太一样。现在，我们就让session A执行第二个查询语句，来看看加锁效果。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/30b839bf941f109b04f1a36c302aea80-964019210121576f6a08f3b788564a80.png" width="1244" height="718" class="img_ev3q"></p>
+<p>图3 主键索引上范围查询的锁</p>
+<p>现在我们就用前面提到的加锁规则，来分析一下session A 会加什么锁呢？</p>
+<ol>
+<li>开始执行的时候，要找到第一个id=10的行，因此本该是next-key lock(5,10]。 根据优化1， 主键id上的等值条件，退化成行锁，只加了id=10这一行的行锁。</li>
+<li>范围查找就往后继续找，找到id=15这一行停下来，因此需要加next-key lock(10,15]。</li>
+</ol>
+<p>所以，session A这时候锁的范围就是主键索引上，行锁id=10和next-key lock(10,15]。这样，session B和session C的结果你就能理解了。</p>
+<p>这里你需要注意一点，首次session A定位查找id=10的行的时候，是当做等值查询来判断的，而向右扫描到id=15的时候，用的是范围查询判断。</p>
+<h1>案例四：非唯一索引范围锁</h1>
+<p>接下来，我们再看两个范围查询加锁的例子，你可以对照着案例三来看。</p>
+<p>需要注意的是，与案例三不同的是，案例四中查询语句的where部分用的是字段c。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/7381475e9e951628c9fc907f5a57697a-bed646a702fb5ed84f5a2de7202150ce.png" width="1246" height="550" class="img_ev3q"></p>
+<p>图4 非唯一索引范围锁</p>
+<p>这次session A用字段c来判断，加锁规则跟案例三唯一的不同是：在  第一次用c=10定位记录的时候，索引c上加了(5,10]这个next-key lock后，由于索引c是非唯一索引，没有优化规则，也就是说不会蜕变为行锁，因此最终sesion A加的锁是，索引c上的(5,10] 和(10,15] 这两个next-key lock。</p>
+<p>所以从结果上来看，sesson B要插入（8,8,8)的这个insert语句时就被堵住了。</p>
+<p>这里需要扫描到c=15才停止扫描，是合理的，因为InnoDB要扫到c=15，才知道不需要继续往后找了。</p>
+<h1>案例五：唯一索引范围锁bug</h1>
+<p>前面的四个案例，我们已经用到了加锁规则中的两个原则和两个优化，接下来再看一个关于加锁规则中bug的案例。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/b105f8c4633e8d3a84e6422b1b1a316d-01a4a5fd4a134e5f971eb53b0d40d59e.png" width="1250" height="590" class="img_ev3q"></p>
+<p>图5 唯一索引范围锁的bug</p>
+<p>session A是一个范围查询，按照原则1的话，应该是索引id上只加(10,15]这个next-key lock，并且因为id是唯一键，所以循环判断到id=15这一行就应该停止了。</p>
+<p>但是实现上，InnoDB会往前扫描到第一个不满足条件的行为止，也就是id=20。而且由于这是个范围扫描，因此索引id上的(15,20]这个next-key lock也会被锁上。</p>
+<p>所以你看到了，session B要更新id=20这一行，是会被锁住的。同样地，session C要插入id=16的一行，也会被锁住。</p>
+<p>照理说，这里锁住id=20这一行的行为，其实是没有必要的。因为扫描到id=15，就可以确定不用往后再找了。但实现上还是这么做了，因此我认为这是个bug。</p>
+<p>我也曾找社区的专家讨论过，官方bug系统上也有提到，但是并未被verified。所以，认为这是bug这个事儿，也只能算我的一家之言，如果你有其他见解的话，也欢迎你提出来。</p>
+<h1>案例六：非唯一索引上存在&quot;等值&quot;的例子</h1>
+<p>接下来的例子，是为了更 好地说明“间隙”这个概念。这里，我给表t插入一条新记录。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; insert into t values(30,10,30);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>新插入的这一行c=10，也就是说现在表里有两个c=10的行。那么，这时候索引c上的间隙是什么状态了呢？你要知道，由于非唯一索引上包含主键的值，所以是不可能存在“相同”的两行的。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/c1fda36c1502606eb5be3908011ba159-f2cf83718c119ac19c7e54018336fe29.png" width="1142" height="856" class="img_ev3q"></p>
+<p>图6 非唯一索引等值的例子</p>
+<p>可以看到，虽然有两个c=10，但是它们的主键值id是不同的（分别是10和30），因此这两个c=10的记录之间，也是有间隙的。</p>
+<p>图中我画出了索引c上的主键id。为了跟间隙锁的开区间形式进行区别，我用(c=10,id=30)这样的形式，来表示索引上的一行。</p>
+<p>现在，我们来看一下案例六。</p>
+<p>这  次我们用delete语句来验证。注意，delete语句加锁的逻辑，其实跟select ... for update 是类似的，也就是我在文章开始总结的两个“原则”、两个“优化”和一个“bug”。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/b55fb0a1cac3500b60e1cf9779d2da78-116aeb42e8447977017df29d501e7f75.png" width="1248" height="556" class="img_ev3q"></p>
+<p>图7 delete 示例</p>
+<p>这时，session A在遍历的时候，先访问第一个c=10的记录。同样地，根据原则1，这里加的是(c=5,id=5)到(c=10,id=10)这个next-key lock。</p>
+<p>然后，session A向右查找，直到碰到(c=15,id=15)这一行，循环才结束。根据优化2，这是一个等值查询，向右查找到了不满足条件的行，所以会退化成(c=10,id=10) 到 (c=15,id=15)的间隙锁。</p>
+<p>也就是说，这个delete语句在索引c上的加锁范围，就是下图中蓝色区域覆盖的部分。<br>
+<img decoding="async" loading="lazy" src="/assets/images/bb0ad92483d71f0dcaeeef278f89cb24-8ed4b53ef986632b99e61be2d37578b1.png" width="1142" height="856" class="img_ev3q"></p>
+<p>图8 delete加锁效果示例</p>
+<p>这个蓝色区域左右两边都是虚线，表示开区间，即(c=5,id=5)和(c=15,id=15)这两行上都没有锁。</p>
+<h1>案例七：limit 语句加锁</h1>
+<p>例子6也有一个对照案例，场景如下所示：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/afc3a08ae7a254b3251e41b2a6dae02e-fa0dcc424afa637524af2779fcfa6f5f.png" width="954" height="318" class="img_ev3q"></p>
+<p>图9 limit 语句加锁</p>
+<p>这个例子里，session A的delete语句加了 limit 2。你知道表t里c=10的记录其实只有两条，因此加不加limit 2，删除的效果都是一样的，但是加锁的效果却不同。可以看到，session B的insert语句执行通过了，跟案例六的结果不同。</p>
+<p>这是因为，案例七里的delete语句明确加了limit 2的限制，因此在遍历到(c=10, id=30)这一行之后，满足条件的 语句已经有两条，循环就结束了。</p>
+<p>因此，索引c上的加锁范围就变成了从（c=5,id=5)到（c=10,id=30)这个前开后闭区间，如下图所示：<br>
+<img decoding="async" loading="lazy" src="/assets/images/e5408ed94b3d44985073255db63bd0d5-d931e8dccb28c56473358f90eeb46b07.png" width="1142" height="856" class="img_ev3q"></p>
+<p>图10 带limit 2的加锁效果</p>
+<p>可以看到，(c=10,id=30）之后的这个间隙并没有在加锁范围里，因此insert语句插入c=12是可以执行成功的。</p>
+<p>这个例子对我们实践的指导意义就是，<strong>在删除数据的时候尽量加limit</strong>。这样不仅可以控制删除数据的条数，让操作更安全，还可以减小加锁的范围。</p>
+<h1>案例八：一个死锁的例子</h1>
+<p>前面的例子中，我们在分析的时候，是按照next-key lock的逻辑来分析的，因为这样分析比较方便。最后我们再看一个案例，目的是说明：next-key lock实际上是间隙锁和行锁加起来的结果。</p>
+<p>你一定会疑惑，这个概念不是一开始就说了吗？不要着急，我们先来看下面这个例子：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/7b911a4c995706e8aa2dd96ff0f36506-2d92d6ac24a5914fdbce151e6d4249e1.png" width="1106" height="650" class="img_ev3q"></p>
+<p>图11 案例八的操作序列</p>
+<p>现在，我们按时间顺序来分析一下为什么是这样的结果。</p>
+<ol>
+<li>session A 启动事务后执行查询语句加lock in share mode，在索引c上加了next-key lock(5,10] 和间隙锁(10,15)；</li>
+<li>session B 的update语句也要在索引c上加next-key lock(5,10] ，进入锁等待；</li>
+<li>然后session A要再插入(8,8,8)这一行，被session B的间隙锁锁住。由于出现了死锁，InnoDB让session B回滚。</li>
+</ol>
+<p>你可能会问，session B的next-key lock不是还没申请成功吗？</p>
+<p>其实是这样的，session B的“加next-key lock(5,10] ”操作，实际上分成了两步，先是加(5,10)的间隙锁，加锁成功；然后加c=10的行锁，这时候才被锁住的。</p>
+<p>也就是说，我们在分析加锁规则的时候可以用next-key lock来分析。但是要知道，具体执行的时候，是要分成间隙锁和行锁两段来执行的。</p>
+<h1>小结</h1>
+<p>这里我再次说明一下，我们上面的所有案例都是在可重复读隔离级别(repeatable-read)下验证的。同时，可重复读隔离级别遵守两阶段锁协议，所有加锁的资源，都是在事务提交或者回滚的时候才释放的。</p>
+<p>在最后的案例中，你可以清楚地知道next-key lock实际上是由间隙锁加行锁实现的。如果切换到读提交隔离级别(read-committed)的话，就好理解了，过程中去掉间隙锁的部分，也就是只剩下行锁的部分。</p>
+<p>其实读提交隔离级别在外键场景下还是有间隙锁，相对比较复杂，我们今天先不展开。</p>
+<p>另外，在读提交隔离级别下还有一个优化，即：语句执行过程中加上的行锁，在语句执行完成后，就要把“不满足条件的行”上的行锁直接释放了，不需要等到事务提交。</p>
+<p>也就是说，读提交隔离级别下，锁的范围更小，锁的时间更短，这也是不少业务都默认使用读提交隔离级别的原因。</p>
+<p>不过，我希望你学过今天的课程以后，可以对next-key lock的概念有更清晰的认识，并且会用加锁规则去判断语句的加锁范围。</p>
+<p>在业务需要使用可重复读隔离级别的时候，能够更细致地设计操作数据库的语句，解决幻读问题的同时，最大限度地提升系统并行处理事务的能力。</p>
+<p>经过这篇文章的介绍，你再看一下上一篇文章最后的思考题，再来尝试分析一次。</p>
+<p>我把题目重新描述和简化一下：还是我们在文章开头初始化的表t，里面有6条记录，图12的语句序列中，为什么session B的insert操作，会被锁住呢？<br>
+<img decoding="async" loading="lazy" src="/assets/images/3a7578e104612a188a2d574eaa3bd81e-eb08fc05e0e4a70e2274b04639d6f915.png" width="942" height="270" class="img_ev3q"></p>
+<p>图12 锁分析思考题</p>
+<p>另外，如果你有兴趣多做一些实验的话，可以设计好语句序列，在执行之前先自己分析一下，然后实际地验证结果是否跟你的分析一致。</p>
+<p>对于那些你自己无法解释的结果，可以发到评论区里，后面我争取挑一些有趣的案例在文章中分析。</p>
+<p>你可以把你关于思考题的分析写在留言区，也可以分享你自己设计的锁验证方案，我会在下一篇文章的末尾选取有趣的评论跟大家分享。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="上期问题时间">上期问题时间<a href="#上期问题时间" class="hash-link" aria-label="Direct link to 上期问题时间" title="Direct link to 上期问题时间">​</a></h2>
+<p>上期的问题，我在本期继续作为了课后思考题，所以会在下篇文章再一起公布“答案”。</p>
+<p>这里，我展开回答一下评论区几位同学的问题。</p>
+<ul>
+<li>@令狐少侠 说，以前一直认为间隙锁只在二级索引上有。现在你知道了，有间隙的地方就可能有间隙锁。</li>
+<li>@浪里白条 同学问，如果是varchar类型，加锁规则是什么样的。<br>
+回答：实际上在判断间隙的时候，varchar和int是一样的，排好序以后，相邻两个值之间就有间隙。</li>
+<li>有几位同学提到说，上一篇文章自己验证的结果跟案例一不同，就是在session A执行完这两个语句：</li>
+</ul>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">begin;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t where d=5 for update; /*Q1*/</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>以后，session B 的update 和session C的insert 都会被堵住。这是不是跟文章的结论矛盾？</p>
+<p>其实不是的，这个例子用的是反证假设，就是假设不堵住，会出现问题；然后，推导出session A需要锁整个表所有的行和所有间隙。</p>
+<p>评论区留言点赞板：</p>
+<blockquote>
+<p>@ 某、人 、@郭江伟 两位同学尝试分析了上期问题，并给了有启发性的解答。</p>
+</blockquote>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>古娜拉黑暗之神·巴啦啦能量·堕落达</span> 👍（75） 💬（32）<p>老师，您好。假期的没跟上，今天补到了这节课，看了之后有几点不是太明白。望能解答一下。
+1. 索引c上的锁算不算是行锁。假如索引c上的next-key lock为(0,5] (5,10]，那么5算不算是c上的行锁？
+2. 在案例六中，执行 “delete from t where c=10;” 语句，索引c上的next-key lock是(5,10],(10,10],(10,15)。那么主键索引上的锁是什么呢？是只有行锁，锁住的是 (10,10,10) 和 (30,10,30) 两行吗？
+3. 也是在案例六中，session A不变，在session B中执行 “update t_20 set d=50 where c=5;”、“update t_20 set d=50 where c=15;”、“insert into t_20 values(40,15,40);”均执行成功，但执行“insert into t_20 values(50,5,50);” 时，却被阻塞。为什么呢？具体执行语句如下
+session A
+mysql&gt; begin;
+mysql&gt; explain delete from t_20 where c=10;
+id	select_type	table	partitions	type	possible_keys	key	key_len	ref	rows	filtered	Extra
+1	DELETE	t_20		range	c	c	5	const	2	100	Using where
+mysql&gt; delete from t_20 where c=10;
+</p><p>session B
+mysql&gt; update t_20 set d=50 where c=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0</p>
+<p>mysql&gt; update t_20 set d=50 where c=15;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0</p>
+<p>mysql&gt; insert into t_20 values(40,15,40);
+Query OK, 1 row affected (0.00 sec)</p>
+<p>mysql&gt; explain insert into t_20 values(50,5,50);
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | INSERT      | t_20  | NULL       | ALL  | c             | NULL | NULL    | NULL | NULL |     NULL | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set (0.00 sec)</p>
+<p>mysql&gt; insert into t_20 values(50,5,50);
+（block）</p>
+<p>我使用的mysql版本是：5.7.23-0ubuntu0.16.04.1
+show variables的结果太多，我截取了一部分，或许对您分析有帮助：
+innodb_version	5.7.23
+protocol_version	10
+slave_type_conversions
+tls_version	TLSv1,TLSv1.1
+version	5.7.23-0ubuntu0.16.04.1
+version_comment	(Ubuntu)
+version_compile_machine	x86_64
+version_compile_os	Linux</p>2019-01-03</li><br><li><span>Chu~♡·の~</span> 👍（182） 💬（10）<p>是不是可以总结为：
+1、查询过程中访问到的对象才会加锁，而加锁的基本单位是next-key lock（前开后闭）；
+2、等值查询上MySQL的优化：索引上的等值查询，如果是唯一索引，next-key lock会退化为行锁，如果不是唯一索引，需要访问到第一个不满足条件的值，此时next-key lock会退化为间隙锁；
+3、范围查询：无论是否是唯一索引，范围查询都需要访问到不满足条件的第一个值为止；</p>2019-01-02</li><br><li><span>undifined</span> 👍（126） 💬（53）<p>遇到一个有趣的问题，在老师的解答下终于弄明白了：</p>
+<p>CREATE TABLE z (
+id INT PRIMARY KEY AUTO_INCREMENT,
+b  INT,
+KEY b(b)
+)
+ENGINE = InnoDB
+DEFAULT CHARSET = utf8;</p>
+<p>INSERT INTO z (id, b)
+VALUES (1, 2),
+(3, 4),
+(5, 6),
+(7, 8),
+(9, 10);</p>
+<p>session A</p>
+<p>BEGIN;
+SELECT *
+FROM z
+WHERE b = 6 FOR UPDATE;</p>
+<p>session B
+INSERT INTO z VALUES (0, 4);
+这里为什么会被锁住</p>
+<p>答案比较长，写在我自己的笔记里了，地址是 <a href="https://helloworlde.github.io/blog/blog/MySQL/MySQL-%E4%B8%AD%E5%85%B3%E4%BA%8Egap-lock-next-key-lock-%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98.html" target="_blank" rel="noopener noreferrer">https://helloworlde.github.io/blog/blog/MySQL/MySQL-%E4%B8%AD%E5%85%B3%E4%BA%8Egap-lock-next-key-lock-%E7%9A%84%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98.html</a></p>
+<p>大家可以看看</p>2019-01-07</li><br><li><span>Geek_9ca34e</span> 👍（84） 💬（9）<p>老师，你好：
+我练习实例的时候发现一个问题：如 案例五：唯一索引范围锁 bug
+begin;
+select * from t where id&gt;10 and id&lt;=15 for update;
+1、执行如上语句加锁范围(10,15]和(15,20]；
+2、因为10未加锁，所以我单独再开一个连接，执行delete from t where id=10;不会锁等待，能正常删除；
+3、但是我再执行insert into t values(10,10,10); 语句会等待，无法正常执行；
+4、经过分析我发现第一个连接执行的语句的加锁范围已经变成(5,15]和(15,20]，代表锁蔓延了；这是什么原因呢？</p>2019-01-09</li><br><li><span>HuaMax</span> 👍（62） 💬（15）<p>首先老师新年快乐，学习专栏受益良多！
+上期问过老师的问题已了解答案，锁是加在索引上的。再尝试回答问题。c上是普通索引，根据原则2，访问到的都要加锁，在查询c&gt;=15这个条件时，在查找到15后加锁（10，15］，继续往右查找，按理说不会锁住6这个索引值，但查询语句中加了order by c desc  ，我猜想会优化为使用c&lt;=20这条语句，查找到20后往左查找，这样会访问到15左边的值10，从而加锁（5，10］，不知我理解对否？</p>2019-01-01</li><br><li><span>时隐时现</span> 👍（47） 💬（11）<p>不好意思，这次又来晚了，看这种连载技术文章，和看小说一样，养肥了集中看~~
+这次的问题如下，希望丁老师有空解答一下。
+版本：mysql 5.6.39
+CREATE TABLE <code>t</code> (
+<code>a</code> int(11) NOT NULL,
+<code>b</code> int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into t values(1,1),(2,2),(3,3),(4,4),(5,5);
+采用READ-COMMITTED隔离级别
+案例1、
+session A：
+begin;
+update t set a=6 where b=1;
+session B：
+begin;
+update t set a=7 where b=2;
+A和B均能执行成功
+问题1：官档上说对于RC且全表扫描的update，先逐行添加行锁然后释放掉不符合where条件的，那么session A成功对(1,1)加锁，理论上session B在扫描(1,1)并尝试加锁时会被阻塞，为何还能执行成功？官档链接：<a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html" target="_blank" rel="noopener noreferrer">https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html</a></p>
+<p>案例2：
+session A：
+begin;
+update t set a=6 where b=1;
+session B：
+begin;
+delete from t where b=2; -- 被阻塞
+问题2：为何案例1 中的session B不会被阻塞，而案例2的却被session A的行数阻塞，update和delete都是全部扫描，难道加锁机制不一样？</p>2019-01-30</li><br><li><span>geraltlaush</span> 👍（37） 💬（10）<p>老师，案例八session B的操作语句update t set d = d + 1 where c =10; 由于c是非唯一键索引，锁（5，10」可以理解
+，为什么不锁(10,15} 呢，不是应该继续向后扫描直到第一个不满足条件的值为止吗</p>2019-01-29</li><br><li><span>陈</span> 👍（36） 💬（6）<p>老师在案列一中update t set d=d+1 where id=7 中id是主键也是唯一索 引，按优化1应该退化成行锁才对，为什么insert into t values(8,8,8)会被锁住，我是那儿理解错了?</p>2019-01-11</li><br><li><span>看不到de颜色</span> 👍（31） 💬（11）<p>老师您好。在自己跑案例四的时候，回想起之前MVCC的内容就对案例做了些调整，此时产生一些有关一致性试图的疑惑，还想请老师排疑解惑。
+MySQL8.0.13，RR隔离级别下，表结构及数据按照例子中不变，执行语句如下：
+session A：begin; select * from t where c&gt;=10 and c&lt;11 for update;  --锁住(5,15]
+session B：update t set d=d+1 where c=5;                                           --成功，changed:1
+session A：select * from t;                                                                      --读到d=6
+此时，session A居然读到了session B update后的结果。语句调整后，把session A中的 for update去掉，依据RR级别下一致性视图原理不会读到session B更新后的结果。
+那么，是否可以理解begin后执行的select语句使用for update/lock in share mode并不会生成一致性视图呢？
+还请老师指点迷津，感激不尽(❁´ω`❁)</p>2019-02-25</li><br><li><span>Geek_zbvt62</span> 👍（29） 💬（2）<p>早晨睡不着打开极客时间一看，竟然更新了。今天是周日而且在假期中哎...</p>2018-12-31</li><br><li><span>乾坤</span> 👍（26） 💬（2）<p>您好，关于&quot;优化 2：索引上的等值查询，向右遍历时且最后一个值不满足等值条件的时候，next-key lock 退化为间隙锁。&quot;，我觉得改为&quot;从第一个满足等值条件的索引记录开始向右遍历到第一个不满足等值条件记录，并将第一个不满足等值条件记录上的next-key lock 退化为间隙锁&quot;更明确些</p>2019-01-01</li><br><li><span>王伯轩</span> 👍（24） 💬（2）<p>这两章今天来来回回啃了好几遍，终于感觉有关锁的知识成体系了。</p>
+<p>尤其是总结的加锁原则，简直太  精辟了，感谢丁老师.</p>
+<p>原则 2：查找过程中访问到的对象才会加锁。</p>
+<p>对于原则2 我有个疑问，访问到的对象应该还应该包含其影响到的索引。</p>
+<p>老师的例子中某些隐含了这些东西，其他同学的留言中也表明了这点，望老师指点</p>
+<p>比如 一个表t（id ，c,d,e）
+id是主键 ，其他列都有非唯一索引。
+执行insert 需要获取所有索引上的锁；
+执行删除（即使根据id删除）也需要获取其他索引的锁；
+执行update（即使where条件使用id）如果更新的有索引列，也需要获取上面的锁</p>
+<p>因为更新操作肯定会导致索引树的修改，如果不更改，会导致索引搜索时返回的数据和实际不一样；如果更改的话，肯定需要防止并发就需要加锁</p>
+<p>不知道理解的是否正确</p>2019-04-06</li><br><li><span>神奇小懒懒</span> 👍（17） 💬（2）<p>老师这次的留下的问题，语句跟上次不一样，上期问题语句是select id  from t where c&gt;=15 and c&lt;=20 order by c desc  for update;；这次缺少了 order by c desc ，不加desc的话insert into t values(6,6,6);不会被堵塞；
+根据优化3：索引上的等值查询，在向右遍历时且最后一个值不满足等值条件的时候next-key lock退化为间隙锁；
+问题中的sql语句加了desc ，是向左扫描，该优化用不上，所以下限10是闭区间，为了防止c为10的行加入，需要锁定到索引c键（5,5）
+此例中insert into t values(6,5,6) 会堵塞，insert into t values(4,5,6) 不会堵塞，</p>2018-12-31</li><br><li><span>滔滔</span> 👍（16） 💬（1）<p>老师，如果加了关键字desc，是不是文中的优化规则依然有效，只是左开右闭区间变成了右开左闭区间，向右扫描变成了向左扫描，这样理解对吗？🤔</p>2019-01-03</li><br><li><span>信信</span> 👍（14） 💬（3）<p>老师您好，自己基于文中开头的表做了一个实验，
+session1：
+mysql&gt; begin;
+mysql&gt; explain select c from t where c &gt;5 lock in share mode;
+分析：(5,10],(10,15],(15,20],(20,25],(25,正无穷)有锁。
+session2:
+mysql&gt; update t set c = 5 where c = 1;#(执行成功)
+mysql&gt; update t set c = 1 where c = 5;#(执行成功)
+mysql&gt; update t set c = 5 where c = 1;#(阻塞)
+最后一条阻塞，无法用原理分析，肯请老师解答。</p>2019-01-07</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#上期问题时间" class="table-of-contents__link toc-highlight">上期问题时间</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

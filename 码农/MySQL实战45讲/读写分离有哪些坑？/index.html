@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/读写分离有哪些坑？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">读写分离有哪些坑？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/读写分离有哪些坑？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="读写分离有哪些坑？ | Coisini"><meta data-rh="true" name="description" content="在上一篇文章中，我和你介绍了一主多从的结构以及切换流程。今天我们就继续聊聊一主多从架构的应用场景：读写分离，以及怎么处理主备延迟导致的读写分离问题。"><meta data-rh="true" property="og:description" content="在上一篇文章中，我和你介绍了一主多从的结构以及切换流程。今天我们就继续聊聊一主多从架构的应用场景：读写分离，以及怎么处理主备延迟导致的读写分离问题。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/读写分离有哪些坑？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/读写分离有哪些坑？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/读写分离有哪些坑？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><p>在上一篇文章中，我和你介绍了一主多从的结构以及切换流程。今天我们就继续聊聊一主多从架构的应用场景：读写分离，以及怎么处理主备延迟导致的读写分离问题。</p>
+<p>我们在上一篇文章中提到的一主多从的结构，其实就是读写分离的基本结构了。这里，我再把这张图贴过来，方便你理解。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/1334b9c08b8fd837832fdb2d82e6b0aa-107b340129255b307a5bf13e70db65a5.png" width="1142" height="637" class="img_ev3q"></p>
+<p>图1 读写分离基本结构</p>
+<p>读写分离的主要目标就是分摊主库的压力。图1中的结构是客户端（client）主动做负载均衡，这种模式下一般会把数据库的连接信息放在客户端的连接层。也就是说，由客户端来选择后端数据库进行查询。</p>
+<p>还有一种架构是，在MySQL和客户端之间有一个中间代理层proxy，客户端只连接proxy， 由proxy根据请求类型和上下文决定请求的分发路由。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/1b1ea74a48e1a16409e9b4d02172b945-158031f619eae4f6693edcc8230bbd23.jpg" width="1142" height="668" class="img_ev3q"></p>
+<p>图2 带proxy的读写分离架构</p>
+<p>接下来，我们就看一下客户端直连和带proxy的读写分离架构，各有哪些特点。</p>
+<ol>
+<li>客户端直连方案，因为少了一层proxy转发，所以查询性能稍微好一点儿，并且整体架构简单，排查问题更方便。但是这种方案，由于要了解后端部署细节，所以在出现主备切换、库迁移等操作的时候，客户端都会感知到，并且需要调整数据库连接信息。<br>
+你可能会觉得这样客户端也太麻烦了，信息大量冗余，架构很丑。其实也未必，一般采用这样的架构，一定会伴随一个负责管理后端的组件，比如Zookeeper，尽量让业务端只专注于业务逻辑开发。</li>
+<li>带proxy的架构，对客户端比较友好。客户端不需要关注后端细节，连接维护、后端信息维护等工作，都是由proxy完成的。但这样的话，对后端维护团队的要求会更高。而且，proxy也需要有高可用架构。因此，带proxy架构的整体就相对比较复杂。</li>
+</ol>
+<p>理解了这两种方案的优劣，具体选择哪个方案就取决于数据库团队提供的能力了。但目前看，趋势是往带proxy的架构方向发展的。</p>
+<p>但是，不论使用哪种架构，你都会碰到我们今天要讨论的问题：由于主从可能存在延迟，客户端执行完一个更新事  务后马上发起查询，如果查询选择的是从库的话，就有可能读到刚刚的事务更新之前的状态。</p>
+<p><strong>这种“在从库上会读到系统的一个过期状态”的现象，在这篇文章里，我们暂且称之为“过期读”。</strong></p>
+<p>前面我们说过了几种可能导致主备延迟的原因，以及对应的优化策略，但是主从延迟还是不能100%避免的。</p>
+<p>不论哪种结构，客户端都希望查询从库的数据结果，跟查主库的数据结果是一样的。</p>
+<p>接下来，我们就来讨论怎么处理过期读问题。</p>
+<p>这里，我先把文章中涉及到的处理过期读的方案汇总在这里，以帮助你更好地理解和掌握全文的知识脉络。这些方案包括：</p>
+<ul>
+<li>强制走主库方案；</li>
+<li>sleep方案；</li>
+<li>判断主备无延迟方案；</li>
+<li>配合semi-sync方案；</li>
+<li>等主库位点方案；</li>
+<li>等GTID方案。</li>
+</ul>
+<header><h1>强制走主库方案</h1></header>
+<p>强制走主库方案其实就是，将查询请求做分类。通常情况下，我们可以将查询请求分为这么两类：</p>
+<ol>
+<li>对于必须要拿到最新结果的请求，强制将其发到主库上。比如，在一个交易平台上，卖家发布商品以后，马上要返回主页面，看商品是否发布成功。那么，这个请求需要拿到最新的结果，就必须走主库。</li>
+<li>对于可以读到旧数据的请求，才将其发到从库上。在这个交易平台上，买家来逛商铺页面，就算晚几秒看到最新发布的商品，也是可以接受的。那么，这类请求就可以走从库。</li>
+</ol>
+<p>你可能会说，这个方案是不是有点畏难和取巧的意思，但其实这个方案是用得最多的。</p>
+<p>当然，这个方案最大的问题在于，有时候你会碰到“所有查询都不能是过期读”的需求，比如一些金融类的业务。这样的话，你就要放弃读写分离，所有读写压力都 在主库，等同于放弃了扩展性。</p>
+<p>因此接下来，我们来讨论的话题是：可以支持读写分离的场景下，有哪些解决过期读的方案，并分析各个方案的优缺点。</p>
+<h1>Sleep 方案</h1>
+<p>主库更新后，读从库之前先sleep一下。具体的方案就是，类似于执行一条select sleep(1)命令。</p>
+<p>这个方案的假设是，大多数情况下主备延迟在1秒之内，做一个sleep可以有很大概率拿到最新的数据。</p>
+<p>这个方案给你的第一感觉，很可能是不靠谱儿，应该不会有人用吧？并且，你还可能会说，直接在发起查询时先执行一条sleep语句，用户体验很不友好啊。</p>
+<p>但，这个思路确实可以在一定程度上解决问题。为了看起来更靠谱儿，我们可以换一种方式。</p>
+<p>以卖家发布商品为例，商品发布后，用Ajax（Asynchronous JavaScript + XML，异步JavaScript和XML）直接把客户端输入的内容作为“新的商品”显示在页面上，而不是真正地去数据库做查询。</p>
+<p>这样，卖家就可以通过这个显示，来确认产品已经发布成功了。等到卖家再刷新页面，去查看商品的时候，其实已经过了一段时间，也就达到了sleep的目的，进而也就解决了过期读的问题。</p>
+<p>也就是说，这个sleep方案确实解决了类似场景下的过期读问题。但，从严格意义上来说，这个方案存在的问题就是不精确。这个不精确包含了两层意思：</p>
+<ol>
+<li>如果这个查询请求本来0.5秒就可以在从库上拿到正确结果，也会等1秒；</li>
+<li>如果延迟超过1秒，还是会出现过期读。</li>
+</ol>
+<p>看到这里，你是不是有一种“你是不是在逗我”的感觉，这个改进方案虽然可以解决类似Ajax场景下的过期读问题，但还是怎么看都不靠谱儿。别着急，接下来我就和你介绍一些更准确的方案。</p>
+<h1>判断主备无延迟方案</h1>
+<p>要确保备库无延迟，通常有三种做法。</p>
+<p>通过前面的<a href="https://time.geekbang.org/column/article/76795" target="_blank" rel="noopener noreferrer">第25篇</a>文章，我们知道show slave status结果里的seconds_behind_master参数的值，可以用来衡量主备延迟时间的长短。</p>
+<p>所以**第一种确保主备无延迟的方法是，**每次从库执行查询请求前，先判断seconds_behind_master是否已经等于0。如果还不等于0 ，那就必须等到这个参数变为0才能执行查询请求。</p>
+<p>seconds_behind_master的单位是秒，如果你觉得精度不够的话，还可以采用对比位点和GTID的方法来确保主备无延迟，也就是我们接下来要说的第二和第三种方法。</p>
+<p>如图3所示，是一个show slave status结果的部分截图。</p>
+<p><img decoding="async" loading="lazy" src="data:image/png;base64,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" width="1331" height="368" class="img_ev3q"></p>
+<p>图3 show slave status结果</p>
+<p>现在，我们就通过这个结果，来看看具体如何通过对比位点和GTID来确保主备无延迟。</p>
+<p>**第二种方法，**对比位点确保主备无延迟：</p>
+<ul>
+<li>Master_Log_File和Read_Master_Log_Pos，表示的是读到的主库的最新位点；</li>
+<li>Relay_Master_Log_File和Exec_Master_Log_Pos，表示的是备库执行的最新位点。</li>
+</ul>
+<p>如果Master_Log_File和Relay_Master_Log_File、Read_Master_Log_Pos和Exec_Master_Log_Pos这两组值完全相同，就表示接收到的日志已经同步完成。</p>
+<p>**第三种方法，**对比GTID集合确保主备无延迟：</p>
+<ul>
+<li>Auto_Position=1 ，表示这对主备关系使用了GTID协议。</li>
+<li>Retrieved_Gtid_Set，是备库收到的所有日志的GTID集合；</li>
+<li>Executed_Gtid_Set，是备库所有已经执行完成的GTID集合。</li>
+</ul>
+<p>如果这两个集合相同，也表示备库接收到的日志都已经同步完成。</p>
+<p>可见，对比位点和对比GTID这两种方法，都要比判断seconds_behind_master是否为0更准确。</p>
+<p>在执行查询请求之前，先判断从库是否同步完成的方法，相比于sleep方案，准确度确实提升了不少，但还是没有达到“精确”的程度。为什么这么说呢？</p>
+<p>我们现在一起来回顾下，一个事务的binlog在主备库之间的状态：</p>
+<ol>
+<li>主库执行完成，写入binlog，并反馈给客户端；</li>
+<li>binlog被从主库发送给备库，备库收到；</li>
+<li>在备库执行binlog完成。</li>
+</ol>
+<p>我们上面判断主备无延迟的逻辑，是“备库收到的日志都执行完成了”。但是，从binlog在主备之间状态的分析中，不难看出还有一部分日志，处于客户端已经收到提交确认，而备库还没收到日志的状态。</p>
+<p>如图4所示就是这样的一个状态。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/557445207b57d6c0f2747509d7d6619e-d39e0025e681924cfc866f787eda239e.png" width="1142" height="510" class="img_ev3q"></p>
+<p>图4 备库还没收到trx3</p>
+<p>这时，主库上执行完成了三个事务trx1、trx2和trx3，其中：</p>
+<ol>
+<li>trx1和trx2已经传到从库，并且已经执行完成了；</li>
+<li>trx3在主库执行完成，并且已经回复给客户端，但是还没有传到从库中。</li>
+</ol>
+<p>如果这时候你在从库B上执行查询请求，按照我们上面的逻辑，从库认为已经没有同步延迟，但还是查不到trx3的。严格地说，就是出现了过期读。</p>
+<p>那么，这个问题有没有办法解决呢？</p>
+<h1>配合semi-sync</h1>
+<p>要解决这个问题，就要引入半同步复制，也就是semi-sync replication。</p>
+<p>semi-sync做了这样的设计：</p>
+<ol>
+<li>事务提交的时候，主库把binlog发给从库；</li>
+<li>从库收到binlog以后，发回给主库一个ack，表示收到了；</li>
+<li>主库收到这个ack以后，才能给客户端返回“事务完成”的确认。</li>
+</ol>
+<p>也就是说，如果启用了semi-sync，就表示所有给客户端发送过确认的事务，都确保了备库已经收到了这个日志。</p>
+<p>在<a href="https://time.geekbang.org/column/article/76795" target="_blank" rel="noopener noreferrer">第25篇文章</a>的评论区，有同学问到：如果主库掉电的时候，有些binlog还来不及发给从库，会不会导致系统数据丢失？</p>
+<p>答案是，如果使用的是普通的异步复制模式，就可能会丢失，但semi-sync就可以解决这个问题。</p>
+<p>这样，semi-sync配合前面关于位点的判断，就能够确定在从库上执行的查询请求，可以避免过期读。</p>
+<p>但是，semi-sync+位点判断的方案，只对一主一备的场景是成立的。在一主多从场景中，主库只要等到一个从库的ack，就开始给客户端返回确认。这时，在从库上执行查询请求，就有两种情况：</p>
+<ol>
+<li>如果查询是落在这个响应了ack的从库上，是能够确保读到最新数据；</li>
+<li>但如果是查询落到其他从库上，它们可能还没有收到最新的日志，就会产生过期读的问题。</li>
+</ol>
+<p>其实，判断同步位点的方案还有另外一个潜在的问题，即：如果在业务更新的高峰期，主库的位点或者GTID集合更新很快，那么上面的两个位点等值判断就会一直不成立，很可能出现从库上迟迟无法响应查询请求的情况。</p>
+<p>实际上，回到我们最初的业务逻辑里，当发起一个查询请求以后，我们要得到准确的结果，其实并不需要等到“主备完全同步”。</p>
+<p>为什么这么说呢？我们来看一下这个时序图。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/9cf54f3e91dc8f7b8947d7d8e384aa09-5b8645ad2bfed94bf85d68b602278ab4.png" width="1142" height="880" class="img_ev3q"></p>
+<p>图5 主备持续延迟一个事务</p>
+<p>图5所示，就是等待位点方案的一个bad case。图中备库B下的虚线框，分别表示relaylog和binlog中的事务。可以看到，图5中从状态1 到状态4，一直处于延迟一个事务的状态。</p>
+<p>备库B一直到状态4都和主库A存在延迟，如果用上面必须等到无延迟才能查询的方案，select语句直到状态4都不能被执行。</p>
+<p>但是，其实客户端是在发完trx1更新后发起的select语句，我们只需要确保trx1已经执行完成就可以执行select语句了。也就是说，如果在状态3执行查询请求，得到的就是预期结果了。</p>
+<p>到这里，我们小结一下，semi-sync配合判断主备无延迟的方案，存在两个问题：</p>
+<ol>
+<li>一主多从的时候，在某些从库执行查询请求会存在过期读的现象；</li>
+<li>在持续延迟的情况下，可能出现过度等待的问题。</li>
+</ol>
+<p>接下来，我要和你介绍的等主库位点方案，就可以解决这两个问题。</p>
+<h1>等主库位点方案</h1>
+<p>要理解等主库位点方案，我需要先和你介绍一条命令：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select master_pos_wait(file, pos[, timeout]);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>这条命令的逻辑如下：</p>
+<ol>
+<li>它是在从库执行的；</li>
+<li>参数file和pos指的是主库上的文件名和位置；</li>
+<li>timeout可选，设置为正整数N表示这个函数最多等待N秒。</li>
+</ol>
+<p>这个命令正常返回的结果是一个正整数M，表示从命令开始执行，到应用完file和pos表示的binlog位置，执行了多少事务。</p>
+<p>当然，除了正常返回一个正整数M外，这条命令还会返回一些其他结果，包括：</p>
+<ol>
+<li>如果执行期间，备库同步线程发生异常，则返回NULL；</li>
+<li>如果等待超过N秒，就返回-1；</li>
+<li>如果刚开始执行的时候，就发现已经执行过这个位置了，则返回0。</li>
+</ol>
+<p>对于图5中先执行trx1，再执行一个查询请求的逻辑，要保证能够查到正确的数据，我们可 以使用这个逻辑：</p>
+<ol>
+<li>trx1事务更新完成后，马上执行show master status得到当前主库执行到的File和Position；</li>
+<li>选定一个从库执行查询语句；</li>
+<li>在从库上执行select master_pos_wait(File, Position, 1)；</li>
+<li>如果返回值是&gt;=0的正整数，则在这个从库执行查询语句；</li>
+<li>否则，到主库执行查询语句。</li>
+</ol>
+<p>我把上面这个流程画出来。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/b20ae91ea46803df1b63ed683e1de357-eee7601114bf816aeb6fd6f569d2cbd5.png" width="1142" height="880" class="img_ev3q"></p>
+<p>图6 master_pos_wait方案</p>
+<p>这里我们假设，这条select查询最多在从库上等待1秒。那么，如果1秒内master_pos_wait返回一个大于等于0的整数，就确保了从库上执行的这个查询结果一定包含了trx1的数据。</p>
+<p>步骤5到主库执行查询语句，是这类方案常用的退化机制。因为从库的延迟时间不可控，不能无限等待，所以如果等待超时，就应该放弃，然后到主库去查。</p>
+<p>你可能会说，如果所有的从库都延迟超过1秒了，那查询压力不就都跑到主库上了吗？确实是这样。</p>
+<p>但是，按照我们设定不允许过期读的要求，就只有两种选择，一种是超时放弃，一种是转到主库查询。具体怎么选择，就需要业务开发同学做好限流策略了。</p>
+<h1>GTID方案</h1>
+<p>如果你的数据库开启了GTID模式，对应的也有等待GTID的方案。</p>
+<p>MySQL中同样提供了一个类似的命令：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"> select wait_for_executed_gtid_set(gtid_set, 1);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>这条命令的逻辑是：</p>
+<ol>
+<li>等待，直到这个库执行的事务中包含传入的gtid_set，返回0；</li>
+<li>超时返回1。</li>
+</ol>
+<p>在前面等位点的方案中，我们执行完事务后，还要主动去主库执行show master status。而MySQL 5.7.6版本开始，允许在执行完更新类事务后，把这个事务的GTID返回给客户端，这样等GTID的方案就可以减少一次查询。</p>
+<p>这时，等GTID的执行流程就变成了：</p>
+<ol>
+<li>trx1事务更新完成后，从返回包直接获取这个事务的GTID，记为gtid1；</li>
+<li>选定一个从库执行查询语句；</li>
+<li>在从库上执行 select wait_for_executed_gtid_set(gtid1, 1)；</li>
+<li>如果返回值是0，则在这个从库执行查询语句；</li>
+<li>否则，到主库执行查询语句。</li>
+</ol>
+<p>跟等主库位点的方案一样，等待超时后是否直接到主库查询，需要业务开发同学来做限流考虑。</p>
+<p>我把这个流程图画出来。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/d521de8017297aff59db2f68170ee739-bd5417392e9aef34394485cebd4c3da3.png" width="1142" height="880" class="img_ev3q"></p>
+<p>图7 wait_for_executed_gtid_set方案</p>
+<p>在上面的第一步中，trx1事务更新完成后，从返回包直接获取这个事务的GTID。问题是  ，怎么能够让MySQL在执行事务后，返回包中带上GTID呢？</p>
+<p>你只需要将参数session_track_gtids设置为OWN_GTID，然后通过API接口mysql_session_track_get_first从返回包解析出GTID的值即可。</p>
+<p>在专栏的<a href="https://time.geekbang.org/column/article/68319" target="_blank" rel="noopener noreferrer">第一篇文章</a>中，我介绍mysql_reset_connection的时候，评论区有同学留言问这类接口应该怎么使用。</p>
+<p>这里我再回答一下。其实，MySQL并没有提供这类接口的SQL用法，是提供给程序的API(<a href="https://dev.mysql.com/doc/refman/5.7/en/c-api-functions.html" target="_blank" rel="noopener noreferrer">https://dev.mysql.com/doc/refman/5.7/en/c-api-functions.html</a>)。</p>
+<p>比如，为了让客户端在事务提交后，返回的GITD能够在客户端显示出来，我对MySQL客户端代码做了点修改，如下所示：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/973bdd8741f830acebe005cbf37a7663-79b1c7f74fc5ab739975e868628c1c9d.png" width="990" height="143" class="img_ev3q"></p>
+<p>图8 显示更新事务的GTID--代码</p>
+<p>这样，就可以看到语句执行完成，显示出GITD的值。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/253106d31d9d97aaa2846b2015f593fe-27010fb22a1eeb5aab6b07be596407ff.png" width="950" height="162" class="img_ev3q"></p>
+<p>图9 显示更新事务的GTID--效果</p>
+<p>当然了，这只是一个例子。你要使用这个方案的时候，还是应该在你的客户端代码中调用mysql_session_track_get_first这个函数。</p>
+<h1>小结</h1>
+<p>在今天这篇文章中，我跟你介绍了一主多从做读写分离时，可能碰到过期读的原因，以及几种应对的方案。</p>
+<p>这几种方案中，有的方案看上去是做了妥协，有的方案看上去不那么靠谱儿，但都是有实际应用场景的，你需要根据业务需求选择。</p>
+<p>即使是最后等待位点和等待GTID这两个方案，虽然看上去比较靠谱儿，但仍然存在需要权衡的情况。如果所有的从库都延迟，那么请求就会全部落到主库上，这时候会不会由于压力突然增大，把主库打挂了呢？</p>
+<p>其实，在实际应用中，这几个方案是可以混合使用的。</p>
+<p>比如，先在客户端对请求做分类，区分哪些请求可以接受过期读，而哪些请求完全不能接受过期读；然后，对于不能接受过期读的语句，再使用等GTID或等位点的方案。</p>
+<p>但话说回来，过期读在本质上是由一写多读导致的。在实际应用中，可能会有别的不需要等待就可以水平扩展的数据库方案，但这往往是用牺牲写性能换来的，也就是需要在读性能和写性能中取权衡。</p>
+<p>最后 ，我给你留下一个问题吧。</p>
+<p>假设你的系统采用了我们文中介绍的最后一个方案，也就是等GTID的方案，现在你要对主库的一张大表做DDL，可能会出现什么情况呢？为了避免这种情况，你会怎么做呢？</p>
+<p>你可以把你的分析和方案设计写在评论区，我会在下一篇文章跟你讨论这个问题。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h1>上期问题时间</h1>
+<p>上期给你留的问题是，在GTID模式下，如果一个新的从库接上主库，但是需要的binlog已经没了，要怎么做？</p>
+<p>@某、人同学给了很详细的分析，我把他的回答略做修改贴过来。</p>
+<ol>
+<li>如果业务允许主从不一致的情况，那么可以在主库上先执行show global variables like ‘gtid_purged’，得到主库已经删除的GTID集合，假设是gtid_purged1；然后先在从库上执行reset master，再执行set global gtid_purged =‘gtid_purged1’；最后执行start slave，就会从主库现存的binlog开始同步。binlog缺失的那一部分，数据在从库上就可能会有丢失，造成主从不一致。</li>
+<li>如果需要主从数据一  致的话，最好还是通过重新搭建从库来做。</li>
+<li>如果有其他的从库保留有全量的binlog的话，可以把新的从库先接到这个保留了全量binlog的从库，追上日志以后，如果有需要，再接回主库。</li>
+<li>如果binlog有备份的情况，可以先在从库上应用缺失的binlog，然后再执行start slave。</li>
+</ol>
+<p>评论区留言点赞板：</p>
+<blockquote>
+<p>@悟空 同学级联实验，验证了seconds_behind_master的计算逻辑。</p>
+</blockquote>
+<blockquote>
+<p>@_CountingStars 问了一个好问题：MySQL是怎么快速定位binlog里面的某一个GTID位置的？答案是，在binlog文件头部的Previous_gtids可以解决这个问题。</p>
+</blockquote>
+<blockquote>
+<p>@王朋飞 同学问了一个好问题，sql_slave_skip_counter跳过的是一个event，由于MySQL总不能执行一半的事务，所以既然跳过了一个event，就会跳到这个事务的末尾，因此set global sql_slave_skip_counter=1;start slave是可以跳过整个事务的。</p>
+</blockquote>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>有铭</span> 👍（135） 💬（8）<p>这专栏真的是干货满满，每看一篇我都有“我发现我真的不会使用MySQL”和“我原来把MySQL用错了”的挫败感</p>2019-01-16</li><br><li><span>曾剑</span> 👍（99） 💬（9）<p>老师写的每一篇文章都能让我获益良多。每一篇都值得看好几遍。
+今天的问题，大表做DDL的时候可能会出现主从延迟，导致等 GTID 的方案可能会导致这部分流量全打到主库，或者全部超时。
+如果这部分流量太大的话，我会选择上一篇文章介绍的两种方法：
+1.在各个从库先SET sql_log_bin = OFF，然后做DDL，所有从库及备主全做完之后，做主从切换，最后在原来的主库用同样的方式做DDL。
+2.从库上执行DDL；将从库上执行DDL产生的GTID在主库上利用生成一个空事务GTID的方式将这个GTID在主库上生成出来。
+各个从库做完之后再主从切换，然后再在原来的主库上同样做一次。
+需要注意的是如果有MM架构的情况下，承担写职责的主库上的slave需要先停掉。</p>2019-01-16</li><br><li><span>某、人</span> 👍（41） 💬（5）<p>老师我先请教两个问题(估计大多数同学都有这个疑惑)😄:
+1.现在的中间件可以说是乱花渐欲迷人眼,请问老师哪一款中间件适合大多数不分库分表,只是做读写分离业务的proxy,能推荐一款嘛?毕竟大多数公司都没有专门做中间件开发的团队
+2.如果是业务上进行了分库分表,老师能推荐一款分库分表的proxy嘛？我目前了解到的针对分库分表的proxy都或多或少有些问题。不过分布式数据库是一个趋势也是一个难点。</p>2019-01-16</li><br><li><span>Mr.Strive.Z.H.L</span> 👍（29） 💬（9）<p>老师您好：
+关于主库大表的DDL操作，我看了问题答案，有两种方案。第一种是读写请求转到主库，在主库上做DDL。第二种是从库上做DDL，完成后进行主从切换。
+</p><p>关于第二种，有一个疑惑：
+从库上做DDL，读写请求走主库，等到从库完成后，从库必须要同步DDL期间，主库完成的事务后才能进行主从切换。而如果DDL操作是删除一列，那么在同步过程中会出错呀？（比如抛出这一列不存在的错误）。</p>2019-01-21</li><br><li><span>钱</span> 👍（23） 💬（2）<p>1：单机的性能总是有限的，所以，就出现了读写分离
+2：读写分离带来了更高的性能，也引入了数据不一致的问题
+3：为了数据一致性，又产生了各种解决方案
+人少力量小，人多了事就多，如果管理能力好，还是人多好办事。
+原理是这样，没怎么实操过，感谢老师的分享，让自己的认知边界有移动了一点点。</p>2019-08-04</li><br><li><span>Max</span> 👍（15） 💬（2）<p>我一般是先是在从库上设置 set_log_bin=off，然后执行ddl,  语句。
+然后完成以后，主从做一下切换。然后在主库上在执行一下set_log_bin=off,执行ddl语句。
+然后在做一下主从切换。
+个人对pt-online-scheman-change不是很推荐使用，它的原理基本是创建触发器，然后创建和旧表一样结构的数据表，
+把旧表的数据复制过去。最后删除旧表。以前做个一个测试，如果旧表一直在被select,删除过程会一直会等待。
+所以个人不是很建议。万一不小心变成从删库到路步，那就得不偿失了。</p>
+<p>老师，有个问题想请教一下，一主多从可以多到什么地步，以前我们CTO解决的方案就是加机器，一主十三从。
+当时我是反对的，其实个人建议还是从SQL，业务上面去优化。而不是一味的加机器。如果加机器解决的话，还要DBA做什么呢？</p>2019-01-17</li><br><li><span>二马</span> 👍（13） 💬（1）<p>最近做性能测试时发现当并发用户达到一定量(比如500)，部分用户连接不上，能否介绍下MySQL连接相关问题，谢谢！</p>2019-01-16</li><br><li><span>万勇</span> 👍（9） 💬（3）<p>老师，请教下。
+1.对大表做ddl，是可以采用先在备库上set global log_bin=off，先做完ddl，然后切换主备库。为了保证数据一致性，在切主备的时候，数据库会有个不可用的时间段，对业务会造成影响。现在的架构方式，中间层还有proxy，意味着proxy也需要修改主备配置，做reload。这样做的话，感觉成本太高，在真正的生产环境中，这种方法适用吗？
+2.目前我们常采用的是对几百万以上的表用pt-online-schema-change，这种方式会产生大量的binlog，业务高峰期不能做，会引起主备延迟。在生产业务中，我觉得等主库节点或者等gtid这种方案挺不错，至少能保证业务，但也会增加主库的压力。
+3.5.7版本出的group_replication多写模式性能不知道如何？架构变动太大，还不敢上。</p>
+<p></p>2019-01-16</li><br><li><span>啊啊啊哦哦</span> 👍（6） 💬（3）<p>老师。最近公司在阿里云要用 一主多从。 我想问下阿里的。 select *from test for update 会定位到主库吗</p>2019-04-10</li><br><li><span>Dovelol</span> 👍（6） 💬（1）<p>老师好，有几个问题想请教下，
+1.如果不想有过期读，用等GTID的方案，那么每次查询都要有等GTID的相关操作，增加的这部分对性能有多少影响；
+2.我们用的读写分离proxy不支持等GTID，那是不是自己要在客户端实现这部分逻辑，等于读写分离的架构既用了proxy，又在客户端做了相关策略，感觉这方案更适合有能力自研proxy的公司啊；
+3.感觉目前大多数生产环境还是用的读主库这种方式避免过期读，如果只能用这种方案的话该怎么扩展mysql架构来避免主库压力太大呢。
+我们是项目上线很久然后加的读写分离，好多service层代码写的不好，可以读从库的sql被写到了事务中，这样会被proxy转到主库上读，所以导致主库负担了好多读的sql，感觉读写分离不仅对mysql这块要掌握，整体的代码结构上也要有所调整吧。</p>2019-01-16</li><br><li><span>晓杰</span> 👍（4） 💬（1）<p>看了判断主备无延迟这种方案，有个疑惑：
+读写分离的读应该是读从库的吧，为什么是去判断主备无延迟，而不是判断主从的无延迟
+</p>2019-06-15</li><br><li><span>IceGeek17</span> 👍（3） 💬（1）<p>老师，能不能分析下，如果去实现一个做读写分离的proxy，有哪些重要的点要考虑，比如：连接管理、流量分配管理、proxy自己的高可用，等等。
+因为老师原来的团队自己开发过proxy，肯定有相关的经验，也趟过很多坑，能不能从如何实现一个proxy需要考虑哪些关键点，在架构上做一个分析和梳理</p>2019-01-29</li><br><li><span>black_mirror</span> 👍（3） 💬（1）<p>林老师 您好
+请问mysql_session_track_get_fitst这个函数查询了官方资料都需要可以修改源码
+1.在不懂c++情况下，github上下载源码后怎么尝试简单编译使用，如图8代码
+2. mysql_session_track_get_fitst函数貌似没有python语言api，不会java，想在代码层面模拟整个过程，还有木有解决方法？</p>2019-01-21</li><br><li><span>ThinkingQuest</span> 👍（3） 💬（1）<p>楼上有人提到8小时自动断开连接的问题。 
+mysql中有wait_timeout和interactive_timeout两个参数。 
+</p><p>这俩参数挺容易混淆的，往上博客文章说的很多，但是不敢相信他们。
+官方的解释在这里：
+<a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout" target="_blank" rel="noopener noreferrer">https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout</a>
+<a href="https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout" target="_blank" rel="noopener noreferrer">https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout</a></p>
+<p>只说用这两个参数中的哪个，取决于客户端调用mysql_real_connect()的时候传递的options中是否使用了CLIENT_INTERACTIVE选项。</p>
+<p>但是很多做java开发的同学，想必并不知道JDBC的connector用的是哪一个。
+我倾向于认为是interactive_timeout。 mysql client cli大概是wait_timeout吧。
+其实做一个实验就可以知道结果。 但是不阅读mysql代码，大概不能理解mysql为什么设计这么两个timeout，是出于什么考虑的。</p>2019-01-17</li><br><li><span>涛哥哥</span> 👍（2） 💬（1）<p>老师，想问一下，主库用innodb引擎， 从库用 myisam可以吗？如果主库挂了，不准备用从库顶上来，建议这样用不同引擎吗？谢谢老师  😊😊</p>2019-03-17</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

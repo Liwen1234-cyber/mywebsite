@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">直播回顾-林晓斌：我的MySQL心路历程 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="直播回顾-林晓斌：我的MySQL心路历程 | Coisini"><meta data-rh="true" name="description" content="在专栏上线后的11月21日，我来到极客时间做了一场直播，主题就是“我的MySQL心路历程”。今天，我特意将这个直播的回顾文章，放在了专栏下面，希望你可以从我这些年和MySQL打交道的经历中，找到对你有所帮助的点。"><meta data-rh="true" property="og:description" content="在专栏上线后的11月21日，我来到极客时间做了一场直播，主题就是“我的MySQL心路历程”。今天，我特意将这个直播的回顾文章，放在了专栏下面，希望你可以从我这些年和MySQL打交道的经历中，找到对你有所帮助的点。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><p>在专栏上线后的11月21日，我来到极客时间做了一场直播，主题就是“我的MySQL心路历程”。今天，我特意将这个直播的回顾文章，放在了专栏下面，希望你可以从我这些年和MySQL打交道的经历中，找到对你有所帮助的点。</p>
+<p>这里，我先和你说一下，在这个直播中，我主要分享的内容：</p>
+<ol>
+<li>我和MySQL打交道的经历；</li>
+<li>你为什么要了解数据库原  理；</li>
+<li>我建议的MySQL学习路径；</li>
+<li>DBA的修炼之道。</li>
+</ol>
+<header><h1>我的经历</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="以丰富的经历进入百度">以丰富的经历进入百度<a href="#以丰富的经历进入百度" class="hash-link" aria-label="Direct link to 以丰富的经历进入百度" title="Direct link to 以丰富的经历进入百度">​</a></h2>
+<p>我是福州大学毕业的，据我了解，那时候我们学校的应届生很难直接进入百度，都要考到浙江大学读个研究生才行。没想到的是，我投递了简历后居然进了面试。</p>
+<p>入职以后，我跑去问当时的面试官，为什么我的简历可以通过筛选？他们说：“因为你的简历厚啊”。我在读书的时候，确实做了很多项目，也实习过不少公司，所以简历里面的经历就显得很丰富了。</p>
+<p>在面试的时候，有个让我印象很深刻的事儿。面试官问我说，你有这么多实习经历，有没有什么比较好玩儿的事？我想了想答道，跟你说个数据量很大的事儿 ，在跟移动做日志分析的时候我碰到了几千万行的数据。他听完以后就笑了。</p>
+<p>后来，我进了百度才知道，几千万行那都是小数据。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="开始尝试看源码解决问题">开始尝试看源码解决问题<a href="#开始尝试看源码解决问题" class="hash-link" aria-label="Direct link to 开始尝试看源码解决问题" title="Direct link to 开始尝试看源码解决问题">​</a></h2>
+<p>加入百度后，我是在贴吧做后端程序，比如权限系统等等。其实很简单，就是写一个C语言程序，响应客户端请求，然后返回结果。</p>
+<p>那个时候，我还仅仅是个MySQL的普通用户，使用了一段时间后就出现问题了：一个跑得很快的请求，偶尔会又跑得非常慢。老板问这是什么原因，而我又不好意思说不知道，于是 就自己上网查资料。</p>
+<p>但是，2008年那会儿，网上资料很少，花了挺长时间也没查出个所以然。最终，我只好去看源码。翻到源码，我当时就觉得它还蛮有意思的。而且，源码真的可以帮我解决一些问题。</p>
+<p>于是一发不可收拾，我从那时候就入了源码的“坑”。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="混社区分享经验">混社区分享经验<a href="#混社区分享经验" class="hash-link" aria-label="Direct link to 混社区分享经验" title="Direct link to 混社区分享经验">​</a></h2>
+<p>2010年的时候，阿里正好在招数据库的开发人员。虽然那时我还只是看得懂源码，没有什么开发经验，但还是抱着试试看的态度投了简历。然后顺利通过了面试，成功进入了阿里。之后，我就跟着褚霸（霸爷）干了7年多才离开了阿里。</p>
+<p>在百度的时候，我基本上没有参加过社区活动。因为那时候百度可能更提倡内部分享，解决问题的经验基本上都是在内网分享。所以，去了阿里以后，我才建了博客、开了微博。我在阿里的花名叫丁奇，博客、微博、社区也因此都是用的这个名字。</p>
+<h1>为什么要了解数据库原理？</h1>
+<p>这里，我讲几个亲身经历的事情，和你聊聊为什么要了解数据库原理。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="了解原理能帮你更好地定位问题">了解原理能帮你更好地定位问题<a href="#了解原理能帮你更好地定位问题" class="hash-link" aria-label="Direct link to 了解原理能帮你更好地定位问题" title="Direct link to 了解原理能帮你更好地定位问题">​</a></h2>
+<p>一次同学聚会，大家谈起了技术问题。一个在政府里的同学说，他们的系统很奇怪，每天早上都得重启一下应用程序，否则就提示连接数据库失败，他们都不知道该怎么办。</p>
+<p>我分析说，按照这个错误提示 ，应该就是连接时间过长了，断开了连接。数据库默认的超时时间是8小时，而你们平时六点下班，下班之后系统就没有人用了，等到第二天早上九点甚至十点才上班，这中间的时间已经超过10个小时了，数据库的连接肯定就会断开了。</p>
+<p>我当时说，估计这个系统程序写得比较差，连接失败也不会重连，仍然用原来断掉的连接，所以就报错了。然后，我让他回去把超时时间改得长一点。后来他跟我说，按照这个方法，问题已经解决了。</p>
+<p>由此，我也更深刻地体会到，作为开发人员，即使我们只知道每个参数的意思，可能就可以给出一些问题的正确应对方法。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="了解原理能让你更巧妙地解决问题">了解原理能让你更巧妙地解决问题<a href="#了解原理能让你更巧妙地解决问题" class="hash-link" aria-label="Direct link to 了解原理能让你更巧妙地解决问题" title="Direct link to 了解原理能让你更巧妙地解决问题">​</a></h2>
+<p>我在做贴吧系统的时候，每次访问页面都要请求一次权限。所以，这个请求权限的请求，访问概率会非常高，不可能每次都去数据库里查，怎么办呢？</p>
+<p>我想了个简单的方案：在应用程序里面开了个很大的内存，启动的时候就把整张表全部load到内存里去。这样再有权限请求的时候，直接从内存里取就行了。</p>
+<p>数据库重启时，我的进程也会跟着重启，接下来就会到数据表里面做全表扫描，把整个用户相关信息全部塞到内存里面去。</p>
+<p>但是，后来我遇到了一个很郁闷的情况。有时候MySQL 崩溃了，我的程序重新加载权限到内存里，结果这个select语句要执行30分钟左右。本来MySQL正常重启一下是很快的，进程重启也很快，正常加载权限的过程只需要两分钟就跑完了。但是，为什么异 常重启的时候就要30分钟呢？</p>
+<p>我没辙了，只好去看源码。然后，我发现MySQL有个机制，当它觉得系统空闲时会尽量去刷脏页。</p>
+<p>具体到我们的例子里，MySQL重启以后，会执行我的进程做全表扫描，但是因为这个时候权限数据还没有初始化完成，我的Server层不可能提供服务，于是MySQL里面就只有我那一个select全表扫描的请求，MySQL就认为现在很闲，开始拼命地刷脏页，结果就吃掉了大量的磁盘资源，导致我的全表扫描也跑得很慢。</p>
+<p>知道了这个机制以后，我就写了个脚本，每隔0.5秒发一个请求，执行一个简单的SQL查询，告诉数据库其实我现在很忙，脏页刷得慢一点。</p>
+<p>脚本一发布使用，脏页果然刷得慢了，加载权限的扫描也跑得很快了。据说我离职两年多以后，这个脚本还在用。</p>
+<p>你看，如果我们懂得一些参数，并可以理解这些参数，就可以做正确的设置了。而如果我们进一步地懂得一些原理，就可以更巧妙地解决问题了。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="看得懂源码让你有更多的方法">看得懂源码让你有更多的方法<a href="#看得懂源码让你有更多的方法" class="hash-link" aria-label="Direct link to 看得懂源码让你有更多的方法" title="Direct link to 看得懂源码让你有更多的方法">​</a></h2>
+<p>2012年的时候，阿里双十一业务的压力比较大。当时还没有这么多的SSD，是机械硬盘的时代。</p>
+<p>为了应对压力我们开始引入SSD，但是不敢把SSD直接当存储用，而是作为二级缓存。当时，我们用了一个叫作Flashcache的开源系统（现在已经是老古董级别了，不知道你有没有听过这个系统）。</p>
+<p>Flashcache实现，把SSD当作物理盘的二级缓存，可以提升性能。但是，我们自己部署后发现性能提升的效果没有预想的那么好，甚至还不如纯机 械盘。</p>
+<p>于是，我跟霸爷就开始研究。霸爷负责分析Flashcache的源码，我负责分析MySQL源码。后来我们发现Flashcache是有脏页比例的，当脏页比例到了80%就会停下来强行刷盘。</p>
+<p>一开始我们以为这个脏页比例是全部的20%，看了源码才知道，原来它分了很多个桶，比如说一个桶20M，这个桶如果用完80%，它就认为脏页满了，就开始刷脏页。这也就意味着，如果你是顺序写的话，很容易就会把一个桶写满。</p>
+<p>知道了这个原理以后，我就把日志之类顺序写的数据全都放到了机械硬盘，把随机写的数据放到了Flashcache上。这样修改以后，效果就好了。</p>
+<p>你看，如果能看得懂源码，你的操作行为就会不一样。</p>
+<h1>MySQL学习路径</h1>
+<p>说到MySQL的学习路径，其实我上面分享的这些内容，都可以归结为学习路径。</p>
+<p>首先你要会用，要去了解每个参数的意义，这样你的运维行为（使用行为）就会不一样。千万不要从网上拿了一些使用建议，别人怎么用，你就怎么用，而不去想为什么。再往后，就要去了解每个参数的实现原理。一旦你了解了这些原理，你的操作行为就会不一样。 再进一步，如果看得懂源码，那么你对数据库的理解也会不一样。</p>
+<p>再来讲讲我是怎么带应届生的。实践是很好的学习方式，所以我会让新人来了以后先搭主备，然后你就会发现每个人的自学能力都不一样。比如遇到有延迟，或者我们故意构造一个主备数据不一致的场景，让新人了解怎么分析问题，解决问题。</p>
+<p>如果一定要总结出一条学习路径的话，那首先要会<strong>用</strong>，然后可以<strong>发现问题</strong>。</p>
+<p>在专栏里面，我在每篇文章末尾，都会提出一个常见问题，作为思考题。这些问题都不会很难，是跟专栏文章挂钩、又是会经常遇到的  ，但又无法直接从文章里拿到答案。</p>
+<p>我的建议是，你可以尝试先不看答案自己去思考，或者去数据库里面翻一翻，这将会是一个不错的过程。</p>
+<p>再下一步就是<strong>实践</strong>。之后当你觉得开始有一些“线”的概念了，再去<strong>看MySQL的官方手册</strong>。在我的专栏里，有人曾问我要不要直接去看手册？</p>
+<p>我的建议是，一开始千万不要着急看手册，这里面有100多万个英文单词，你就算再厉害，也是看了后面忘了前面。所以，你一定要自己先有脉络，然后有一个知识网络，再看手册去查漏补缺。</p>
+<p>我自己就是这么一路走过来的。</p>
+<p>另外，在专栏的留言区，很多用户都希望我能推荐一本书搭配专栏学习。如果只推荐一本的话，我建议你读一下《高性能MySQL》这本书，它是MySQL这个领域的经典图书，已经出到第三版了，你可以想象一下它的流行度。</p>
+<p>这本书的其中两位译者（彭立勋、翟卫祥）是我原团队的小伙伴，有着非常丰富的MySQL源码开发经验，他们对MySQL的深刻理解，让这本书保持了跟原作英文版同样高的质量。</p>
+<p>极客时间的编辑说，他们已经和出版社沟通，为我们专栏的用户争取到了全网最低价，仅限3天，你可以直接<a href="time://mall?url=https%3A%2F%2Fh5.youzan.com%2Fv2%2Fgoods%2F27413vk03dzk8" target="_blank" rel="noopener noreferrer">点击链接</a>购买。<br>
+<img decoding="async" loading="lazy" src="/assets/images/cebd662dab97995a7718c4a38009cfc8-e815f4d8eaa78c39d03ccf8279125b11.png" width="1500" height="660" class="img_ev3q"></p>
+<h1>DBA的修炼</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dba和开发工程师有什么相同点">DBA和开发工程师有什么相同点？<a href="#dba和开发工程师有什么相同点" class="hash-link" aria-label="Direct link to DBA和开发工程师有什么相同点？" title="Direct link to DBA和开发工程师有什么相同点？">​</a></h2>
+<p>我带过开发团队，也带过DBA团队，所以可以分享一下这两个岗位的交集。</p>
+<p>其实，DBA本身要有些开发底子，比如说做运维系统的开发。另外，自动化程度越高，DBA的日常运维工作量就越少，DBA得去了解开发业务逻辑，往业务架构师这个方向去做。</p>
+<p>开发工程师也是一样，不能所有的问题都指望DBA来解决。因为，DBA在每个公司都是很少的几个人。所以，开发也需要对数据库原理有一定的了解，这样向DBA请教问题时才能更专业，更高效地解决问题。</p>
+<p>所以说，这两个岗位应该有一定程度的融合，即：开发要了解数据库原理，DBA要了解业务和开发。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="dba有前途吗">DBA有前途吗？<a href="#dba有前途吗" class="hash-link" aria-label="Direct link to DBA有前途吗？" title="Direct link to DBA有前途吗？">​</a></h2>
+<p>这里我要强调的是，每个岗位都有前途，只需要根据时代变迁稍微调整一下方向。</p>
+<p>像原来开玩笑说DBA要体力好，因为得搬服务器。后来DBA的核心技能成了会搭库、会主备切换，但是现在这些也不够用了，因为已经有了自动化系统。</p>
+<p>所以，DBA接下来一方面是要了解业务，做业务的架构师；另一方面，是要有前瞻性，做主动诊断系统，把每个业务的问题挑出来做成月报，让业务开发去优化，有不清楚的地方，开发同学会来找你咨询。你帮助他们做好了优化之后，可以把优化的指标呈现出来。这将很好地体现出你对于公司的价值。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="有哪些比较好的习惯和提高sql效率的方法">有哪些比较好的习惯和提高SQL效率的方法？<a href="#有哪些比较好的习惯和提高sql效率的方法" class="hash-link" aria-label="Direct link to 有  哪些比较好的习惯和提高SQL效率的方法？" title="Direct link to 有哪些比较好的习惯和提高SQL效率的方法？">​</a></h2>
+<p>这个方法，总结起来就是：要多写SQL，培养自己对SQL语句执行效率的感觉。以后再写或者建索引的时候，知道这个语句执行下去大概的时间复杂度，是全表扫描还是索引扫描、是不是需要回表，在心里都有一个大概的概念。</p>
+<p>这样每次写出来的SQL都会快一点，而且不容易犯低级错误。这也正式我开设这个专栏的目标。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="看源码需要什么技术">看源码需要什么技术？<a href="#看源码需要什么技术" class="hash-link" aria-label="Direct link to 看源码需要什么技术？" title="Direct link to 看源码需要什么技术？">​</a></h2>
+<p>看源码的话，一是要掌握C和C++；另外还要熟悉一些调试工具。因为代码是静态的，运行起来是动态的，看代码是单线程的，运行起来是多线程的，所以要会调试。</p>
+<p>另外，我不建议你用可视化的工具。虽然可视化工具很方便，但你不知道这个操作点下去以后，实际上做了什么，所以我建议你自己手写代码和SQL语句，这样对一些底层原理你会更明白。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="怎么学习cc">怎么学习C、C++？<a href="#怎么学习cc" class="hash-link" aria-label="Direct link to 怎么学习C、C++？" title="Direct link to 怎么学习C、C++？">​</a></h2>
+<p>我在读研究生的时候，在C和C++语言的学习上进步最大。</p>
+<p>那时，我去给专科上C和C++的课。我觉得自己已经会了，完全可以教得了。但去了之后，我才知道，自己会跟能够教别人完全是两码事儿。备课的时候，你不能只讲会用的部分，还得把原理讲清楚。这样，就会倒逼自己进行更深入更全面的学习。</p>
+<p>有的人看完技术博客和专栏，会把这篇文章的提纲列一下，写写自己的问题和对这篇文章的理解。这个过程，是非常利于学习的。因为你听进来是一回事儿，讲出去则是另一回事儿。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="学数据库要保持什么心态">学数据库要保持什么心态？<a href="#学数据库要保持什么心态" class="hash-link" aria-label="Direct link to 学数据库要保持什么心态？" title="Direct link to 学数据库要保持什么心态？">​</a></h2>
+<p>不只是数据库，所有多线程的服务，调试和追查问题的过程都是很枯燥的，遇到问题都会很麻烦。但是，你找出问题时的那一下会很爽。</p>
+<p>我觉得你得找到这种感觉，它可以支持你度过接下来要枯燥很久的那段时光，这样你才能继续坚持下去。</p>
+<p>当然，如果有更快乐的学习过程还是更好的，希望这个专栏能让你学习得轻松些。</p>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>liuq</span> 👍（37） 💬（1）<p>看了您的心路历程，我丧失了最后的一丝幻想，人与人的差距太大了，我意识到再怎么努力也达不到您刚毕业时的水平</p>2019-01-08</li><br><li><span>杰之7</span> 👍（27） 💬（1）<p>通过这一节的阅读老师的心路历程，给我的第一个感受是老师敢做，很多人包括我自己都是有退缩心理的，但阅读老师的文章，老师是勇往的在向前走。
+</p><p>阅读到后面，越来越能感受到老师文章讲述的计算机基础学科的重要性，这其中就会锻炼人的耐心和技术水准，在老师开发数据库做源码分析时，我想又何止C和C++呢。必定会涉及到计算机操作内存，文件等内容，还有其他一些内容等。</p>
+<p>对老师给的多写SQL，尽量少用界面软件，我也非常认同，也是我们熟悉Mysql的必经之路，可以让我们对数据底层的东西建立起我们的感觉，图形界面用多了会  让我们失去这项能力。</p>
+<p>不敢奢望最后能走多远，能有老师带着学习成长就值得。</p>
+<p></p>2019-01-14</li><br><li><span>Zzz</span> 👍（17） 💬（4）<p>林老师，关于贴吧系统权限脏页刷新的那个例子，有个疑问：既然“MySQL 里面就只有我那一个 select 全表扫描的请求“，为什么会有脏页呢？本来我想的是不是系统崩溃后MySQL在通过redo log恢复，但是恢复不是应该发在MySQL重启后，为select语句提供服务之前吗，它们应该已经刷新到磁盘了。那脏页是哪来的呢？</p>2019-01-22</li><br><li><span>滔滔</span> 👍（10） 💬（1）<p>老师，想问一个关于加锁的问题，在mysql中有很多种锁，比如意向锁，行锁，gap锁，页面锁等等，往往一条复杂的sql语句的执行过程中要加很多的锁，通常情况下，是否存在一个锁申请的队列，并发的事务都向这个队列中提出自己想加的锁的申请，然后引擎根据队列中的顺序依次加锁，还是说加锁过程是原子的一次完成的呢？比如说一个update语句走全表扫描，在rr隔离级别下，会对每一条记录加x锁以及gap锁，这些锁是一次性加上的吗？</p>2018-12-18</li><br><li><span>姚伟</span> 👍（8） 💬（1）<p>老师说的了解数据库原理就是要去读懂MySQL的源代码吗？</p>2018-12-18</li><br><li><span>geraltlaush</span> 👍（3） 💬（1）<p>老师，我还想问下有没有教程和书教人从零开始实现一个数据库引擎，能够包含基本的数据库原理，我以后想从事分布式存储方面的工作，特别想能自己上手实现一个简易的引擎，但是能力不够，想找个教程</p>2018-12-21</li><br><li><span>janey</span> 👍（2） 💬（3）<p>为什么没有测试怎么学MySQL？业务是MySQL紧耦合的，所以买了这门课，学到这一讲，有一些反复看了几遍，当时觉得懂了，再回头觉得需要分析的时候又忘了……主要接  触不到实际的业务，测试时除非客户反馈，太关注单个sql的性能的话对测试效率是不可接受的。边矛盾边学习……</p>2019-03-02</li><br><li><span>paul.yang</span> 👍（2） 💬（1）<p>老师问个问题，为什么写数据库用c或者c++,是其他语言gc的问题吗？</p>2019-02-03</li><br><li><span>ProgramGeek</span> 👍（2） 💬（1）<p>阅读丁奇老师的 MySQL 心路历程受益匪浅，那么2019 年第一个问题请教下丁奇老师，后续对 MySQL 2PC，3PC方面会做详细的讲解吗？在3PC场景中 MySQL 怎么保证数据的一致性？</p>2019-01-02</li><br><li><span>墨萧</span> 👍（2） 💬（2）<p>连接失败也不会重连，仍然用原来断掉的连接，所以就报错了。请问老师，怎么重连呢，我在连接url加上了&amp;autoReconnect=true ,好像不起作用啊
+</p>2018-12-19</li><br><li><span>力挽狂澜爆炸输出的臭臭宁</span> 👍（1） 💬（1）<p>老师有没有数据库原理的书籍推荐？与MySQL、oracel无关，就是纯粹的讲数据库最基本的原理，不同的数据模型等</p>2018-12-20</li><br><li><span>lzw</span> 👍（0） 💬（1）<p>林老师，关于MySQL datetime，timestamp这两个类型的区别在网上能查到很多，但是实际使用的原则却不清楚，能不能帮我解答下到底什么时候适合用哪个类型？</p>2019-01-11</li><br><li><span>StarkYanng</span> 👍（0） 💬（1）<p>老师您好，看了您的心路历程，有个关于MySQL高可用架构的问题想问下您。比如最简单的主从拓扑结构，您提到了有自动化系统，那这些系统都是各个公司内部自己开发的么？有无开源。因为我的毕设是关于这方面的，谢谢！</p>2019-01-03</li><br><li><span>William</span> 👍（0） 💬（1）<p>老师的专栏讲的很棒，
+对于我个来说也不是一次就能吃透的. 
+个人计划：都跟着进度看一遍之后，再重复去学习.
+</p>2018-12-25</li><br><li><span>geraltlaush</span> 👍（0） 💬（1）<p>老师，问下后面会不会讲mysql集群和分库分表的知识</p>2018-12-21</li><br>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#以丰富的经历进入百度" class="table-of-contents__link toc-highlight">以丰富的经历进入百度</a></li><li><a href="#开始尝试看源码解决问题" class="table-of-contents__link toc-highlight">开始尝试看源码解决问题</a></li><li><a href="#混社区分享经验" class="table-of-contents__link toc-highlight">混社区分享经验</a></li><li><a href="#了解原理能帮你更好地定位问题" class="table-of-contents__link toc-highlight">了解原理能帮你更好地定位问题</a></li><li><a href="#了解原理能让你更巧妙地解决问题" class="table-of-contents__link toc-highlight">了解原理能让你更巧妙地解决问题</a></li><li><a href="#看得懂源码让你有更多的方法" class="table-of-contents__link toc-highlight">看得懂源码让你有更多的方法</a></li><li><a href="#dba和开发工程师有什么相同点" class="table-of-contents__link toc-highlight">DBA和开发工程师有什么相同点？</a></li><li><a href="#dba有前途吗" class="table-of-contents__link toc-highlight">DBA有前途吗？</a></li><li><a href="#有哪些比较好的习惯和提高sql效率的方法" class="table-of-contents__link toc-highlight">有哪些比较好的习惯和提高SQL效率的方法？</a></li><li><a href="#看源码需要什么技术" class="table-of-contents__link toc-highlight">看源码需要什么技术？</a></li><li><a href="#怎么学习cc" class="table-of-contents__link toc-highlight">怎么学习C、C++？</a></li><li><a href="#学数据库要保持什么心态" class="table-of-contents__link toc-highlight">学数据库要保持什么心态？</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

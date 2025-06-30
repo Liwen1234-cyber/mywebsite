@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/MySQL为什么有时候会选错索引？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">MySQL为什么有时候会选错索引？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/MySQL为什么有时候会选错索引？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="MySQL为什么有时候会选错索引？ | Coisini"><meta data-rh="true" name="description" content="前面我们介绍过索引，你已经知道了在MySQL中一张表其实是可以支持多个索引的。但是，你写SQL语句的时候，并没有主动指定使用哪个索引。也就是说，使用哪个索引是由MySQL来确定的。"><meta data-rh="true" property="og:description" content="前面我们介绍过索引，你已经知道了在MySQL中一张表其实是可以支持多个索引的。但是，你写SQL语句的时候，并没有主动指定使用哪个索引。也就是说，使用哪个索引是由MySQL来确定的。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/MySQL为什么有时候会选错索引？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/MySQL为什么有时候会选错索引？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/MySQL为什么有时候会选错索引？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><p>前面我们介绍过索引，你已经知道了在MySQL中一张表其实是可以支持多个索引的。但是，你写SQL语句的时候，并没有主动指定使用哪个索引。也就是说，使用哪个索引是由MySQL来确定的。</p>
+<p>不知道你有没有碰到过这种情况，一条本来可以执行得很快的语句，却由于MySQL选错了索引，而导致执行速度变得很慢？</p>
+<p>我们一起来看一个例子吧。</p>
+<p>我们先建一个简单的表，表里有a、b两个字段，并分别建上索引：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">CREATE TABLE `t` (</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `a` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  `b` int(11) DEFAULT NULL,</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  PRIMARY KEY (`id`),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  KEY `a` (`a`),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  KEY `b` (`b`)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">) ENGINE=InnoDB;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>然后，我们往表t中插入10万行记录，取值按整数递增，即：(1,1,1)，(2,2,2)，(3,3,3) 直到(100000,100000,100000)。</p>
+<p>我是用存储过程来插入 数据的，这里我贴出来方便你复现：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">delimiter ;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">create procedure idata()</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">begin</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  declare i int;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  set i=1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  while(i&lt;=100000)do</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    insert into t values(i, i, i);</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    set i=i+1;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  end while;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">end;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">delimiter ;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">call idata();</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>接下来，我们分析一条SQL语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from t where a between 10000 and 20000;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>你一定会说，这个语句还用分析吗，很简单呀，a上有索引，肯定是要使用索引a的。</p>
+<p>你说得没错，图1显示的就是使用explain命令看到的这条语句的执行情况。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/2cfce769551c6eac9bfbee0563d48fe3-67a87c51d7a874b69c03328aef6d35db.png" width="1743" height="159" class="img_ev3q"></p>
+<p>图1 使用explain命令查看语句执行情况</p>
+<p>从图1看上去，这条查询语句的执行也确实符合预期，key这个字段值是’a’，表示优化器选择了索引a。</p>
+<p>不过别急，这个案例不会这么简单。在我们已经准备好的包含了10万行数据的表上，我们再做如下操作。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/1e5ba1c2934d3b2c0d96b210a27e1a1e-0ecaab7fbc21d1314e1d661e900edae6.png" width="936" height="344" class="img_ev3q"></p>
+<p>图2 session A和session B的执行流程</p>
+<p>这里，session A的操作你已经很熟悉了，它就是开启了一个事务。随后，session B把数据都删除后，又调用了 idata这个存储过程，插入了10万行数据。</p>
+<p>这时候，session B的查询语句select * from t where a between 10000 and 20000就不会再选择索引a了。我们可以通过慢查询日志（slow log）来查看一下具体的执行情况。</p>
+<p>为了说明优化器选择的结果是否正确，我增加了一个对照，即：使用force index(a)来让优化器强制使用索引a（这部分内容，我还会在这篇文章的后半部分中提到）。</p>
+<p>下面的三条SQL语句，就是这个实验过程。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">set long_query_time=0;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t where a between 10000 and 20000; /*Q1*/</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">select * from t force index(a) where a between 10000 and 20000;/*Q2*/</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>第一句，是将慢查询日志的阈值设置为0，表示这个线程接下来的语句都会被记录入慢查询日志中；</li>
+<li>第二句，Q1是session B原来的查询；</li>
+<li>第三句，Q2是加了force index(a)来和session B原来的查询语句执行情况对比。</li>
+</ul>
+<p>如图3所示是这三条SQL语句执行完成后的慢查询日志。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/7c58b9c71853b8bba1a8ad5e926de1f6-674f34dd31f12eed93c656eac96c29f6.png" width="1221" height="325" class="img_ev3q"></p>
+<p>图3 slow log结果</p>
+<p>可以看到，Q1扫描了10万行，显然是走了全表扫描，执行时间是40毫秒。Q2扫描了10001行，执行了21毫秒。也就是说，我们在没有使用force index的时候，MySQL用错了索引，导致了更长的执行时间。</p>
+<p>这个例子对应的是我们平常不断地删除历史数据和新增数据的场景。这时，MySQL竟然会选错索引，是不是有点奇怪呢？今天，我们就从这个奇怪的结果说起吧。</p>
+<header><h1>优化器的逻辑</h1></header>
+<p>在第一篇文章中，我们就提到过，选择索引是优化器的工作。</p>
+<p>而优化器选择索引的目的，是找到一个最优的执行方案，并用最小的代价去执行语句。在数据库里面，扫描行数是影响执行代价的因素之一。扫描的行数越少，意味着访问磁盘数据的次数越少，消耗的CPU资源越少。</p>
+<p>当然，扫描行数并不是唯一的判断标准，  优化器还会结合是否使用临时表、是否排序等因素进行综合判断。</p>
+<p>我们这个简单的查询语句并没有涉及到临时表和排序，所以MySQL选错索引肯定是在判断扫描行数的时候出问题了。</p>
+<p>那么，问题就是：<strong>扫描行数是怎么判断的？</strong></p>
+<p>MySQL在真正开始执行语句之前，并不能精确地知道满足这个条件的记录有多少条，而只能根据统计信息来估算记录数。</p>
+<p>这个统计信息就是索引的“区分度”。显然，一个索引上不同的值越多，这个索引的区分度就越好。而一个索引上不同的值的个数，我们称之为“基数”（cardinality）。也就是说，这个基数越大，索引的区分度越好。</p>
+<p>我们可以使用show index方法，看到一个索引的基数。如图4所示，就是表t的show index 的结果 。虽然这个表的每一行的三个字段值都是一样的，但是在统计信息中，这三个索引的基数值并不同，而且其实都不准确。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/16dbf8124ad529fec0066950446079d4-2284a32ff1954a0790285936147a2ef1.png" width="1850" height="209" class="img_ev3q"></p>
+<p>图4 表t的show index 结果</p>
+<p>那么，**MySQL是怎样得到索引的基数的呢？**这里，我给你简单介绍一下MySQL采样统计的方法。</p>
+<p>为什么要采样统计呢？因为把整张表取出来一行行统计，虽然可以得到精确的结果，但是代价太高了，所以只能选择“采样统计”。</p>
+<p>采样统计的时候，InnoDB默认会选择N个数据页，统计这些页面上的不同值，得到一个平均值，然后乘以这个索引的页面数，就得到了这个索引的基数。</p>
+<p>而数据表是会持续更新的，索引统计信息也不会固定不变。所以，当变更的数据行数超过1/M的时候，会自动触发重新做一次索引统计。</p>
+<p>在MySQL中，有两种存储索引统计的方式，可 以通过设置参数innodb_stats_persistent的值来选择：</p>
+<ul>
+<li>设置为on的时候，表示统计信息会持久化存储。这时，默认的N是20，M是10。</li>
+<li>设置为off的时候，表示统计信息只存储在内存中。这时，默认的N是8，M是16。</li>
+</ul>
+<p>由于是采样统计，所以不管N是20还是8，这个基数都是很容易不准的。</p>
+<p>但，这还不是全部。</p>
+<p>你可以从图4中看到，这次的索引统计值（cardinality列）虽然不够精确，但大体上还是差不多的，选错索引一定还有别的原因。</p>
+<p>其实索引统计只是一个输入，对于一个具体的语句来说，优化器还要判断，执行这个语句本身要扫描多少行。</p>
+<p>接下来，我们再一起看看优化器预估的，这两个语句的扫描行数是多少。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/e2bc5f120858391d4accff05573e1289-8fb2ea355a1057ab6fa06b0f22a34ff6.png" width="1606" height="382" class="img_ev3q"></p>
+<p>图5 意外的explain结果</p>
+<p>rows这个字段表示的是预计扫描行数。</p>
+<p>其中，Q1的结果还是符合预期的，rows的值是104620；但是Q2的rows值是37116，偏差就大了。而图1中我们用explain命令看到的rows是只有10001行，是这个偏差误导了优化器的判断。</p>
+<p>到这里，可能你的第一个疑问不是为什么不准，而是优化器为什么放着扫描37000行的执行计划不用，却选择了扫描行数是100000的执行计划呢？</p>
+<p>这是因为，如果使用索引a，每次从索引a上拿到一个值，都要回到主键索引上查出整行数据，这个代价优化器也要算进去的。</p>
+<p>而如果选择扫描10万行，是直接在主键索引上扫描的，没有额外的代价。</p>
+<p>优化器会估算这两个选择的代价，从结果看来，优化器认为直接扫描主键索引更快。当然，从执行时间看来，这个选择并不是最优的。</p>
+<p>使用普通索引需要把  回表的代价算进去，在图1执行explain的时候，也考虑了这个策略的代价 ，但图1的选择是对的。也就是说，这个策略并没有问题。</p>
+<p>所以冤有头债有主，MySQL选错索引，这件事儿还得归咎到没能准确地判断出扫描行数。至于为什么会得到错误的扫描行数，这个原因就作为课后问题，留给你去分析了。</p>
+<p>既然是统计信息不对，那就修正。analyze table t 命令，可以用来重新统计索引信息。我们来看一下执行效果。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/209e9d3514688a3bcabbb75e54e1e49c-4e2839aeea3c01eee301e2d7455931a2.png" width="1736" height="397" class="img_ev3q"></p>
+<p>图6 执行analyze table t 命令恢复的explain结果</p>
+<p>这回对了。</p>
+<p>所以在实践中，如果你发现explain的结果预估的rows值跟实际情况差距比较大，可以采用这个方法来处理。</p>
+<p>其实，如果只是索引统计不准确，通过analyze命令可以解决很多问题，但是前面我们说了，优化器可不止是看扫描行数。</p>
+<p>依然是基于这个表t，我们看看另外一个语句：</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from t where (a between 1 and 1000)  and (b between 50000 and 100000) order by b limit 1;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>从条件上看，这个查询没有符合条件的记录，因此会返回空集合。</p>
+<p>在开始执行这条语句之前，你可以先设想一下，如果你来选择索引，会选择哪一个呢？</p>
+<p>为了便于分析，我们先来看一下a、b这两个索引的结构图。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/1d037f92063e800c3bfff3f4dbf1a2b9-4bf8993dbad15686988296b26e88107d.png" width="1142" height="856" class="img_ev3q"></p>
+<p>图7 a、b索引的结构图</p>
+<p>如果使用索引a进行查询，那么就是扫描索引a的前1000个值，然后取到对应的id，再到主键索引上去查出每一行，然后根据字段b来过滤。显然这样需要扫描1000行。</p>
+<p>如果使用索引b进行查询，那么就是扫描索引b的最后50001个值，与上面的执行过程相同，也是需要回到主键索引上取值再判断，所以需要扫描50001行。</p>
+<p>所以你一定会想，如果使用索引a的话，执行速度明显会快很多。那么，下面我们就来看看到底是不是这么一回事儿。</p>
+<p>图8是执行explain的结果。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; explain select * from t where (a between 1 and 1000) and (b between 50000 and 100000) order by b limit 1;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" src="/assets/images/483bcb1ef3bb902844e80d9cbdd73ab8-5a49ecc206d3c20e98e9f7beb485e176.png" width="1891" height="163" class="img_ev3q"></p>
+<p>图8 使用explain方法查看执行计划 2</p>
+<p>可以看到，返回结果中key字段显示，这次优化器选择了索引b，而rows字段显示需要扫描的行数是50198。</p>
+<p>从这个结果中，你可以得到两个结论：</p>
+<ol>
+<li>扫描行数的估计值依然不准确；</li>
+<li>这个例子里MySQL又选错了索引。</li>
+</ol>
+<h1>索引选择异常和处理</h1>
+<p>其实大多数时候优化器都能找到正确的索引，但偶尔你还是会碰到我们上面举例的这两种情况：原本可以执行得很快的SQL语句，执行速度却比你预期的慢很多，你应该怎么办呢？</p>
+<p>**一种方法是，像我们第一个例子一样，采用force index强行选择一个索引。**MySQL会根据词法解析的结果分析出可能可以使用的索引作为候选项，然后在候选列表中依次判断每个索引需要扫描多少行。如果force index指定的索引在候选索引列表中，就直接选择这个索引，不再评估其他索引的执行代价。</p>
+<p>我们来看看第二个例子。刚开始分析时，我们认为选择索引a会更好。现在，我们就来看看执行效果：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/9582401a6bed6cb8fd803c9555750b54-50db67132cb4dc47a5304a383cf8dc46.png" width="1235" height="115" class="img_ev3q"></p>
+<p>图9 使用不同索引的语句执行耗时</p>
+<p>可以看到，原本语句需要执行2.23秒，而当你使用force index(a)的时候，只用了0.05秒，比优化器的选择快了40多倍。</p>
+<p>也就是说，优化器没有选择正确的索引，force index起到了“矫正”的作用。</p>
+<p>不过很多程序员不喜欢使用force index，一来这么写不优美，二来如果索引改了名字，这个语句也得改，显得很麻烦。而且如果以后迁移到别的数据库的话，这个语法还可能会不兼容。</p>
+<p>但其实使用force index最主要的问题还是变更的及时性。因为选错索引的情况还是比较少出现的，所以开发的时候通常不会先写上force index。而是等到线上出现问题的时候，你才会再去修改SQL语句、加上force index。但是修改之后还要测试和发布，对于生产系统来说，这个过程不够敏捷。</p>
+<p>所以，数据库的问题最好还是在数据库内部来解决。那么，在数据库里面该怎样解决呢？</p>
+<p>既然优化器放弃了使用索引a，说明a还不够合适，所以**第二种方法就是，我们可以考虑修改语句，引导MySQL使用我们期望的索引。**比如，在这个例子里，显然把“order by b limit 1” 改成 “order by b,a limit 1” ，语义的逻辑是相同的。</p>
+<p>我们来看看改之后的效果：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/14cd598e52a2b72dd334a42603e5b894-96219115d19c114152b04309ec02225a.png" width="1623" height="146" class="img_ev3q"></p>
+<p>图10 order by b,a limit 1 执行结果</p>
+<p>之前优化器选择使用索引b，是因为它认为使用索引b可以避免排序（b本身是索引，已经是有序的了，如果选择索引b的话，不需要再做排序，只需要遍历），所以即使扫描行数多，也判定为代价更小。</p>
+<p>现在order by b,a 这种写法，要求按照b,a排 序，就意味着使用这两个索引都需要排序。因此，扫描行数成了影响决策的主要条件，于是此时优化器选了只需要扫描1000行的索引a。</p>
+<p>当然，这种修改并不是通用的优化手段，只是刚好在这个语句里面有limit 1，因此如果有满足条件的记录， order by b limit 1和order by b,a limit 1 都会返回b是最小的那一行，逻辑上一致，才可以这么做。</p>
+<p>如果你觉得修改语义这件事儿不太好，这里还有一种改法，图11是执行效果。</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mysql&gt; select * from  (select * from t where (a between 1 and 1000)  and (b between 50000 and 100000) order by b limit 100)alias limit 1;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" src="/assets/images/b1a2ad43c78477d7f93dbc692cbaa0d7-b07a4805e8e25aace2aa54f48aaee268.png" width="1824" height="165" class="img_ev3q"></p>
+<p>图11 改写SQL的explain</p>
+<p>在这个例子里，我们用limit 100让优化器意识到，使用b索引代  价是很高的。其实是我们根据数据特征诱导了一下优化器，也不具备通用性。</p>
+<p><strong>第三种方法是，在有些场景下，我们可以新建一个更合适的索引，来提供给优化器做选择，或删掉误用的索引。</strong></p>
+<p>不过，在这个例子中，我没有找到通过新增索引来改变优化器行为的方法。这种情况其实比较少，尤其是经过DBA索引优化过的库，再碰到这个bug，找到一个更合适的索引一般比较难。</p>
+<p>如果我说还有一个方法是删掉索引b，你可能会觉得好笑。但实际上我碰到过两次这样的例子，最终是DBA跟业务开发沟通后，发现这个优化器错误选择的索引其实根本没有必要存在，于是就删掉了这个索引，优化器也就重新选择到了正确的索引。</p>
+<h1>小结</h1>
+<p>今天我们一起聊了聊索引统计的更新机制，并提到了优化器存在选错索引的可能性。</p>
+<p>对于由于索引统计信息不准确导致的问题，你可以用analyze table来解决。</p>
+<p>而对于其他优化器误判的情况，你可以在应用端用force index来强行指定索引，也可以通过修改语句来引导优化器，还可以通过增加或者删除索引来绕过这个问题。</p>
+<p>你可能会说，今天这篇文章后面的几个例子，怎么都没有展开说明其原理。我要告诉你的是，今天的话题，我们面对的是MySQL的bug，每一个展开都必须深入到一行行代码去量化，实在不是我们在这里应该做的事情。</p>
+<p>所以，我把我用过的解决方法跟你分享，希望你在碰到类似情况的时候，能够有一些思路。</p>
+<p>你平时在处理MySQL优化器bug的时候有什么别的方法，也发到评论区分享一下吧。</p>
+<p>最后，我给你留下一个思考题。前面我们在构造第一个例子的过程中，通过session A的配合，让session B删除数据后又重新插入了一遍数据，然后就发现explain结果中，rows字段从10001变成37000多。</p>
+<p>而如果没有session A的配合，只是单独执行delete from t 、call idata()、explain这三句话，会看到rows字段其实还是10000左右。你可以自己验证一下这个结果。</p>
+<p>这是什么原因呢？也请你分析一下吧。</p>
+<p>你可以把你的分析结论写在留言区里，我会在下一篇文章的末尾和你讨论这个问题。感谢你的收听，也欢迎你把这篇文章分享给更多的朋友一起阅读。</p>
+<h1>上期问题时间</h1>
+<p>我在上一篇文章最后留给你的问题是，如果某次写入使用了change buffer机制，之后主机异常重启，是否会丢失change buffer和数据。</p>
+<p>这个问题的答案是不会丢失，留言区的很多同学都回答对了。虽然是只更新内存，但是在事务提交的时候，我们把change buffer的操作也记录到redo log里了，所以崩溃恢复的时候，change buffer也能找回来。</p>
+<p>在评论区有同学问到，merge的过程是否会把数据直接写回磁盘，这是个好问题。这里，我再为你分析一下。</p>
+<p>merge的执行流程是这样的：</p>
+<ol>
+<li>从磁盘读入数据页到内存（老版本的数据页）；</li>
+<li>从change buffer里找出这个数据页的change buffer 记录(可能有多个），依次应用，得到新版数据页；</li>
+<li>写redo log。这个redo log包含了数据的变更和change buffer的变更。</li>
+</ol>
+<p>到这里merge过程就结束了。这时候，数据页和内存中change buffer对应的磁盘位置都还没有修改，属于脏页，之后各自刷回自己的物理数据，就是另外一个过程了。</p>
+<p>评论区留言点赞板：</p>
+<blockquote>
+<p>@某、人 把02篇的redo log更新细节和change buffer的更新串了起来；<br>
+@Ivan 回复了其他同学的问题，并联系到Checkpoint机制；<br>
+@约书亚 问到了merge和redolog的关系。</p>
+</blockquote>
+<div><strong>精选留言（15）</strong></div><ul>
+<li><span>路过</span> 👍（37） 💬（7）<p>老师，关于本章中的“基数”（cardinality）问题。既然已经为列a创建了索引，即有专门的数据页存放索引。遍历索引是很快的，从而得到“基数”的值应该很快呀。为何要到原始的数据页中，找N页，统计上面不同的值呢？有点多此一举啊。如果这样操作，会导致信息不准确，比如本来一个页中有50条数据，后来其中20条数据被删除了，空间没有被释放，这导致统计的信息就发生偏差。基数信息就更不准确了。
+从原始页中计算“基数”，是不是考虑到索引页中的数据具有滞后性，即更新了表中数据，要过一会才更新索引页？
+请老师指正，谢谢！
+</p>2018-12-05</li><br><li><span>某、人</span> 👍（74） 💬（3）<p>今天这个问题不是特别明白为什么。session A开启了一致性读,session B delete或者insert,之前记录都已经放进了undo了。二级索引的记录也写进了redo和change buffer,应该说删除了索引页也不影响session A的重复读。估计是开启了一致性读之后,在这个事务执行期间,不能释放空间,导致统计信息变大。还是需要老师解释下具体的细节
+</p><p>今天有两个问题,想请教下老师
+1.我的理解是由于B是查找(50000,100000),由于B+树有序,通过二分查找找到b=50000的值,从50000往右扫描,一条一条回表查数据,在执行器上做where a(1,1000)的筛选,然后做判断是否够不够limit的数,够就结束循环。由于这里b(50000,100000)必然不存在a(1,1000),所以需要扫描5W行左右.但是如果把a改为(50001,51000),扫描行数没有变。那么是因为优化器给的扫描行数有问题还是执行器没有结束循环？为什么不结束循环?
+(好像rows能直观展示limit起作用,必须在执行器上过滤数据,不能在索引上过滤数据,不知道为什么这样设计)</p>
+<p>2.假设b上数据是会有很多重复的数据,b的最大值也存在 多行重复
+select * from t where (a between 1 and 1000) and (b between 50000 and 100000) order by b desc limit 1;
+这里倒序去扫描b索引树,选取的是b值最大,id值为一个固定值(既不最大也不最小)
+select * from t force index(a) where (a between 1 and 1000) and (b between 50000 and 100000) order by b desc limit 1;
+由于这里选取的是a索引,排序不能用到索引,只能用优化排序.选取的是b值最大,id值最小那一行
+这就是典型的两条相同的sql,但是索引选择的不同,出现的数据不一致。
+所以如果是order by b,a就可以避免这种情况的引起的不一致,也可以避免堆排序造成的不一致
+但是如果是asc没有出现这种情况。这里出现不一致,应该还不是由于堆排序造成的。这是什么原因造成的？</p>2018-12-05</li><br><li><span>bowenz</span> 👍（15） 💬（7）<p>在5.7.21 percona 版本实验，未出现案例1的情况 。
+dev02&gt; select @@global.tx_isolation,@@tx_isolation,version(),&quot;session A&quot;;
++-----------------------+-----------------+---------------+-----------+
+| @@global.tx_isolation | @@tx_isolation  | version()     | session A |
++-----------------------+-----------------+---------------+-----------+
+| REPEATABLE-READ       | REPEATABLE-READ | 5.7.21-20-log | session A |
++-----------------------+-----------------+---------------+-----------+
+dev02&gt; start transaction with consistent snapshot;
+Query OK, 0 rows affected (0.00 sec)
+dev02&gt; commit;
+Query OK, 0 rows affected (0.00 sec)
+dev02&gt; select now() ;
++---------------------+
+| now()               |
++---------------------+
+| 2018-12-04 22:03:48 |
++---------------------+
+1 row in set (0.00 sec)
+dev02&gt; select @@global.tx_isolation,@@tx_isolation,version(),&quot;session B&quot;;
++-----------------------+-----------------+---------------+-----------+
+| @@global.tx_isolation | @@tx_isolation  | version()     | session B |
++-----------------------+-----------------+---------------+-----------+
+| REPEATABLE-READ       | REPEATABLE-READ | 5.7.21-20-log | session B |
++-----------------------+-----------------+---------------+-----------+
+1 row in set, 2 warnings (0.00 sec)</p>
+<p>dev02&gt; delete from t;
+Query OK, 100000 rows affected (0.51 sec)</p>
+<p>dev02&gt; call idata();
+Query OK, 1 row affected (2 min 38.34 sec)</p>
+<p>dev02&gt; select now();
++---------------------+
+| now()               |
++---------------------+
+| 2018-12-04 22:03:58 |
++---------------------+
+1 row in set (0.00 sec)</p>
+<p>dev02&gt; explain select * from t where a between 10000 and 20000;
+| id | select_type | table | partitions | type  | possible_keys | key  | key_len | ref  | rows  | filtered | Extra                 |
+|  1 | SIMPLE      | t     | NULL       | range | a             | a    | 5       | NULL | 10001 |   100.00 | Using index condition |</p>2018-12-05</li><br><li><span>某、人</span> 👍（369） 💬（21）<p>趁着答案公布之前的最后时间,再来尝试性答一下这个题
+1.为什么没有session A,session B扫描的行数是1W
+由于mysql是使用标记删除来删除记录的,并不从索引和数据文件中真正的删除。
+如果delete和insert中间的间隔相对较小,purge线程还没有来得及清理该记录。
+如果主键相同的情况下,新插入的insert会沿用之前删除的delete的记录的空间。
+由于相同的数据量以及表大小,所以导致了统计信息没有变化
+2.为什么开启了session A,session B扫描行数变成3W
+由于session A开启了一致性读,目的为了保证session A的可重复读,insert只能
+另起炉灶,不能占用delete的空间。所以出现的情况就是delete虽然删除了,但是
+未释放空间,insert又增加了空间。导致统计信息有误</p>2018-12-06</li><br><li><span>Ying</span> 👍（71） 💬（13）<p>现学现用 今天有个500万的表 分页查询特别慢。
+select * from table where create_time and create_time&gt;=时间戳 and  create_time&lt;=时间戳
+and subtype=&#x27;xx&#x27; and type=&#x27;xx&#x27; and company_id =x order by create_time limited 90,30 ;
+已经建立了组合索引 union_index包括字段 create_time subtype  type company_id
+但是 explain 发现竟然走了create_time 的索引
+语句里加了一个use index(union_index) ，立马好了
+真正的解决了客户的实际问题啊。 感谢老师</p>2018-12-05</li><br><li><span>梁中华</span> 👍（52） 💬（17）<p>假如要查 A in () AND B in (), 怎么建索引?</p>2019-02-01</li><br><li><span>斜面镜子 Bill</span> 👍（51） 💬（4）<p>问题的思考：
+我理解 session A 开启的事务对 session B的delete操作后的索引数据的统计时效产生了影响，因为需要保证事务A的重复读，在数据页没有实际删除，而索引的统计选择了N个数据页，这部分数据页不收到前台事务的影响，所以整体统计值会变大，直接影响了索引选择的准确性；</p>2018-12-05</li><br><li><span>geraltlaush</span> 👍（43） 💬（12）<p>公司测试机器IO性能太差，插十万条要27分钟，做这个文章的实验要1个小时以上</p>2018-12-05</li><br><li><span>沉浮</span> 👍（37） 💬（1）<p>图十下面第二段
+现在 limit b,a 这种写法，要求按照 b,a 排序，就意味着使用这两个索引都需要排序。
+应该是order by b,a吧
+另外有个问题请教林老师，根据经验大表增加索引的时候比较慢，这个是理解的，但是删除索引的时候能做到秒删，这个什么原理呢？</p>2018-12-05</li><br><li><span>张永志</span> 👍（33） 💬（10）<p>merge那段的解释明白了change buffer操作逻辑。即change buffer变化与数据块变化是分开的，最初redo中记录的只是change buffer的变更，因为还未应用到数据块上。而merge后redo记录的是数据块、change buffer的变更。
+是这样吧？😄</p>2018-12-05</li><br><li><span>XD</span> 👍（32） 💬（1）<p>谢谢老师的解答，我之前一直以为这个操作也是在存储层进行的。
+那执行器调用存储层的接口是不是只能获取到最原始的数据，后续的加工，比如order，join和group操作也都是在执行器里进行的吗？对应的buffer和内存临时表也都  是server层的东西？</p>2019-02-26</li><br><li><span>kevin</span> 👍（21） 💬（1）<p>老师你好。我用存储过程插入100000条数据特别慢，后来我set autocommit=0,每1000条才commit，这样就快了。我想不出来这是为什么，求解惑</p>2018-12-05</li><br><li><span>蚂蚁内推+v</span> 👍（19） 💬（4）<p>老师，原文中：在这个例子里，我们用 limit 100 让优化器意识到，使用b索引代价是很高的。
+问题：为什么limit 100时候，使用b索引代价高呢？和limit 1相比，赶紧没有什么质的变化啊</p>2018-12-08</li><br><li><span>EAGLE</span> 👍（19） 💬（3）<p>老师，看了一篇文章说innodb如果不加order by默认是按照主键排序的。也就是说如果不加order by，查询结果也是有一定次序的。那么如果没有业务需求，纯粹只是为了分页显示数据，不加order by也是可以的吗？</p>2018-12-06</li><br><li><span>Laputa</span> 👍（17） 💬（3）<p>老师，redo log 是实时写入磁盘的吗？是不是还有一层所谓的“redo log buffer”？</p>2018-12-05</li><br><p></p>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

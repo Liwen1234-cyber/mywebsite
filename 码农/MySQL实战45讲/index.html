@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/MySQL实战45讲/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">MySQL实战45讲 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/MySQL实战45讲/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="MySQL实战45讲 | Coisini"><meta data-rh="true" name="description" content="MySQL 使用和面试中遇到的问题，很多人会通过搜索别人的经验来解决 ，零散不成体系。实际上只要理解了 MySQL 的底层工作原理，就能很快地直戳问题的本质。"><meta data-rh="true" property="og:description" content="MySQL 使用和面试中遇到的问题，很多人会通过搜索别人的经验来解决 ，零散不成体系。实际上只要理解了 MySQL 的底层工作原理，就能很快地直戳问题的本质。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/MySQL实战45讲/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/MySQL实战45讲/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.7a8d0c02.js" defer="defer"></script>
+<script src="/assets/js/main.8997bfd7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>MySQL实战45讲</h1></header>
+<p>MySQL 使用和面试中遇到的问题，很多人会通过搜索别人的经验来解决 ，零散不成体系。实际上只要理解了 MySQL 的底层工作原理，就能很快地直戳问题的本质。</p>
+<p>本专栏一共 <strong>45</strong> 讲，<strong>全集</strong>更新完毕，通过探讨 MySQL 实战中最常见的 <strong>36 个</strong> 痛点问题，串起各个零散的知识点，配合 <strong>100+</strong> 手绘详解图，由线到面带你构建 MySQL 系统的学习路径。</p>
+<p>在专栏中，丁奇结合自己十多年来，通过 MySQL 源码找答案的经历，梳理了 <strong>MySQL 的主线知识</strong>，比如<strong>事务、索引、锁</strong>等；并基于这条主线，带你缕清<strong>概念、机制、原理、案例分析</strong>以及本质，让你真正能掌握 <strong>MySQL 核心技术与底层原理。</strong></p>
+<p>值得一提的是，每篇文章中都附有<strong>实践案例</strong>，给你从理论到实战的系统性指导，让你少走弯路，彻底搞懂 MySQL。</p>
+<p>本课程共包括两大模块。</p>
+<p><strong>模块一，基础篇</strong>。为你深入浅出地讲述 MySQL 核心知识，涵盖 MySQL 基础架构、日志系统、事务隔离、锁等内容。</p>
+<p><strong>模块二，实践篇</strong>。将从一个个关键的数据库问题出发，分析数据库原理，并给出实践指导。每个问题，都不只是简单地给出答案，而是从为什么要这么想、到底该怎样做出发，让你能够知其所以然，都将能够解决你平时工作中的一个疑惑点。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="目录">目录<a href="#目录" class="hash-link" aria-label="Direct link to 目录" title="Direct link to 目录">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="基础篇">基础篇<a href="#基础篇" class="hash-link" aria-label="Direct link to 基础篇" title="Direct link to 基础篇">​</a></h3>
+<ol>
+<li><a href="/码农/MySQL实战45讲/开篇词-这一次，让我们一起来搞懂MySQL/">开篇词-这一次，让我们一起来搞懂MySQL</a></li>
+<li><a href="/码农/MySQL实战45讲/基础架构：一条SQL查询语句是如何执行的？/">01-基础架构：一条SQL查询语句是如何执行的？</a></li>
+<li><a href="/码农/MySQL实战45讲/日志系统：一条SQL更新语句是如何执行的？/">02-日志系统：一条SQL更新语句是如何执行 的？</a></li>
+<li><a href="/码农/MySQL实战45讲/事务隔离：为什么你改了我还看不见？/">03-事务隔离：为什么你改了我还看不见？</a></li>
+<li><a href="/码农/MySQL实战45讲/深入浅出索引（上）/">04-深入浅出索引（上）</a></li>
+<li><a href="/码农/MySQL实战45讲/深入浅出索引（下）/">05-深入浅出索引（下）</a></li>
+<li><a href="/码农/MySQL实战45讲/全局锁和表锁：给表加个字段怎么有这么多阻碍？/">06-全局锁和表锁：给表加个字段怎么有这么多阻碍？</a></li>
+<li><a href="/码农/MySQL实战45讲/行锁功过：怎么减少行锁对性能的影响？/">07-行锁功过：怎么减少行锁对性能的影响？</a></li>
+<li><a href="/码农/MySQL实战45讲/事务到底是隔离的还是不隔离的？/">08-事务到底是隔离的还是不隔离的？</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="实践篇">实践篇<a href="#实践篇" class="hash-link" aria-label="Direct link to 实践篇" title="Direct link to 实践篇">​</a></h3>
+<ol start="10">
+<li><a href="/码农/MySQL实战45讲/普通索引和唯一索引，应该怎么选择？/">09-普通索引和唯一索引，应该怎么选择？</a></li>
+<li><a href="/码农/MySQL实战45讲/MySQL为什么有时候会选错索引？/">10-MySQL为什么有时候会选错索引？</a></li>
+<li><a href="/码农/MySQL实战45讲/怎么给字符串字段加索引？/">11-怎么给字符串字段加索引？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么我的MySQL会抖一下？/">12-为什么我的MySQL会&quot;抖&quot;一下？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么表数据删掉一半，表文件大小不变？/">13-为什么表数据删掉一半，表文件大小不变？</a></li>
+<li><a href="/码农/MySQL实战45讲/count(_)这么慢，我该怎么办？/">14-count(*)这么慢，我该怎么办？</a></li>
+<li><a href="/码农/MySQL实战45讲/答疑文章（一）：日志和索引相关问题/">15-答  疑文章（一）：日志和索引相关问题</a></li>
+<li><a href="/码农/MySQL实战45讲/order_by是怎么工作的？/">16-order by是怎么工作的？</a></li>
+<li><a href="/码农/MySQL实战45讲/如何正确地显示随机消息？/">17-如何正确地显示随机消息？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么这些SQL语句逻辑相同，性能却差异巨大？/">18-为什么这些SQL语句逻辑相同，性能却差异巨大？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么我只查一行的语句，也执行这么慢？/">19-为什么我只查一行的语句，也执行这么慢？</a></li>
+<li><a href="/码农/MySQL实战45讲/幻读是什么，幻读有什么问题？/">20-幻读是什么，幻读有什么问题？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么我只改一行的语句，锁这么多？/">21-为什么我只改一行的语句，锁这么多？</a></li>
+<li><a href="/码农/MySQL实战45讲/MySQL有哪些饮鸩止渴提高性能的方法？/">22-MySQL有哪些&quot;饮鸩止渴&quot;提高性能的方法？</a></li>
+<li><a href="/码农/MySQL实战45讲/MySQL是怎么保证数据不丢的？/">23-MySQL是怎么保证数据不丢的？</a></li>
+<li><a href="/码农/MySQL实战45讲/MySQL是怎么保证主备一致的？/">24-MySQL是怎么保证主备一致的？</a></li>
+<li><a href="/码农/MySQL实战45讲/MySQL是怎么保证高可用的？/">25-MySQL是怎么保证高可用的？</a></li>
+<li><a href="/码农/MySQL实战45讲/备库为什么会延迟好几个小时？/">26-备库为什么会延迟好几个小时？</a></li>
+<li><a href="/码农/MySQL实战45讲/主库出问题了，从库怎么办？/">27-主库出问题了，从库怎么办？</a></li>
+<li><a href="/码农/MySQL实战45讲/读写分离有哪些坑？/">28-读写分离有哪些坑？</a></li>
+<li><a href="/码农/MySQL实战45讲/如何判断一个数据库是不是出问题了？/">29-如何判断一个数据库是不是出问题了？</a></li>
+<li><a href="/码农/MySQL实战45讲/答疑文章（二）：用动态的观点看加锁/">30-答疑文章（二）：用动态的观点看加锁</a></li>
+<li><a href="/码农/MySQL实战45讲/误删数据后除了跑路，还能怎么办？/">31-误删数据后除了跑路，还能怎么办？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么还有kill不掉的语句？/">32-为什么还有kill不掉的语句？</a></li>
+<li><a href="/码农/MySQL实战45讲/我查这么多数据，会不会把数据库内存打爆？/">33-我查这么多数据，会不会把数据库内存打爆？</a></li>
+<li><a href="/码农/MySQL实战45讲/到底可不可以使用join？/">34-到底可不可以使用join？</a></li>
+<li><a href="/码农/MySQL实战45讲/join语句怎么优化？/">35-join语句怎么优化？</a></li>
+<li><a href="/码农/MySQL实战45讲/为什么临时表可以重名？/">36-为什么临时表可以重名？</a></li>
+<li><a href="/码农/MySQL实战45讲/什么时候会使用内部临时表？/">37-什么时候会使用内部临时表？</a></li>
+<li><a href="/码农/MySQL实战45讲/都说InnoDB好，那还要不要使用Memory引擎？/">38-都说InnoDB好，那还要不要使用Memory引擎？</a></li>
+<li><a href="/码农/MySQL实战45讲/自增主键为什么不是连续的？/">39-自增主键为什么不是连续的？</a></li>
+<li><a href="/码农/MySQL实战45讲/insert语句的锁为什么这么多？/">40-insert语句的锁为什么这么多？</a></li>
+<li><a href="/码农/MySQL实战45讲/怎么最快地复制一张表？/">41-怎么最快地复制一张表？</a></li>
+<li><a href="/码农/MySQL实战45讲/grant之后要跟着flush_privileges吗？/">42-grant之后要跟着flush privileges吗？</a></li>
+<li><a href="/码农/MySQL实战45讲/要不要使用分区表？/">43-要不要使用分区表？</a></li>
+<li><a href="/码农/MySQL实战45讲/答疑文章（三）：说一说这些好问题/">44-答疑文章（三）：说一说这些好问题</a></li>
+<li><a href="/码农/MySQL实战45讲/自增id用完怎么办？/">45-自增id用完怎么办？</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="补充内容">补充内容<a href="#补充内容" class="hash-link" aria-label="Direct link to 补充内容" title="Direct link to 补充内容">​</a></h3>
+<ul>
+<li><a href="/码农/MySQL实战45讲/直播回顾-林晓斌：我的MySQL心路历程/">直播回顾-林晓斌：我的MySQL心路历程</a></li>
+<li><a href="/码农/MySQL实战45讲/结束语-点线网面，一起构建MySQL知识网络/">结束语-点线网面，一起构建MySQL知识网络</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#目录" class="table-of-contents__link toc-highlight">目录</a><ul><li><a href="#基础篇" class="table-of-contents__link toc-highlight">基础篇</a></li><li><a href="#实践篇" class="table-of-contents__link toc-highlight">实践篇</a></li><li><a href="#补充内容" class="table-of-contents__link toc-highlight">补充内容</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
