@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">如何获得高并发的项目经验？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="如何获得高并发的项目经验？ | Coisini"><meta data-rh="true" name="description" content="不论是应届生还是有几年工作经验的程序员，都可能会面临一个问题：接触不到高并发场景。"><meta data-rh="true" property="og:description" content="不论是应届生还是有几年工作经验的程序员，都可能会面临一个问题：接触不到高并发场景。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><header><h1>如何获得高并发的项目经验？</h1></header>
+<p>不论是应届生还是有几年工作经验的程序员，都可能会面临一个问题：<strong>接触不到高并发场景</strong>。</p>
+<p>不要慌！说实话，能接触到高并发这类业务场景的人还是极少数的。即使在阿里、京东这种公司，你也还是很有可能接触不到。</p>
+<p>我在大学那会的时候，自己就比较喜欢捣鼓各种高并发相关的技术了（还是因为太卷，工作之后实际并没有怎么用到，哈哈哈），自己在手动搭建过 Redis 集群、Zookeeeper 集群，动手实  现过分库分表、读写分离。</p>
+<p>在介绍方法之前，我们首先知道 <strong>高并发系统设计的三大目标</strong> ：</p>
+<ul>
+<li><strong>高性能</strong> ：系统的处理请求的速度很快，响应时间很短。</li>
+<li><strong>高可用</strong> ：系统几乎可以一直正常提供服务。也就是说系统具备较高的无故障运行的能力。</li>
+<li><strong>可扩展</strong> ：流量高峰时能否在短时间内完成扩容，更平稳地承接峰值流量，比如双 11 活动、明星离婚、明星恋爱等热点事件。</li>
+</ul>
+<p><strong>实现高性能的常用手段</strong>  ：</p>
+<ul>
+<li>数据库
+<ul>
+<li>分库分表&amp;读写分离</li>
+<li>NoSQL</li>
+</ul>
+</li>
+<li>缓存</li>
+<li>消息队列 （待重构）</li>
+<li>负载均衡</li>
+<li>池化技术</li>
+<li>......</li>
+</ul>
+<p><strong>实现高可用的常用手段</strong>  ：</p>
+<ul>
+<li>限流</li>
+<li>降级</li>
+<li>熔断</li>
+<li>排队</li>
+<li>集群</li>
+<li>超时和重试机制</li>
+<li>灾备设计</li>
+<li>异地多活</li>
+</ul>
+<p><strong>实现可扩展架构的常用手段</strong>：</p>
+<ul>
+<li>分层架构：面向流程拆分</li>
+<li>SOA、微服务：面向服务拆分</li>
+<li>微内核架构：面向功能拆分</li>
+</ul>
+<p>你可以在 JavaGuide 的在线阅读网站上找到上面这些手段对应的详细讲解。篇幅问题，我这里就不帖原文了。网站地址：<a href="https://javaguide.cn/" target="_blank" rel="noopener noreferrer">https://javaguide.cn/</a> 。</p>
+<p><img decoding="async" loading="lazy" alt="image-20211129112211177.png" src="/assets/images/1644552861190-3e29bdbc-ebe5-4377-bb63-249fcad54b4c-246233-5aaca804143501a540c7161b41e0bc05.png" width="1257" height="1044" class="img_ev3q"></p>
+<p>知道了高并发系统设计相关的概念和手段之后，废话不多说，直接推荐两种我觉得比较靠谱的方法。</p>
+<p><strong>第一种方法是自己研究某个技术然后对已有项目进行改进</strong>，具体步骤如下：</p>
+<ol>
+<li>自己研究某个技术比如读写分离。</li>
+<li>将自己研究的成果应用到自己的项目比如为项目增加读写分离来提高读数据库的速度。</li>
+<li>想一想项目用了某个技术比如读写分离之后，会不会遇到什么问题，项目的性能到底提升了多少。如果你能模拟一下真实场景就更好了，既能真正学到，又能让自己项目经历更真实。</li>
+<li>简单复盘总结一下自己对项目所做的完善改进。</li>
+</ol>
+<p>这里要说明一点的是：<strong>一定不要为了学习实践某个技术而直接用在自己公司的项目上。</strong></p>
+<p>技术是为了服务业务的，没必要用的技术就不要用！我之前有个同事天天喜欢在项目上用自己学到的新技术，结果，有一天就出现生产问题了。我现在想着这件事，都想锤他！</p>
+<p><strong>你完全可以私下对项目进行改进。</strong> 甚至说，你就只是搞懂了这个技术，并没有将其用在真实的项目中。面试官会专门去调查你这个项目么？那大概率是不会。不过，一定要确保自己是真的搞懂了！</p>
+<p>我们只是迫于压力，为了找工作而简单润色一下项目经历而已嘛！</p>
+<p><strong>第二种方法是你可以跟着视频/教程做一个分布式相关的项目</strong>，然后把它吃透，最好还可以对这个项目进行改进，具体步骤如下：</p>
+<ol>
+<li>跟着视频/教程写一个分布式相关的项目（自己从头开始做也是一样的）。</li>
+<li>深入研究并搞懂项目涉及到的一些技术。</li>
+<li>思考有没有可以改进的地方？</li>
+<li>思考线上环境可能会有一些什么问题出现？该怎么解决？</li>
+<li>简单复盘总结复盘一下自己从这个项目中学到的什么东西。</li>
+</ol>
+<p>我在大学的时候就是通过这种方法获得的高并发相关的经验。我还记得我当时做的那个分布式项目使用到了 Redis 是单机并且消息队列用的是已经淘汰的 ActiveMQ。所以，我就自己搭建了 Redis 集群，模拟各种可能出现的问题。同时，我使用 RocketMQ 替换了 ActiveMQ 并提取封装了消息队列相关的代码。</p>
+<p>通过上面这两种方法来获得高并发经验的话，还有一点非常重要： <strong>自己不光要模拟一些生产环境可能会遇到的问题，还要知道这些问题是怎么解决的。</strong> 就比如说你用到了 Redis 的话，你自己肯定要私下模拟一下缓存穿透、单机内存不够用、Redis突然宕机等等情况。</p>
+<p>基本上，你用到的大部分中间件可能会遇到的问题，你都能够在网上找到对应的案例和解答。多花点时间看看，自己实践一下，研究思考一下。这样的话，在面试中才不会掉链子。</p>
+<blockquote>
+<p>更新: 2022-05-26 20:57:42<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/zcq5mh" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/zcq5mh</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

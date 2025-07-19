@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/工作篇/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">工作篇 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/工作篇/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="工作篇 | Coisini"><meta data-rh="true" name="description" content="欢迎阅读「工作篇」相关的文章，这个系列主要内容是分享一些有助于个人以及职场发展的内容。"><meta data-rh="true" property="og:description" content="欢迎阅读「工作篇」相关的文章，这个系列主要内容是分享一些有助于个人以及职场发展的内容。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/工作篇/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/工作篇/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/工作篇/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>工作篇</h1></header>
+<p>欢迎阅读**「工作篇」**相关的文章，这个系列主要内容是分享一些有助于个人以及职场发展的内容。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="内容概览">内容概览<a href="#内容概览" class="hash-link" aria-label="Direct link to 内容概览" title="Direct link to 内容概览">​</a></h2>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/iysz1w" target="_blank" rel="noopener noreferrer">如何选择职业方向？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/uzw6x1" target="_blank" rel="noopener noreferrer">新入职一家公司如何快速进入工作状态？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/mezqiv" target="_blank" rel="noopener noreferrer">如何在绩效考核中脱颖而出？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/ndtdz4skyxntgex8" target="_blank" rel="noopener noreferrer">公司背调需要注意什么？</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="常见问题">常见问题<a href="#常见问题" class="hash-link" aria-label="Direct link to 常见问题" title="Direct link to 常见问题">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="offer-选择考虑因素有哪些">Offer 选择考虑因素有哪些？<a href="#offer-选择考虑因素有哪些" class="hash-link" aria-label="Direct link to Offer 选择考虑因素有哪些？" title="Direct link to Offer 选择考虑因素有哪些？">​</a></h3>
+<p>通常情况下，不论是校招还是社招下面这些都是你在做工作选择时应该考虑的因素：</p>
+<ol>
+<li>地理位置：当地的生活成本，居住舒适度，离家的距离，有对象的话需要考虑对象的地理位置。</li>
+<li>薪资待遇：薪资待遇是否可以接受？</li>
+<li>稳定性：公司的发展是否存在严重问题？部门的重要性如何？</li>
+<li>工作内容：工作内容是否让你满意？是否能够提供你发展和成长的机会？</li>
+<li>技术学习成本和培养机制：是否需要转技术栈？针对应届生是否有完善的培养机制？</li>
+<li>跳 槽认可度：跳槽是否容易？其他公司的认可度如何？</li>
+<li>工作压力：工作压力能否接受？加班是否严重？是否有加班补偿？年假多少？是否双休？</li>
+<li>工作氛围：工作氛围你是否喜欢？技术氛围如何？</li>
+<li>晋升空间：公司是否提供合理的晋升机制？晋升速度如何？</li>
+<li>公司发展：公司自身的发展前景如何？产品是否具有护城河？</li>
+<li>公司价值观：公司的价值观是否与你相契合？</li>
+<li>户口：这里主要针对的是北京户口，毕竟是最难拿的户口。对于想要拿户口的同学来说，还需打听下公司是否有帮你拿到户口的机会？户口的分配比例和分配方式是怎样的？通常情况下，国企、银行、研究所这类拿到户口的概率最大。</li>
+<li>……</li>
+</ol>
+<p>你可以根据自己的偏向，给上面的每一点一个分值。然后，你对自己所纠结的 offer 打分，打分较高的大概率就是比较适合你的那个。</p>
+<p>薪资待遇这里多说一嘴：一定不要被 offer 的总包价给迷惑了，一定要结合工作时长、是否有加班费等因素来看（外企的薪资虽然比不上很多大厂，但结合时薪来看，很多还是非常能打的）。</p>
+<p>工作压力这里多提一嘴：千万不要一腔热血觉得自己能承受长时间的加班以及工作压力，尤其是刚毕业的同学，等你真正经历过了，你才会体会到工作压力太大对自己的身心和身体健康影响有多大！！！</p>
+<p>对于刚工作的毕业生来说，建议优先关注工作内容和跳槽认可度（知名大厂一定要首要考虑），这对于后续发展更有利。不过，也不要死脑筋，太纠结工作内容，比如有一个大厂测开的 offer 和一个小厂 Java 后端的 offer，那我个人还是建议你选择大厂。</p>
+<p>对于已经工作的朋友来说，建议优先关注公司本身（大公司对应的平台也更大，机会更多）  以及你要去的部门（公司的核心部门最好）。</p>
+<p>最后，如果各方因素都综合对照之后还是纠结的话，那我建议你还是优先选择钱多的那个，毕竟这才是实打实的直接到自己手里的东西，其他的都是虚的。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="想要跳槽但又很纠结怎么办">想要跳槽但又很纠结怎么办？<a href="#想要跳槽但又很纠结怎么办" class="hash-link" aria-label="Direct link to 想要跳槽但又很纠结怎么办？" title="Direct link to 想要跳槽但又很纠结怎么办？">​</a></h3>
+<p>如果你想要跳槽但是又非常纠结的话，你可以通过下面几个问题来自测一下：</p>
+<ol>
+<li>在这个公司你开心吗？达到自己的预期了吗？</li>
+<li>公司未来的发展你看好吗？</li>
+<li>你对自己的薪资待遇满意吗？</li>
+<li>公司现有的项目或者资源还可以为你带来提升吗？带来的提升你满意吗？</li>
+<li>现在跳槽出去找工作，你有信心吗？</li>
+<li>裸辞还是先找好工作再辞职？</li>
+<li>……</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="空窗期怎么应对">空窗期怎么应对？<a href="#空窗期怎么应对" class="hash-link" aria-label="Direct link to 空窗期怎么应对？" title="Direct link to 空窗期怎么应对？">​</a></h3>
+<p>对于空窗期，有三种常见的应对方法，你可以参考一下：</p>
+<ol>
+<li><strong>诚实写明</strong>：简历上诚实地写明空窗期，并给出合理的解释，避免后续的误会。只要理由合理，空窗期时间不是特别长，不会有什么问题。</li>
+<li><strong>调整工作时间线将空窗期覆盖</strong>：将上一份工作的结束时间延后至空窗期结束，或者将下一份工作的开始时间提前至空窗期开始之前。 这种方法属于是作假了，需要考虑背调，一般是不太建议这样做的。如果这样做的话，尽量找不做背调的公司面试入职（异  地社保公司好像查不到？）。</li>
+<li><strong>转化空窗期的经历</strong>：在简历中将空窗期描述为“自由职业”、“创业经历”或者“个人项目经历”，就像是描述工作经历一样，简单突出介绍自己在这段时间主要做了什么（尽量将自己的工作内容介绍的具体一些，包括但仅不限于做的项目）。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="有哪些实习入职的一些小-tips">有哪些实习/入职的一些小 Tips?<a href="#有哪些实习入职的一些小-tips" class="hash-link" aria-label="Direct link to 有哪些实习/入职的一些小 Tips?" title="Direct link to 有哪些实习/入职的一些小 Tips?">​</a></h3>
+<ol>
+<li>认真完成分配给你的任务，不管是 CRUD 这类基础的开发任务还是其他，都要保证质量和效率，遵守代码规范和开发流程，及时沟通和反馈，积极解决问题和改进不足。</li>
+<li>面对别人提出的问题和 bug，不应该轻易回复。面对问题应该重视，需要做更多的思考和研究。</li>
+<li>保持思考，向别人描述问题时尽量告诉自己再多思考一下，看能否找出更深层次的原因。</li>
+<li>如果对于自己能力比较自信的话，要勇于认领比较有挑战的任务，解决有难度的问题。一定不要一碰到不会的就退缩了，碰到没有接触过的技术就怂了。</li>
+<li>不仅要完成基本的需求，还要思考如何优化和改进，不仅要按部就班地工作，还要寻找机会和空间去做一些有意义的事情比如你们公司崇尚技术分享的话，那你可以主动讲个 Session（即使你讲的东西比较简单，讲好就行了）。</li>
+<li>养成深入思考业务的习惯，敢于提出自己的想法和建议，而不是业务负责人说什么就是什么。</li>
+<li>如果团队氛围还可以的话，主动去组织一些组内活动比如聚餐、打羽毛球、一起出去玩等等（人情还是很重要的）。</li>
+<li>多向你的同事请教学习，但一定要控制度，避免影响他人正常工作。另外，你可以向你的同事和领导要一些关于你的反馈比如你目前存在哪些地方需要改进。</li>
+<li>不要害怕被批评，刚开始不熟练犯一些错误，做事方式存在一些问题，都是正常的，重要的是能改正，要让别人看到你的进步。</li>
+<li>……</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="初级-java-后端开发应该具备哪些能力">初级 Java 后端开发应该具备哪些能力？<a href="#初级-java-后端开发应该具备哪些能力" class="hash-link" aria-label="Direct link to 初级 Java 后端开发应该具备哪些能力？" title="Direct link to 初级 Java 后端开发应该具备哪些能力？">​</a></h3>
+<p>如果是 Java 后端开发的话，下面几点是最基本的，你可以参考一下：</p>
+<ol>
+<li>具备独立开发基本的增删改查代码的能力（不看视频自己写，浏览器搜索直接复制粘贴都行，只要你能把功能做完）。</li>
+<li>具备能够排查项目遇到的简单 Bug 的能力。</li>
+<li>具备使用 Git 进行版本管理和团队协作的能力。</li>
+<li>熟练使用常用的关系型数据库（不同的公司，不同的项目，使用的关系型数据库也不同，一般是 MySQL）。</li>
+<li>可以运用多线程、设计模式等手段来优化代码。</li>
+<li>具备和前端开发联调的能力。</li>
+<li>了解 Linux 常用命令,以及在其上面安装，部署应用。</li>
+<li>具备良好的沟通能力和学习能力，能够快速学习运用自己之前没有了解过的框架。</li>
+<li>熟练使用浏览器查找资料以及使用常见 AI 工具例如 ChatGPT 辅助自己工作。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="刚入职完成不了开发任务-怎么破">刚入职完成不了开发任务 ，怎么破？<a href="#刚入职完成不了开发任务-怎么破" class="hash-link" aria-label="Direct link to 刚入职完成不了开发任务 ，怎么破？" title="Direct link to 刚入职完成不了开发任务 ，怎么破？">​</a></h3>
+<p>很多同学刚工作的时候，可能就会遇到很多问题，比如流程不规范，代码也不规范，以后端岗位入职却要搞全栈，不注重新人培养刚来就被安排开发任务。这就导致很多刚工作的小伙伴刚工作的时候根本没办法按时完成任务，甚至是努力了也没办法完成任务，于是很焦虑，开始怀疑自己的能力。</p>
+<p>其实这种情况很正常的，真心不需要怀疑你自己是否技术能力有很大问题，大家基本都是从那个时候过来的。</p>
+<p>下面是一些建议，对于刚工作或者已经工作的朋友应该都有帮助：</p>
+<ol>
+<li>你首先要搞清楚公司的技术栈到底是什么，这样才能针对性地学习。假设你们用的是 Spring Boot +MyBatis +Spring Security ，那你就应该抽时间去重点学习一下 Spring Boot 如何整合 MyBatis 实现最基本的增删改查、分页、连表查询等等。Spring Security 这个入门难度比较大，不建议你现在学，一般也不会让你这种新人做。</li>
+<li>工作中要多总结！公司用的框架体系，业务逻辑都是需要自己来总结的。如果对于某个框架或者工具不熟悉，直接去搜索 xxx 入门，或者去 Github，Gitee 上搜 xxx demo。遇到具体的知识点就去浏览器检索，20 个 tab 理论（遇到不会的就关键词新打开一个 tab）。</li>
+<li>心态要放好，不要害怕领导会骂你，一步一个脚印踏踏实实地走下去。</li>
+<li>世故一点。遇到经过自己思考还是搞不定的问题，去向前辈或高手们请教。买个饮料，吃顿饭多拉拉关系。</li>
+<li>对于缺少实际开发经验的同学，可以私下找一份还不错的项目经历视频教程抽时间跟着做（尽量和你公司项目的技术栈比较类似），然后自己再慢慢独立上手开发某个模块的功能。一 定要有独立实践这一步，否则效果同样较差。</li>
+<li>随着 AI 技术的爆炸式发展，当代程序员一定要学会使用 AI 工具辅助自己进行开发，提高效率。你不光可以让 AI 帮助自己理解已有的代码，还可以把自己的需求告诉 AI ，让其帮助你写出一个基本原型。常用的 AI 辅助编码工具有：ChatGPT、New Bing、GitHub Copilot、CodeGeeX、Bifrost、Cosine、CodeWhisperer 等等。</li>
+</ol>
+<p>另外，《Java 面试指北》的「练级攻略篇」中专门有一篇文章是讲“如何快速上手一个新项目”，你可以看看。</p>
+<p><a href="https://www.yuque.com/snailclimb/mf2z3k/dbhn2f" target="_blank" rel="noopener noreferrer">如何快速上手一个新项目？</a></p>
+<p><img decoding="async" loading="lazy" alt="image-20220602151949310.png" src="/assets/images/1710381059685-91e6fdfd-8a35-46fe-86bb-73aa6f8021c9-671008-f50b8ead14c8d2f8a9d19afdaf4f0721.png" width="1026" height="1191" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="新入职一家公司如何快速上手项目">新入职一家公司，如何快速上手项目?<a href="#新入职一家公司如何快速上手项目" class="hash-link" aria-label="Direct link to 新入职一家公司，如何快速上手项目?" title="Direct link to 新入职一家公司，如何快速上手项目?">​</a></h3>
+<p>下面的内容和「练级攻略篇」的<a href="https://www.yuque.com/snailclimb/mf2z3k/dbhn2f" target="_blank" rel="noopener noreferrer">如何快速上手一个新项目</a>这篇文章有部分重合的地方，只是对公司项目进行了针对性的补充和优化：</p>
+<ol>
+<li><strong>检查是否有相关文档</strong>：入职初期，首先查看是否有项目相关的文档，如项目介绍、使用手册等，这是非常重要的参考资料，将极大地提高效率。</li>
+<li><strong>尽量找个同事带你简单熟悉一下项目</strong>：如果能有同事带你简单熟悉一下项目的话，那是最  好的，可以让你少踩很多坑。据我了解，很多公司都会有带新人熟悉项目的好传统。如果你入职的项目组没有人带你的话，你可以主动询问一下。</li>
+<li><strong>深入理解业务</strong>：记住，技术始终是为业务服务的。一旦脱离了业务，那么技术的存在将毫无意义。优先了解业务将帮助你更好地理解技术实现。</li>
+<li><strong>搭建本地开发环境</strong>：尝试在本地搭建开发环境，试着把项目运行起来。稍微正规点的项目都有项目环境搭建相关的文档介绍，跟着文档来就好。如果没有文档的话，需要自己去分析项目依赖环境，必要的情况下询问一下同事。</li>
+<li><strong>项目依赖梳理</strong>：通过项目依赖配置文件（<code>pom.xml</code>/<code>build.gradle</code> ）看看项目用到了哪些框架和中间件，底层数据库是什么。</li>
+<li><strong>了解业务架构和系统交互</strong>：熟悉系统的业务架构，理解各个系统和模块的功能职责及它们之间的交互方式。</li>
+<li><strong>从简单功能开始实践</strong>：可以先从基本的 CRUD 功能开发入手，慢慢再接手更复杂的功能开发任务。</li>
+<li><strong>掌握开发流程</strong>：全面理解项目的开发流程，从需求分析、设计、编码到测试和发布，每一个环节都是保证项目成功的关键。</li>
+<li><strong>融入团队文化</strong>：积极参与团队的日常会议和活动，如站立会议、团队例会等，这不仅有助于了解团队的工作流程和文化，还能加强与同事的沟通和协作。</li>
+<li><strong>高效提问</strong>：遇到问题时，先自己尝试解决，实在解决不了再进行提问。把自己的问题想好，表达要清晰一些，态度要礼貌一些。不要害怕提问，也不要随便提问！</li>
+</ol>
+<p>另外，推荐看看海贼兄写的这篇文章：<a href="https://juejin.cn/post/7367253337418088487" target="_blank" rel="noopener noreferrer">入职新公司，快速掌握业务与技术的12条经验</a> 。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="工作对个人能力提升太小怎么破">工作对个人能力提升太小，怎么破？<a href="#工作对个人能力提升太小怎么破" class="hash-link" aria-label="Direct link to 工作对个人能力提升太小，怎么破？" title="Direct link to 工作对个人能力提升太小，怎么破？">​</a></h3>
+<ol>
+<li>如有跳槽想法，建议尽早开始备战面试跳槽。在完成工作任务的前提下，尽可能地多挤出时间来准备面试。工作期间挤不出来时间就下班之后再开始，少刷一些抖音，少打一些游戏。一定要做好规划，每天时间充足就拉短周期，每天时间少就拉长周期。尽量“骑驴找马”，提前做面试准备，还要实际感受一下面试难度和市场行情。</li>
+<li>认真对待自己手里的工作，即使是 CRUD 这类基础的开发任务。实际上，能把最基本的 CRUD 写好也是不易，尤其是对于刚工作不久的同学来说。一定要准守代码规范，提高代码质量，养成良好的编码习惯。</li>
+<li>平时要抽时间多看一些优秀的<a href="https://javaguide.cn/books/" target="_blank" rel="noopener noreferrer">技术书籍</a>和<a href="https://t.zsxq.com/15oYV49WF" target="_blank" rel="noopener noreferrer">技术博客</a>，还也可以去购买一些优质课程学习，像极客时间、儒猿技术窝等平台的技术课程质量还是比较高的。学习优秀的技术实践，并将重要的内容整理记录下来，定期回顾。如果有合适的机会，可以将学习到的优秀实践应用到实际的项目中去。</li>
+<li>多逛开源社区，遇到感兴趣的开源项目，可以抽时间去深入研究学习。快速上手或者吃透一个项目的方法参考这篇帖子：<a href="https://t.zsxq.com/15OCE3YrA" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/15OCE3YrA</a> 。</li>
+<li>深入且系统地学习你所从事的方向的需要掌握的技能，Java 后端方向可以参考我分享的学习路线：<a href="https://t.zsxq.com/15y1s9mA5" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/15y1s9mA5</a> 。</li>
+<li>提高系统设计能力和解决问题的能力，这是社招的重点考察能力，也是区分一个程序员工作经验是否丰富的标准。具体方法可以参考这篇帖子：<a href="https://t.zsxq.com/15wkMOx7c" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/15wkMOx7c</a> 。</li>
+<li>技术为本，但也不要把自己局限在技术上！技术之外，你还需要提高自己的产品设计能力、演讲能力、理财能力……。</li>
+<li>一定不要把自己的精力都花在各种工具库、框架和中间件的使用以及配置上，要<a href="https://t.zsxq.com/15cagnzao" target="_blank" rel="noopener noreferrer">学会做编程知识的投资</a>。另外，<a href="https://t.zsxq.com/15dfq7iR4" target="_blank" rel="noopener noreferrer">尽量避免摄入过多碎片化知识</a>。</li>
+<li>你们公司崇尚技术分享的话，那你可以主动讲个 Session（即使你讲的东西比较简单，讲好就行了）。这样既能提升自己在公司的影响力，又能倒逼提高自己的能力。</li>
+<li>随着 AI 技术的爆炸式发展，当代程序员一定要学会使用 AI 工具辅助自己进行开发，提高效率。你不光可以让 AI 帮助自己理解已有的代码，还可以把自己的需求告诉 AI ，让其帮助你写出一个基本原型。常用的 AI 辅助编码工具有：GitHub Copilot、Cursor、CodeGeeX、Tabnine、通义灵码、Codeium、Bifrost、Cosine、CodeWhisperer 等等。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="下班之后如何提高自己">下班之后如何提高自己？<a href="#下班之后如何提高自己" class="hash-link" aria-label="Direct link to 下班之后如何提高自己？" title="Direct link to 下班之后如何 提高自己？">​</a></h3>
+<ol>
+<li>多阅读，包括但不限于优秀的文章（ <a href="https://t.zsxq.com/15oYV49WF" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/15oYV49WF</a> ）和书籍（ <a href="https://javaguide.cn/books/" target="_blank" rel="noopener noreferrer">https://javaguide.cn/books/</a> ）；</li>
+<li>多学习优秀的开源项目，包括但不限于框架、实战项目和中间件。</li>
+<li>多尝试实践，包括但不限于写技术文章、参与开源项目和独立写个人项目。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="大厂还是中小厂">大厂还是中小厂？<a href="#大厂还是中小厂" class="hash-link" aria-label="Direct link to 大厂还是中小厂？" title="Direct link to 大厂还是中小厂？">​</a></h3>
+<p>大公司还是中小公司都有自己的优势：</p>
+<ul>
+<li>大厂的学习资源会更丰富，比如有完善的培训体系、丰富的内部知识库、潜在的技术大佬同事、更具有技术挑战的项目；大厂的工作内容也会更规范和专业，比如有明确的需求分析、代码规范、项目管理；大厂的薪资待遇往往也更好一些；跳槽有名企光环的话会更容易一些；</li>
+<li>中小厂发展变化快，有更多的可能性，可能会带来超额收益。不过，碰到能给你带来超额收益的中小公司的概率非常非常低，几乎可以忽略不计。</li>
+</ul>
+<p>对于毕业生来说，如果薪资待遇差别不大，忽略掉其他客观因素，大厂肯定是首选。</p>
+<p>如果你想要进入大厂，但是暂时没办法进入大厂的话，不用灰心！通过自身努力，你依然有很多进入大厂的机会，下面是我的两点建议:</p>
+<ul>
+<li>在中小厂沉淀自己的技术，完善自己的简历；</li>
+<li>时刻准备面试，工作一年之后就开始留意大厂的工作机会，开始投递参加大厂的面试。</li>
+</ul>
+<hr>
+<p><strong>那如何区分大中小厂呢？</strong></p>
+<p>常见的有几种方法可以作为参考，但没有绝对，需要综合考虑：</p>
+<ol>
+<li>大厂：绝大部分人都知道的，中厂：你认识的，小厂：你搜索后才知道的。</li>
+<li>大厂：员工大于1万人的，中厂：员工小于1万但是大于1000的，小厂：员工小于1000的。</li>
+<li>大厂：市值较高（例如高于百度），中厂：市值中等，小厂：市值较低。</li>
+<li>大厂：面试难度较高，中厂：面试难度中等，小厂：面试难度较低。</li>
+</ol>
+<p>不过，员工数多不代表就是大厂，富士康、邮政的员工都很多，但算不上是大厂，需要综合看知名度、员工数和市值。当然了，你也可以把给钱多的高的看作是大厂，给钱少的统统看作是小厂，这标准也挺好区分。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="学历对职业的影响大吗">学历对职业的影响大吗？<a href="#学历对职业的影响大吗" class="hash-link" aria-label="Direct link to 学历对职业的影响大吗？" title="Direct link to 学历对职业的影响大吗？">​</a></h3>
+<p>有影响，但对于程序员行业来说还好。职场晋升主要看你为项目为团队为公司做了哪些贡献。而且，现在越来越多的公司不以学历论薪资，一个本科生在面试中表现更好，他的薪资可能比同一届面试的研究生更高。本校读研的话，我觉得最大的好处是你能够多出几年时间来学习来准备。研究生学历这个我觉得还是次要的哈！到了职场之后，你就会怀念起那会能够有这么多时间自己学习的日子。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="考研还是找工作">考研还是找工作？<a href="#考研还是找工作" class="hash-link" aria-label="Direct link to 考研还是找工作？" title="Direct link to 考研还是找工作？">​</a></h3>
+<p>如果能考上一个比较好的学校的研究生，当然是非常不错的！不过，这个难度还是比较大的，风险很高！你身边这么多人卷考研，到后面能上岸 1/4 估计就不错了。</p>
+<p>说是这样说，如果你现在的能力难以支撑你找到工作的话，你也是可以尝试一下考研的。大不了考研失败再去找工作嘛！如果你最后的目标是先找一个小厂的话，那即使你大部分精力都用在考研上，也应该没什么问题。</p>
+<p>当然了，如果你不想承担考研失败的风险，那就从现在考试准备秋招就好！</p>
+<p>做好手头的事，尽量不要两者同时进行，一心一意准备考研或者找工作。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何写一份还不错的年终总结">如何写一份还不错的年终总结？<a href="#如何写一份还不错的年终总结" class="hash-link" aria-label="Direct link to 如何写一份还不错的年终总结？" title="Direct link to 如何写一份还不错的年终总结？">​</a></h3>
+<p>对于个人来说，写年总总结是一个不错的习惯，有助于你回顾过去一年的工作和成果，并为下一年做出计划。</p>
+<p>如果想要写一篇简介明了、突出重点的年总结的话，可以参考以下步骤：</p>
+<ol>
+<li>回顾总结过去一年的工作：你在工作上主要做了哪些事情？负责了哪些项目？取得了哪些成绩？</li>
+<li>总结自己过去一年的收获和需要改进的地方：技术方面有哪些提升？非技术方面（比如沟通能力）有哪些提升？自己有哪些需要改进的地方？（自我反思，可以向其他人要反馈）</li>
+<li>规划下一年的工作：工作上要达成什么目标？要学习哪些技术？</li>
+</ol>
+<p>对于目标的描述，建议遵循“SMART”原则，这是目标管理中最常用的一种方法：</p>
+<ul>
+<li>S（Specific）- 明确具体的目标。</li>
+<li>M（Measurable）- 可以衡量的目标。</li>
+<li>A（Attainable）- 可以实现的目标。</li>
+<li>R（Relevant）- 与您的工作和职业目标相关的目标。</li>
+<li>T（Time-bound）- 有时间限制的目标。</li>
+</ul>
+<p>“SMART”原则可以帮助你列出具体明确、可衡量、可实现、有时间限制的工作目标，并为实现这些目标制定计划。例如，你可以写下“在未来一年中，我希望学习 PostgreSQL 性能优化相关的知识，在本地进行充分实践之后再慢慢尝试应用在项目上”。</p>
+<p>一些注意事项：</p>
+<ol>
+<li>避免夸大自己的成绩，回避自己存在的一些问题。</li>
+<li>避免花里胡哨，自我感动，内容空洞。</li>
+<li>避免啰里啰嗦，没有重点。</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="老程序员的几点建议">老程序员的几点建议<a href="#老程序员的几点建议" class="hash-link" aria-label="Direct link to 老程序员的几点建议" title="Direct link to 老程序员的几点建议">​</a></h2>
+<p><font style="color:rgba(0, 0, 0, 0.9)">这是一位前辈在我刚毕业那会给的建议，起初不以为意，越干越觉得他说的确实有点道理。</font></p>
+<ol>
+<li><strong>学会给自己留缓冲的余地</strong>：在你觉得能够完成需求的天数基础上适当多报个一两天。</li>
+<li><strong>学会偷懒</strong>：持续保持高强度的工作是不可能的，也是不可取的。适当偷偷懒，让自己的身体，尤其是脑子休息一下，恢复精力才能持久工作。这个偷懒不是说让大家在工作上偷奸耍滑，不要误解了。</li>
+<li><strong>不要过于主动</strong>：尽量不要过于主动，越主动，负担就越重，压力就越大。当然，如果你的抗压能力比较强，也比较有上进心的话，那就当我没说。</li>
+<li><strong>有跳槽想法就要尽快行动起来</strong>：如有跳槽想法，建议尽早开始备战面试跳槽。在完成工作任务的前提下，尽可能地多挤出时间来准备面试。工作期间挤不出来时间就下班之后再开始，少刷一些抖音，少打一些游戏。一定要做好规划 ，每天时间充足就拉短周期，每天时间少就拉长周期。尽量“骑驴找马”，提前做面试准备，还要实际感受一下面试难度和市场行情。</li>
+<li><strong>不要逞强</strong>：难度过高的任务，一定要主动说完成不了，让上层再细分细分，千万不要想的过少就口出狂言，最后累死的是自己。</li>
+</ol>
+<blockquote>
+<p>更新: 2024-12-30 20:08:22<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/ezymfh" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/ezymfh</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#内容概览" class="table-of-contents__link toc-highlight">内容概览</a></li><li><a href="#常见问题" class="table-of-contents__link toc-highlight">常见问题</a><ul><li><a href="#offer-选择考虑因素有哪些" class="table-of-contents__link toc-highlight">Offer 选择考虑因素有哪些？</a></li><li><a href="#想要跳槽但又很纠结怎么办" class="table-of-contents__link toc-highlight">想要跳槽但又很纠结怎么办？</a></li><li><a href="#空窗期怎么应对" class="table-of-contents__link toc-highlight">空窗期怎么应对？</a></li><li><a href="#有哪些实习入职的一些小-tips" class="table-of-contents__link toc-highlight">有哪些实习/入职的一些小 Tips?</a></li><li><a href="#初级-java-后端开发应该具备哪些能力" class="table-of-contents__link toc-highlight">初级 Java 后端开发应该具备哪些能力？</a></li><li><a href="#刚入职完成不了开发任务-怎么破" class="table-of-contents__link toc-highlight">刚入职完成不了开发任务 ，怎么破？</a></li><li><a href="#新入职一家公司如何快速上手项目" class="table-of-contents__link toc-highlight"> 新入职一家公司，如何快速上手项目?</a></li><li><a href="#工作对个人能力提升太小怎么破" class="table-of-contents__link toc-highlight">工作对个人能力提升太小，怎么破？</a></li><li><a href="#下班之后如何提高自己" class="table-of-contents__link toc-highlight">下班之后如何提高自己？</a></li><li><a href="#大厂还是中小厂" class="table-of-contents__link toc-highlight">大厂还是中小厂？</a></li><li><a href="#学历对职业的影响大吗" class="table-of-contents__link toc-highlight">学历对职业的影响大吗？</a></li><li><a href="#考研还是找工作" class="table-of-contents__link toc-highlight">考研还是找工作？</a></li><li><a href="#如何写一份还不错的年终总结" class="table-of-contents__link toc-highlight">如何写一份还不错的年终总结？</a></li></ul></li><li><a href="#老程序员的几点建议" class="table-of-contents__link toc-highlight">老程序员的几点建议</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

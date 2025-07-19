@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">《Java面试指北》 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="《Java面试指北》 | Coisini"><meta data-rh="true" name="description" content="- 介绍"><meta data-rh="true" property="og:description" content="- 介绍"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>《Java面试指北》</h1></header>
+<ul>
+<li><a href="/码农/Java面试指北/介绍/">介绍</a></li>
+<li><a href="/码农/Java面试指北/⭐更新记录/">⭐更新记录</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="面试准备篇必看"><a href="/码农/Java面试指北/面试准备篇（必看）/">面试准备篇（必看）</a><a href="#面试准备篇必看" class="hash-link" aria-label="Direct link to 面试准备篇必看" title="Direct link to 面试准备篇必看">​</a></h2>
+<ul>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐如何高效准备Java面试？/">⭐如何高效准备Java 面试？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐程序员面试常见词汇扫盲（面试必知）/">⭐程序员面试常见词汇扫盲（面试必知）</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐程序员简历到底该怎么写？/">⭐程序员简历到底该怎么写？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐复习抓不到重点怎么办？如何更高效地准备八股文？/">⭐复习抓不到重点怎么办？如何更高效地准备八股文？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/为什么要学习源码？源码这块面试会怎么问呢？如何阅读源码？/">为什么要学习源码？源码这块面试会怎么问呢？如何阅读源码？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/如何高效准备算法面试？/">如何高效准备算法面试？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/如何准备国企和银行的面试？/">如何准备国企和银行的面试？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐Java面试准备常见问题解答（补充）/">⭐Java面试准备常见问题解答（补充）</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/没有项目经验怎么办？/">没有项目经验怎么办？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/什么样的项目是面试官认为有价值的？/">什么样的项目是面试官认为有价值的？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/如何获得高并发的项目经验？/">如何获得高并发的项目经验？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/优质Java实战项目推荐/">优质Java 实战项目推荐</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/如何介绍项目经历更容易获得面试官的青睐？/">如何介绍项目经历更容易获得面试官的青睐？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/⭐项目经验常见问题解答（补充）/">⭐项目经验常见问题解答（补充）</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/去外包对自己的简历有影响么？/">去外包对自己的简历有影响么？</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/Java优质面试视频推荐/">Java优质面试视频推荐</a></li>
+<li><a href="/码农/Java面试指北/面试准备篇（必看）/如果面试官问“你有什么问题问我吗？”，该如何回答？/">如果面试官问“你有什么问题问我吗？”，该如何回答？</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="技术面试题篇"><a href="/码农/Java面试指北/技术面试题篇/">技术面试题篇</a><a href="#技术面试题篇" class="hash-link" aria-label="Direct link to 技术面试题篇" title="Direct link to 技术面试题篇">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="项目开发基础">项目开发基础<a href="#项目开发基础" class="hash-link" aria-label="Direct link to 项目开发基础" title="Direct link to 项目开发基础">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/项目开发基础/日志记录方案有哪些？/">日志记录方案有哪些？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/项目开发基础/你的项目单测是如何做的？/">你的项目单测是如何做的？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/项目开发基础/你的项目用到了Jenkins，有什么用？/">你的项目用到了Jenkins，有什么用？</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="系统设计场景题"><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/">系统设计&amp;场景题</a><a href="#系统设计场景题" class="hash-link" aria-label="Direct link to 系统设计场景题" title="Direct link to 系统设计场景题">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何准备系统设计面试？/">如何准备系统设计面试？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何设计一个秒杀系统？/">如何设计一个秒杀系统？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何设计微博Feed流_信息流系统？/">如何设计微博Feed 流_信息流系统？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何设计一个短链系统？/">如何设计一个短链系统？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何设计一个站内消息系统？/">如何设计一个站内消息系统？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何自己实现一个RPC框架？/">如何自己实现一个RPC 框架？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/几种典型的系统设计案例（整理补充）/">几种典型的系统设计案例（整理补充）</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何设计一个排行榜？/">如何设计一个排行榜？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何解决大文件上传问题？/">如何解决大文件上传问题？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何统计网站UV？/">如何统计网站UV？</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="java">Java<a href="#java" class="hash-link" aria-label="Direct link to Java" title="Direct link to Java">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结/">JavaIO 模型常见面试题总结</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/Java/Java数据类型常见面试题总结/">Java数据类型常见面试题总结</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/Java/泛型&amp;通配符常见面试题总结/">泛型&amp;通配符常见面试题总结</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/Java/String类常见面试题总结/">String类常见面试题总结</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库缓存">数据库&amp;缓存<a href="#数据库缓存" class="hash-link" aria-label="Direct link to 数据库&amp;缓存" title="Direct link to 数据库&amp;缓存">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/MySQL日志：常见的日志都有什么用？/">MySQL日志：常见的日志都有什么用？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/MySQL索引：索引为什么使用B+树？/">MySQL索引：索引为什么使用 B+树？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Caffeine：Caffeine的性能为何如此优秀？/">Caffeine：Caffeine的性能为何如此优秀？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Redis基础：为什么要用分布式缓存？/">Redis基础：为什么要用分布式缓存？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Redis基础：常见的缓存更新策略有哪几种_/">Redis基础：常见的缓存更新策略有哪几种_</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Redis生产问题：内存满了怎么解决？/">Redis生产问题  ：内存满了怎么解决？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Redis主从复制：主从节点之间如何同步数据？/">Redis主从复制：主从节点之间如何同步数据？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/RedisSentinel：如何实现自动化地故障转移？/">RedisSentinel：如何实现自动化地故障转移？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/RedisCluster：缓存的数据量太大怎么办？/">RedisCluster：缓存的数据量太大怎么办？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/数据库&amp;缓存/Elasticsearch常见面试题总结/">Elasticsearch常见面试题总结</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="常见框架">常见框架<a href="#常见框架" class="hash-link" aria-label="Direct link to 常见框架" title="Direct link to 常见框架">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/常见框架/SpringBoot常见面试题总结/">SpringBoot常见面试题总结</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/常见框架/Netty常见面试题总结/">Netty常见面试题总结</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分布式微服务">分布式&amp;微服务<a href="#分布式微服务" class="hash-link" aria-label="Direct link to 分布式&amp;微服务" title="Direct link to 分布式&amp;微服务">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：为什么需要服务注册与发现？/">服务治理：为什么需要服务注册与发现？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行配置管理？/">服务治理：分布式下如何进行配置管理？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式事务解决方案有哪些？/">服务治理：分布式事务解决方案有哪些？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：监控系统如何做？/">服务治理：监控系统如何做？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行日志管理？/">服务治理：分布式下如何进行日志管理？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/微服务基础：SpringCloudAlibaba组件有哪些？/">微服务基础：SpringCloud Alibaba 组件有哪些？</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="高并发"><a href="/码农/Java面试指北/技术面试题篇/高并发/">高并发</a><a href="#高并发" class="hash-link" aria-label="Direct link to 高并发" title="Direct link to 高并发">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：防止接口被盗刷_如何保证接口的安全？/">高可用：防止接口被盗刷_如何保证接口的安全？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：如何保证接口幂等性？/">高可用：如何保证接口幂等性？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？/">高可用：如何设计一个高可用系统？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高性能：负载均衡的常见算法有哪些？/">高性能：负载均衡的常见算法有哪些？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高性能：池化技术的应用场景/">高性能：池化技术的应用场景</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高性能：零拷贝为什么能提升性能？/">高性能：零拷贝为什么能提升性能？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高性能：有哪些常见的SQL优化手段？/">高性能：有哪些常见的SQL 优化手段？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：如何避免微服务中的雪崩问题？/">高可用：如何避免微服务中的雪崩问题？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：降级和熔断有什么区别？/">高可用：降级和熔断有什么区别？</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/高并发/高可用：灰度发布和回滚有什么用？/">高可用：灰度发布和回滚有什么用？</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="服务器">服务器<a href="#服务器" class="hash-link" aria-label="Direct link to 服务器" title="Direct link to 服务器">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题篇/服务器/Nginx常见面试题总结/">Nginx常见面试题总结</a></li>
+<li><a href="/码农/Java面试指北/技术面试题篇/服务器/Tomcat常见面试题总结/">Tomcat常见面试题总结</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="技术面试题自测篇"><a href="/码农/Java面试指北/技术面试题自测篇/">技术面试题自测篇</a><a href="#技术面试题自测篇" class="hash-link" aria-label="Direct link to 技术面试题自测篇" title="Direct link to 技术面试题自测篇">​</a></h2>
+<ul>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/计算机网络常见面试题自测/">计算机网络常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/Java基础常见面试题自测/">Java基础常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/Java集合常见面试题自测/">Java集合常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/Java并发常见面试题自测/">Java并发常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/JVM常见面试题自测/">JVM常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/MySQL常见面试题自测/">MySQL常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/Redis常见面试题自测/">Redis常见面试题自测</a></li>
+<li><a href="/码农/Java面试指北/技术面试题自测篇/Spring&amp;SpringBoot常见面试题自测/">Spring&amp;SpringBoot常见面试题自测</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="面经篇"><a href="/码农/Java面试指北/面经篇/">面经篇</a><a href="#面经篇" class="hash-link" aria-label="Direct link to 面经篇" title="Direct link to 面经篇">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="必看">必看<a href="#必看" class="hash-link" aria-label="Direct link to 必看" title="Direct link to 必看">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/面经篇/必看/大厂四年，2024阿里、字节、蚂蚁、小红书面试经历分享/">大厂四年，2024阿里、字节、蚂蚁、小红书面试经历分享</a></li>
+<li><a href="/码农/Java面试指北/面经篇/必看/拿到腾讯、字节跳动等大厂后端实习offer了/">拿到腾讯、字节跳动等大厂后端实习offer了！</a></li>
+<li><a href="/码农/Java面试指北/面经篇/必看/四年半经验社招，腾讯、滴滴、字节、京东、快手、美团、蚂蚁等大中厂面试总结/">四年半经验社招，腾讯、滴滴、字节、京东、快手、美团、蚂蚁等大中厂面试总结</a></li>
+<li><a href="/码农/Java面试指北/面经篇/必看/双非本科、0实习、0比赛项目经历。3个月上岸百度/">双非本科、0实习、0比赛项目经历。3个月上岸百度</a></li>
+<li><a href="/码农/Java面试指北/面经篇/必看/2年经验，2021阿里、头条、美团，滴滴，京东面经/">2年经验，2021阿里、头条、 美团，滴滴，京东面经</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="大厂">大厂<a href="#大厂" class="hash-link" aria-label="Direct link to 大厂" title="Direct link to 大厂">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/面经篇/大厂/⭐️美团面试，拷打了两个多小时/">⭐️美团面试，拷打了两个多小时</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/⭐️秋招结束，我拿到了华为小奖状/">⭐️秋招结束，我拿到了华为小奖状！</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/5年社招百度、阿里后端面试经验分享/">5年社招百度、阿里后端面试经验分享！</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/2年经验大厂（网易、字节、B站、阿里...）面经分享/">2年经验大厂（网易、字节、B站、阿里...）面经分享</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/上海三年半社招，PDD、字节及证券面经/">上海三年半社招，PDD、字节及证券面经</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer/">Java后端社招两年半，拿了 10 多个 offer！</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/腾讯云Java工程师一面+被捞一面+二面面经/">腾讯云Java工程师一面+ 被捞一面 + 二面面经</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/秋招拿下科大讯飞SSP经验分享/">秋招拿下科大讯飞SSP 经验分享</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/NLP转后端开发，顺利拿到字节实习offer/">NLP转后端开发，顺利拿到字节实习 offer！！</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/字节跳动Java后端实习面经（附参考答案）/">字节跳动Java 后端实习面经（附参考答案）</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）/">美团、华为、字节（已获offer）春招面经（附参考答案）</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/五面阿里，终获offer/">五面阿里，终获offer!</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/从考研失败到收获到自己满意的Offer/">从考研失败到收获到自己满意的Offer</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）/">华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）</a></li>
+<li><a href="/码农/Java面试指北/面经篇/大厂/虾皮，网易云，京东，阿里校招面经！附参考答案/">虾皮，网易云，京东，阿里校招面经！附参考答案</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="中小厂">中小厂<a href="#中小厂" class="hash-link" aria-label="Direct link to 中小厂" title="Direct link to 中小厂">​</a></h3>
+<ul>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/⭐️vivo2024校招面经，很简单/">⭐️vivo2024 校招面经，很简单</a></li>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/携程校招面经（附答案），已获offer/">携程校招面经（附答案），已获offer!</a></li>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/双非本秋招总结与心路历程，上岸OPPO/">双非本秋招总结与心路历程，上岸OPPO</a></li>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/腾讯云智（武汉）面经（附答案），已获offer/">腾讯云智（武汉）面经（附答案），已获offer!</a></li>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/步步高Java后端校招四面/">步步高Java 后端校招四面</a></li>
+<li><a href="/码农/Java面试指北/面经篇/中小厂/金蝶Java后端校招三面面经（已OC，附参考答案）/">金蝶Java 后端校招三面面经（已OC，附参考答案）</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="练级攻略篇"><a href="/码农/Java面试指北/练级攻略篇/">练级攻略篇</a><a href="#练级攻略篇" class="hash-link" aria-label="Direct link to 练级攻略篇" title="Direct link to 练级攻略篇">​</a></h2>
+<ul>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何成为一个合格的程序员？/">如何成为一个合格的程序员？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何提高编程能力？/">如何提高编程能力？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？/">如何快速上手一个新项目？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何有效地提高工作效率？/">如何有效地提高工作效率？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何更高效地自学编程？/">如何更高效地自学编程？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/如何快速学习新技术？/">如何快速学习新技术？</a></li>
+<li><a href="/码农/Java面试指北/练级攻略篇/大厂招聘更看重什么能力？/">大厂招聘更看重什么能力？</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="工作篇"><a href="/码农/Java面试指北/工作篇/">工作篇</a><a href="#工作篇" class="hash-link" aria-label="Direct link to 工作篇" title="Direct link to 工作篇">​</a></h2>
+<ul>
+<li><a href="/码农/Java面试指北/工作篇/如何选择职业方向？/">如何选择职业方向？</a></li>
+<li><a href="/码农/Java面试指北/工作篇/新入职一家公司如何快速进入工作状态？/">新入职一家公司如何快速进入工作状态？</a></li>
+<li><a href="/码农/Java面试指北/工作篇/如何在绩效考核中脱颖而出？/">如何在绩效考核中脱颖而出？</a></li>
+<li><a href="/码农/Java面试指北/工作篇/公司背调需要注意什么？/">公司背调需要注意什么？</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#面试准备篇必看" class="table-of-contents__link toc-highlight">面试准备篇（必看）</a></li><li><a href="#技术面试题篇" class="table-of-contents__link toc-highlight">技术面试题篇</a><ul><li><a href="#项目开发基础" class="table-of-contents__link toc-highlight">项目开发基础</a></li><li><a href="#系统设计场景题" class="table-of-contents__link toc-highlight">系统设计&amp;场景题</a></li><li><a href="#java" class="table-of-contents__link toc-highlight">Java</a></li><li><a href="#数据库缓存" class="table-of-contents__link toc-highlight">数据库&amp;缓存</a></li><li><a href="#常见框架" class="table-of-contents__link toc-highlight">常见框架</a></li><li><a href="#分布式微服务" class="table-of-contents__link toc-highlight">分布式&amp;微服务</a></li><li><a href="#高并发" class="table-of-contents__link toc-highlight">高并发</a></li><li><a href="#服务器" class="table-of-contents__link toc-highlight">服务器</a></li></ul></li><li><a href="#技术面试题自测篇" class="table-of-contents__link toc-highlight">技术面试题自测篇</a></li><li><a href="#面经篇" class="table-of-contents__link toc-highlight">面经篇</a><ul><li><a href="#必看" class="table-of-contents__link toc-highlight">必看</a></li><li><a href="#大厂" class="table-of-contents__link toc-highlight">大厂</a></li><li><a href="#中小厂" class="table-of-contents__link toc-highlight">中小厂</a></li></ul></li><li><a href="#练级攻略篇" class="table-of-contents__link toc-highlight">练级攻略篇</a></li><li><a href="#工作篇" class="table-of-contents__link toc-highlight">工作篇</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

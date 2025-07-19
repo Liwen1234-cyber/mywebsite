@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/技术面试题篇/分布式&微服务/服务治理：分布式下如何进行配置管理？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">服务治理：分布式下如何进行配置管理？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行配置管理？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="服务治理：分布式下如何进行配置管理？ | Coisini"><meta data-rh="true" name="description" content="为什么要用配置中心？"><meta data-rh="true" property="og:description" content="为什么要用配置中心？"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行配置管理？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行配置管理？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/分布式&amp;微服务/服务治理：分布式下如何进行配置管理？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>服务治理：分布式下如何进行配置管理？</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="为什么要用配置中心">为什么要用配置中心？<a href="#为什么要用配置中心" class="hash-link" aria-label="Direct link to 为什么要用配置中心？" title="Direct link to 为什么要用配置中心？">​</a></h2>
+<p>微服务下，业务的发展一般会导致服务数量的增加，进而导致程序配置（服务地址、数据库参数等等）增多。传统的配置文件的方式已经无法满足当前需求，主要有下面几点原因：</p>
+<ul>
+<li>安全性得不到保障：配置放在代码库中容易泄露。</li>
+<li>时效性不行：修改配置需要重启服务才能生效。</li>
+<li>不支持权限控制 ：没有对配置的修改、发布等操作进行严格的权限控制。</li>
+<li>不支持配置集中管理 ： 配置文件过于分散，不方便管理。</li>
+<li>......</li>
+</ul>
+<p>另外，配置中心通常会自带版本跟踪，会记录配置的修改记录，记录的内容包括修改人、修改时间、修改内容等等。</p>
+<p>虽然通过 Git 版本管理我们也能追溯配置的修改记录，但是配置中心提供的配置版本管理功能更全面。并且，配置中心通常会在配置版本管理的基础上支持配置一键回滚。</p>
+<p><img decoding="async" loading="lazy" alt="view-release-history.png" src="/assets/images/1654851431809-d3e6626e-2120-4072-a274-b9d85b307037-040647-264207e949543529b675418f79355e17.png" width="1275" height="325" class="img_ev3q"></p>
+<p>一些功能更全面的配置中心比如<code>Apollo</code>甚至还支持灰度发布。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="常见的配置中心有哪些">常见的配置中心有哪些？<a href="#常见的配置中心有哪些" class="hash-link" aria-label="Direct link to 常见的配置中心有哪些？" title="Direct link to 常见的配置中心有哪些？">​</a></h2>
+<p><a href="https://cloud.spring.io/spring-cloud-config/reference/html/" target="_blank" rel="noopener noreferrer">Spring Cloud Config</a>、<a href="https://github.com/alibaba/nacos" target="_blank" rel="noopener noreferrer">Nacos</a> 、<a href="https://github.com/apolloconfig/apollo" target="_blank" rel="noopener noreferrer">Apollo</a>、K8s ConfigMap 、<a href="https://github.com/knightliao/disconf" target="_blank" rel="noopener noreferrer">Disconf</a> 、<a href="https://github.com/Qihoo360/QConf" target="_blank" rel="noopener noreferrer">Qconf</a> 都可以用来做配置中心。</p>
+<p>Disconf 和 Qconf 已经没有维护，生态也并不活跃，并不建议使用，在做配置中心技术选型的时候可以跳过。</p>
+<p>如果你的技术选型是 Kubernetes 的话，可以考虑使用 K8s ConfigMap 来作为配置中心。</p>
+<p>Apollo 和 Nacos 我个人更喜欢，两者都是国内公司开源的知名项目，项目社区都比较活跃且都还在维护中。Nacos 是阿里开源的，Apollo 是携程开源的。Nacos 使用起来比较简单，并且还可以直接用来做服务发现及管理。Apollo 只能用来做配置管理，使用相对复杂一些。</p>
+<p>如果你的项目仅仅需要配置中心的话，建议使用 Apollo 。如果你的项目需要配置中心的同时还需要服务发现及管理的话，那就更建议使用 Nacos。</p>
+<p>Spring Cloud Config 属于 Spring Cloud 生态组件，可以和 Spring Cloud 体系无缝整合。由于基于 Git 存储配置，因此 Spring Cloud Config 的整体设计很简单。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="apollo-vs-nacos-vs-spring-cloud-config">Apollo vs Nacos vs Spring Cloud Config<a href="#apollo-vs-nacos-vs-spring-cloud-config" class="hash-link" aria-label="Direct link to Apollo vs Nacos vs Spring Cloud Config" title="Direct link to Apollo vs Nacos vs Spring Cloud Config">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">功能点</th><th style="text-align:left">Apollo</th><th style="text-align:left">Nacos</th><th>Spring Cloud Config</th></tr></thead><tbody><tr><td style="text-align:left">配置界面</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>无（需要通过 Git 操作）</td></tr><tr><td style="text-align:left">配置实时生效</td><td style="text-align:left">支持(HTTP 长轮询 1s 内)</td><td style="text-align:left">支持(HTTP 长轮询 1s 内)</td><td>重启生效，或手动 refresh 生效</td></tr><tr><td style="text-align:left">版本管理</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>支持（依赖 Git）</td></tr><tr><td style="text-align:left">权限管理</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>支持（依赖 Git）</td></tr><tr><td style="text-align:left">灰度发布</td><td style="text-align:left">支持</td><td style="text-align:left">支持（Nacos 1.1.0 版本开始支持灰度配置）</td><td>不支持</td></tr><tr><td style="text-align:left">配置回滚</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>支持（依赖 Git）</td></tr><tr><td style="text-align:left">告警通知</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>不支持</td></tr><tr><td style="text-align:left">多语言</td><td style="text-align:left">主流语言，Open API</td><td style="text-align:left">主流语言，Open API</td><td>只支持 Spring 应用</td></tr><tr><td style="text-align:left">多环境</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>不支持</td></tr><tr><td style="text-align:left">监听查询</td><td style="text-align:left">支持</td><td style="text-align:left">支持</td><td>支持</td></tr></tbody></table>
+<p>Apollo 和 Nacos 提供了更多开箱即用的功能，更适合用来作为配置中心。</p>
+<p>Nacos 使用起来比较简单，并且还可以直接用来做服务发现及管理。Apollo 只能用来做配置管理，使用相对复杂一些。</p>
+<p>Apollo 在配置管理方面做的更加全面，就比如说虽然 Nacos 在 1.1.0 版本开始支持灰度配置，但 Nacos 的灰度配置功能实现的比较简单，Apollo 实现的灰度配置功能就相对更完善一些。不过，Nacos 提供的配置中心功能已经可以满足绝大部分项目的需求了。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="一个 完备配置中心需要具备哪些功能">一个完备配置中心需要具备哪些功能？<a href="#一个完备配置中心需要具备哪些功能" class="hash-link" aria-label="Direct link to 一个完备配置中心需要具备哪些功能？" title="Direct link to 一个完备配置中心需要具备哪些功能？">​</a></h2>
+<p>如果我们需要自己设计一个配置中心的话，需要考虑哪些东西呢？</p>
+<p>简单说说我的看法：</p>
+<ul>
+<li><strong>权限控制</strong> ：配置的修改、发布等操作需要严格的权限控制。</li>
+<li><strong>日志记录</strong> ： 配置的修改、发布等操需要记录完整的日志，便于后期排查问题。</li>
+<li><strong>配置推送</strong> ： 推送模式通常由两种：
+<ul>
+<li>推 ：实时性变更，配置更新后推送给应用。需要应用和配置中心保持长连接，复杂度高。</li>
+<li>拉 ：实时性较差，应用隔一段时间手动拉取配置。</li>
+<li>推拉结合</li>
+</ul>
+</li>
+<li><strong>灰度发布</strong> ：支持配置只推给部分应用。</li>
+<li><strong>易操作</strong> ： 提供 Web 界面方便配置修改和发布。</li>
+<li><strong>版本跟踪</strong> ：所有的配置发布都有版本概念，从而可以方便的支持配置的回滚。</li>
+<li><strong>支持配置回滚</strong> ： 我们一键回滚配置到指定的位置，这个需要和版本跟踪结合使用。</li>
+<li>......</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="以-apollo-为例介绍配置中心的设计">以 Apollo 为例介绍配置中心的设计<a href="#以-apollo-为例介绍配置中心的设计" class="hash-link" aria-label="Direct link to 以 Apollo 为例介绍配置中心的设计" title="Direct link to 以 Apollo 为例介绍配置中心的设计">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="apollo-介绍">Apollo 介绍<a href="#apollo-介绍" class="hash-link" aria-label="Direct link to Apollo 介绍" title="Direct link to Apollo 介 绍">​</a></h3>
+<p>根据 Apollo 官方介绍：</p>
+<blockquote>
+<p><a href="https://github.com/ctripcorp/apollo" target="_blank" rel="noopener noreferrer">Apollo</a>（阿波罗）是携程框架部门研发的分布式配置中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。</p>
+<p>服务端基于 Spring Boot 和 Spring Cloud 开发，打包后可以直接运行，不需要额外安装 Tomcat 等应用容器。</p>
+<p>Java 客户端不依赖任何框架，能够运行于所有 Java 运行时环境，同时对 Spring/Spring Boot 环境也有较好的支持。</p>
+</blockquote>
+<p>Apollo 特性：</p>
+<ul>
+<li><strong>配置修改实时生效（热发布）</strong> （1s 即可接收到最新配置）</li>
+<li><strong>灰度发布</strong> （配置只推给部分应用）</li>
+<li><strong>部署简单</strong> （只依赖 MySQL）</li>
+<li><strong>跨语言</strong> （提供了 HTTP 接口，不限制编程语言）</li>
+<li>......</li>
+</ul>
+<p>关于如何使用 Apollo 可以查看 <a href="https://www.apolloconfig.com/#/zh/" target="_blank" rel="noopener noreferrer">Apollo 官方使用指南</a>。</p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/Ge14UeY9Gm2Hrk--E47eJQ" target="_blank" rel="noopener noreferrer">Apollo 在有赞的实践</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NzYyNjQzNg==&amp;mid=2247484920&amp;idx=1&amp;sn=76d91ce217bf508aa2ee7156e1ba0994&amp;source=41#wechat_redirect" target="_blank" rel="noopener noreferrer">分布式配置中心选型，为什么选择 Apollo？—微观技术-2021-04-23</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="apollo-架构解析">Apollo 架构解析<a href="#apollo-架构解析" class="hash-link" aria-label="Direct link to Apollo 架构解析" title="Direct link to Apollo 架构解析">​</a></h3>
+<p>官方给出的 Apollo 基础模型非常简单：</p>
+<p><img decoding="async" loading="lazy" alt="a75ccb863e4a401d947c87bb14af7dc3.png" src="/assets/images/1627996357101-deeb8344-5c39-483f-a85e-1f056fcd8c6a-794481-90a58397ee564431a925f8d238253df1.png" width="956" height="602" class="img_ev3q"></p>
+<ol>
+<li>用户通过 Apollo 配置中心修改/发布配置，</li>
+<li>Apollo 配置中心通知应用配置已经更改</li>
+<li>应用访问 Apollo 配置中心获取最新的配置</li>
+</ol>
+<p>官方给出的架构图如下：</p>
+<p><img decoding="async" loading="lazy" alt="79c7445f9dbc45adb45699d40ef50f44.png" src="/assets/images/1627996357054-5a92344b-1b99-4e84-ad83-dce41e3ee48c-282389-9a637fca61915e38a183f9dabd6447a3.png" width="856" height="741" class="img_ev3q"></p>
+<ul>
+<li><strong>Client 端（客户端，用于应用获取配置）流程</strong> ：Client 通过域名走 slb（软件负载均衡）访问 Meta Server，Meta Server 访问 Eureka 服务注册中心获取 Config Service 服务列表（IP+Port）。有了 IP+Port，我们就能访问 Config Service 暴露的服务比如通过 GET 请求获取配置的接口（<code>/configs/{appId}/{clusterName}/{namespace:.+}</code>）即可获取配置。</li>
+<li><strong>Portal 端（UI 界面，用于可视化配置管理）流程</strong> ：Portal 端通过域名走 slb（软件负载均衡）访问 Meta Server，Meta Server 访问 Eureka 服务注册中心获取 Admin Service 服务列表（IP+Port）。有了 IP+Port，我们就能访问 Admin Service 暴露的服务比如通过 POST 请求访问发布配置的接口（<code>/apps/{appId}/envs/{env}/clusters/{clusterName}/namespaces/{namespaceName}/releases</code>）即可发布配置。</li>
+</ul>
+<p>另外，杨波老师的<a href="https://mp.weixin.qq.com/s/-hUaQPzfsl9Lm3IqQW3VDQ" target="_blank" rel="noopener noreferrer">微服务架构~携程 Apollo 配置中心架构剖析</a>这篇文章对 Apollo 的架构做了简化，值得一看。</p>
+<p>我会从上到下依次介绍架构图中涉及到的所有角色的作用。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="client">Client<a href="#client" class="hash-link" aria-label="Direct link to Client" title="Direct link to Client">​</a></h4>
+<p>Apollo 官方提供的客户端，目前有 Java 和.Net 版本。非 Java 和.Net 应用可以通过调用 HTTP 接口来使用 Apollo。</p>
+<p>Client 的作用主要就是提供一些开箱即用的方法方便应用获取以及实时更新配置。</p>
+<p>比如你通过下面的几行代码就能获取到 <code>someKey</code> 对应的实时最新的配置值：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Config config = ConfigService.getAppConfig();</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">String someKey = &quot;someKeyFromDefaultNamespace&quot;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">String someDefaultValue = &quot;someDefaultValueForTheKey&quot;;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">String value = config.getProperty(someKey, someDefaultValue);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>再比如你通过下面的代码就能监听配置变化：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">Config config = ConfigService.getAppConfig();</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">config.addChangeListener(new ConfigChangeListener() {</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    @Override</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    public void onChange(ConfigChangeEvent changeEvent) {</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">       //......</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    }</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">});</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="portal">Portal<a href="#portal" class="hash-link" aria-label="Direct link to Portal" title="Direct link to Portal">​</a></h4>
+<p>Portal 实际就是一个帮助我们修改和发布配置的 UI 界面。</p>
+<p><img decoding="async" loading="lazy" alt="e63ef8dc739548e8b504632b151ba4c7.png" src="/assets/images/1627996357244-07a96038-b285-4d99-a0de-25bd58d86f3f-735580-5c08103974954e13ba3d2609b5a70dfe.png" width="2648" height="1944" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="software-load-balancer">（Software） Load Balancer<a href="#software-load-balancer" class="hash-link" aria-label="Direct link to （Software） Load Balancer" title="Direct link to （Software） Load Balancer">​</a></h4>
+<p>为了实现 MetaServer 的高可用，MetaServer 通常以集群的形式部署。</p>
+<p>Client/Portal 直接访问 （Software） Load Balancer ，然后，再由其进行负载均衡和流量转发。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="meta-server">Meta Server<a href="#meta-server" class="hash-link" aria-label="Direct link to Meta Server" title="Direct link to Meta Server">​</a></h4>
+<p>为了实现跨语言使用，通常的做法就是暴露 HTTP 接口。为此，Apollo 引入了 MetaServer。</p>
+<p>Meta Server 其实就是 Eureka 的 Proxy，作用就是将 Eureka 的服务发现接口以 HTTP 接口的形式暴露出来。 这样的话，我们通过 HTTP 请求就可以访问到 Config Service 和 AdminService。</p>
+<p>通常情况下，我们都是建议基于 Meta Server 机制来实现 Config Service 的服务发现，这样可以实现 Config Service 的高可用。不过， 你也可以选择跳过 MetaServer，直接指定 Config Service 地址（apollo-client 0.11.0 及以上版本）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="config-service">Config Service<a href="#config-service" class="hash-link" aria-label="Direct link to Config Service" title="Direct link to Config Service">​</a></h4>
+<p>主要用于 Client 对配置的获取以及实时更新。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="admin-service">Admin Service<a href="#admin-service" class="hash-link" aria-label="Direct link to Admin Service" title="Direct link to Admin Service">​</a></h4>
+<p>主要用于 Portal 对配置的更新。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="参考">参考<a href="#参考" class="hash-link" aria-label="Direct link to 参考" title="Direct link to 参考">​</a></h2>
+<ul>
+<li>Nacos 1.2.0 权限控制介绍和使用：<a href="https://nacos.io/zh-cn/blog/nacos%201.2.0%20guide.html" target="_blank" rel="noopener noreferrer">https://nacos.io/zh-cn/blog/nacos 1.2.0 guide.html</a></li>
+<li>Nacos 1.1.0 发布，支持灰度配置和地址服务器模式：<a href="https://nacos.io/zh-cn/blog/nacos%201.1.0.html" target="_blank" rel="noopener noreferrer">https://nacos.io/zh-cn/blog/nacos 1.1.0.html</a></li>
+<li>Apollo 常见问题解答：<a href="https://www.apolloconfig.com/#/zh/faq/faq" target="_blank" rel="noopener noreferrer">https://www.apolloconfig.com/#/zh/faq/faq</a></li>
+<li>微服务配置中心选型比较：<a href="https://www.itshangxp.com/spring-cloud/spring-cloud-config-center/" target="_blank" rel="noopener noreferrer">https://www.itshangxp.com/spring-cloud/spring-cloud-config-center/</a></li>
+</ul>
+<blockquote>
+<p>更新: 2024-05-24 17:58:44<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/kptwkp" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/kptwkp</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#为什么要用配置中心" class="table-of-contents__link toc-highlight">为什么要用配置中心？</a></li><li><a href="#常见的配置中心有哪些" class="table-of-contents__link toc-highlight">常见的配置中心有哪些？</a></li><li><a href="#apollo-vs-nacos-vs-spring-cloud-config" class="table-of-contents__link toc-highlight">Apollo vs Nacos vs Spring Cloud Config</a></li><li><a href="#一个完备配置中心需要具备哪些功能" class="table-of-contents__link toc-highlight">一个完备配置中心需要具备哪些功能？</a></li><li><a href="#以-apollo-为例介绍配置中心的设计" class="table-of-contents__link toc-highlight">以 Apollo 为例介绍配置中心的设计</a><ul><li><a href="#apollo-介绍" class="table-of-contents__link toc-highlight">Apollo 介绍</a></li><li><a href="#apollo-架构解析" class="table-of-contents__link toc-highlight">Apollo 架构解析</a></li></ul></li><li><a href="#参考" class="table-of-contents__link toc-highlight">参考</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

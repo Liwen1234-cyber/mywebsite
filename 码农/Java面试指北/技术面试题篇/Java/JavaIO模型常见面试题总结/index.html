@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Java IO 模型常见面试题总结 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Java IO 模型常见面试题总结 | Coisini"><meta data-rh="true" name="description" content="面试中经常喜欢问的一个问题，因为通过这个问题，面试官可以顺便了解一下你的操作系统的水平。"><meta data-rh="true" property="og:description" content="面试中经常喜欢问的一个问题，因为通过这个问题，面试官可以顺便了解一下你的操作系统的水平。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/Java/JavaIO模型常见面试题总结/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Java IO 模型常见面试题总结</h1></header>
+<p>面试中经常喜欢问的一个问题，因为通过这个问题，面试官可以顺便了解一下你的操作系统的水平。</p>
+<p>IO 模型这块确实挺难理解的，需要太多计算机底层知识。写这篇文章用了挺久，就非常希望能把我所知道的讲出来吧!希望朋友们能有收获！为了写这篇文章，还翻看了一下《UNIX 网络编程》这本书，太难 了，我滴乖乖！心痛~</p>
+<p><em>个人能力有限。如果文章有任何需要补充/完善/修改的地方，欢迎在评论区指出，共同进步！</em></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="前言">前言<a href="#前言" class="hash-link" aria-label="Direct link to 前言" title="Direct link to 前言">​</a></h2>
+<p>I/O 一直是很多小伙伴难以理解的一个知识点，这篇文章我会将我所理解的 I/O 讲给你听，希望可以对你有所帮助。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="io">I/O<a href="#io" class="hash-link" aria-label="Direct link to I/O" title="Direct link to I/O">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="何为-io">何为 I/O?<a href="#何为-io" class="hash-link" aria-label="Direct link to 何为 I/O?" title="Direct link to 何为 I/O?">​</a></h3>
+<p>I/O（<strong>I</strong>nput/<strong>O</strong>utpu） 即<strong>输入／输出</strong> 。</p>
+<p><strong>我们先从计算机结构的角度来解读一下 I/O。</strong></p>
+<p>根据冯.诺依曼结构，计算机结构分为 5 大部分：运算器、控制器、存储器、输入设备、输出设备。</p>
+<p><img decoding="async" loading="lazy" alt="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9pcy1jbG91ZC5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70" src="/assets/images/1619453226756-46bbc736-a7fa-4c28-b9b1-c4fd3eeedd2d-187629-0665bed370e066ab392049a1830e08c8.jpeg" width="2372" height="1505" class="img_ev3q"></p>
+<p>输入设备（比如键盘）和输出设备（比如显示屏）都属于外部设备。网卡、硬盘这种既可以属于输入设备，也可以属于输出设备。</p>
+<p>输入设备向计算机输入数据，输出设备接收计算机输出的数据。</p>
+<p><strong>从计算机结构的视角来看的话， I/O 描述了计算机系统与外部设备之间通信的过程。</strong></p>
+<p><strong>我们再先从应用程序的角度来解读一下 I/O。</strong></p>
+<p>根据大学里学到的操作  系统相关的知识：为了保证操作系统的稳定性和安全性，一个进程的地址空间划分为 <strong>用户空间（User space）</strong> 和 <strong>内核空间（Kernel space ）</strong> 。</p>
+<p>像我们平常运行的应用程序都是运行在用户空间，只有内核空间才能进行系统态级别的资源有关的操作，比如如文件管理、进程通信、内存管理等等。也就是说，我们想要进行 IO 操作，一定是要依赖内核空间的能力。</p>
+<p>并且，用户空间的程序不能直接访问内核空间。</p>
+<p>当想要执行 IO 操作时，由于没有执行这些操作的权限，只能发起系统调用请求操作系统帮忙完成。</p>
+<p>因此，用户进程想要执行 IO 操作的话，必须通过 <strong>系统调用</strong> 来间接访问内核空间</p>
+<p>我们在平常开发过程中接触最多的就是 <strong>磁盘 IO（读写文件）</strong> 和 <strong>网络 IO（网络请求和响应）</strong>。</p>
+<p><strong>从应用程序的视角来看的话，我们的应用程序对操作系统的内核发起 IO 调用（系统调用），操作系统负责的内核执行具体的 IO 操作。也就是说，我们的应用程序实际上只是发起了 IO 操作的调用而已，具体 IO 的执行是由操作系统的内核来完成的。</strong></p>
+<p>当应用程序发起 I/O 调用后，会经历两个步骤：</p>
+<ol>
+<li>内核等待 I/O 设备准备好数据</li>
+<li>内核将数据从内核空间拷贝到用户空间。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="有哪些常见的-io-模型">有哪些常见的 IO 模型?<a href="#有哪些常见的-io-模型" class="hash-link" aria-label="Direct link to 有哪些常见的 IO 模型?" title="Direct link to 有哪些常见的 IO 模型?">​</a></h3>
+<p>UNIX 系统下， IO 模型一共有 5 种： <strong>同步阻塞 I/O</strong>、<strong>同步非阻塞 I/O</strong>、<strong>I/O 多路复用</strong>、<strong>信号驱动 I/O</strong>   和<strong>异步 I/O</strong>。</p>
+<p>这也是我们经常提到的 5 种 IO 模型。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="java-中-3-种常见-io-模型">Java 中 3 种常见 IO 模型<a href="#java-中-3-种常见-io-模型" class="hash-link" aria-label="Direct link to Java 中 3 种常见 IO 模型" title="Direct link to Java 中 3 种常见 IO 模型">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="bio-blocking-io">BIO (Blocking I/O)<a href="#bio-blocking-io" class="hash-link" aria-label="Direct link to BIO (Blocking I/O)" title="Direct link to BIO (Blocking I/O)">​</a></h3>
+<p><strong>BIO 属于同步阻塞 IO 模型</strong> 。</p>
+<p>同步阻塞 IO 模型中，应用程序发起 read 调用后，会一直阻塞，直到在内核把数据拷贝到用户空间。</p>
+<p><img decoding="async" loading="lazy" alt="726a19cf8f5bdcba14811d932d1209f5.png" src="/assets/images/1676009760024-ab953719-89da-4917-bf1f-a05ba74f9cb8-875857-3ad756a77769fb5a8d0433f0873a1239.png" width="590" height="658" class="img_ev3q"></p>
+<p>在客户端连接数量不高的情况下，是没问题的。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="nio-non-blockingnew-io">NIO (Non-blocking/New I/O)<a href="#nio-non-blockingnew-io" class="hash-link" aria-label="Direct link to NIO (Non-blocking/New I/O)" title="Direct link to NIO (Non-blocking/New I/O)">​</a></h3>
+<p>Java 中的 NIO 于 Java 1.4 中引入，对应 <code>java.nio</code> 包，提供了 <code>Channel</code> , <code>Selector</code>，<code>Buffer</code> 等抽象。NIO 中的 N 可以理解为 Non-blocking，不单纯是 New。它支持面向缓冲的，基于通道的 I/O 操作方法。 对于高负载、高并发的（网络）应用，应使用 NIO 。</p>
+<p>Java 中的 NIO 可以看作是 <strong>I/O 多路复用模型</strong>。也  有很多人认为，Java 中的 NIO 属于同步非阻塞 IO 模型。</p>
+<p>跟着我的思路往下看看，相信你会得到答案！</p>
+<p>我们先来看看 <strong>同步非阻塞 IO 模型</strong>。</p>
+<p><img decoding="async" loading="lazy" alt="5acc17a26b49bf261766ab89eb804690.png" src="/assets/images/1676009759939-1c41ee08-df42-4f71-b428-691a8c23ece7-653612-9a4baa9371fc23c6c03606b3cf5fa969.png" width="578" height="664" class="img_ev3q"></p>
+<p>同步非阻塞 IO 模型中，应用程序会一直发起 read 调用，等待数据从内核空间拷贝到用户空间的这段时间里，线程依然是阻塞的，直到在内核把数据拷贝到用户空间。</p>
+<p>相比于同步阻塞 IO 模型，同步非阻塞 IO 模型确实有了很大改进。通过轮询操作，避免了一直阻塞。</p>
+<p>但是，这种 IO 模型同样存在问题：<strong>应用程序不断进行 I/O 系统调用轮询数据是否已经准备好的过程是十分消耗 CPU 资源的。</strong></p>
+<p>这个时候，<strong>I/O 多路复用模型</strong> 就上场了。</p>
+<p><img decoding="async" loading="lazy" alt="aa2cb6950df15c5fa52c573678e6897f.png" src="/assets/images/1676009759909-d496e2ab-b64d-457c-865f-6c98d4bdc724-711767-c2448271f52c89589224ee71a9f189c4.png" width="588" height="570" class="img_ev3q"></p>
+<p>IO 多路复用模型中，线程首先发起 select 调用，询问内核数据是否准备就绪，等内核把数据准备好了，用户线程再发起 read 调用。read 调用的过程（数据从内核空间-&gt;用户空间）还是阻塞的。</p>
+<blockquote>
+<p>目前支持 IO 多路复用的系统调用，有 select，epoll 等等。select 系统调用，是目前几乎在所有的操作系统上都有支持</p>
+<ul>
+<li><strong>select 调用</strong> ：内核提供的系统调用，它支持一次查询多个系统调用的可用状态。几乎所有的操作系统都支持。</li>
+<li><strong>epoll 调用</strong> ：linux 2.6 内核，属于 select 调用的增强版本，优化了 IO 的执行效率。</li>
+</ul>
+</blockquote>
+<p><strong>IO 多路复用模型，通过减少无效的系统调用，减少了对 CPU 资源的消耗。</strong></p>
+<p>Java 中的 NIO ，有一个非常重要的<strong>选择器 ( Selector )</strong> 的概念，也可以被称为 <strong>多路复用器</strong>。通过它，只需要一个线程便可以管理多个客户端连接。当客户端数据到了之后，才会为其服务。</p>
+<p><img decoding="async" loading="lazy" alt="7e450c92304b9abda56f2ad881d32c3e.png" src="/assets/images/1676009759957-107d2e6c-9dda-4284-9e13-858f4413b991-189787-e5c74a6c0cefb067d1afeb19a1bdd735.png" width="2384" height="1686" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="aio-asynchronous-io">AIO (Asynchronous I/O)<a href="#aio-asynchronous-io" class="hash-link" aria-label="Direct link to AIO (Asynchronous I/O)" title="Direct link to AIO (Asynchronous I/O)">​</a></h3>
+<p>AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO 模型。</p>
+<p>异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。</p>
+<p><img decoding="async" loading="lazy" alt="6177e2d406bffe011bbc030c3d36a387.png" src="/assets/images/1676009759908-c2eab7b5-1f07-4d55-836f-b10475c0322e-553647-1abb8695f03329ccbc8cb070aafabd06.png" width="570" height="660" class="img_ev3q"></p>
+<p>目前来说 AIO 的应用还不是很广泛。Netty 之前也尝试使用过 AIO，不过又放弃了。这是因为，Netty 使用了 AIO 之后，在 Linux 系统上的性能并没有多少提升。</p>
+<p>最后，来一张图，简单总结一下 Java 中的 BIO、NIO、AIO。</p>
+<p><img decoding="async" loading="lazy" alt="ecf5b4f6b1a9074acd59b7f2f8ba9557.png" src="/assets/images/1676009759917-49061272-2197-4654-915e-df509f35175b-273905-4b301cea2e83981b08513a9e4ddee4e0.png" width="1184" height="1124" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="参考">参考<a href="#参考" class="hash-link" aria-label="Direct link to 参考" title="Direct link to 参考">​</a></h2>
+<ul>
+<li>《深入拆解 Tomcat &amp; Jetty》</li>
+<li>如何完成一次 IO：<a href="https://llc687.top/post/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90%E4%B8%80%E6%AC%A1-io/" target="_blank" rel="noopener noreferrer">https://llc687.top/post/如何完成一次-io/</a></li>
+<li>程序员应该这样理解 IO：<a href="https://www.jianshu.com/p/fa7bdc4f3de7" target="_blank" rel="noopener noreferrer">https://www.jianshu.com/p/fa7bdc4f3de7</a></li>
+<li>10 分钟看懂， Java NIO 底层原理：<a href="https://www.cnblogs.com/crazymakercircle/p/10225159.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/crazymakercircle/p/10225159.html</a></li>
+<li>IO 模型知多少 | 理论篇：<a href="https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/sheng-jie/p/how-much-you-know-about-io-models.html</a></li>
+<li>《UNIX 网络编程 卷 1；套接字联网 API 》6.2 节 IO 模型</li>
+</ul>
+<blockquote>
+<p>更新: 2023-04-17 09:53:52<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/qcyq7f" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/qcyq7f</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#前言" class="table-of-contents__link toc-highlight">前言</a></li><li><a href="#io" class="table-of-contents__link toc-highlight">I/O</a><ul><li><a href="#何为-io" class="table-of-contents__link toc-highlight">何为 I/O?</a></li><li><a href="#有哪些常见的-io-模型" class="table-of-contents__link toc-highlight">有哪些常见的 IO 模型?</a></li></ul></li><li><a href="#java-中-3-种常见-io-模型" class="table-of-contents__link toc-highlight">Java 中 3 种常见 IO 模型</a><ul><li><a href="#bio-blocking-io" class="table-of-contents__link toc-highlight">BIO (Blocking I/O)</a></li><li><a href="#nio-non-blockingnew-io" class="table-of-contents__link toc-highlight">NIO (Non-blocking/New I/O)</a></li><li><a href="#aio-asynchronous-io" class="table-of-contents__link toc-highlight">AIO (Asynchronous I/O)</a></li></ul></li><li><a href="#参考" class="table-of-contents__link toc-highlight">参考</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

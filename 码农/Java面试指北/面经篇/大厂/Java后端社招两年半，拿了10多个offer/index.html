@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Java 后端社招两年半，拿了 10 多个 offer！ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Java 后端社招两年半，拿了 10 多个 offer！ | Coisini"><meta data-rh="true" name="description" content="大家好，我是工作时长两年半的 Java 开发工程师，喜欢摸鱼、划水、code、开会，接下来我将介绍下我的社招求职心得和面经。"><meta data-rh="true" property="og:description" content="大家好，我是工作时长两年半的 Java 开发工程师，喜欢摸鱼、划水、code、开会，接下来我将介绍下我的社招求职心得和面经。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/Java后端社招两年半，拿了10多个offer/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Java 后端社招两年半，拿了 10 多个 offer！</h1></header>
+<p>大家好，我是工作时长两年半的 Java 开发工程师，喜欢摸鱼、划水、code、开会，接下来我将介绍下我的社招求职心得和面经。</p>
+<p>方法论和知识点我就不多介绍了，Java 面试指南网站（<strong>javaguide.cn</strong>）里写的很全面，更多是想说一些我的感受和建议，分为以下两个方面：</p>
+<ul>
+<li><strong>面经</strong> ：白龙马云行科技、字节、淘宝、快手、百度、拼多多等上十家拿到 offer 或者谈薪阶段主动终止的公司的完整面经。</li>
+<li><strong>经验分享</strong> ：心态、简历、算法、技巧。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="面经总结">面经总结<a href="#面经总结" class="hash-link" aria-label="Direct link to 面经总结" title="Direct link to 面经总结">​</a></h2>
+<p>面经部分都是拿到 offer 或者谈薪阶段主动终止的公司，其他小公司或创业公司都是为了练手，面试题没有普遍性的都没有列举出来，面试问题写的少的都是问项目、业务比较多的。算法题只在 leetcode 上找原题，没有贴出链接的就是 leetcode 上没有的。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="白龙马云行科技">白龙马云行科技<a href="#白龙马云行科技" class="hash-link" aria-label="Direct link to 白龙马云行科技" title="Direct link to 白龙马云行科技">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面">一面<a href="#一面" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>主要按照项目职责描述一条一条问，考察设计思路：</p>
+<p>1、项目中的难点；</p>
+<p>2、介绍下 xxl-job 的实现原理；</p>
+<p>3、disruptor 的使用场景；</p>
+<p>4、生产者出现堆积的话怎么解决；</p>
+<p>5、生产消费过程中如果服务出现异常，如何恢复；</p>
+<p>6、介绍下 MySQL 的索引；</p>
+<p>7、B+树的特征，为什么 MySQL 要使用 B+树；</p>
+<p>8、如何做到监控线程池；</p>
+<p>9、RPC 服务超时的情况如何止损；</p>
+<p>10、如何实现异步多线程追踪；</p>
+<p>11、Redis 超时问题，排查过程中考虑的角度，使用了哪些方法；</p>
+<p>12、服务设计时怎么体现高可用性、易用性；</p>
+<p>13、用户身份唯一性确认；</p>
+<p>14、对我们公司有了 解吗；</p>
+<p>15、Integer a=200；Integer b=200，a 和 b equals 是否为 true；</p>
+<p>16、介绍下缓存雪崩、击穿、穿透，如何避免；</p>
+<p>17、工作中是否遇到过 CPU 过高、内存过高的情况，怎么排查问题原因的；</p>
+<p>18、单链表和双链表的优缺点；</p>
+<p>19、判断单链表是否有环，算法的时间复杂度；</p>
+<p>20、ArrayList、HashMap、TreeSet 哪些属于有序的，哪些是稳定的；</p>
+<p>21、线程池的工作原理；</p>
+<p>22、线程池中关于时间的参数起什么作用；</p>
+<p>23、项目中有没有用过并行流；</p>
+<p>24、ForkJoin 线程池默认线程数；</p>
+<p>25、新生代和老年代的特点，分别使用哪些算法；</p>
+<p>26、软引用和弱引用的回收时机。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面">二面<a href="#二面" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、离职原因；</p>
+<p>2、现在公司的技术氛围；</p>
+<p>3、下一份工作的偏好；</p>
+<p>4、未来发展规划；</p>
+<p>5、数组和链表遍历哪个更快（考虑存储）；</p>
+<p>6、Integer 为什么要有-128~127 的常量；</p>
+<p>7、Java 已有可达性分析和 GC，为什么还要设定软引用、弱引用；</p>
+<p>8、ThreadLocal 为什么使用弱引用；</p>
+<p>9、Redis 清理过期数据的策略；</p>
+<p>10、一个 G 数字文件，100M 内存，排序。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="瓴岳科技">瓴岳科技<a href="#瓴岳科技" class="hash-link" aria-label="Direct link to 瓴岳科技" title="Direct link to 瓴岳科技">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-1">一面<a href="#一面-1" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、怎样参与 CR；</p>
+<p>2、印象深的好的代码、不好的代码；</p>
+<p>3、ThreadLocal 不 remove 会有什么问题；</p>
+<p>4、Redis 7.0 的新特性；</p>
+<p>5、介绍下 Disruptor，有哪些组件使用到了；</p>
+<p>6、Disruptor 底层实现，为什么快；</p>
+<p>7、Java 的锁是怎么实现的；</p>
+<p>8、AQS 中线程并发时同步队列的放入情况；</p>
+<p>9、Netty 如何使用 http 复用；</p>
+<p>10、项目中线程池的用法、场景；</p>
+<p>11、算法：找到二叉树指定节点中序遍历的下一个节点（类似<a href="https://leetcode.cn/problems/P5rCT8/" target="_blank" rel="noopener noreferrer">剑指 Offer II 053. 二叉搜索树中的中序后继</a>）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-1">二面<a href="#二面-1" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、为什么要引入生产者-消费者模式；</p>
+<p>2、项目中 ES 的使用场景；</p>
+<p>3、项目新老服务迁移的过程；</p>
+<p>4、单元测试的情况；</p>
+<p>5、工作以来最大的收获；</p>
+<p>6、介绍下分布式事务；</p>
+<p>7、项目中怎么保证分布式一致性；</p>
+<p>8、介绍下 RocketMQ；</p>
+<p>9、算法：<a href="https://leetcode.cn/problems/min-stack/" target="_blank" rel="noopener noreferrer">155. 最小栈</a>；</p>
+<p>10、算法：爬楼梯，每次可走 3 步和 5 步（类似<a href="https://leetcode.cn/problems/climbing-stairs/" target="_blank" rel="noopener noreferrer">70. 爬楼梯</a>，要求动态规划实现，五阶递推数列）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面">三面<a href="#三面" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>1、项目中可优化的点，对项目的思考；</p>
+<p>2、生产者-消费者模式怎么保证消息不丢失；</p>
+<p>3、微服务的概念；</p>
+<p>4、设计题：设计一个消息队列；</p>
+<p>5、算法：<a href="https://leetcode.cn/problems/longest-consecutive-sequence/" target="_blank" rel="noopener noreferrer">128. 最长连续序列</a>。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="字节">字节<a href="#字节" class="hash-link" aria-label="Direct link to 字节" title="Direct link to 字节">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-2">一面<a href="#一面-2" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、服务的可用性监控；</p>
+<p>2、服务故障的保障性；</p>
+<p>3、MQ 出现消费积压，如何处理；</p>
+<p>4、线程池工作的机制；</p>
+<p>5、核心线程可能会被销毁吗；</p>
+<p>6、核心线程数和最大线程数的区别；</p>
+<p>7、阻塞队列的特性，底层实现；</p>
+<p>8、ThreadLocal 数据结构和工作原理；</p>
+<p>9、弱引用的特性；</p>
+<p>10、为什么 ThreadLocal 的 key 使用弱引用；</p>
+<p>11、事务 ACID 的特性；</p>
+<p>12、事务隔离可能出现的问题；</p>
+<p>13、介绍下 Redis 的高可用；</p>
+<p>14、Redis 的主从、哨兵模式；</p>
+<p>15、算法：判断一个树是平衡二叉搜索树（<a href="https://leetcode.cn/problems/balanced-binary-tree/" target="_blank" rel="noopener noreferrer">110. 平衡二叉树</a><strong>、</strong><a href="https://leetcode.cn/problems/validate-binary-search-tree/" target="_blank" rel="noopener noreferrer">98. 验证二叉搜索树</a> <strong>两道题的合并</strong>）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-2">二面<a href="#二面-2" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、项目的具体模块设计；</p>
+<p>2、RPC 中 tcp 协议和 http 协议的区别；</p>
+<p>3、http 2.0 的优化；</p>
+<p>4、介绍下多路复用；</p>
+<p>5、MySQL 分表；</p>
+<p>6、项目中用到缓存的场景；</p>
+<p>7、Redis 的特性；</p>
+<p>8、Redis 支持高并发的原理；</p>
+<p>9、Redis 数据丢失后如何恢复；</p>
+<p>10、Redis 的持久化策略；</p>
+<p>11、执行 RDB 操作时如何对外提供服务；</p>
+<p>12、Redis 淘汰策略；</p>
+<p>13、算法：<a href="https://leetcode.cn/problems/lru-cache/" target="_blank" rel="noopener noreferrer">146. LRU 缓存</a>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-1">三面<a href="#三面-1" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>问题：</p>
+<p>1、业务讨论；</p>
+<p>2、系统的架构；</p>
+<p>3、市面上流行的规则引擎有哪些；</p>
+<p>4、为什么选择现在的规则引擎；</p>
+<p>5、怎么控制规则变更过程中的风险；</p>
+<p>6、项目可进一步优化的点；</p>
+<p>7、算法：<a href="https://leetcode.cn/problems/generate-parentheses/" target="_blank" rel="noopener noreferrer">22. 括号生成</a>。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="淘宝">淘宝<a href="#淘宝" class="hash-link" aria-label="Direct link to 淘宝" title="Direct link to 淘宝">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-3">一面<a href="#一面-3" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、==和 equals；</p>
+<p>2、重写 equals 的场景；</p>
+<p>3、深拷贝、浅拷贝、零拷贝；</p>
+<p>4、介绍下 Java 中的动态代理；</p>
+<p>5、序列化，有哪些方式，选型；</p>
+<p>6、maven 冲突，怎么发现，如何解决；</p>
+<p>7、Linux 大文件查看，du -sh；</p>
+<p>8、大文件按行去重。</p>
+<p>9、算法：2 种以上实现单例的方式；</p>
+<p>10、算法：0~n-1 选 m 个不同的随机数；</p>
+<p>11、算法：字符串转 long（类似<a href="https://leetcode.cn/problems/string-to-integer-atoi/" target="_blank" rel="noopener noreferrer">8. 字符串转换整数 (atoi)</a>）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-3">二面<a href="#二面-3" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、ES 正排和倒排的区别；</p>
+<p>2、ES 如何优化 query  查询速度；</p>
+<p>3、ES 什么时候增加、减少节点；</p>
+<p>4、ES 如何引入排序算法；</p>
+<p>5、系统如何限制 TP999 时间；</p>
+<p>6、hashmap 在多线程下可能出现的情况；</p>
+<p>7、hash 冲突的意思；</p>
+<p>8、cookie 和 session 的区别；</p>
+<p>9、如果已经禁用了 cookie，还能使用 session 吗；</p>
+<p>10、如何实现单点登录；</p>
+<p>11、安全性的保证；</p>
+<p>12、同步、异步、阻塞、非阻塞；</p>
+<p>13、线上 Java 服务有问题如何排查；</p>
+<p>14、git merge 和 rebase 的区别；</p>
+<p>15、一个没有源码的应用，如何替换数据库地址；</p>
+<p>16、算法：<a href="https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 62. 圆圈中最后剩下的数字</a>（约瑟夫环）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-2">三面<a href="#三面-2" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>1、为什么看新的工作机会；</p>
+<p>2、在现在公司工作经历；</p>
+<p>3、介绍下最近的项目；</p>
+<p>4、项目中需要优化的点；</p>
+<p>5、项目中策略的效果评估；</p>
+<p>6、工作期间觉得成长比较快的事情；</p>
+<p>7、做过哪些搜索引擎相关的工作。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="菜鸟">菜鸟<a href="#菜鸟" class="hash-link" aria-label="Direct link to 菜鸟" title="Direct link to 菜鸟">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-4">一面<a href="#一面-4" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、介绍几种 NIO 模式；</p>
+<p>2、Redis 中使用的 NIO，与其他 NIO 对比的优势；</p>
+<p>3、缓存击穿、穿透、雪崩，解决方法；</p>
+<p>4、Redis 能否存储 null；</p>
+<p>5、MySQL 的性能瓶颈；</p>
+<p>6、介绍下分库、分表，常见操作 。</p>
+<p>7、编程题：小猫抢鱼，三个线程表示三只猫，抢一堆鱼，每次抢一半的鱼，直到为 0。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-4">二面<a href="#二面-4" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>面了两个小时，问了很多很多技术问题，挖的比较深入：</p>
+<p>1、大量业务相关问题（考察知识边界）；</p>
+<p>2、项目中的难点；</p>
+<p>3、介绍下 kylin；</p>
+<p>4、disruptor 不同等待策略；</p>
+<p>5、为什么选择 disruptor；</p>
+<p>6、介绍下 disruptor 的底层实现；</p>
+<p>7、disruptor 的无锁体现在哪里；</p>
+<p>8、disruptor 游标的技巧；</p>
+<p>9、disruptor 如何解决 JDK 当时无法处理的伪共享；</p>
+<p>10、CompletableFuture 和 Future 的区别；</p>
+<p>11、CompletableFuture 提供的创新设计模式—promise 模式；</p>
+<p>12、关注的 CPU 使用率指标具体是哪个；</p>
+<p>13、object 的 equals 和 hashCode 方法，能不能只改 equals；</p>
+<p>14、hashmap 的数据结构，扩容时机；</p>
+<p>15、concurrentHashMap 和 hashmap 的区别，为什么前者的 key 和 value 都不能为 null；</p>
+<p>16、concurrentHashMap 怎么保证的线程安全；</p>
+<p>17、怎么启动一个线程，怎么让线程停下来；</p>
+<p>18、怎么让变量线程安全；</p>
+<p>19、volatile 怎么做到可见性；</p>
+<p>20、CPU 的真实存储结构；</p>
+<p>21、平时的学习途径；</p>
+<p>22、对哪方面研究的比较深；</p>
+<p>23、了解哪些设计模式；</p>
+<p>24、使用 arthas 的场景；</p>
+<p>25、arthas 排查线程占比过高的实现原理；</p>
+<p>26、编程题：实现一个方法，判断两个数组是否相等，元素类型为泛型。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="快手">快手<a href="#快手" class="hash-link" aria-label="Direct link to 快手" title="Direct link to 快手">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-5">一面<a href="#一面-5" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、ConcurrentHashMap 如何实现线程安全，如何保证安全扩容；</p>
+<p>2、synchronized 锁升级的过程；</p>
+<p>3、Java 中有哪些乐观锁；</p>
+<p>4、读写锁和 synchronized 有哪些区别；</p>
+<p>5、synchronized 为什么可以做到异常自动释放锁；</p>
+<p>6、介绍下 ReentrantLock；</p>
+<p>7、AQS 同步队列中的线程什么情况下知道可以激活；</p>
+<p>8、Redis String 类型底层数据结构；</p>
+<p>9、Redis 持久化方式；区别、优缺点；根据业务判断下选择哪种方式比较好；</p>
+<p>10、OOM 的排查；</p>
+<p>11、JDK 版本与 GC；</p>
+<p>12、G1 的优势；</p>
+<p>13、算法：<a href="https://leetcode.cn/problems/add-two-numbers/" target="_blank" rel="noopener noreferrer">2. 两数相加</a>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-5">二面<a href="#二面-5" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、项目中 kylin 的使用场景；</p>
+<p>2、项目中 CompletableFuture 的使用场景；</p>
+<p>3、生产并发过高的问题，如何解决的；</p>
+<p>4、Spring 中的 BeanFactory 和 FactoryBean 的区别；</p>
+<p>5、线程池的核心参数，任务执行过程中的变化；</p>
+<p>6、MySQL 索引的底层数据结构；</p>
+<p>7、介绍 disruptor 框架的特点；介绍下使用场景；</p>
+<p>8、Spring AOP 的实现原理；</p>
+<p>9、动态代理和静态代理的区别；</p>
+<p>10、介绍下 RPC 中调用方请求服务方接口中间的过程；</p>
+<p>11、服务方轮询的地方，如何确定具体提供服务的 IP；</p>
+<p>12、多个 PRC 服务如何保证一致性；</p>
+<p>13、设计题：班级、学生、课程，设计 MySQL 表；</p>
+<p>14、设计题：实现快手关注中心功能，发布者发布的内容能被看到，观看者能看到所有关  注的人发布的内容且形成信息流列表；</p>
+<p>15、平时的学习渠道和方法，举一些例子；</p>
+<p>16、换工作的原因，对下一份工作的期望。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-3">三面<a href="#三面-3" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>1、规则引擎的选型与实现；</p>
+<p>2、Redis 分片和复制的机制；</p>
+<p>3、排查 Java 服务 CPU 占用率百分之百；</p>
+<p>4、GC 识别垃圾对象的方法；</p>
+<p>5、常用的 GC；</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="百度">百度<a href="#百度" class="hash-link" aria-label="Direct link to 百度" title="Direct link to 百度">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-6">一面<a href="#一面-6" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>问题：</p>
+<p>1、如何保证分布式数据一致性；</p>
+<p>2、MQ 消息发送失败、消费失败如何恢复；</p>
+<p>3、Redis 集群模式下数据在不同机器上的影响；</p>
+<p>4、Redis 的 NIO 模型；</p>
+<p>5、百度上亿的广告物料，考虑到检索效率、更新，如何设计比较好；</p>
+<p>6、介绍下 JMM 模型，作用，场景；</p>
+<p>7、synchronized 升级的内容，锁升级过程；</p>
+<p>8、介绍下 RocketMQ；</p>
+<p>9、如何解决重复写、重复读、消息丢失的问题；</p>
+<p>10、算法：<a href="https://leetcode.cn/problems/add-two-numbers-ii/" target="_blank" rel="noopener noreferrer">445. 两数相加 II</a>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-6">二面<a href="#二面-6" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>除了项目，全部都是数据库相关的问题：</p>
+<p>1、分页查询大量数据，如何设计（避免出现页码过深，耗时很长的问题）；</p>
+<p>2、limit 为什么会出现页码越  大，耗时越长的问题；</p>
+<p>3、&gt;、&lt;条件会用到索引吗，处理过程；</p>
+<p>4、那些条件会用到索引；</p>
+<p>5、between and 会走索引吗？什么情况下不走索引；</p>
+<p>6、between and 和 limit 的区别；</p>
+<p>7、设计一个适用消费者模式的消费表，对外提供消费接口，分布式并行消费，保证不漏消费、不重复消费；</p>
+<p>8、如何通过 MySQL 保证行的原子性；</p>
+<p>9、Redis 如何解决原子性；</p>
+<p>10、MySQL 如何做到 where 条件匹配多条但只更新一条（用 update limit）；</p>
+<p>11、MySQL 表同时收到多条更新操作，如何处理；</p>
+<p>12、update 时，行级锁是在什么时间点加上的。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-4">三面<a href="#三面-4" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>三面技术文的较少，闲聊偏多：</p>
+<p>1、最近在看哪方面的知识；</p>
+<p>2、介绍下对 Java 并发编程的理解；</p>
+<p>3、单线程一定会比多线程慢吗？分别适用于什么场景；</p>
+<p>4、实际工作中使用多线程的场景；</p>
+<p>5、业务模式讨论；</p>
+<p>6、觉得自己项目中做的比较出彩的点；</p>
+<p>7、介绍下熟悉的设计模式；</p>
+<p>8、下一份工作的目标。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="拼多多">拼多多<a href="#拼多多" class="hash-link" aria-label="Direct link to 拼多多" title="Direct link to 拼多多">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-7">一面<a href="#一面-7" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、描述下对 Spring IOC 的理解，与传统 new 的方式相比优势有哪些；</p>
+<p>2、SpringBoot 如何实现每次 Autowired 都创建新的实例；</p>
+<p>3、Mybatis 的 Transactional 注解实现事务的原理；</p>
+<p>4、动态代理原理实现的注解有 哪些注意事项；</p>
+<p>5、MySQL 的几种 log 的作用；</p>
+<p>6、聚簇索引和二级索引的区别；</p>
+<p>7、varchar 和 text 类型的字段存储形式有什么区别；</p>
+<p>8、text 类型的字段可以创建索引吗；</p>
+<p>9、介绍下 Redis 管道通信；</p>
+<p>10、算法：<a href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/" target="_blank" rel="noopener noreferrer">150. 逆波兰表达式求值</a>；</p>
+<p>11、算法：计算四个数字数组和为 0 的组数，O(n²)时间复杂度。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-7">二面<a href="#二面-7" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、ES 的优化方式；</p>
+<p>2、Redis 的哨兵机制；</p>
+<p>3、分库分表；</p>
+<p>4、MySQL 的事务隔离级别；</p>
+<p>5、介绍下 InnoDB 的 mvcc；</p>
+<p>6、算法：<a href="https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 29. 顺时针打印矩阵</a>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-5">三面<a href="#三面-5" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>主要是一些闲聊，问到了加班问题：</p>
+<p>1、为什么不考虑读研；</p>
+<p>2、校招时为什么要选择现在的公司；</p>
+<p>3、在每个阶段的工作人员组成情况；</p>
+<p>4、目前的状态，为什么想出来看机会；</p>
+<p>5、对于工作地点是怎样的考虑。</p>
+<p>6、对于拼多多的工作时间接受吗；</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="搜狐媒体">搜狐媒体<a href="#搜狐媒体" class="hash-link" aria-label="Direct link to 搜狐媒体" title="Direct link to 搜狐媒体">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-8">一面<a href="#一面-8" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、git merge 原理；</p>
+<p>2、jvm GC，垃圾回收器，为什么不用 G1；</p>
+<p>3、SpringBoot 启动 装载 starter 过程；</p>
+<p>4、concurrentHashMap 扩容过程；</p>
+<p>5、slfj 选择 log 的机制；</p>
+<p>6、clone()方法，为什么没人用；</p>
+<p>7、hashcode，生成方式；</p>
+<p>8、算法：判断整数奇偶；</p>
+<p>9、算法：合并 map，求平均值，带嵌套；</p>
+<p>10、算法：链表相加，实现 this.add(ListNode b)。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-8">二面<a href="#二面-8" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、几乎全部为业务、项目相关问题；</p>
+<p>2、任务中断如何处理；</p>
+<p>3、项目中用到的设计模式，解决的问题；</p>
+<p>4、未来的规划；</p>
+<p>5、对下一份工作的期望。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-6">三面<a href="#三面-6" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>现场面试：</p>
+<p>1、项目流程，架构画图；</p>
+<p>2、项目可优化的点；</p>
+<p>3、项目效果；</p>
+<p>4、算法：判断一个数是否能被每一位上的数整除(美丽数)；</p>
+<p>5、算法：<a href="https://leetcode.cn/problems/merge-intervals/" target="_blank" rel="noopener noreferrer">56. 合并区间</a>。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="小红书">小红书<a href="#小红书" class="hash-link" aria-label="Direct link to 小红书" title="Direct link to 小红书">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-9">一面<a href="#一面-9" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、介绍下项目；</p>
+<p>2、介绍下 hashmap 的原理；</p>
+<p>3、为什么引入红黑树；</p>
+<p>4、如果不用树，引入其他数据结构解决链表过长查询效率低；</p>
+<p>5、CompletableFuture 的使用场景；</p>
+<p>6、线程池的执行流程；</p>
+<p>7、为什么线程池执行的机制设计成这样；</p>
+<p>8、并发包下的工具类；</p>
+<p>9、RPC 服务，A B C D 四个调用，A B C 之间没有依赖关系，D 需要等到 A B C 执行完之后再执行，有哪些实现方式；</p>
+<p>10、MySQL 中(a,b,c)建立了联合索引，几种可以命中索引的场景；</p>
+<p>11、如何减少回表；</p>
+<p>12、select * 为什么会导致回表；</p>
+<p>13、服务中使用的 GC；</p>
+<p>14、meta space 中存储的数据；</p>
+<p>15、服务启动后，mate space 的空间不断增加的原因；</p>
+<p>16、查看 mate space 的存储情况；</p>
+<p>17、SpringBoot 动态代理的实现方式；默认使用方式的变化；</p>
+<p>18、动态代理方式的性能区别；</p>
+<p>19、Redis 查询突然变慢的原因；</p>
+<p>20、项目中出现 Redis 连接超时的原因；</p>
+<p>21、消息队列，rocketMQ 的实现原理；</p>
+<p>22、disruptor 的使用，实现原理；</p>
+<p>23、设计题：直播间大红包分发，10 亿红包，10 万观众，每个红包额度 1-100 元；</p>
+<p>14、算法：<a href="https://leetcode.cn/problems/B1IidL/" target="_blank" rel="noopener noreferrer">剑指 Offer II 069. 山峰数组的顶部</a>。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-9">二面<a href="#二面-9" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>1、大量业务、项目问题，根据简历上的职责描述一条一条的问；</p>
+<p>2、项目中解决问题；</p>
+<p>3、介绍下 MySQL 分库分表，垂直、水平、服务端、客户端分表；</p>
+<p>4、实现的方式有哪些；</p>
+<p>5、ES 如何实现深度分页；</p>
+<p>6、在团队中的角色；</p>
+<p>7、离职的原因，未来的规划；</p>
+<p>8、有了解竞品产品吗，了解到什么程度；</p>
+<p>9、过往绩效情况。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="三面-7">三面<a href="#三面-7" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h4>
+<p>基本都是项目相关的问题 ：</p>
+<p>1、项目中规则引擎的实现；</p>
+<p>2、本地缓存存在的问题；</p>
+<p>3、介绍下 disruptor；</p>
+<p>4、学习途径，看过哪些书；</p>
+<p>5、对下一份工作的期待。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="滴滴">滴滴<a href="#滴滴" class="hash-link" aria-label="Direct link to 滴滴" title="Direct link to 滴滴">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="一面-10">一面<a href="#一面-10" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h4>
+<p>1、针对项目不断延展，给的压力很大；</p>
+<p>2、列举项目中的三个难点；</p>
+<p>3、SQL 中为什么 in 比 between and 慢；</p>
+<p>4、工作中觉得做的不足的地方；</p>
+<p>5、如何提升业务理解能力；</p>
+<p>6、设计题：设计广告索引引擎，几百万的广告数据，如何做到几十毫秒左右检索、返回广告；</p>
+<p>7、离职的原因；</p>
+<p>8、对下一份工作的预期；</p>
+<p>9、算法：<a href="https://leetcode.cn/problems/maximum-subarray/" target="_blank" rel="noopener noreferrer">53. 最大子数组和</a>；</p>
+<p>10、算法：字符串相减（<a href="https://leetcode.cn/problems/add-strings/" target="_blank" rel="noopener noreferrer">415. 字符串相加</a> <strong>入参相同</strong>）。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="二面-10">二面<a href="#二面-10" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h4>
+<p>倾向于方法论相关的问题：</p>
+<p>1、工作期间的成长；</p>
+<p>2、服务可用性的监控有哪些，监控体系是怎么考虑的；</p>
+<p>3、负责的服务在整个工程中的角色，重要性如何体现；</p>
+<p>4、针对服务出问题的情况，值班机制是什么样的；</p>
+<p>5、系统哪 部分查的问题最多，解决方案是什么；</p>
+<p>6、出现问题多的原因是什么；</p>
+<p>7、未来的职业规划；</p>
+<p>8、沟通能力的体现；</p>
+<p>9、算法：<a href="https://leetcode.cn/problems/spiral-matrix/" target="_blank" rel="noopener noreferrer">54. 螺旋矩阵</a>。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="参考答案">参考答案<a href="#参考答案" class="hash-link" aria-label="Direct link to 参考答案" title="Direct link to 参考答案">​</a></h3>
+<p>你可以在下面两份参考资料上面大部分问题的参考答案：</p>
+<ul>
+<li>JavaGuide 在线阅读版：<a href="https://javaguide.cn/" target="_blank" rel="noopener noreferrer"><strong>https://javaguide.cn/</strong></a> 。</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247533385&amp;idx=1&amp;sn=105fdab847e4cf93d2603e57461658be&amp;chksm=cea10c82f9d685944dc09010e5354566f8a8a40adce7cdcd3049444f7f83d4d084c0ef072542&amp;token=766741944&amp;lang=zh_CN&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer"><strong>《Java 面试指北》</strong></a> 。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="经验分享">经验分享<a href="#经验分享" class="hash-link" aria-label="Direct link to 经验分享" title="Direct link to 经验分享">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="心态">心态<a href="#心态" class="hash-link" aria-label="Direct link to 心态" title="Direct link to 心态">​</a></h3>
+<p>求职过程中最重要的就是心态，包括准备阶段和面试过程。我在去年三月份的时候被字节 hr 热情约面，于是想着多投几家试试水，结果发现最多到二面就结束了，很多问题都不会。现在想想很正常，因为当时 JavaGuide 的面试指南都没有看完，leetcode 刷了不到 50 题，但是当时觉得很郁闷，总有自己太菜的想法冒出来。知道要学哪些知识，但是知识太多了，加上看到别人的面经， 投的公司一样，人家都拿到 offer 了，就觉得差距太大了，导致心态总是很崩溃。当时的化解方法是先去旅游放松了一下，然后制订了近三个月的学习计划，中间穿插着看放松心态的书，比如《蛤蟆先生去看心理医生》，看书加上实际的学习，让心态真的平静下来。</p>
+<p>然后是求职过程中的心态，我都是使用 BOSS 直聘投递简历的，和中小公司 hr 沟通的过程中，想到最多的一句话就是“夏虫不可语冰”，主要体现在问期望薪资，他们要么说太高了、要么说现在的行情不可能给到这么高，还有说我现在薪资就挺高的，建议多待一段时间 😂。后面遇到大厂的 hr、猎头、主管，都是直言期望薪资正常，所以在和 hr 沟通的过程中也要稳住心态，坚信自己的想法。</p>
+<p>最后是面试过程中，中小厂的一些面试官喜欢让你简短介绍项目，等你介绍完了，又不断的暗示或明说你的项目简单，这个时候也不要觉得自己项目真的很差，因为只是一些复杂的细节你没有介绍出来，或者面试官故意制造的压力测试，再或者就是面试官的素质、水平原因，因为我确实没有遇到大厂面试官说过这种话。</p>
+<p>最关键的如果面试没有通过，千万不要气馁，总结下面试经验，接着投下一家就好了，只要坚持找，一定能找到工作。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="简历">简历<a href="#简历" class="hash-link" aria-label="Direct link to 简历" title="Direct link to 简历">​</a></h3>
+<p>不管校招还是社招，简历都是很重要的敲门砖，像我在试水阶段就被面试官说过看我的简历不知道我是什么岗位。后面我看了很多简历指导课，跟着视频优化简历，最后发给 Guide 和前同事，根据反馈再修改。最后，都是 hr 主动要简历，并且没有简历筛选不过的。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="算法">算法<a href="#算法" class="hash-link" aria-label="Direct link to 算法" title="Direct link to 算法">​</a></h3>
+<p>现在面试过程中算法的重要性不言而喻，在试水后的几个月，我都坚持在 leetcode 上刷题，一共刷了 600 多道题。不过不要盲目的刷，最好是一组题型一刷，从认识技巧的简单题到认清技巧变种的中等题，做到刷完记住这个技巧。最好是选个大佬，跟着题单刷，我选择的是左程云--左神，跟着他的《程序员代码面试指南：IT 名企算法与数据结构题目最优解》这本书。让我很意外的一点是，我在看书的过程中遇到了问题，在知乎上私信他后，得到了详细的回答，就凭这一点，我就大力推荐左神！如果觉得看书思路比较难以理解，可以看看左神的视频，有些弹幕会问“为什么使用这个技巧”类似的问题，左神会说出他思考推进的过程，对于理解算法很有意义。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="技巧">技巧<a href="#技巧" class="hash-link" aria-label="Direct link to 技巧" title="Direct link to 技巧">​</a></h3>
+<p>一是拿小公司练手，太久没有面试，表达能力和描述项目可以通过真实面试过程来精进，这时就可以拿中小公司或者没有意愿的公司来面试练手。</p>
+<p>二是面试录音，所有面试全程录音，下来复盘问题，听听自己的回答是否流程、重点有没有说出，以及不会的问题再学习寻找答案。我觉得面试就像是戴着耳机唱歌，只有唱完听录音才自己唱的怎么样。</p>
+<blockquote>
+<p>更新: 2023-04-16 20:43:31<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/bfh95r0qe2zidkar" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/bfh95r0qe2zidkar</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#面经总结" class="table-of-contents__link toc-highlight">面经总结</a><ul><li><a href="#白龙马云行科技" class="table-of-contents__link toc-highlight">白龙马云行科技</a></li><li><a href="#瓴岳科技" class="table-of-contents__link toc-highlight">瓴岳科技</a></li><li><a href="#字节" class="table-of-contents__link toc-highlight">字节</a></li><li><a href="#淘宝" class="table-of-contents__link toc-highlight">淘宝</a></li><li><a href="#菜鸟" class="table-of-contents__link toc-highlight">菜鸟</a></li><li><a href="#快手" class="table-of-contents__link toc-highlight">快手</a></li><li><a href="#百度" class="table-of-contents__link toc-highlight">百度</a></li><li><a href="#拼多多" class="table-of-contents__link toc-highlight">拼多多</a></li><li><a href="#搜狐媒体" class="table-of-contents__link toc-highlight">搜狐媒体</a></li><li><a href="#小红书" class="table-of-contents__link toc-highlight">小红书</a></li><li><a href="#滴滴" class="table-of-contents__link toc-highlight">滴滴</a></li><li><a href="#参考答案" class="table-of-contents__link toc-highlight">参考答案</a></li></ul></li><li><a href="#经验分享" class="table-of-contents__link toc-highlight">经验分享</a><ul><li><a href="#心态" class="table-of-contents__link toc-highlight">心态</a></li><li><a href="#简历" class="table-of-contents__link toc-highlight">简历</a></li><li><a href="#算法" class="table-of-contents__link toc-highlight">算法</a></li><li><a href="#技巧" class="table-of-contents__link toc-highlight">技巧</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

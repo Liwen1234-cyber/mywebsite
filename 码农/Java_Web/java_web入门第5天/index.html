@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java_Web/java_web入门第5天" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">java_web入门第5天 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java_Web/java_web入门第5天/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="java_web入门第5天 | Coisini"><meta data-rh="true" name="description" content="多表查询"><meta data-rh="true" property="og:description" content="多表查询"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java_Web/java_web入门第5天/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java_Web/java_web入门第5天/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java_Web/java_web入门第5天/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>java_web入门第5天</h1></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="多表查询">多表查询<a href="#多表查询" class="hash-link" aria-label="Direct link to 多表查询" title="Direct link to 多表查询">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="概述">概述<a href="#概述" class="hash-link" aria-label="Direct link to 概述" title="Direct link to 概述">​</a></h3>
+<ul>
+<li>多表查询: 指从多张表中查询数据</li>
+<li>笛卡尔积: 笛卡尔乘积是指在数学中，两个集合(A 集合 和 B 集合)的所有组合情况。(在多表查询时，需要消除无效的笛卡尔积)
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第4天16-44c51ddb9af9fce613a700ab4fa9336b.png" width="1443" height="404" class="img_ev3q"></li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="分类">分类<a href="#分类" class="hash-link" aria-label="Direct link to 分类" title="Direct link to 分类">​</a></h4>
+<ol>
+<li>连接查询
+<ul>
+<li>内连接：相当于查询 A、B 交集部分数据</li>
+<li>外连接
+<ul>
+<li>左外连接：查询左表所有数据(包括两张表交集部分数据)</li>
+<li>右外连接：查询右表所有数据(包括两张表交集部分数据)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子查询</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="内连接">内连接<a href="#内连接" class="hash-link" aria-label="Direct link to 内连接" title="Direct link to 内连接">​</a></h4>
+<p>语法：</p>
+<ul>
+<li>隐式内连接：<code>select  字段列表   from   表1 , 表2   where   条件 ... </code>;</li>
+<li>显式内连接：<code>select  字段列表   from   表1  [ inner ]  join 表2  on  连接条件 ... </code>;</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="外连接">外连接<a href="#外连接" class="hash-link" aria-label="Direct link to 外连接" title="Direct link to 外连接">​</a></h4>
+<p>语法：</p>
+<ul>
+<li>左外连接：<code>select  字段列表   from   表1  left  [ outer ]  join 表2  on 连接条件 ... ;</code></li>
+<li>右外连接：<code>select  字段列表   from   表1  right  [ outer ]  join 表2  on  连接条件 ... ;</code></li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="子查询">子查询<a href="#子查询" class="hash-link" aria-label="Direct link to 子查询" title="Direct link to 子查询">​</a></h4>
+<ol>
+<li>概述
+<ul>
+<li>介绍：SQL 语句中嵌 套 select 语句，称为嵌套查询，又称子查询。</li>
+<li>形式：<code>select  *  from   t1   where  column1 =  ( select  column1  from  t2  … );</code></li>
+<li>子查询外部的语句可以是 <code>insert / update / delete / select</code> 的任何一个，最常见的是 <code>select</code>。</li>
+</ul>
+</li>
+<li>分类
+<ul>
+<li>标量子查询：子查询返回的结果为单个值</li>
+<li>列子查询：子查询返回的结果为一列</li>
+<li>行子查询：子查询返回的结果为一行</li>
+<li>表子查询：子查询返回的结果为多行多列</li>
+</ul>
+</li>
+<li>标量子查询
+<ul>
+<li>子查询返回的结果是单个值（数字、字符串、日期等），最简单的形式</li>
+<li>常用的操作符：=   &lt;&gt;    &gt;     &gt;=     &lt;    &lt;=</li>
+</ul>
+</li>
+<li>列子查询
+<ul>
+<li>子查询返回的结果是一列（可以是多行）</li>
+<li>常用的操作符：<code>in  、not in</code> 等</li>
+</ul>
+</li>
+<li>行子查询
+<ul>
+<li>子查询返回的结果是一行（可以是多列）。</li>
+<li>常用的操作符：<code>=  、&lt;&gt; 、in 、not  in</code></li>
+</ul>
+</li>
+<li>表子查询
+<ul>
+<li>子查询返回的结果是多行多列，常作为临时表</li>
+<li>常用的操作符：<code>in</code></li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="事务">事务<a href="#事务" class="hash-link" aria-label="Direct link to 事务" title="Direct link to 事务">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="介绍--操作">介绍 &amp; 操作<a href="#介绍--操作" class="hash-link" aria-label="Direct link to 介绍 &amp; 操作" title="Direct link to 介绍 &amp; 操作">​</a></h3>
+<ol>
+<li>概念：事务 是一组操作的集合，它是一个不可分割的工作单位。事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作 要么同时成功，要么同时失败。</li>
+<li>注意事项： 默认 MySQL 的事务是自动提交的，也就是 说，当执行一条 DML 语句，MySQL 会立即隐式的提交事务。</li>
+<li>操作
+<ul>
+<li>开启事务：<code>start transaction;  /  begin ;</code></li>
+<li>提交事务：<code>commit;</code></li>
+<li>回滚事务：<code>rollback;</code></li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="四大特性">四大特性<a href="#四大特性" class="hash-link" aria-label="Direct link to 四大特性" title="Direct link to 四大特性">​</a></h3>
+<p>四大特性(ACID)</p>
+<ul>
+<li>原子性（Atomicity）：事务是不可分割的最小单元，要么全部成功，要么全部失败</li>
+<li>一致性（Consistency）：事务完成时，必须使所有的数据都保持一致状态</li>
+<li>隔离性（Isolation）：数据库系统提供的隔离机制，保证事务在不受外部并发操作影响的独立环境下运行</li>
+<li>持久性（Durability）：事务一旦提交或回滚，它对数据库中的数据的改变就是永久的</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="索引">索引<a href="#索引" class="hash-link" aria-label="Direct link to 索引" title="Direct link to 索引">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="介绍">介绍<a href="#介绍" class="hash-link" aria-label="Direct link to 介绍" title="Direct link to 介绍">​</a></h3>
+<p>索引（index）是帮助数据库 高效获取数据 的 数据结构 。</p>
+<p><strong>优缺点：</strong></p>
+<ul>
+<li>优点
+<ul>
+<li>提高数据查询的效率，降低数据库的 IO 成本。</li>
+<li>通过索引列对数据进行排序，降低数据排序的成本，降低 CPU 消耗。</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>索引会占用存储空间。</li>
+<li>索引大大提高了查询效率，同时却也降低了 <code>insert、update、delete</code> 的效率。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="结构">结构<a href="#结构" class="hash-link" aria-label="Direct link to 结构" title="Direct link to 结构">​</a></h3>
+<p>MySQL 数据库支持的索引结构有很多，如：Hash 索引、B+Tree 索引、Full-Text 索引等。我们平常所说的索引，如果没有特别指明，都是指默认的 B+Tree 结构组织的索引。</p>
+<ul>
+<li>大数据量情况下，二叉树、红黑树层级深，检索速度慢。
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天-0f04249e2859e9dd81d056e034c5d9b4.png" width="1577" height="698" class="img_ev3q"></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="语法">语法<a href="#语法" class="hash-link" aria-label="Direct link to 语法" title="Direct link to 语法">​</a></h3>
+<ul>
+<li>创建索引：<code>create  [ unique ]  index 索引名 on  表名 (字段名,... ) ;</code></li>
+<li>查看索引：<code> show  index  from  表名;</code></li>
+<li>删除索引：<code> drop  index  索引名  on  表名;</code></li>
+<li>注意事项：
+<ul>
+<li>主键字段，在建表时，会自动创建主键索引。</li>
+<li>添加唯一约束时，数据库实际上会添加唯一索引。</li>
+</ul>
+</li>
+</ul>
+<h1>第 5 章 MyBatis</h1>
+<ul>
+<li>MyBatis是一款优秀的 持久层(dao 层) 框架，用于简化 JDBC 的开发。</li>
+<li>MyBatis 本是 Apache 的一个开源项目 iBatis, 2010 年这个项目由 apache 迁移到了 google code，并且改名为 MyBatis 。2013 年 11 月迁移到 Github。</li>
+<li>官网：<a href="https://mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener noreferrer">https://mybatis.org/mybatis-3/zh/index.html</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mybatis入门">Mybatis入门<a href="#mybatis入门" class="hash-link" aria-label="Direct link to Mybatis入门" title="Direct link to Mybatis入门">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="快速入门">快速入门<a href="#快速入门" class="hash-link" aria-label="Direct link to 快速入门" title="Direct link to 快速入门">​</a></h3>
+<ol>
+<li>准备工作(创建 springboot 工程、数据库表 user、实体类User)</li>
+<li>引入 Mybatis 的相关依赖，配置 Mybatis (数据库连接信息)</li>
+<li>编写SQL语句(注解/XML)</li>
+<li><code>application.properties</code>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.url=jdbc:mysql://localhost:3306/mybatis</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.username=root</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.password=hsp</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Mapper</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public interface UserMapper {</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    @Select(&quot;select *  from user&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    public List&lt;User&gt; list();</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    }</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="jdbc介绍">JDBC介绍<a href="#jdbc介绍" class="hash-link" aria-label="Direct link to JDBC介绍" title="Direct link to JDBC介绍">​</a></h3>
+<ul>
+<li>JDBC： ( Java DataBase Connectivity )，就是使用Java语言操作关系型数据库的一套API。</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="本质">本质<a href="#本质" class="hash-link" aria-label="Direct link to 本质" title="Direct link to 本质">​</a></h4>
+<ul>
+<li>sun 公司官方定义的一套操作所有关系型数据库的规范，即接口。</li>
+<li>各个数据库厂商去实现这套接口，提供数据库驱动 jar 包。</li>
+<li>我们可以使用这套接口 （JDBC）编程，真正执行的代码是驱动 jar 包中的实现类。
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天01-1f0d68bfb15390c83079754e94f1cc97.png" width="865" height="457" class="img_ev3q"></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库连接池">数据库连接池<a href="#数据库连接池" class="hash-link" aria-label="Direct link to 数据库连接池" title="Direct link to 数据库连接池">​</a></h3>
+<ol>
+<li>数据库连接池是个容器，负责分配、管理数据库连接(Connection)</li>
+<li>它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个</li>
+<li>释放空闲时间超过最大空闲时间的连接，来避免因为没有释放连接而引起的数据库连接遗漏</li>
+<li>优势：
+<ul>
+<li>资源重用</li>
+<li>提升系统响应速度</li>
+<li>避免数据库连接遗漏</li>
+</ul>
+</li>
+<li>切换Druid数据库连接池
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token comment" style="color:hsl(230, 4%, 64%)">&lt;!--方式一：pom.xml 添加依赖--&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">com.alibaba</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">druid-spring-boot-starter</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">version</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">1.2.8</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">version</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-properties codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-properties codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">// 方式二：application.properties</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.druid.driver-class-name=com.mysql.cj.jdbc.Driver</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.druid.url=jdbc:mysql://localhost:3306/mybatis</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.druid.username=root</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.druid.password=1234</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>接口：DataSource</li>
+<li>产品：C3P0、DBCP、Druid、Hikari</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="lombok">lombok<a href="#lombok" class="hash-link" aria-label="Direct link to lombok" title="Direct link to lombok">​</a></h3>
+<ol>
+<li>Lombok 是一个实用的 Java 类库，能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，并可以自动化生成日志变量，简化java开发、提高效率。</li>
+<li>添加依赖
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">org.projectlombok</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">lombok</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">    </span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天02-27b40af2dbee9f1d574033b7d8c85f80.png" width="1663" height="454" class="img_ev3q">
+3. 注意事项： Lombok 会在  编译时，自动生成对应的 java 代码。我们使用 lombok 时，还需要安装一个 lombok 的插件(idea 自带)。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mybatis-基础增删改查">Mybatis 基础——增删改查<a href="#mybatis-基础增删改查" class="hash-link" aria-label="Direct link to Mybatis 基础——增删改查" title="Direct link to Mybatis 基础——增删改查">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="准备">准备<a href="#准备" class="hash-link" aria-label="Direct link to 准备" title="Direct link to 准备">​</a></h3>
+<ul>
+<li>准备数据库表 emp</li>
+<li>创建一个新的 springboot 工程，选择引入对应的起步依赖（ mybatis、mysql 驱动、lombok ）</li>
+<li>application.properties 中引入数据库连接信息
+<div class="language-properties codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-properties codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.url=jdbc:mysql://localhost:3306/mybatis</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.username=root</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">spring.datasource.password=1234</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>创建对应的实体类 Emp（实体类属性采用驼峰命名）
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Data</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public class Emp {</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private Integer id;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private String username;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private String password;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private String name;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private Short gender;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private String image;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private Short job;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private LocalDate entrydate;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private Integer deptId;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private LocalDateTime createTime;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    private LocalDateTime updateTime;</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    }</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>准备Mapper接口 EmpMapper
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Mapper</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public interface EmpMapper {</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="删除">删除<a href="#删除" class="hash-link" aria-label="Direct link to 删除" title="Direct link to 删除">​</a></h3>
+<ol>
+<li>SQL 语法： <code>delete from emp where id = 17;</code></li>
+<li>接口方法：
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Delete(&quot;delete from emp where id = #{id}&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public void delete(Integer id);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>注意事项： 如果 mapper 接口方法形参只有一个普通类型的参数， <code>#{…}</code> 里面的属性名可以随便写，如：<code>#{id}、#{value}</code>。</li>
+<li>日志输出
+<ul>
+<li>可以在 <code>application.properties</code> 中，打开 mybatis 的日志，并指定输出到控制台。</li>
+</ul>
+<div class="language-properties codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-properties codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">#指定mybatis输出日志的位置,输出控制台</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>预编译SQL，优势
+<ul>
+<li>性能更高，只用编译一次，更改 ？ 内内容可以多次执行</li>
+<li>更安全(防止SQL注入)</li>
+</ul>
+</li>
+<li>SQL 注入： SQL 注入是通过操作输入的数据来修改事先定义好的SQL 语句，以达到执行代码对服务器进行攻击的方法。</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="占位符">占位符<a href="#占位符" class="hash-link" aria-label="Direct link to 占位符" title="Direct link to 占位符">​</a></h4>
+<ol>
+<li><code>#{…}</code>
+<ul>
+<li>执行 SQL 时，会将 <code>#{…}</code> 替换为 ?，生成预编译 SQL，会自动设置参数值。</li>
+<li>使用时机：参数传递，都使用 <code>#{…}</code></li>
+</ul>
+</li>
+<li><code>${…}</code>
+<ul>
+<li>拼接 SQL。直接将参数拼接在 SQL 语句中，存在 SQL 注入问题。</li>
+<li>使用时机：如果对表名、列表进行动态设置时使用。
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天03-8da2477e7d8460bf4bcf5e402b3c799b.png" width="529" height="202" class="img_ev3q"></li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="新增">新增<a href="#新增" class="hash-link" aria-label="Direct link to 新增" title="Direct link to 新增">​</a></h3>
+<ol>
+<li>SQL 语句:
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token keyword" style="color:hsl(301, 63%, 40%)">insert</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">into</span><span class="token plain"> emp</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token plain">username</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> name</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> gender</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> image</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> job</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> entrydate</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> dept_id</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> create_time</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> update_time</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token plain"> </span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token keyword" style="color:hsl(301, 63%, 40%)">values</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">(</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;songyuanqiao&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;宋远桥&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token number" style="color:hsl(35, 99%, 36%)">1</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;1.jpg&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token number" style="color:hsl(35, 99%, 36%)">2</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;2012-10-09&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token number" style="color:hsl(35, 99%, 36%)">2</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;2022-10-01 10:00:00&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;2022-10-01 10:00:00&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">)</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>接口方法：
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Insert(&quot;insert into emp(username, name, gender, image, job, entrydate, dept_id, create_time, update_time) &quot; +</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        &quot;values(#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public void insert(Emp emp);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="新增主键返回">新增(主键返回)<a href="#新增主键返回" class="hash-link" aria-label="Direct link to 新增(主键返回)" title="Direct link to 新增(主键返回)">​</a></h4>
+<p>描述：在数据添加成功后，需要获取插入数据库数据的主键。</p>
+<p>实现：</p>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Options(keyProperty = &quot;id&quot;, useGeneratedKeys = true) // 会自动将生成的主键值，赋值给 emp 对象的 id 属性</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Insert(&quot;insert into emp(username, name, gender, image, job, entrydate, dept_id, create_time, update_time) &quot; +       </span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    &quot;values(#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public void insert(Emp emp);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="更新">更新<a href="#更新" class="hash-link" aria-label="Direct link to 更新" title="Direct link to 更新">​</a></h3>
+<ol>
+<li>SQL语句(根据ID更新员工信息)
+<div class="language-sql codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-sql codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token keyword" style="color:hsl(301, 63%, 40%)">update</span><span class="token plain"> emp </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">set</span><span class="token plain"> username </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;songdaxia&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> name </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;宋大侠&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> gender </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token number" style="color:hsl(35, 99%, 36%)">1</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> image </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;1.jpg&#x27;</span><span class="token plain"> </span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> job </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token number" style="color:hsl(35, 99%, 36%)">2</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> entrydate </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;2012-01-01&#x27;</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> dept_id </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token number" style="color:hsl(35, 99%, 36%)">2</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">,</span><span class="token plain"> update_time </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token string" style="color:hsl(119, 34%, 47%)">&#x27;2022-10-01 12:12:12&#x27;</span><span class="token plain"> </span><span class="token keyword" style="color:hsl(301, 63%, 40%)">where</span><span class="token plain"> id </span><span class="token operator" style="color:hsl(221, 87%, 60%)">=</span><span class="token plain"> </span><span class="token number" style="color:hsl(35, 99%, 36%)">19</span><span class="token punctuation" style="color:hsl(119, 34%, 47%)">;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>接口方法
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Update(&quot;update emp set username=#{username}, name=#{name}, gender=#{gender}, image=#{image}, job=#{job}, entrydate=#{entrydate}, dept_id=#{deptId}, update_time=#{updateTime} where id=#{id}&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public void update(Emp emp);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="查询">查询<a href="#查询" class="hash-link" aria-label="Direct link to 查询" title="Direct link to 查询">​</a></h3>
+<ol>
+<li>SQL 语句： <code>select *  from emp</code></li>
+<li>接口方法
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Select(&quot;select * from emp where id = #{id}&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public Emp getById(Integer id);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>数据封装
+<ul>
+<li>实体类属性名 和 数据库表查询返回的字段名一致，mybatis 会自动封装。</li>
+<li>如果实体类属性名 和 数据库表查询返回的字段名不一致，不能自动封装。</li>
+</ul>
+</li>
+<li>数据封装方法：
+<ul>
+<li><strong>起别名：</strong> 在 SQL 语句中，对不一  样的列名起别名，别名和实体类属性名一样。 语法： 别名 属性名</li>
+</ul>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Select(&quot;select id, username, password, name, gender, image, job, entrydate, dept_id deptId, create_time createTime, update_time updateTime from emp where id = #{id} &quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public Emp getById(Integer id);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li><strong>手动结果映射：</strong> 通过 @Results及@Result 进行手动结果映射。</li>
+</ul>
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Select(&quot;select * from emp where id = #{id}&quot;)</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">@Results({</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    @Result(column = &quot;dept_id&quot;, property = &quot;deptId&quot;),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    @Result(column = &quot;create_time&quot;, property = &quot;createTime&quot;),</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    @Result(column = &quot;update_time&quot;, property = &quot;updateTime&quot;)})</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public Emp getById(Integer id);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li><strong>开启驼峰命名：</strong> （推荐)如果字段名与属性名符合驼峰命名规则， mybatis 会自动通过驼峰命名规则映射。</li>
+</ul>
+<div class="language-properties codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-properties codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">#开启驼峰命名自动映射，即从数据库字段名 a_column 映射到Java 属性名 aColumn。</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">mybatis.configuration.map-underscore-to-camel-case=true</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="查询条件查询">查询（条件查询）<a href="#查询条件查询" class="hash-link" aria-label="Direct link to 查询（条件查询）" title="Direct link to 查询（条件查询）">​</a></h4>
+<ul>
+<li>SQL 语法： <code>select *  from emp where name like &#x27;%张%&#x27; and gender = 1 and entrydate between &#x27;2010-01-01&#x27; and &#x27;2020-01-01 &#x27; order by update_time</code></li>
+<li>接口方法
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天04-95d35205eb67487d92847655caaf6fb9.png" width="1163" height="312" class="img_ev3q"></li>
+<li>参数名说明
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天05-3873ba615894c2815be73754a7431d99.png" width="1134" height="516" class="img_ev3q"></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="xml-映射文件">XML 映射文件<a href="#xml-映射文件" class="hash-link" aria-label="Direct link to XML 映射文件" title="Direct link to XML 映射文件">​</a></h3>
+<p>规范：</p>
+<ul>
+<li>XML 映射文件的名称与 Mapper 接口名称一致，并且将 XML 映射文件和 Mapper 接口放置在相同包下（同包同名）。</li>
+<li>XML 映射文件的 namespace 属性为 Mapper 接口全限定名一致。</li>
+<li>XML 映射文件中 sql 语句的 id 与 Mapper  接口中的方法名一致，并保持返回类型一致。</li>
+<li><code>&lt;select id=“abc” resultType=“com.itheima.pojo.Emp”&gt;</code> // 单条记录所封装的类型
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天06-eb8ecaa6a97e9c632830d510934e7cdf.png" width="1525" height="455" class="img_ev3q"></li>
+<li>MybatisX 是一款基于 IDEA 的快速开发Mybatis的插件，为效率而生。</li>
+<li>使用 Mybatis 的注解，主要是来完成一些简单的增删改查功能。如果需要实现复杂的 SQL 功能，建议使用 XML 来配置映射语句。</li>
+<li>官方说明：<a href="https://mybatis.net.cn/getting-started.html" target="_blank" rel="noopener noreferrer">https://mybatis.net.cn/getting-started.html</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mybatis-动态-sql">Mybatis 动态 SQL<a href="#mybatis-动态-sql" class="hash-link" aria-label="Direct link to Mybatis 动态 SQL" title="Direct link to Mybatis 动态 SQL">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="动态-sql">动态 SQL<a href="#动态-sql" class="hash-link" aria-label="Direct link to 动态 SQL" title="Direct link to 动态 SQL">​</a></h3>
+<p>随着用户的输入或外部条件的变化而变化的 SQL 语句，我们称为 动态 SQL。
+<img decoding="async" loading="lazy" src="/assets/images/java_web入门第5天07-849205a30b33fdfc1683e2f8b2230ebe.png" width="822" height="587" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="if"><code>&lt;if&gt;</code><a href="#if" class="hash-link" aria-label="Direct link to if" title="Direct link to if">​</a></h3>
+<ul>
+<li><code>&lt;if&gt;</code>：用于判断条件是  否成立。使用test属性进行条件判断，如果条件为true，则拼接SQL。</li>
+<li><code>&lt;where&gt;</code>：where 元素只会在子元素有内容的情况下才插入where子句。而且会自动去除子句的开头的 AND 或 OR。
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天08-e471f940ecc62ac25ec77ee5faa2d202.png" width="1515" height="518" class="img_ev3q"></li>
+<li><code>&lt;set&gt;</code>： 动态地在行首插入 SET 关键字，并会删掉额外的逗号。（用在update语句中） ctr + alt + l 格式化 SQL 语句</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/java_web入门第5天09-bb6ec693884dcce7a51b23caa5762cd8.png" width="1306" height="719" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="foreach"><code>&lt;foreach&gt;</code><a href="#foreach" class="hash-link" aria-label="Direct link to foreach" title="Direct link to foreach">​</a></h3>
+<ul>
+<li>SQL 语法： <code>delete from emp where id in (1,2,3);</code></li>
+<li>接口方法：
+<div class="language-java codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-java codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">//批量删除</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">public void deleteByIds(List&lt;Integer&gt;  ids);</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>XML 映射文件
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">delete</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">id</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">deleteByIds</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  delete from emp where id in</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">foreach</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">collection</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">ids</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">item</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">id</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">separator</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">,</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">open</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">(</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag" style="color:hsl(5, 74%, 59%)"> </span><span class="token tag attr-name" style="color:hsl(35, 99%, 36%)">close</span><span class="token tag attr-value punctuation attr-equals" style="color:hsl(119, 34%, 47%)">=</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag attr-value" style="color:hsl(119, 34%, 47%)">)</span><span class="token tag attr-value punctuation" style="color:hsl(119, 34%, 47%)">&quot;</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    #{id}</span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">  </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">foreach</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">delete</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>属性
+<ul>
+<li>collection：集合名称</li>
+<li>item：集合遍历出来的元素/项</li>
+<li>separator：每一次遍历使用的分隔符</li>
+<li>open：遍历开始前拼接的片段</li>
+<li>close：遍历结束后拼接的片段</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sqlinclude"><code>&lt;sql&gt;&lt;include&gt;</code><a href="#sqlinclude" class="hash-link" aria-label="Direct link to sqlinclude" title="Direct link to sqlinclude">​</a></h3>
+<ul>
+<li><code>&lt;sql&gt;</code>：定义可重用的 SQL 片段。</li>
+<li><code>&lt;include&gt;</code>：通过属性 refid，指定包含的 sql 片段。
+<img decoding="async" loading="lazy" alt="Alt text" src="/assets/images/java_web入门第5天10-a4cb767d5a17001b667e3a083cd29d0e.png" width="1480" height="593" class="img_ev3q"></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#多表查询" class="table-of-contents__link toc-highlight">多表查询</a><ul><li><a href="#概述" class="table-of-contents__link toc-highlight">概述</a></li></ul></li><li><a href="#事务" class="table-of-contents__link toc-highlight">事务</a><ul><li><a href="#介绍--操作" class="table-of-contents__link toc-highlight">介绍 &amp; 操作</a></li><li><a href="#四大特性" class="table-of-contents__link toc-highlight">四大特性</a></li></ul></li><li><a href="#索引" class="table-of-contents__link toc-highlight">索引</a><ul><li><a href="#介绍" class="table-of-contents__link toc-highlight">介绍</a></li><li><a href="#结构" class="table-of-contents__link toc-highlight">结构</a></li><li><a href="#语法" class="table-of-contents__link toc-highlight">语法</a></li></ul></li><li><a href="#mybatis入门" class="table-of-contents__link toc-highlight">Mybatis入门</a><ul><li><a href="#快速入门" class="table-of-contents__link toc-highlight">快速入门</a></li><li><a href="#jdbc介绍" class="table-of-contents__link toc-highlight">JDBC介绍</a></li><li><a href="#数据库连接池" class="table-of-contents__link toc-highlight">数据库连接池</a></li><li><a href="#lombok" class="table-of-contents__link toc-highlight">lombok</a></li></ul></li><li><a href="#mybatis-基础增删改查" class="table-of-contents__link toc-highlight">Mybatis 基础——增删改查</a><ul><li><a href="#准备" class="table-of-contents__link toc-highlight">准备</a></li><li><a href="#删除" class="table-of-contents__link toc-highlight">删除</a></li><li><a href="#新增" class="table-of-contents__link toc-highlight">新增</a></li><li><a href="#更新" class="table-of-contents__link toc-highlight">更新</a></li><li><a href="#查询" class="table-of-contents__link toc-highlight">查询</a></li><li><a href="#xml-映射文件" class="table-of-contents__link toc-highlight">XML 映射文件</a></li></ul></li><li><a href="#mybatis-动态-sql" class="table-of-contents__link toc-highlight">Mybatis 动态 SQL</a><ul><li><a href="#动态-sql" class="table-of-contents__link toc-highlight">动态 SQL</a></li><li><a href="#if" class="table-of-contents__link toc-highlight"><code>&lt;if&gt;</code></a></li><li><a href="#foreach" class="table-of-contents__link toc-highlight"><code>&lt;foreach&gt;</code></a></li><li><a href="#sqlinclude" class="table-of-contents__link toc-highlight"><code>&lt;sql&gt;&lt;include&gt;</code></a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

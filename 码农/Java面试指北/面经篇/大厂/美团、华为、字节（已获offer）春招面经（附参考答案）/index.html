@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">美团、华为、字节（已获 offer）春招面经（附参考答案） | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="美团、华为、字节（已获 offer）春招面经（附参考答案） | Coisini"><meta data-rh="true" name="description" content="一位球友的 2022 春招面经，拿到了美团、字节、华为等公司的 offer。"><meta data-rh="true" property="og:description" content="一位球友的 2022 春招面经，拿到了美团、字节、华为等公司的 offer。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/美团、华为、字节（已获offer）春招面经（附参考答案）/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>美团、华为、字节（已获 offer）春招面经（附参考答案）</h1></header>
+<p>一位球友的 2022 春招面经，拿到了美团、字节、华为等公司的 offer。</p>
+<p>面经中涵盖的问题，我几乎都找到了对应的参考答案，希望可以帮助到你。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="美团">美团<a href="#美团" class="hash-link" aria-label="Direct link to 美团" title="Direct link to 美团">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="一面">一面<a href="#一面" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h3>
+<ol>
+<li>挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。</li>
+<li>进程线程区别。</li>
+<li>死锁，死锁条件。</li>
+<li>知不知道中断和轮询的区别。</li>
+<li>数据库索引，讨论了一下B+树能存多少数据。</li>
+<li>数据库存储引擎知道哪些，有什么区别。</li>
+<li>数据库锁。</li>
+<li>算法题：起始点到终点最短路径。</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="%E7%BE%8E%E5%9B%A21.png" src="/assets/images/1652193876099-6a623f51-6d6f-497f-a1bd-8b2e292aa479-874099-4e28d0f2a89927d23f8c1b24aaf16f4b.png" width="554" height="480" class="img_ev3q"></p>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ol>
+<li><a href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html" target="_blank" rel="noopener noreferrer">Java 并发常见知识点&amp;面试题总结（基础篇）</a></li>
+<li><a href="https://javaguide.cn/java/concurrent/java-concurrent-questions-02.html" target="_blank" rel="noopener noreferrer">Java 并发常见知识点&amp;面试题总结（进阶篇）</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1668831" target="_blank" rel="noopener noreferrer">选中断还是轮询方式？深究其中的区别</a></li>
+<li><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1652069206&amp;ver=3787&amp;signature=cO*vP6Ua*TAi9eO99*EipxUyNAiP6qV5hVT4JNEeK9aoPgMR5xdg8J2VAu687BODFeoSQp8THlNfNG3s4715Jz9zrGWQJJpsFGOjlQe-EOg-wr1iHIADn4fkEE9omLGN&amp;new=1" target="_blank" rel="noopener noreferrer">MySQL 索引知识点总结</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247506762&amp;idx=2&amp;sn=b545f97b2c45e4f5b41e26d57d33c9b0&amp;chksm=cea19481f9d61d9721fa190a55fda11bd8ae76fbeda2b08a9d4105395b8427e212d9342231e3&amp;token=549578959&amp;lang=zh_CN#rd" target="_blank" rel="noopener noreferrer">MySQL面试题/知识点总结！</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/29150809" target="_blank" rel="noopener noreferrer">MySQL锁总结</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247519384&amp;idx=1&amp;sn=bc7e71af75350b755f04ca4178395b1a&amp;chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&amp;token=660789642&amp;lang=zh_CN&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">《Java 面试指北》 - 技术面试题篇</a></li>
+<li><a href="https://leetcode.cn/problems/DFPeFJ/" target="_blank" rel="noopener noreferrer">LCP 35. 电动车游城市  - LeetCode</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="二面">二面<a href="#二面" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h3>
+<ol>
+<li>问项目。</li>
+<li>什么是序列化反序列化。</li>
+<li>负载均衡，知道哪些负载均衡 。</li>
+<li>什么时候会OOM，服务OOM怎么办，如何排查。</li>
+<li>Spring 启动流程。</li>
+<li>Spring 设计模式。</li>
+<li>对于模版模式的理解，应用场景，你在项目中是怎么使用的。</li>
+<li>HTTP 请求过程 。</li>
+<li>TCP 和 UDP 区别。</li>
+<li>Linux知道哪些命令。</li>
+<li>设置索引有什么注意的地方。</li>
+<li>最近看了哪些书，有什么收获。</li>
+<li>算法题：合并有序数组 O(N)时间 O(1)空间。</li>
+<li>数据库设计：只能以半小时为单位订会议室。</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="%E7%BE%8E%E5%9B%A22.png" src="/assets/images/1652193876106-e906e24a-c7e8-4f89-ba31-379c53f51eb4-773122-90b205433955d11ece1d281ca15dec87.png" width="554" height="390" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="%E7%BE%8E%E5%9B%A23.png" src="/assets/images/1652193876104-58ad9b51-72c5-48ca-918c-88be2d302187-948348-01384c5eae8b3678cc48bc31d64846e3.png" width="515" height="419" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="%E7%BE%8E%E5%9B%A24.png" src="/assets/images/1652193876074-ce224754-d720-496d-bdb4-01b4a9ec6d4b-334193-c5413189937b17403ff6aa365b914628.png" width="554" height="391" class="img_ev3q"></p>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247520143&amp;idx=2&amp;sn=b746080a721bb6385246669384ef3487&amp;chksm=cea1c044f9d64952444ed67d7418d70f67795255302b2a4d702153a8d7b43f66d83cfe1bbfec&amp;token=549578959&amp;lang=zh_CN#rd" target="_blank" rel="noopener noreferrer">招银网络二面：什么是序列化？常见的序列化协议有哪些？</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247519384&amp;idx=1&amp;sn=bc7e71af75350b755f04ca4178395b1a&amp;chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&amp;token=660789642&amp;lang=zh_CN&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">《Java 面试指北》 - 技术面试题篇 - 高并发模块</a></li>
+<li><a href="https://github.com/StabilityMan/StabilityGuide" target="_blank" rel="noopener noreferrer">系统稳定性——OutOfMemoryError 常见原因及解决方法 - 3.2.1 异常诊断</a></li>
+<li><a href="https://javaguide.cn/system-design/framework/spring/spring-knowledge-and-questions-summary.html" target="_blank" rel="noopener noreferrer">Spring常见问题总结</a></li>
+<li><a href="https://mp.weixin.qq.com/s/QBmDiyfST13nQJUcPLLXOg" target="_blank" rel="noopener noreferrer">设计模式最佳套路4 —— 愉快地使用模板模式</a></li>
+<li><a href="https://mp.weixin.qq.com/s/PLo60qkoxVXBB0MrLxASyQ" target="_blank" rel="noopener noreferrer">一次 HTTP 请求的完整过程</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/24860273" target="_blank" rel="noopener noreferrer">TCP和UDP的区别</a></li>
+<li><a href="https://javaguide.cn/cs-basics/operating-system/linux-intro.html" target="_blank" rel="noopener noreferrer">Linux 基础知识总结</a></li>
+<li><a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1652069206&amp;ver=3787&amp;signature=cO*vP6Ua*TAi9eO99*EipxUyNAiP6qV5hVT4JNEeK9aoPgMR5xdg8J2VAu687BODFeoSQp8THlNfNG3s4715Jz9zrGWQJJpsFGOjlQe-EOg-wr1iHIADn4fkEE9omLGN&amp;new=1" target="_blank" rel="noopener noreferrer">MySQL 索引知识点总结</a></li>
+<li><a href="https://leetcode.cn/problems/merge-sorted-array/" target="_blank" rel="noopener noreferrer">88. 合并两个有序数组 - LeetCode</a></li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="华为">华为<a href="#华为" class="hash-link" aria-label="Direct link to 华为" title="Direct link to 华为">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="一面-1">一面<a href="#一面-1" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h3>
+<ul>
+<li>项目、论文。</li>
+<li>String 能否被继承。</li>
+<li>Java 内存泄露和排查。</li>
+<li>Hash 方式和 Hash 冲突解决。</li>
+<li>静态代理和动态代理。</li>
+<li>线程通信方式。</li>
+<li>Volitate关键字。</li>
+<li>Java 高效拷贝数组。</li>
+<li>算法题 跳跃游戏 leetcode 55。</li>
+</ul>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ul>
+<li><a href="https://javaguide.cn/java/basis/proxy.html" target="_blank" rel="noopener noreferrer">Java 代理模式详解</a></li>
+<li><a href="https://mp.weixin.qq.com/s/5vxYoeARG1nC7Z0xTYXELA" target="_blank" rel="noopener noreferrer">你还应该知道的哈希冲突解决策略</a></li>
+<li><a href="https://javaguide.cn/cs-basics/operating-system/operating-system-basic-questions-01.html" target="_blank" rel="noopener noreferrer">操作系统常见面试题总结</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/37346162" target="_blank" rel="noopener noreferrer">[效率优化专题]2.java数组拷贝的3种方式和效率对比</a></li>
+<li><a href="https://leetcode.cn/problems/jump-game/" target="_blank" rel="noopener noreferrer">55. 跳跃游戏  - LeetCode</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="二面-1">二面<a href="#二面-1" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h3>
+<ul>
+<li>简单说说项目、论文。</li>
+<li>项目是自己学习的还是落地项目。</li>
+<li>本科保研绩点高，为啥研究生期间没有刷绩点。</li>
+<li>对华为的了解，这个聊了比较久 因为我本身就是华为用户，比较了解，主管也给我介绍和补充。</li>
+<li>实习时间。</li>
+<li>反问部门、技术栈，是否可以自己选项目。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="字节">字节<a href="#字节" class="hash-link" aria-label="Direct link to 字节" title="Direct link to 字节">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="一面-2">一面<a href="#一面-2" class="hash-link" aria-label="Direct link to 一面" title="Direct link to 一面">​</a></h3>
+<ol>
+<li>问项目，聊怎么实现，从项目里学到什么。</li>
+<li>手写单例模式，和 Spring 的单例有什么区别。</li>
+<li>算法题：给你一个整数数组 <code>nums</code> ，数组中的元素 <strong>互不相同</strong> 。返回该数组所有可能的子集（幂集）。</li>
+<li>SQL 题：根据题目要求写出对应的 SQL，由于太久没写，不会做。</li>
+<li>智力题 1-N批次其中有一批次重量不合格 用最少称重次数找到</li>
+</ol>
+<p>1） 刚开始说二分 面试官说不是最优</p>
+<p>2） 提示可以从每批次拿不同数量：第N批拿N个 算重量差值就可以确定</p>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/ZwrJHk1Lo6G1Gpqvel0WeA" target="_blank" rel="noopener noreferrer">重学 Java 设计模式：实战单例模式</a></li>
+<li><a href="https://mp.weixin.qq.com/s/KOx1P-A01k7DlFf5DJk9TQ" target="_blank" rel="noopener noreferrer">3道SQL面试题，总结常考知识点！</a></li>
+<li><a href="https://leetcode.cn/problems/subsets/" target="_blank" rel="noopener noreferrer">78. 子集  - LeetCode</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="二面-2">二面<a href="#二面-2" class="hash-link" aria-label="Direct link to 二面" title="Direct link to 二面">​</a></h3>
+<ol>
+<li>问项目。</li>
+<li><code>volitate</code> 关键字。</li>
+<li>JVM新生代怎么划分，大对象怎么分配。</li>
+<li>新生代有哪些垃圾回收器。</li>
+<li>ParNew 原理。</li>
+<li>Innodb 默认隔离级别，RR能防止幻读吗，RR默认使用间隙锁吗。</li>
+<li>怎么理解最终一致性，有哪些实现方案。</li>
+<li>分布式事务。</li>
+<li>算法题：数组里每个数右边第一个比他大的数。</li>
+</ol>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ol>
+<li><a href="https://javaguide.cn/java/concurrent/java-concurrent-questions-01.html" target="_blank" rel="noopener noreferrer">Java 并发常见知识点&amp;面试题总结（基础篇）</a></li>
+<li><a href="https://javaguide.cn/java/concurrent/java-concurrent-questions-02.html" target="_blank" rel="noopener noreferrer">Java 并发常见知识点&amp;面试题总结（进阶篇）</a></li>
+<li><a href="https://javaguide.cn/java/jvm/memory-area.html" target="_blank" rel="noopener noreferrer">Java 内存区域详解</a></li>
+<li><a href="https://javaguide.cn/java/jvm/jvm-garbage-collection.html" target="_blank" rel="noopener noreferrer">JVM 垃圾回收详解</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247506762&amp;idx=2&amp;sn=b545f97b2c45e4f5b41e26d57d33c9b0&amp;chksm=cea19481f9d61d9721fa190a55fda11bd8ae76fbeda2b08a9d4105395b8427e212d9342231e3&amp;token=549578959&amp;lang=zh_CN#rd" target="_blank" rel="noopener noreferrer">MySQL面试题/知识点总结！</a></li>
+<li><a href="https://mp.weixin.qq.com/s/ElLWu_Pzn5IykqE55Rv1oQ" target="_blank" rel="noopener noreferrer">最终一致性，一致只会迟到，但绝不会缺席</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247519384&amp;idx=1&amp;sn=bc7e71af75350b755f04ca4178395b1a&amp;chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&amp;token=660789642&amp;lang=zh_CN&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">《Java 面试指北》 - 技术面试题篇 - 分布式模块</a></li>
+<li><a href="https://leetcode.cn/problems/next-greater-element-i/" target="_blank" rel="noopener noreferrer">496. 下一个更大元素 I  - LeetCode</a></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="三面">三面<a href="#三面" class="hash-link" aria-label="Direct link to 三面" title="Direct link to 三面">​</a></h3>
+<ol>
+<li>问项目。</li>
+<li>RAFT 脑裂、一致性。</li>
+<li>负载均衡。</li>
+<li>各种排序算法，分析复杂度和稳定性。</li>
+<li>其他想不起来了，八股很少，一直问项目。</li>
+<li>算法题：旋转图像(90度旋转矩阵)。</li>
+</ol>
+<p><strong>部分问题参考答案</strong> ：</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/4g0jR_shCIpjBprap3BExg" target="_blank" rel="noopener noreferrer">Raft实战系列，集群成员如何变更？日志怎么压缩？</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247519384&amp;idx=1&amp;sn=bc7e71af75350b755f04ca4178395b1a&amp;chksm=cea1c353f9d64a458f797696d4144b4d6e58639371a4612b8e4d106d83a66d2289e7b2cd7431&amp;token=660789642&amp;lang=zh_CN&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">《Java 面试指北》 - 技术面试题篇 - 高并发模块</a></li>
+<li><a href="http://www.guoyaohua.com/sorting.html" target="_blank" rel="noopener noreferrer">十大经典排序算法最强总结（含 Java、Python 码实现）</a></li>
+<li><a href="https://leetcode.cn/problems/rotate-image/" target="_blank" rel="noopener noreferrer">48. 旋转图像 - LeetCode</a></li>
+</ol>
+<blockquote>
+<p>更新: 2022-05-29 15:25:02<br>
+原  文: <a href="https://www.yuque.com/snailclimb/mf2z3k/bd7sww" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/bd7sww</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#美团" class="table-of-contents__link toc-highlight">美团</a><ul><li><a href="#一面" class="table-of-contents__link toc-highlight">一面</a></li><li><a href="#二面" class="table-of-contents__link toc-highlight">二面</a></li></ul></li><li><a href="#华为" class="table-of-contents__link toc-highlight">华为</a><ul><li><a href="#一面-1" class="table-of-contents__link toc-highlight">一面</a></li><li><a href="#二面-1" class="table-of-contents__link toc-highlight">二面</a></li></ul></li><li><a href="#字节" class="table-of-contents__link toc-highlight">字节</a><ul><li><a href="#一面-2" class="table-of-contents__link toc-highlight">一面</a></li><li><a href="#二面-2" class="table-of-contents__link toc-highlight">二面</a></li><li><a href="#三面" class="table-of-contents__link toc-highlight">三面</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

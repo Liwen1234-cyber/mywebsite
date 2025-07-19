@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java_Web/Maven高级" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">1 Maven 高级 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java_Web/Maven高级/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="1 Maven 高级 | Coisini"><meta data-rh="true" name="description" content="1.1 分模块设计与开发"><meta data-rh="true" property="og:description" content="1.1 分模块设计与开发"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java_Web/Maven高级/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java_Web/Maven高级/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java_Web/Maven高级/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>1 Maven 高级</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="11-分模块设计与开发">1.1 分模块设计与开发<a href="#11-分模块设计与开发" class="hash-link" aria-label="Direct link to 1.1 分模块设计与开发" title="Direct link to 1.1 分模块设计与开发">​</a></h2>
+<p>将项目按照功能拆分成若干个子模块，方便项目的管理维护、扩展，也方便模块间的相互调用，资源共享。
+<img decoding="async" loading="lazy" src="/assets/images/image-20231107120904121-375886c64810548c50518e33ba37c95a.png" width="1416" height="713" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="111-分模块开发">1.1.1 分模块开发<a href="#111-分模块开发" class="hash-link" aria-label="Direct link to 1.1.1 分模块开发" title="Direct link to 1.1.1 分模块开发">​</a></h3>
+<ul>
+<li>
+<p>创建maven模块 tlias-pojo，存放实体类。</p>
+</li>
+<li>
+<p>创建maven模块 tlias-utils，存放相关工具类。</p>
+</li>
+<li>
+<p>注意事项：分模块开发需要先针对模块功能进行设计，再进行编码。不会先将工程开发完毕，然后进行拆分。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="12-继承与聚合">1.2 继承与聚合<a href="#12-继承与聚合" class="hash-link" aria-label="Direct link to 1.2 继承与聚合" title="Direct link to 1.2 继承与聚合">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="121-继承">1.2.1 继承<a href="#121-继承" class="hash-link" aria-label="Direct link to 1.2.1 继承" title="Direct link to 1.2.1 继承">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="继承关系">继承关系<a href="#继承关系" class="hash-link" aria-label="Direct link to 继承关系" title="Direct link to 继承关系">​</a></h4>
+<ul>
+<li>
+<p>概念：继承描述的是两个工程间的关系，与java中的继承相似，子工程可以继承父工程中的配置信息，常见于依赖关系的继承。</p>
+</li>
+<li>
+<p>作用：简化依赖配置、统一管理依赖</p>
+</li>
+<li>
+<p>实现：<code>&lt;parent&gt; … &lt;/parent&gt;</code></p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/image-20231107140524899-01b55b5b74e6bef3efe31c9f91c5a61e.png" width="1115" height="285" class="img_ev3q"></p>
+<ol>
+<li>
+<p>打包方式</p>
+<ul>
+<li>
+<p>jar：普通模块打包，springboot 项目基本都是jar包（内嵌tomcat运行）</p>
+</li>
+<li>
+<p>war：普通web程序打包，需要部署在外部的tomcat服务器中运行</p>
+</li>
+<li>
+<p>pom：父工程或聚合工程，该模块不写代码，仅进行依赖管理</p>
+</li>
+</ul>
+</li>
+<li>
+<p>继承关系实现</p>
+<ul>
+<li>
+<p>① 创建maven模块 tlias-parent ，该工程为父工程，设置打包方式 pom ( 默认 jar )。</p>
+</li>
+<li>
+<p>② 在子工程的 pom.xml 文件中，配置继承关系。</p>
+</li>
+<li>
+<p>③ 在父工程中配置各个工程共有的依赖（子工程会自动继承父工程的依赖）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>注意事项</p>
+<ul>
+<li>
+<p>在子工程中，配置了继承关系之后，坐标中的 groupId 是可以省略的，因为会自动继承父工程的 。</p>
+</li>
+<li>
+<p>relativePath 指定父工程的 pom 文件的相对位置（如果不指定，将从本地仓库/远程仓库查找该工程）。</p>
+</li>
+<li>
+<p>若父子工程都配置了同一个依赖的不同版本，以子工程的为准。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="版本锁定">版本锁定<a href="#版本锁定" class="hash-link" aria-label="Direct link to 版本锁定" title="Direct link to 版本锁定">​</a></h4>
+<p>在 maven 中，可以在父工程的 pom 文件中通过 <code>&lt;dependencyManagement&gt; </code> 来统一管理依赖版本。仅仅管理依赖版本，不直接依赖</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependencyManagement</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependencies</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token comment" style="color:hsl(230, 4%, 64%)">&lt;!--JWT令牌--&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">            </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">io.jsonwebtoken</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">groupId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">            </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">jjwt</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">artifactId</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">            </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">version</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">0.9.1</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">version</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependency</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependencies</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">dependencyManagement</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>
+<p>注意事项：子工程引入依赖时，无需指定  <code>&lt;version&gt;</code>  版本号，父工程统一管理。变更依赖版本，只需在父工程中统一变更。</p>
+</li>
+<li>
+<p>自定义属性/引用属性</p>
+<p><img decoding="async" loading="lazy" alt="image-20231107142245493" src="/assets/images/image-20231107142245493-4d2e3546c1f1d786ee20b617fb7b2035.png" width="1040" height="491" class="img_ev3q"></p>
+</li>
+<li>
+<p><code>&lt;dependencyManagement&gt;</code> 与 <code>&lt;dependencies&gt;</code> 的区别是什么?</p>
+<ul>
+<li>
+<p><code>&lt;dependencies&gt;</code>  是直接依赖，在父工程配置了依赖，子工程会直接继承下来。</p>
+</li>
+<li>
+<p><code>&lt;dependencyManagement&gt; </code> 是统一管理依赖版本，不会直接依赖，还需要在子工程中引入所需依赖(无需指定版本)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="122-聚合">1.2.2 聚合<a href="#122-聚合" class="hash-link" aria-label="Direct link to 1.2.2 聚合" title="Direct link to 1.2.2 聚合">​</a></h3>
+<ol>
+<li>
+<p>聚合：将多个模块组织成一个整体，同时进行项目的构建。</p>
+</li>
+<li>
+<p>聚合工程：一个不具有业务功能的“空”工程（有且仅有一个 pom 文件），上面的父工程也可以当作这里的聚合工程</p>
+</li>
+<li>
+<p>作用：快速构建项目（无需根据依赖关系手动构建，直  接在聚合工程上构建即可）</p>
+</li>
+<li>
+<p>maven中可以通过  <code>&lt;modules&gt;</code>  设置当前聚合工程所包含的子模块名称</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token comment" style="color:hsl(230, 4%, 64%)">&lt;!--聚合--&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">modules</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">../tlias-pojo</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">../tlias-utils</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">../tlias-web-management</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">module</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">modules</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>聚合工程中所包含的模块，在构建时，会自动根据模块间的依赖关系设置构建顺序，与聚合工程中模块的配置书写位置无关。</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="123-继承与聚合">1.2.3 继承与聚合<a href="#123-继承与聚合" class="hash-link" aria-label="Direct link to 1.2.3 继承与聚合" title="Direct link to 1.2.3 继承与聚合">​</a></h3>
+<ul>
+<li>
+<p>作用</p>
+<ul>
+<li>
+<p>聚合用于快速构建项目</p>
+</li>
+<li>
+<p>继承用于简化依赖配置、统一管理依赖</p>
+</li>
+</ul>
+</li>
+<li>
+<p>相同点：</p>
+<ul>
+<li>
+<p>聚合与继承的 pom.xml 文件打包方式均为 pom，可以将两种关系制作到同一个 pom 文件中</p>
+</li>
+<li>
+<p>聚合与继承均属于设计型模块，并无实际的模块内容</p>
+</li>
+</ul>
+</li>
+<li>
+<p>不同点：</p>
+<ul>
+<li>
+<p>聚合是在聚合工程中配置关系，聚合可以感知到参与聚合的模块有哪些</p>
+</li>
+<li>
+<p>继承是在子模块中配置关系，父模块无法感知哪些子模块继承了自己</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="13-私服">1.3 私服<a href="#13-私服" class="hash-link" aria-label="Direct link to 1.3 私服" title="Direct link to 1.3 私服">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="131-介绍">1.3.1 介绍<a href="#131-介绍" class="hash-link" aria-label="Direct link to 1.3.1 介绍" title="Direct link to 1.3.1 介绍">​</a></h3>
+<ul>
+<li>私服是一种特殊的远程仓库，它是架设在局域网内的仓库服务，用来代理位于外部的中央仓库，用于解决团队内部的资源共享与资源同步问题。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/image-20231107143838466-13d486a5000186755795396f7ba9512f.png" width="1145" height="445" class="img_ev3q"></p>
+<ul>
+<li>
+<p>依赖查找顺序：</p>
+<ul>
+<li>
+<p>本地仓库</p>
+</li>
+<li>
+<p>私服</p>
+</li>
+<li>
+<p>中央仓库</p>
+</li>
+</ul>
+</li>
+<li>
+<p>注意事项：私服在企业项目开发中，一个项目 / 公司，只需要一台即可（无需我们自己搭建， 会使用即可）。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="132-资源上传与下载">1.3.2 资源上传与下载<a href="#132-资源上传与下载" class="hash-link" aria-label="Direct link to 1.3.2 资源上传与下载" title="Direct link to 1.3.2 资源上传与下载">​</a></h3>
+<p><img decoding="async" loading="lazy" src="/assets/images/image-20231107144057180-8fb105e104dd218d53f77c6662147dc3.png" width="712" height="224" class="img_ev3q"></p>
+<p>项目版本：</p>
+<ul>
+<li>
+<p>RELEASE（发行版本）：功能趋于稳定、当前更新停止，可以用于发行的版本，存储在私服中的 RELEASE 仓库中。</p>
+</li>
+<li>
+<p>SNAPSHOT（快照版本）：功能不稳定、尚处于开发中的版本，即快照版本，存储在私服的 SNAPSHOT 仓库中。</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>设置私服的访问用户名/密码（ settings.xml 中的servers中配置）</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">server</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">maven-releases</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">username</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">admin</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">username</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">password</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">admin</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">password</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">server</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">server</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">maven-snapshots</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">username</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">admin</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">username</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">password</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">admin</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">password</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">server</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>IDEA 的 maven 工程的 pom 文件中配置上传（发布）地址</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">distributionManagement</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">repository</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">maven-releases</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">http://192.168.150.101:8081/repository/maven-releases/</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">repository</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">snapshotRepository</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">maven-snapshots</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">        </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">http://192.168.150.101:8081/repository/maven-snapshots/</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">snapshotRepository</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">distributionManagement</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>设置私服依赖下载的仓库组地址（ settings.xml 中的 mirrors、profiles 中配置）</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-background-color:hsl(230, 1%, 98%);--prism-color:hsl(230, 8%, 24%)"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="background-color:hsl(230, 1%, 98%);color:hsl(230, 8%, 24%)"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">mirror</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">maven-public</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">id</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">mirrorOf</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">*</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">mirrorOf</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain">    </span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain">http://192.168.150.101:8081/repository/maven-public/</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">url</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:hsl(230, 8%, 24%)"><span class="token plain"></span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&lt;/</span><span class="token tag" style="color:hsl(5, 74%, 59%)">mirror</span><span class="token tag punctuation" style="color:hsl(119, 34%, 47%)">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ol></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#11-分模块设计与开发" class="table-of-contents__link toc-highlight">1.1 分模块设计与开发</a><ul><li><a href="#111-分模块开发" class="table-of-contents__link toc-highlight">1.1.1 分模块开发</a></li></ul></li><li><a href="#12-继承与聚合" class="table-of-contents__link toc-highlight">1.2 继承与聚合</a><ul><li><a href="#121-继承" class="table-of-contents__link toc-highlight">1.2.1 继承</a></li><li><a href="#122-聚合" class="table-of-contents__link toc-highlight">1.2.2 聚合</a></li><li><a href="#123-继承与聚合" class="table-of-contents__link toc-highlight">1.2.3 继承与聚合</a></li></ul></li><li><a href="#13-私服" class="table-of-contents__link toc-highlight">1.3 私服</a><ul><li><a href="#131-介绍" class="table-of-contents__link toc-highlight">1.3.1 介绍</a></li><li><a href="#132-资源上传与下载" class="table-of-contents__link toc-highlight">1.3.2 资源上传与下载</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

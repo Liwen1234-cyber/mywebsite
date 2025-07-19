@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">如何快速上手一个新项目？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="如何快速上手一个新项目？ | Coisini"><meta data-rh="true" name="description" content="今天的文章标题就是我平时被问过的一个高频问题。"><meta data-rh="true" property="og:description" content="今天的文章标题就是我平时被问过的一个高频问题。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/如何快速上手一个新项目？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>如何快速上手一个新项目？</h1></header>
+<p>今天的文章标题就是我平时被问过的一个高频问题。</p>
+<p>确实，很多小伙伴在学习或者接手一个项目的时候，不知道如何快速了解项目。</p>
+<p>今天这篇文章我就简单聊聊“如何快速上手一个新项目？面试被问项目经历有哪些小技巧？”。</p>
+<p>下面是正文！</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="项目学习五步走">项目学习五步走<a href="#项目学习五步走" class="hash-link" aria-label="Direct link to 项目学习五步走" title="Direct link to 项目学习五步走">​</a></h2>
+<p><strong>一般项目都会有遗留文档，不论是传统的项目开发模式还是敏捷开发模式。上项目之前自己抽时间看一下相关文档，大概了解一下这个项目整体的情况比如基本的业务还有技术选型啊这些。</strong></p>
+<hr>
+<p>如果能有同事带你简单熟悉一下项目的话，那是最好的，可以让你少踩很多坑。据我了解，很多公司都会有带新人熟悉项目的好传统。如果你入职的项目组没有人带你的话，你可以主动询问一下。</p>
+<p>如果项目是单机的话，大部分就是增删改查的逻辑，主要是对于业务的理解。如果项目是分布式或者微服务的话，会涉及各个服务之间的调用以及一些其他问题比如限流、分布式锁、分布式 ID 这些，稍微会复杂一些。</p>
+<p>不过，不论是什么类型的项目，上手的姿势大概是下面几步。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="第一步了解业务">第一步:了解业务<a href="#第一步了解业务" class="hash-link" aria-label="Direct link to 第一步:了解业务" title="Direct link to 第一步:了解业务">​</a></h3>
+<p>先搞清你接受的新项目:</p>
+<ol>
+<li><strong>是做什么的？</strong> 主要面向什么人群使用？</li>
+<li><strong>主要提供了哪些功能？</strong></li>
+<li>项目背景是什么样的？</li>
+<li>项目涉及的关键业务流程是怎么样的？</li>
+<li>项目目前面临的挑战是什么？未来规划是什么？</li>
+<li>......</li>
+</ol>
+<p><strong>技术本身就是为了业务而服务，只有首先搞清楚了业务之后你才真正算是步入了这个项目的大门。</strong></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="第二步搭建项目开发环境">第二步:搭建项目开发环境<a href="#  第二步搭建项目开发环境" class="hash-link" aria-label="Direct link to 第二步:搭建项目开发环境" title="Direct link to 第二步:搭建项目开发环境">​</a></h3>
+<p>是骡子是马总要拉出来溜溜。所以，第二步我推荐尝试在本地搭建开发环境，试着把项目运行起来。稍微正规点的项目都有项目环境搭建相关的文档介绍，跟着文档来就好。如果没有文档的话，需要自己去分析项目依赖环境，必要的情况下询问一下同事。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="第三步看项目技术架构">第三步:看项目技术架构<a href="#第三步看项目技术架构" class="hash-link" aria-label="Direct link to 第三步:看项目技术架构" title="Direct link to 第三步:看项目技术架构">​</a></h3>
+<p>这个直接看项目的相关依赖就好。拿 Java 后端项目举例子，如果是 Maven 项目的话看 <code>pom.xml</code>，如果是 Gradle 项目就看 <code>build.gradle</code>。</p>
+<p>可能会涉及下面这几部分，但是并不完全。</p>
+<ol>
+<li>项目最底层框架是什么？是 Spring 还是 Spring Boot，又或者是其他框架呢？</li>
+<li>项目依赖了哪些相关的包？挑重点看，比如数据库是 MyBatis 还是 JPA 或者是公司自研的框架呢？</li>
+<li>项目使用的什么数据库？是 MySQL 还是 PostgreSQL，又或者是其他数据库呢？</li>
+<li>项目用到了缓存吗？是 Redis 缓存吗?有没有用到本地缓存呢？</li>
+<li>项目用到了消息队列吗？ Kafka 还是 RocketMQ?</li>
+<li>项目的权限管理这块是怎么做的呢？</li>
+<li>.......</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="第四步看项目的代码结构">第四步:看项目的代码结构<a href="#第四步看项目的代码结构" class="hash-link" aria-label="Direct link to 第四步:看项目的代码结构" title="Direct link to 第四步:看项目的代码结构">​</a></h3>
+<p>项目的代码结构是怎么划分的， 比如常见的项目可能会分为下面三层（复杂的系统分层可能会更多）。</p>
+<ol>
+<li>Repository（数据库操作）</li>
+<li>Service（业务操作）</li>
+<li>Controller（数据交互）</li>
+</ol>
+<p>如果是 DDD 分层架构的话，可能是下面这样的：</p>
+<ol>
+<li>User Interface（用户界面层）</li>
+<li>Application（应用层）</li>
+<li>Domain（模型层）</li>
+<li>Infrastructure（基础实施层）</li>
+</ol>
+<p>不同的公司对于项目的结构的划分可能也不同，不过大体都是类似的。比如《阿里巴巴 Java 开发手册》中所推荐的项目代码结构是下面这样的。</p>
+<p><img decoding="async" loading="lazy" alt="up-14314ba841016f95ef239310fb0d4f58938.png" src="/assets/images/1646546791752-f8c6e1ca-f487-4aa8-aebc-a0d0cd9bbfd1-362205-0fc739cf8e4c06cca2032c1e95f930e1.png" width="1964" height="1928" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="第五步从功能主线问题出发研究项目源码">第五步:从功能主线/问题出发研究项目源码<a href="#第五步从功能主线问题出发研究项目源码" class="hash-link" aria-label="Direct link to 第五步:从功能主线/问题出发研究项目源码" title="Direct link to 第五步:从功能主线/问题出发研究项目源码">​</a></h3>
+<p>一个比较成熟的项目的源码量是非常多，我们不可能都完完整整地看完，也没有必要。</p>
+<p>你可以通过 debug 调试,研究项目核心代码逻辑。比较推荐的方式就是通过一个功能主线（比如 Dubbo 是如何暴露服务的？）或者问题（比如 ？）出发。</p>
+<p>对于企业项目来说，大部分还是知道如何进行 debug 调试的。但是，对于 Spring 这种顶级开源框架来说，很多人就不知道怎么打断点了。</p>
+<p><img decoding="async" loading="lazy" alt="up-8d05c7905cd2e59204a485f9ce87ef9e374.png" src="/assets/images/1646546791783-2fce6f9a-f9f5-4d7f-9abd-eb0f784ad971-183475-b446e1947f3ca276b4b933480c8db4ca.png" width="719" height="350" class="img_ev3q"></p>
+<p>我比较推荐的是你可以先把源码拷贝到本地，然后运行源码中提供的 Demo。对于你想研究的问题比如 Spring 的 IoC 源码，你先去找找对应的 API 调用方式的 Demo，然后根据 Demo 中的方法调用来研究整个过程。如果你觉得这种方法比较难的话，你也可以先去网上看看别人的分析。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="项目经历的四个小技巧">项目经历的四个小技巧<a href="#项目经历的四个小技巧" class="hash-link" aria-label="Direct link to 项目经历的四个小技巧" title="Direct link to 项目经历的四个小技巧">​</a></h2>
+<p>面试中，对于项目经历的考察是重中之重。下面我就分享 4 个面试被问项目经历的小技巧：</p>
+<p><strong>1.提前搞清楚项目的架构图、技术选型等等。</strong></p>
+<p>比如下面这个就是我之前写的一个简易 RPC 框架（<a href="https://github.com/Snailclimb/guide-rpc-framework" target="_blank" rel="noopener noreferrer">guide-rpc-framework</a>）的架构图。</p>
+<p><img decoding="async" loading="lazy" alt="up-f32ad14d0e6fae4c3eac8b2e7dcd9bcc51f.png" src="/assets/images/1646546791632-402f70fb-37fb-4bbe-bcf0-72d1fae4e0bb-412291-2d4d15a51dbda73a21b760bbdec2d18f.png" width="951" height="321" class="img_ev3q"></p>
+<p>再比如下面这个是一个微服务的电商网站的架构图。</p>
+<p><img decoding="async" loading="lazy" alt="up-b07b6f9abb67ae75071315e3d4ba1f6e351.png" src="/assets/images/1646546791835-dbf6a76d-cbc7-4e22-8594-3c4d9be8ca3a-942722-376f4eb398039aa23922f2f5834e25b6.png" width="2421" height="1776" class="img_ev3q"></p>
+<p><strong>2.提前想好项目的亮点，针对项目涉及的关键技术进行深度复习。</strong></p>
+<p>比如说，你的项目用了消息队列的话，你就很有必要提前想好怎么回答消息队列相关的一些问题：消息队列解决了什么问题、常见消息队列对比、如何 保证消息只被消费一次、如何保证消息不被重复消费......。</p>
+<p><img decoding="async" loading="lazy" alt="up-c480ef8120ddbe7c1bb7f42a9c6751380b2.png" src="/assets/images/1646546791605-f2046518-9339-4f86-8043-cd47711d5a52-944673-dd5978075df8f357a5dcb86f26700c2c.png" width="820" height="640" class="img_ev3q"></p>
+<p><strong>3.引导面试官问你熟悉的技术。</strong></p>
+<p>比如说，你对消息队列比较了解的话，介绍项目的时候就可以多介绍一下自己通过消息队列解决了什么问题。</p>
+<p><strong>4.突出个人的贡献比如自己在项目中解决了什么问题，而不只是叙述自己做了什么。</strong></p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文章推荐">文章推荐<a href="#文章推荐" class="hash-link" aria-label="Direct link to 文章推荐" title="Direct link to 文章推荐">​</a></h2>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/-wS9YGW0ll1hwSycH3HEUQ" target="_blank" rel="noopener noreferrer">如何阅读代码 - ThoughtWorks洞见 - 2022</a>：日常读代码的一点经验比如先通过文档了解全景，再逐步深入代码。</li>
+<li><a href="https://juejin.cn/post/7250513276236808229" target="_blank" rel="noopener noreferrer">快速阅读一个SpringBoot工程 - 掘金 - 2023</a>：这篇文章介绍了一个常规的 SpringBoot 项目应该如何上手阅读，这方面基础较差的同学可以看看。</li>
+<li><a href="https://mp.weixin.qq.com/s/1VVu25bzea1jzAWz7fKEUA" target="_blank" rel="noopener noreferrer">如何吃透一个 Java 项目？（附学习实践） - 淘系技术 - 2021</a>：介绍了很多吃透 Java 项目的使用建议。</li>
+<li><a href="https://mp.weixin.qq.com/s/odjcRpVrDDghWFuISVOK5w" target="_blank" rel="noopener noreferrer">你可以 3 分钟熟悉一个系统吗？- 阿里中间件 - 2020</a>：从三个方面进行总结，提供一个系统的方法帮助快速上手一个完全陌生的系统，同时也可以用来 review 已有的系统，查漏补缺。</li>
+</ul>
+<blockquote>
+<p>更新: 2024-06-21 21:30:57<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/dbhn2f" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/dbhn2f</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#项目学习五步走" class="table-of-contents__link toc-highlight">项目学习五步走</a><ul><li><a href="#第一步了解业务" class="table-of-contents__link toc-highlight">第一步:了解业务</a></li><li><a href="#第二步搭建项目开发环境" class="table-of-contents__link toc-highlight">第二步:搭建项目开发环境</a></li><li><a href="#第三步看项目技术架构" class="table-of-contents__link toc-highlight">第三步:看项目技术架构</a></li><li><a href="#第四步看项目的代码结构" class="table-of-contents__link toc-highlight">第四步:看项目的代码结构</a></li><li><a href="#第五步从功能主线问题出发研究项目源码" class="table-of-contents__link toc-highlight">第五步:从功能主线/问题出发研究项目源码</a></li></ul></li><li><a href="#项目经历的四个小技巧" class="table-of-contents__link toc-highlight">项目经历的四个小技巧</a></li><li><a href="#文章推荐" class="table-of-contents__link toc-highlight">文章推荐</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

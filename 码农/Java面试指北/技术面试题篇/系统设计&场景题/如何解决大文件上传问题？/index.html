@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/技术面试题篇/系统设计&场景题/如何解决大文件上传问题？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">如何解决大文件上传问题？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何解决大文件上传问题？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="如何解决大文件上传问题？ | Coisini"><meta data-rh="true" name="description" content="如果你的项目涉及到文件上传的话，面试官很可能会问你这个问题。"><meta data-rh="true" property="og:description" content="如果你的项目涉及到文件上传的话，面试官很可能会问你这个问题。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何解决大文件上传问题？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何解决大文件上传问题？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何解决大文件上传问题？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><header><h1>如何解决大文件上传问题？</h1></header>
+<p>如果你的项目涉及到文件上传的话，面试官很可能会问你这个问题。</p>
+<p>我们先看第一个场景：<strong>大文件上传中途，突然失败！</strong></p>
+<p>试想一个，你想上传一个 5g 的视频，上传进度到 99% 的时候，特么的，突然网络断了，这个时候，你发现自己竟然需要重新上传。我就问你抓狂不？</p>
+<p><strong>有没有解决办法呢？</strong> 答案就是：<strong>分片上传！</strong></p>
+<p><strong>什么是分片上传呢？</strong> 简单来说，我们只需  要先将文件切分成多个文件分片（就像我下面绘制的图片所展示的那样），然后再上传这些小的文件分片。</p>
+<p><img decoding="async" loading="lazy" alt="1711332004512-e46394a6-5c9f-47b8-b081-c19e4c60b1b6.png" src="/assets/images/1711332004512-e46394a6-5c9f-47b8-b081-c19e4c60b1b6-292880-931b84c3956b2d0ac4b4b7c061e56ed8.png" width="485" height="266" class="img_ev3q"></p>
+<p>前端发送了所有文件分片之后，服务端再将这些文件分片进行合并即可，这样就得到的一个完整的文件。</p>
+<p>大致流程如下：</p>
+<ol>
+<li>生成要上传文件的唯一标识（如SHA-256）；</li>
+<li>将需要上传的文件按照一定的分割规则，分割成相同大小的分片；</li>
+<li>初始化一个分片上传任务，返回本次分片上传的唯一标识；</li>
+<li>每个分片在发送前，客户端会计算其哈希值（如SHA-256），并将这个哈希值与分片一起发送给服务器；</li>
+<li>按照一定的策略（串行或并行）发送各个分片；</li>
+<li>服务器接收到分片后，会重新计算分片的哈希值，并与客户端发送的哈希值进行比对；</li>
+<li>如果哈希值匹配，则认为该分片有效，服务器会存储该分片并等待其他分片的到来；如果哈希值不匹配，服务器会通知客户端重新发送该分片；</li>
+<li>所有分片发送完成后，服务端会根据判断数据上传是否完整。如果数据完整，服务端则进行分片的合成，以得到原始文件。</li>
+<li>再计算合并后的文件的唯一标识，两者进行对比，一致则说明没问题。</li>
+</ol>
+<p>使用分片上传主要有下面 2 点好处：</p>
+<ol>
+<li><strong>断点续传</strong> ：上传文件中途暂停或失败（比如遇到网络问题）之后，不需要重新上传，只需要上传那些未成功上传的文件分片即可。所以，分片上传是断点续传的基础。</li>
+<li><strong>多线程上传</strong> ：我们可以通过多线程同时对一个文件的多个文件分片进行上传，这样的话就大大加快的文件上传的速度。</li>
+</ol>
+<p><strong>前端怎么生成文件分片呢？后端如何合并文件分片呢？</strong></p>
+<p>前端可以通过 <code>**Blob.slice()**</code> 方法来对文件进行切割（<code>File</code> 对象是继承 <code>Blob</code> 对象的，因此 <code>File</code> 对象也有 <code>slice()</code> 方法）。</p>
+<p>生成文件切片的示例代码如下：</p>
+<p><img decoding="async" loading="lazy" alt="1711332004473-52f0817f-caff-42ca-914f-59df8eb59112.png" src="/assets/images/1711332004473-52f0817f-caff-42ca-914f-59df8eb59112-477262-c599e8f943f081c6ac4622b52bc47683.png" width="551" height="221" class="img_ev3q"></p>
+<p><code>**RandomAccessFile**</code> 类可以帮助我们合并文件分片，示例代码如下：</p>
+<p><img decoding="async" loading="lazy" alt="1711332004525-6947f967-8cee-43a2-b0ea-87b290a8e64e.png" src="/assets/images/1711332004525-6947f967-8cee-43a2-b0ea-87b290a8e64e-115125-be07a0c1d7eb4e82deea7a55999d1603.png" width="680" height="401" class="img_ev3q"></p>
+<p><strong>何为秒传？</strong></p>
+<p>秒传说的就是我们在上传某个文件的时候，首先根据文件的唯一标识判断一下服务端是否已经上传过该文件，如果上传过的话，直接就返回给用户文件上传成功即可。</p>
+<p>一般情况下，这个唯一标识可以通过对文件的大小、名称、最后修改时间等信息取 MD5 值得到的。不过，MD 算法已经不被推荐使用，建议使用更安全的哈希算法比如 SHA-2（包括 SHA-224、SHA-256、SHA-384、SHA-512 等等），可减少哈希碰撞，更加安全。</p>
+<p>需要注意的是：你不能根据文件名就决定文件是否已经上传到服务端，因为很可能存在文件名相同，但是，内容不同的情况。另外，体验更好的是文件内容不变，唯一标识就不应该改变。因此，我们可以根据文件的内容来计算唯一标识。</p>
+<p>另外，还存在一种情况是我们要上传的文件已经上传了部分文件切片到服务端。这个时候，我们直接返回已上传的切片列表给前端即可。</p>
+<p><img decoding="async" loading="lazy" alt="1711332004561-c11cb6c1-79ba-41b4-ba73-c64ea6718a04.png" src="/assets/images/1711332004561-c11cb6c1-79ba-41b4-ba73-c64ea6718a04-683216-d589b445613f4ac8245e384f42cc45d2.png" width="2388" height="814" class="img_ev3q"></p>
+<p>然后，前端再将剩余未上传的分片上传到服务端。</p>
+<p>我简单画了一张图描述一下断点续传和秒传。</p>
+<p><img decoding="async" loading="lazy" alt="1711331959430-3b4b65c1-2549-48a2-a576-7bd77acb1a0a.png" src="/assets/images/1711331959430-3b4b65c1-2549-48a2-a576-7bd77acb1a0a-827732-6bee7c99f7537ca77951bb41a8b116bc.png" width="847" height="965" class="img_ev3q"></p>
+<p>相关阅读：</p>
+<ul>
+<li><a href="https://juejin.cn/post/6844904155086061576" target="_blank" rel="noopener noreferrer">大规格文件的上传优化</a></li>
+<li><a href="https://github.com/niumoo/down-bit" target="_blank" rel="noopener noreferrer">一个 Java 实现的，多线程，断点续传下载器</a></li>
+</ul>
+<blockquote>
+<p>更新: 2024-03-25 10:00:07<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/akmquq" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/akmquq</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

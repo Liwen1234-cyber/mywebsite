@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-周报/20250425" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">ImageNet Classification with Deep Convolutional Neural Networks | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/周报/20250425/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="ImageNet Classification with Deep Convolutional Neural Networks | Coisini"><meta data-rh="true" name="description" content="论文"><meta data-rh="true" property="og:description" content="论文"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/周报/20250425/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/周报/20250425/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/周报/20250425/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>ImageNet Classification with Deep Convolutional Neural Networks</h1></header>
+<blockquote>
+<p><a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html" target="_blank" rel="noopener noreferrer">论文</a></p>
+</blockquote>
+<p>深度学习要使用正则来避免过拟合</p>
+<blockquote>
+<p>写论文时要提到别人的研究，进行对比，这个文章只提到了 CNN 来做图像分类</p>
+</blockquote>
+<p>使用一个很大的模型，如何来避免</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="alexnet"><strong>AlexNet</strong><a href="#alexnet" class="hash-link" aria-label="Direct link to alexnet" title="Direct link to alexnet">​</a></h2>
+<p>AlexNet 论文 读第一遍： 标题、摘要、结论、图表</p>
+<p>AlexNet：DL 浪潮的奠基作之一</p>
+<p>视角 1：回到 2012 年， 理解文章</p>
+<p>视角 2：2021 年时，AlexNet 过时 or 仍然适用的 idea</p>
+<p><strong>1.标题</strong></p>
+<p>ImageNet （当时最大的图片分类数据集 100w 图片 1000 类别） Classification</p>
+<p>Deep Convolutional：2012 convolution 没有 tree SVM 火</p>
+<p>Neural Network</p>
+<p><strong>作者</strong></p>
+<p>Alex：第一作者命名的网络</p>
+<p>轶事：Goolge 研究院 引用次数 &gt; 10w 有 20 + 人，都去参加了讲座；Ilya 讲了 3 个 dirty tricks：图片增强、ReLU、dropout，赢了比赛。</p>
+<p>大佬们的期待：这个工作揭示了深刻的见解，对世界的新理解；模型的新理解 or 任意关于模型的解释部分，不单纯只是 提出模型效果好 就可以。</p>
+<p>Why 效果好？How to apply? 在哪些地方的应用好？</p>
+<p>Hinton：DL 先驱</p>
+<p><strong>2.摘要</strong></p>
+<p>训练了卷积神经网络、图片分类效果好 SOTA （top1 + top5）、网络的参数和架构、加速训练的技巧、避免过拟合的 dropout、模型变体比赛赢</p>
+<p>1 What：干了什么？</p>
+<p>训练了 large, deep 的 CNN 以分类 120 w 图片的 1000 个类别。</p>
+<p>2 Outcome：效果如何？</p>
+<p>比前人工作好</p>
+<p>top-1 error: 37.5%</p>
+<p>top-5 error: 17%</p>
+<p>3 网络长什么样？</p>
+<p>600w 参数，65 w 神经元</p>
+<p>5 个卷积层 （&lt; 5 max-pooling 层） + 3 个全连接层（1000-way softmax）</p>
+<p>4 这么多参数、怎么训练快点？</p>
+<p>non-saturating neurons + GPU 实现卷积运算</p>
+<p>5 这么多参数、学过头了怎么办？</p>
+<p>避免 FCN 的过拟合，dropout 正则 effective</p>
+<p>6 为什么我这么厉害？</p>
+<p>想知道？不告诉你，但我的兄弟姐妹也厉害！比赛冠军！远超第二！</p>
+<p><strong>3.结论</strong></p>
+<p>本文无 conclusion（和摘要一一对应），只有 discussion (吐槽（😂）、为来做什么)</p>
+<p><strong>P1：文章总结</strong></p>
+<p><strong>一句话，怎么总结我的好？</strong></p>
+<p>a large, deep CNN is capable of achieving record-breaking results (SOTA) on a highly challenging dataset（指的是 ImageNet）using purely supervised learning.</p>
+<p><strong>什么情况，我会表现得不好呢？</strong></p>
+<ul>
+<li>remove a single convolutional layer</li>
+<li>i.e., 去掉中间层，降 2%</li>
+</ul>
+<p>depth is important.</p>
+<p><strong>深度重要，但深度是最重要的吗？</strong></p>
+<p>去掉一层 convolutional layer, 降低 2%；不能证明深度是最重要的。</p>
+<p><strong>可能的情况</strong>：没设置好参数。</p>
+<p>AlexNet 可以去掉一些层、调节中间参数，效果不变。直接砍掉一层，掉 2% 可能是搜索参数做的不够，没调好参数。</p>
+<p><strong>反过来讲，结论没问题？</strong></p>
+<p><strong>深宽都重要</strong>，i.e., 照片的高宽比</p>
+<p>深度重要 --&gt; CNN 需要 <strong>很深</strong>。</p>
+<p>宽度也重要 --&gt; 特别深 + 特别窄 or 特别浅 + 特别宽 ❌</p>
+<p><strong>P2：未来研究</strong></p>
+<p><strong>不用 unsupervised pre-training 也没关系？</strong></p>
+<p>2012 年 DL 的目的是：像“人”（不一定知道真实答案） 书读百遍、其意自现。</p>
+<p>通过训练一个非常大的神经网络，在没有标签的数据上，把数据的内在结构抽取出来。</p>
+<p><strong>关注的潮流怎么改变？</strong></p>
+<p>AlexNet 之前大佬们爱：无监督学习</p>
+<p>（<strong>Why 大佬们不爱 有监督学习？</strong>）</p>
+<p>（有监督学习 打不赢 树 SVM ）</p>
+<p>AlexNet 证明 大力出奇迹。模型够大、有标  签数据够多、我 No. 1 !</p>
+<p>最近大家一起爱：BERT、GAN</p>
+<p><strong>本文最重要的 是什么？real wow moment</strong></p>
+<p>Deep CNN 训练的结果，图片最后向量（学到了一种嵌入表示）的语义表示 特别好~！</p>
+<p>相似的图片的向量会比较近，学到了一个非常好的特征；非常适合后面的 ML，一个简单的 softmax 就能分类的很好！</p>
+<p>学习嵌入表示，DL 的一大强项。</p>
+<p>和当前最好结果的对比：远远超过别人（卖点、wow moment、sexy point）</p>
+<p>模型架构图</p>
+<p><img decoding="async" loading="lazy" src="https://i1.hdslb.com/bfs/note/3e5c25d0f744faefc7a7dfd632bfa7dabb915411.png@620w_!web-note.webp" alt="img" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">introduction<a href="#introduction" class="hash-link" aria-label="Direct link to introduction" title="Direct link to introduction">​</a></h2>
+<p><strong>第一段</strong></p>
+<p>一篇论文的第一段通常是讲个故事</p>
+<ul>
+<li>做什么研究</li>
+<li>哪个方向</li>
+<li>这个方向有什么东西</li>
+<li>为什么很重要</li>
+</ul>
+<p><strong>第二段</strong></p>
+<p>描述了怎么做神经网络，这里只介绍了 CNN</p>
+<p>写论文的时候，千万不要只说自己这个领域这个小方向大概怎么样，还要提到别的方向怎么样</p>
+<p><strong>第三段</strong></p>
+<p>CNN 虽然很好，但是很难训练，但是现在有 GPU 了，GPU 算力能够跟上，所以能够训练很大的东西，而且数据集够大，确实能够训练比较大的 CNN</p>
+<p>前三段基本描述了</p>
+<ul>
+<li>我做了什么东西</li>
+<li>为什么能做</li>
+</ul>
+<p><strong>第四段</strong></p>
+<p>paper 的贡献</p>
+<ul>
+<li>训练了一个最大的的神经网络，然后取得了特别好的结果</li>
+<li>实现了 GPU 上性能很高的一个 2D 的卷积</li>
+<li>网络有一些新的和不常见的一些特性，能够提升性能，降低模型的训练时间</li>
+<li>使用了什么过拟合的方法使得模型变得更好</li>
+<li>模型具有 5 个卷积层，3 个全连接层，发现深度很重要，移掉任何一层都不行</li>
+</ul>
+<p>结果很好，但是还是有新东西在里面的，如果就结果很好，没有新东西，大概是不会称为奠基作</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-dataset">the dataset<a href="#the-dataset" class="hash-link" aria-label="Direct link to the dataset" title="Direct link to the dataset">​</a></h2>
+<p>大概描述了一下所用的数据集</p>
+<p>重点是最后一段：ImageNet 中图片的分辨率是不一样的，因此将每张图片变成了一个 256*256 的图片：</p>
+<ul>
+<li>将图片的短边减少到 256，长边是保证高宽比不变的情况下也往下降，长边如果依然多出来的话，如果多于 256 的话，就以中心为界将两边裁掉，裁成一个 256*256 的图片</li>
+<li>没有做任何的预处理，只是对图片进行了裁剪</li>
+<li>网络是在 raw RGB Value 上训练的</li>
+<li>当时做计算机视觉都是将特征抽出来，抽 SIFT 也好，抽别的特征也好（imagenet 数据集也提供了一个 SIFT 版本的特征），这篇文章说不要抽特征，直接是在原始的 Pixels 上做了</li>
+<li>在之后的工作里面基本上主要是<strong>end to end（端到端）</strong>：及那个原始的图片或者文本直接进去，不做任何的特征提取，神经网络能够帮助你完成这部分工作</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-architecture">the architecture<a href="#the-architecture" class="hash-link" aria-label="Direct link to the architecture" title="Direct link to the architecture">​</a></h2>
+<p>讲整个网络的架构</p>
+<ul>
+<li>relu 非线性激活函数</li>
+<li>使用了多 GPU 进行训练</li>
+<li>正则化、归一化</li>
+<li>overlapping pooling</li>
+<li>总体架构</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="img" src="/assets/images/fec00a250446e40b26248c49b4e86e1d215d562b-3468c3d062a94b35d684ec3e11989191.webp" width="630" height="354" class="img_ev3q"></p>
+<ul>
+<li>方框表示每一层的输入和输出的数据的大小</li>
+<li>输入的图片是一个高宽分别为 224*224 的 3 通道 RGB 图片</li>
+<li>第一层卷积：卷积的窗口是 11*11，有 48 个输出通道，stride 等于 4</li>
+<li>有两个 GPU，GPU1 和 GPU0 都有自己的卷积核参数</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="img" src="/assets/images/787fdba5c593948017ec66d0bc130dc6187dcac3-2dc7d3ec656a5d6f27465b5798b3f672.webp" width="630" height="354" class="img_ev3q"></p>
+<ul>
+<li>第一个卷积层在两个 GPU 上各有一个</li>
+<li>第二个卷积层是在每个 GPU 把当前的卷积结果拿过来（GPU0 的第二个卷积层读的是 GPU0 的第一个卷积层的卷积结果，GPU0 和 GPU1 之间没有任何通讯）</li>
+<li>到第三个卷积层的时候，GPU 还是每个 GPU 上有自己的卷积核，但是每个卷积核会同时将第二个卷积层中 GPU0 和 GPU1 的卷积结果作为输入，两个 GPU 之间会通讯一次</li>
+<li>第 4、5 个卷积层之间没有任何通讯</li>
+<li>每个卷积层的通道数是不一样的，通道数有所增加，高和宽也有所变化</li>
+<li>高宽慢慢变小、深度慢慢增加，随着深度的增加，慢慢地将空间信息压缩，直到最后每一个像素能够代表前面一大块的像素，然后再将通道数慢慢增加，可以认为每个通道数是去看一种特定的模式（例如 192 个通道可以简单地认为，能够识别图片中的 192 种不同的模式）</li>
+<li>慢慢将空间信息压缩，语义空间慢慢增加，到最后卷积完之后，进入全连接层</li>
+<li>全连接层中又出现了 GPU 之间的通讯，全连接层的输入是每个 GPU 第五个卷积的输出合并起来做全连接</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="img" src="/assets/images/ccc807a47db1ad370b23c9552cc75f226c50f89e-0a86976c4fa8921db65a607572fc1db6.webp" width="630" height="354" class="img_ev3q"></p>
+<ul>
+<li>最后进入分类层的时候，变成了一个 4096 长的向量，每一块来自两个 GPU，每片是 2048，最后拼起来，所以一张图片会表示成一个 4096 维的向量，最后用一个线性分类做链接</li>
+<li>深度学习的主要作用是将一张输入的图片，通过卷积、池化、全连接等一系列操作，将他压缩成一个长为 4096 的向量，这个向量能够将中间的语义信息都表示出来（将一个人能够看懂的像素通过一系列的特征提取变成了一个长为 4096 的机器能够看懂的东西，这个东西可以用来做搜索、分类等）</li>
+<li>整个机器学习都可以认为是一个知识的压缩过程，不管是图片、语音还是文字或者视频，通过一个模型最后压缩成一个向量，然后机器去识别这个向量，然后在上面做各种事情</li>
+<li>模型并行（model parallel）：现在在计算机视觉里面用的不多，但是在自然语言处理方面又成为主流了（将模型切开进行训练）</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="reducing-overfitting">reducing overfitting<a href="#reducing-overfitting" class="hash-link" aria-label="Direct link to reducing overfitting" title="Direct link to reducing overfitting">​</a></h2>
+<p>第四章讲述了如何降低过拟合</p>
+<p>数据增强（data augmentation）</p>
+<ul>
+<li>把一些图片人工地变大</li>
+<li>在图片中随机地抠出一部分区域，做一张新的图片</li>
+<li>把整个 RGB 的颜色通道 channel 上做一些改变，这里使用的是一个**PCA（主成分分析）**的方法，颜色会有不同，因此每次图片跟原始图片是有一定的不同的</li>
+</ul>
+<p>dropout</p>
+<ul>
+<li>随机的把一些隐藏层的输出变成用 50%的概率设为 0，每一次都是把一些东西设置为 0，所以模型也就发生了变化，每次得到一个新的模型，但是这些模型之间权重是共享的除了设置成 0 的，非 0 的东西都是一样的，这样就等价于做了模型融合</li>
+<li>后来大家发现 dropout 其实也不是在做模型融合，更多的 dropout 就是一个正则项（dropout 在现行模型上等价于一个 L2 正则项）</li>
+<li>这里将 dropout 用在了前面的两个全连接层上面</li>
+<li>文章说没有 dropout 的话，overfitting 会非常严重，有 dropout 的话，训练会比别人慢两倍</li>
+<li>现在 CNN 的设计通常不会使用那么大的全连接层，所以 dropout 也不那么重要，而且 GPU、内存也没那么吃紧了</li>
+<li>dropout 在全连接上还是很有用的，在 RNN 和 Attension 中使用的非常多</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="details-of-learning">details of learning<a href="#details-of-learning" class="hash-link" aria-label="Direct link to details of learning" title="Direct link to details of learning">​</a></h2>
+<p>讲述了模型是如何训练的</p>
+<ul>
+<li>使用 SGD（随机梯度下降）来进行训练，SGD 调参相对来说可能会比较难调，后来发现 SGD 里面的噪音对模型的泛化性其实是有好处的，所以现在深度学习中普遍使用 SGD 对模型进行训练。在这个文章之后 SGD 基本上在机器学习界成为了最主流的一个优化算法</li>
+<li>批量大小是 128</li>
+<li>momentum 是 0.9</li>
+<li>weight decay 是 0.0005，也就是 L2 正则项，但是这个东西不是加在模型上，而是加在优化算法上，虽然他们两个是等价关系，但是因为深度学习的学习，所以大家现在基本上把这个东西叫做 weight decay 了</li>
+<li>momentum 也是因为这篇文章之后用的特别多，虽然在 2010 年的时候有大量的加速算法，里面有很 fancy 的各种加速 SGD 算法，但是现在看起来似乎用一个简单的 momentum 也是不错的</li>
+<li>momentum 实际上是，当优化的表面非常不平滑的时候，冲量使得不要被当下的梯度过多的误导，可以保持一个冲量从过去那个方向，沿着一个比较平缓的方向往前走，这样子不容易陷入到局部最优解</li>
+<li>权重用的是一个均值为 0，方差为 0.01 的高斯随机变量来初始化（0.01 对很多网络都是可以的，但是如果特别深的时候需要更多优化，但是对于一些相对简单的神经网络，0.01 是一个不错的选项）</li>
+<li>现在就算是比较大的那些 BERT，也就是用了 0.02 作为随机的初始值的方差</li>
+<li>在第二层、第四层和第五层的卷积层把初始的偏移量初始化成 1，剩下的全部初始化成 0</li>
+<li>每个层使用同样的学习率，从 0.01 开始，然后呢如果验证误差不往下降了，就手动的将他乘以 0.1，就是降低十倍</li>
+<li>ResNet 中，每训练 120 轮，学习率每 30 轮就下降 0.1 另外一种主流的做法就是，前面可以做得更长一点，必须能够 60 轮或者是 100 轮，然后再在后面下降</li>
+<li>在 Alex 之后的很多训练里面，都是做规则性地将学习率往下下降十倍，这是一个非常主流的做法，但是现在很少用了，现在使用更加平滑的曲线来降低学习率，比如果用一个 cos 的函数比较平缓地往下降。一开始的选择也很重要，如果选的太大可能会发生爆炸，如果太小又有可能训练不动，所以现在主流的做法是学习率从 0 开始再慢慢上升，慢慢下降</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="img" src="/assets/images/c490536f8d63015d57bf2564fd9e249d6e3f3aa8-cb361addacd9cc05bafd136b2ad67702.webp" width="630" height="354" class="img_ev3q"></p>
+<ul>
+<li>模型训练了 90 个 epoch，然后每一遍用的是 ImageNet 完整的 120 万张图片，需要 5-6 天在两个 GTX GPU 上训练</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#alexnet" class="table-of-contents__link toc-highlight"><strong>AlexNet</strong></a></li><li><a href="#introduction" class="table-of-contents__link toc-highlight">introduction</a></li><li><a href="#the-dataset" class="table-of-contents__link toc-highlight">the dataset</a></li><li><a href="#the-architecture" class="table-of-contents__link toc-highlight">the architecture</a></li><li><a href="#reducing-overfitting" class="table-of-contents__link toc-highlight">reducing overfitting</a></li><li><a href="#details-of-learning" class="table-of-contents__link toc-highlight">details of learning</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

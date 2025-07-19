@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/技术面试题篇/系统设计&场景题/如何自己实现一个RPC框架？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">如何自己实现一个 RPC 框架？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何自己实现一个RPC框架？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="如何自己实现一个 RPC 框架？ | Coisini"><meta data-rh="true" name="description" content="像设计一个 RPC 框架/消息队列这类问题在面试中还是非常常见的。这是一道你花点精力稍微准备一下就能回答上来的一个问题。如果你回答的比较好的话，那面试官肯定会对你印象非常不错！"><meta data-rh="true" property="og:description" content="像设计一个 RPC 框架/消息队列这类问题在面试中还是非常常见的。这是一道你花点精力稍微准备一下就能回答上来的一个问题。如果你回答的比较好的话，那面试官肯定会对你印象非常不错！"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何自己实现一个RPC框架？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何自己实现一个RPC框架？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/系统设计&amp;场景题/如何自己实现一个RPC框架？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>如何自己实现一个 RPC 框架？</h1></header>
+<p>像设计一个 RPC 框架/消息队列这类问题在面试中还是非常常见的。这是一道你花点精力稍微准备一下就能回答上来的一个问题。如果你回答的比较好的话，那面试官肯定会对你印象非常不错！</p>
+<p>消息队列的设计实际上和 RPC 框架/非常类似，我这里就先拿 RPC 框架开涮。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="如果让你自己设计-rpc-框架你会如何设计">如果让你自己设计 RPC 框架你会如何设计？<a href="#如果让你自己设计-rpc-框架你会如何设计" class="hash-link" aria-label="Direct link to 如果让你自己设计 RPC 框架你会如何设计？" title="Direct link to 如果让你自己设计 RPC 框架你会如何设计？">​</a></h2>
+<p><strong>一般情况下， RPC 框架不仅要提供服务发现功能，还要提供负载均衡、容错等功能，这样的 RPC 框架才算真正合格的。</strong></p>
+<p>为了便于小伙伴们理解，我们先从一个最简单的 RPC 框架使用示意图开始。这也是 <a href="https://github.com/Snailclimb/guide-rpc-framework" target="_blank" rel="noopener noreferrer">guide-rpc-framework</a> 目前的架构 。</p>
+<p><img decoding="async" loading="lazy" alt="1623048967492-e2b4151d-e6f1-474b-a104-db1c94b9fd04.png" src="/assets/images/1623048967492-e2b4151d-e6f1-474b-a104-db1c94b9fd04-648286-2c82cdb4bf13770b76987e18848da873.png" width="521" height="221" class="img_ev3q"></p>
+<p>从上图我们可以看出：<strong>服务提供端 Server 向注册中心注册服务，服务消费者 Client 通过注册中心拿到服务相关信息，然后再通过网络请求服务提供端 Server。</strong></p>
+<p>作为 RPC 框架领域的佼佼者<a href="https://github.com/apache/dubbo" target="_blank" rel="noopener noreferrer">Dubbo</a>的架构如下图所示,和我们上面画的大体也是差不多的。</p>
+<p><img decoding="async" loading="lazy" alt="1623048967729-fd902279-be36-4f6b-9613-d0c57b09f61e.jpeg" src="/assets/images/1623048967729-fd902279-be36-4f6b-9613-d0c57b09f61e-446747-915d0aacae1d08b2f2c8aa57da8b491c.jpeg" width="800" height="622" class="img_ev3q"></p>
+<p>下面我们再来看一个比较完整的 RPC 框架使用示意图如下：</p>
+<p><img decoding="async" loading="lazy" alt="1623048967565-56cbcc15-4969-4e05-8e84-4badc8ec40e1.png" src="/assets/images/1623048967565-56cbcc15-4969-4e05-8e84-4badc8ec40e1-878448-1da45c19990123da0754cb36e46b9cf7.png" width="951" height="321" class="img_ev3q"></p>
+<p><strong>参考上面这张图，我们简单说一下设计一个最基本的 RPC 框架的思路或者说实现一个最基本的 RPC 框架需要哪些东西：</strong></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="注册中心">注册中心<a href="#注册中心" class="hash-link" aria-label="Direct link to 注册中心" title="Direct link to 注册中心">​</a></h3>
+<p>注册中心首先是要有的。比较推荐使用 Zookeeper 作为注册中心。</p>
+<p>ZooKeeper 为我们提供了高可用、高性能、稳定的分布式数据一致性解决方案，通常被用于实现诸如数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master 选举、分布式锁和分布式队列等功能。并且，ZooKeeper 将数据保存在内存中，性能是非常棒的。 在“读”多于“写”的应用程序中尤其地高性能，因为“写”会导致所有的服务器间同步状态。（“读”多于“写”是协调服务的典型场景）。</p>
+<p>关于 ZooKeeper 的更多介绍可以看我总结的这篇文章：<a href="https://javaguide.cn/distributed-system/distributed-process-coordination/zookeeper/zookeeper-intro.html" target="_blank" rel="noopener noreferrer">《ZooKeeper 相关概念总结》</a></p>
+<p>当然了，如果你想通过文件来存储服务地址的话也是没问题的，不过性能会比较差。</p>
+<p><strong>注册中心负责服务地址的注册与查找，相当于目录服务。</strong> 服务端启动的时候将服务名称及其对应的地址(ip+port)注册到注册中心，服务消费端根据服务名称找到对应的服务地址。有了服务地址之后，服务消费端就可以通过网络请求服务端了。</p>
+<p>我们再来结合 Dubbo 的架构图来理解一下！</p>
+<p><img decoding="async" loading="lazy" alt="1623048967543-fa87d17d-2d72-40af-8608-c5cb40264ae3.jpeg" src="/assets/images/1623048967543-fa87d17d-2d72-40af-8608-c5cb40264ae3-956722-52a57c5a3e922c37ddb391306c919325.jpeg" width="471" height="317" class="img_ev3q"></p>
+<p>上述节点简单说明：</p>
+<ul>
+<li><strong>Provider：</strong> 暴露服务的服务提供方</li>
+<li><strong>Consumer：</strong> 调用远程服务的服务消费方</li>
+<li><strong>Registry：</strong> 服务注册与发现的注册中心</li>
+<li><strong>Monitor：</strong> 统计服务的调用次数和调用时间的监控中心</li>
+<li><strong>Container：</strong> 服务运行容器</li>
+</ul>
+<p>调用关系说明：</p>
+<ol>
+<li>服务容器负责启动，加载，运行服务提供者。</li>
+<li>服务提供者在启动时，向注册中心注册自己提供的服务。</li>
+<li>服务消费者在启动时，向注册中心订阅自己所需的服务。</li>
+<li>注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者。</li>
+<li>服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</li>
+<li>服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="网络传输">网络传输<a href="#网络传输" class="hash-link" aria-label="Direct link to 网络传输" title="Direct link to 网络传输">​</a></h3>
+<p><strong>既然我们要调用远程的方法，就要发送网络请求来传递目标类和方法的信息以及方法的参数等数据到服务提供端。</strong></p>
+<p>网络传输具体实现你可以使用 <strong>Socket</strong> （ Java 中最原始、最基础的网络通信方式。但是，Socket 是阻塞 IO、性能低并且功能单一）。</p>
+<p>你也可以使用同步非阻塞的 I/O 模型 <strong>NIO</strong> ，但是用它来进行网络编程真的太麻烦了。不过没关系，你可以使用基于 NIO 的网 络编程框架 Netty ，它将是你最好的选择！</p>
+<p>我先简单介绍一下 Netty ，后面的文章中我会详细介绍到。</p>
+<ol>
+<li><strong>Netty 是一个基于 NIO 的 client-server(客户端服务器)框架，使用它可以快速简单地开发网络应用程序。</strong></li>
+<li>它极大地简化了 TCP 和 UDP 套接字服务器等网络编程，并且性能以及安全性等很多方面甚至都要更好。</li>
+<li>支持多种协议如 FTP，SMTP，HTTP 以及各种二进制和基于文本的传统协议。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="序列化和反序列化">序列化和反序列化<a href="#序列化和反序列化" class="hash-link" aria-label="Direct link to 序列化和反序列化" title="Direct link to 序列化和反序列化">​</a></h3>
+<p>要在网络传输数据就要涉及到<strong>序列化</strong>。**为什么需要序列化和反序列化呢？ **</p>
+<p>因为网络传输的数据必须是二进制的。因此，我们的 Java 对象没办法直接在网络中传输。为了能够让 Java 对象在网络中传输我们需要将其<strong>序列化</strong>为二进制的数据。我们最终需要的还是目标 Java 对象，因此我们还要将二进制的数据“解析”为目标 Java 对象，也就是对二进制数据再进行一次<strong>反序列化</strong>。</p>
+<p>另外，不仅网络传输的时候需要用到序列化和反序列化，将对象存储到文件、数据库等场景都需要用到序列化和反序列化。</p>
+<p><img decoding="async" loading="lazy" alt="1623048967534-1b8661e0-fc57-4890-9efe-a7f492c799be.png" src="/assets/images/1623048967534-1b8661e0-fc57-4890-9efe-a7f492c799be-785089-671fd3241aec38aaeece77c887262f0d.png" width="664" height="266" class="img_ev3q"></p>
+<p>JDK 自带的序列化，只需实现 <code>java.io.Serializable</code>接口即可，不过这种方式不推荐，因为不支持跨语言调用并且性能比较差。</p>
+<p>现在比较常用序列化的有 <strong>hessian</strong>、<strong>kyro</strong>、<strong>protostuff</strong> ......。我会在下一篇文章中简单对比一下这些序列化方式。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="动态代理">动态代理<a href="#动态代理" class="hash-link" aria-label="Direct link to 动态代理" title="Direct link to 动态代理">​</a></h3>
+<p>动态代理也是需要的。很多人可能不清楚为啥需要动态代理？我来简单解释一下吧！</p>
+<p>我们知道代理模式就是： 我们给某一个对象提供一个代理对象，并由代理对象来代替真实对象做一些事情。你可以把代理对象理解为一个幕后的工具人。 举个例子：我们真实对象调用方法的时候，我们可以通过代理对象去做一些事情比如安全校验、日志打印等等。但是，这个过程是完全对真实对象屏蔽的。</p>
+<p>讲完了代理模式，再来说动态代理在 RPC 框架中的作用。</p>
+<p>前面第一节的时候，我们就已经提到 ：<strong>RPC 的主要目的就是让我们调用远程方法像调用本地方法一样简单，我们不需要关心远程方法调用的细节比如网络传输</strong>。</p>
+<p><strong>怎样才能屏蔽程方法调用的底层细节呢？</strong></p>
+<p>答案就是<strong>动态代理</strong>。简单来说，当你调用远程方法的时候，实际会通过代理对象来传输网络请求，不然的话，怎么可能直接就调用到远程方法。</p>
+<p>相关文章： <a href="https://javaguide.cn/java/basis/proxy.html" target="_blank" rel="noopener noreferrer">代理模式详解：静态代理+JDK/CGLIB 动态代理实战</a></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="负载均衡">负载均衡<a href="#负载均衡" class="hash-link" aria-label="Direct link to 负载均衡" title="Direct link to 负载均衡">​</a></h3>
+<p>负载均衡也是需要的。为啥？</p>
+<p>举个例子：我们的系统中的某个服务的访问量特别大，我们将这个服务部署 在了多台服务器上，当客户端发起请求的时候，多台服务器都可以处理这个请求。那么，如何正确选择处理该请求的服务器就很关键。假如，你就要一台服务器来处理该服务的请求，那该服务部署在多台服务器的意义就不复存在了。负载均衡就是为了避免单个服务器响应同一请求，容易造成服务器宕机、崩溃等问题，我们从负载均衡的这四个字就能明显感受到它的意义。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="传输协议">传输协议<a href="#传输协议" class="hash-link" aria-label="Direct link to 传输协议" title="Direct link to 传输协议">​</a></h3>
+<p>我们还需要设计一个私有的 RPC 协议，这个协议是客户端（服务消费方）和服务端（服务提供方）交流的基础。</p>
+<p>简单来说：**通过设计协议，我们定义需要传输哪些类型的数据， 并且还会规定每一种类型的数据应该占多少字节。这样我们在接收到二进制数据之后，就可以正确的解析出我们需要的数据。**这有一点像密文传输的感觉。</p>
+<p>通常一些标准的 RPC 协议包含下面这些内容：</p>
+<ul>
+<li><strong>魔数</strong> ： 通常是 4 个字节。这个魔数主要是为了筛选来到服务端的数据包，有了这个魔数之后，服务端首先取出前面四个字节进行比对，能够在第一时间识别出这个数据包并非是遵循自定义协议的，也就是无效数据包，为了安全考虑可以直接关闭连接以节省资源。</li>
+<li><strong>序列化器编号</strong> ：标识序列化的方式，比如是使用 Java 自带的序列化，还是 json，kyro 等序列化方式。</li>
+<li><strong>消息体长度</strong> ： 运行时计算出来。</li>
+<li>......</li>
+</ul>
+<p>如果你想看 <a href="https://github.com/Snailclimb/guide-rpc-framework" target="_blank" rel="noopener noreferrer">guide-rpc-framework</a> 的 RPC 协议设计的话，可以在 Netty 编解码器相关的类中找到。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="实现一个最基本的-rpc-框架需要哪些技术">实现一个最基本的 RPC 框架需要哪些技术？<a href="#实现一个最基本的-rpc-框架需要哪些技术" class="hash-link" aria-label="Direct link to 实现一个最基本的 RPC 框架需要哪些技术？" title="Direct link to 实现一个最基本的 RPC 框架需要哪些技术？">​</a></h2>
+<p>刚刚我们已经聊了如何实现一个 RPC 框架，下面我们就来看看实现一个最基本的 RPC 框架需要哪些技术吧！</p>
+<p>按照我实现的这一款基于 Netty+Kyro+Zookeeper 实现的 RPC 框架来说的话，你需要下面这些技术支撑：</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="java">Java<a href="#java" class="hash-link" aria-label="Direct link to Java" title="Direct link to Java">​</a></h3>
+<ol>
+<li>动态代理机制；</li>
+<li>序列化机制以及各种序列化框架的对比，比如 hession2、kyro、protostuff；</li>
+<li>线程池的使用；</li>
+<li><code>CompletableFuture</code> 的使用；</li>
+<li>......</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="netty">Netty<a href="#netty" class="hash-link" aria-label="Direct link to Netty" title="Direct link to Netty">​</a></h3>
+<ol>
+<li>使用 Netty 进行网络传输；</li>
+<li><code>ByteBuf</code> 介绍；</li>
+<li>Netty 粘包拆包；</li>
+<li>Netty 长连接和心跳机制；</li>
+<li>......</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="zookeeper">Zookeeper<a href="#zookeeper" class="hash-link" aria-label="Direct link to Zookeeper" title="Direct link to Zookeeper">​</a></h3>
+<ol>
+<li>基本概念；</li>
+<li>数据结构；</li>
+<li>如何使用 Netflix 公司开源的 zookeeper 客户端框架 Curator 进行增删改查；</li>
+<li>......</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="#总结" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h2>
+<p>实现一个最基本的 RPC 框架应该至少包括下面几部分:</p>
+<ol>
+<li><strong>注册中心</strong> ：注册中心负责服务地址的注册与查找，相当于目录服务。</li>
+<li><strong>网络传输</strong> ：既然我们要调用远程的方法，就要发送网络请求来传递目标类和方法的信息以及方法的参数等数据到服务提供端。</li>
+<li><strong>序列化和反序列化</strong> ：要在网络传输数据就要涉及到<strong>序列化</strong>。</li>
+<li><strong>动态代理</strong> ：屏蔽程方法调用的底层细节。</li>
+<li><strong>负载均衡</strong> ： 避免单个服务器响应同一请求，容易造成服务器宕机、崩溃等问题。</li>
+<li><strong>传输协议</strong> ：这个协议是客户端（服务消费方）和服务端（服务提供方）交流的基础。</li>
+</ol>
+<p>更完善的一点的 RPC 框架可能还有监控模块（拓展：你可以研究一下 Dubbo 的监控模块的设计）。</p>
+<blockquote>
+<p>更新: 2023-09-12 16:57:46<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/fsdbto" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/fsdbto</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#如果让你自己设计-rpc-框架你会如何设计" class="table-of-contents__link toc-highlight">如果让你自己设计 RPC 框架你会如何设计？</a><ul><li><a href="#注册中心" class="table-of-contents__link toc-highlight">注册中心</a></li><li><a href="#网络传输" class="table-of-contents__link toc-highlight">网络传输</a></li><li><a href="#序列化和反序列化" class="table-of-contents__link toc-highlight">序列化和反序列化</a></li><li><a href="#动态代理" class="table-of-contents__link toc-highlight">动态代理</a></li><li><a href="#负载均衡" class="table-of-contents__link toc-highlight">负载均衡</a></li><li><a href="#传输协议" class="table-of-contents__link toc-highlight">传输协议</a></li></ul></li><li><a href="#实现一个最基本的-rpc-框架需要哪些技术" class="table-of-contents__link toc-highlight">实现一个最基本的 RPC 框架需要哪些技术？</a><ul><li><a href="#java" class="table-of-contents__link toc-highlight">Java</a></li><li><a href="#netty" class="table-of-contents__link toc-highlight">Netty</a></li><li><a href="#zookeeper" class="table-of-contents__link toc-highlight">Zookeeper</a></li></ul></li><li><a href="#总结" class="table-of-contents__link toc-highlight">总结</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

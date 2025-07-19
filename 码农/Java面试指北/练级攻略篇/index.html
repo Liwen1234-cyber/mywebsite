@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/练级攻略篇/index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">练级攻略篇 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="练级攻略篇 | Coisini"><meta data-rh="true" name="description" content="欢迎阅读「练级攻略」相关的文章，这个系列主要内容一些有助于个人成长的经验分享。"><meta data-rh="true" property="og:description" content="欢迎阅读「练级攻略」相关的文章，这个系列主要内容一些有助于个人成长的经验分享。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/练级攻略篇/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>练级攻略篇</h1></header>
+<p>欢迎阅读**「练级攻略」**相关的文章，这个系列主要内容一些有助于个人成长的经验分享。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="内容概览">内容概览<a href="#内容概览" class="hash-link" aria-label="Direct link to 内容概览" title="Direct link to 内容概览">​</a></h2>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/tm6xk3" target="_blank" rel="noopener noreferrer">如何成为一个合格的程序员？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/iwirmw" target="_blank" rel="noopener noreferrer">如何快速提高编程能力？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/dbhn2f" target="_blank" rel="noopener noreferrer">如何快速上手一个新项目？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/ilut9e" target="_blank" rel="noopener noreferrer">如何有效地提高工作效率？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/imaxdd" target="_blank" rel="noopener noreferrer">如何更高效地自学编程？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/cpo8gd" target="_blank" rel="noopener noreferrer">如何快速学习新技术？</a></li>
+<li class="task-list-item"><input type="checkbox" disabled="" checked=""> <a href="https://www.yuque.com/snailclimb/mf2z3k/sg31f0" target="_blank" rel="noopener noreferrer">大厂招聘更看重什么能力？</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="常见问题">常见问题<a href="#常见问题" class="hash-link" aria-label="Direct link to 常见问题" title="Direct link to 常见问题">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何提高技术深度">如何提高技术深度？<a href="#如何提高技术深度" class="hash-link" aria-label="Direct link to 如何提高技术深度？" title="Direct link to 如何提高技术深度？">​</a></h3>
+<blockquote>
+<p><a href="https://t.zsxq.com/13Ab1yRwo" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/13Ab1yRwo</a></p>
+</blockquote>
+<p>追求 T 型发展是必然的，但绝大部分人往往容易忽略掉深度，比如在学习某个框架的时候只注重应用而不关注底层原理，学习某个知识点的时候蜻蜓点水，对于业务需求的理解思考不够，遇到问题之后不知道如何解决。</p>
+<p>可以看到，深度的关联到的概念非常多。对于面试来说，深度更倾向于指的是你对某个知识点的掌握程度，比如连环炮式的提问你能够应对多少。有水平的面试官通常不会对一个知识点蜻蜓点水，他会问很多关于这个知识点的问题，尤其是大厂面试。比如索引连环炮：</p>
+<ol>
+<li>为什么索引能提高查询速度?</li>
+<li>聚集索引和非聚集索引的区别？非聚集索引一定回表查询吗?</li>
+<li>索引这么多优点，为什么不对表中的每一个列创建一个索引呢？(使用索引一定能提高查询性能吗?)</li>
+<li>索引底层的数据结构了解么？Hash 索引和 B+树索引优劣分析</li>
+<li>B+树做索引比红黑树好在哪里？</li>
+<li>最左前缀匹配原则了解么？</li>
+<li>什么是覆盖索引</li>
+<li>如何查看某条 SQL 语句是否用到了索引？</li>
+</ol>
+<p>并且，问到了索引，可能还会问一些索引相关的知识点，比如 SQL 优化方法。</p>
+<p>从面试角度来说，提升深度的方法其实很简单，就是要深入研究学习重要的知识点，多多思考总结，将自己学习到的知识点串联起来。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="学习新技术容易忘记怎么办">学习新技术容易忘记怎么办？<a href="#学习新技术容易忘记怎么办" class="hash-link" aria-label="Direct link to 学习新技术容易忘记怎么办？" title="Direct link to 学习新技术容易忘记怎么办？">​</a></h3>
+<blockquote>
+<p><a href="https://t.zsxq.com/12vTGXkee" target="_blank" rel="noopener noreferrer">https://t.zsxq.com/12vTGXkee</a></p>
+</blockquote>
+<p>这其实挺正常的，正确的学习方法和及时的复习才是解决这个问题关键。</p>
+<p>复习比较好的方式还是看官方文档。如果遇到官方文档介绍不清楚的点，再去搜索对应的博客或者视频看即可。书籍也可以，但书籍更适合那些理论性较强的知识比如数据库，框架类更新比较快，又比较重实战，很难找到合适的书籍。更好的复习方式还是要多使用，用的多了之后，自然就记住了。</p>
+<p>在学习框架使用的时候，没有太大必要花大量时间的整理做笔记贴代码，意义不大。忘记了随时查文档，你只需要记住关键词即可，比如  Spring Boot+ Redis、Spring Boot+ RestTemplate 。理论性的东西，尽量多找一些比较好的博客看，可以简单整理一下笔记，用自己的话去理解一遍，效果会更好一些。</p>
+<p>对于重要的实战性知识点比如框架应用、中间件整合，尽量还是要去实践一下。学习编程，不动手实践那都是扯淡。如果自己比较喜欢做项目的话，可以通过项目实战的方式去实践，这样效果会比单纯写 Demo 要好很多。</p>
+<p>一定不要养成看视频不动手的习惯，被动接受，这种学习效果是最差的。</p>
+<p>还要学会将这个技术和自己之前学到的技术建立连接，形成一个网络。</p>
+<p>最后，提醒一下：学习过程中没弄懂的知识点一定要尽快解决。如何解决？首选百度/Google，通过搜索引擎解决不了的话就找身边的朋友或者网上认识的一些人。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="程序员有哪些值得考的证书">程序员有哪些值得考的证书？<a href="#程序员有哪些值得考的证书" class="hash-link" aria-label="Direct link to 程序员有哪些值得考的证书？" title="Direct link to 程序员有哪些值得考的证书？">​</a></h3>
+<p><font style="color:rgb(47, 48, 52)">有球友问  到有哪些适合程序员考的证书，这里简单总结一下，可以作为参考：</font><a href="https://t.zsxq.com/pPwty" target="_blank" rel="noopener noreferrer">有哪些适合程序员拿的高含金量证书？</a> 。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何准备软考">如何准备软考？<a href="#如何准备软考" class="hash-link" aria-label="Direct link to 如何准备软考？" title="Direct link to 如何准备软考？">​</a></h3>
+<p>阿里云开发者发了一篇高级系统架构设计师的考试备战攻略，可以看看，学习一下备考思路：<a href="https://mp.weixin.qq.com/s/Ts3KQloKrFK_9y1MAZDbTg" target="_blank" rel="noopener noreferrer">临时抱佛脚必看｜一个月速通高级系统架构设计师！（低分飘过版）</a> 。还有这篇也看看： <a href="https://www.cnblogs.com/edisonchou/p/edc_ruankao_system_architect_experience.html" target="_blank" rel="noopener noreferrer">软考复盘：我的一些复习经验分享</a> ，可行性较强，里面提到了作者用到的一些资料、备考时间规划、备考心得等干货。</p>
+<p>个人不太建议为了准备软考而选择去报班，真不如自己自学。当然了，你也可以去网上找一些培训班的教学视频看看，资料还是挺多的。</p>
+<p>**软考有用吗？**对于绝大部分互联网企业来说，软考证书确实没用。不过，软考证书在国企评工程师职称和一些城市积分落户或者人才判定的时候还是有一些作用的，这也是绝大部分人选择软考的原因。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="建议">建议<a href="#建议" class="hash-link" aria-label="Direct link to 建议" title="Direct link to 建议">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="构建知识组合并对知识组合做定期投资">构建知识组合并对知识组合做定期投资<a href="#构建知识组合并对知识组合做定期投资" class="hash-link" aria-label="Direct link to 构  建知识组合并对知识组合做定期投资" title="Direct link to 构建知识组合并对知识组合做定期投资">​</a></h3>
+<p>《程序员修炼之道》这本书提到了一个知识组合的概念，并且，这本书还建议我们构建知识组合并对知识组合做定期投资。</p>
+<p><strong>什么是知识组合？</strong> 我们喜欢把程序员所知道的关于计算的所有方面、他们所工作的应用程序领域以及他们的所有经验作为他们的知识组合。管理知识组合与管理金融组合非常相似：</p>
+<ol>
+<li>认真的投资者把定期投资作为一种习惯。</li>
+<li>多样化是长期成功的关键。</li>
+<li>聪明的投资者在保守投资和高风险、高回报投资之间保持平衡。</li>
+<li>投资者试图低买高卖以获得最大回报。</li>
+<li>投资组合应定期审查和重新平衡。</li>
+</ol>
+<p>如果你不知道添加什么内容到自己的知识组合中，这里有一些建议：</p>
+<ol>
+<li><strong>每年学习一门新语言</strong>：多学习几种不同的解决方法，能帮助自己拓宽思维，避免陷入陈规。</li>
+<li><strong>每月读一本技术书</strong> : 虽然网络上有大量的短文和偶尔可靠的答案，但深入理解还是需要去读长篇的书。</li>
+<li><strong>非技术书籍也要读</strong> ：你的生活不应该只要技术，你也要和人打交道，你也要生存。</li>
+<li><strong>上课</strong> ：大学公开课或者网上的一些有趣的课程，亦或是一些公开的技术演讲......。</li>
+<li><strong>交流</strong> ：加入一些技术交流组织或者技术交流群。</li>
+<li><strong>尝试不同的环境</strong> ：如果你只在 Windows 下工作，那么就花点时间在 Linux 上。如果你只使用简单的编辑器和 Makefile，那就试试最新的炫酷复杂的 IDE，反之亦然。</li>
+<li><strong>与时俱进</strong> ：学习一下你的技术栈之外的其他技术，即使你可能不会在项目中使用到它们 。学习的过程将会扩展你的思维，很可能为你打开一扇全新的大门。</li>
+</ol>
+<p>为此你需要 ：</p>
+<ol>
+<li><strong>充分安排自己的时间</strong> ：时间总是不够用的。所以你需要提前准备好，确保在无聊的时候有事可做。</li>
+<li><strong>要有批判性思维</strong> ：批判性地思考读到的和听到的东西。你需要确保组合中的知识是精准的。这个会在后面详细讲到。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="减少抱怨改变自己">减少抱怨，改变自己<a href="#减少抱怨改变自己" class="hash-link" aria-label="Direct link to 减少抱怨，改变自己" title="Direct link to 减少抱怨，改变自己">​</a></h3>
+<p>对当前的工作不满意？那就换一个工作！</p>
+<p>对当前的项目组不满意？那就换一个项目组！</p>
+<p>对自己的技术不满意，那就提高自己的技术！</p>
+<p>想远程工作？如果你的公司不同意，就去找一个可以远程工作的公司。</p>
+<p><strong>人生如水，人只能去适应环境，如果不能改变环境，就改变自己</strong> 。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文章精选">文章精选<a href="#文章精选" class="hash-link" aria-label="Direct link to 文章精选" title="Direct link to 文章精选">​</a></h2>
+<p>下面这些是我精选的一些文章，每一篇都非常值得细读揣摩：</p>
+<ul>
+<li><a href="https://www.infoq.cn/article/DUSi0kwDtUZhspcJVg8l" target="_blank" rel="noopener noreferrer">从业 18 年，我总结了 9 个最有价值的经验 - InfoQ</a> :  放下自负、语言只是工具、编程不是要记下所有东西、终身学习、代码要解决问题而非完美、先让代码起作用之后再优化、项目最后的 10%往往要花费 90%的时间、写过一次以上的代码，需要进行抽象。</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&amp;mid=2247503988&amp;idx=1&amp;sn=262694ac8710e97d517344af38a72590&amp;chksm=e92aed7bde5d646dc6b4f2fce37c27f2630eb4cb66c841927382f4bff5a44b8a7a27ea94b960&amp;scene=21#wechat_redirect" target="_blank" rel="noopener noreferrer">工作7年，我的10条经验总结 - 阿里技术</a> ：独立思考、总结沉淀、知行合一......。</li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247486873&amp;idx=2&amp;sn=025da38db2d53c626287293075743e41&amp;chksm=cea24252f9d5cb440f3510192d15319eded001a1547050be9f4e68c4a7b40429ecc00377c117&amp;token=168551479&amp;lang=zh_CN#rd" target="_blank" rel="noopener noreferrer">我在滴滴和头条的两年后端研发工作经验分享！ - syntax_error</a>：学会深入思考，总结沉淀、积极学习，保持技术热情、主动承担，及时交流反馈、提升自己的软素质能力......。</li>
+<li><a href="https://www.infoq.cn/article/DX5RoYIDKWhgxmRgaV5J" target="_blank" rel="noopener noreferrer">程序员应该避免的一些错误 - InfoQ</a> ：低估工作量、不写测试、眼高手低，缺少训练、过于自信......。</li>
+</ul>
+<blockquote>
+<p>更新: 2024-07-14 20:07:11<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/mm4nm6" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/mm4nm6</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#内容概览" class="table-of-contents__link toc-highlight">内容概览</a></li><li><a href="#常见问题" class="table-of-contents__link toc-highlight">常见问题</a><ul><li><a href="#如何提高技术深度" class="table-of-contents__link toc-highlight">如何提高技术深度？</a></li><li><a href="#学习新技术容易忘记怎么办" class="table-of-contents__link toc-highlight">学习新技术容易忘记怎么办？</a></li><li><a href="#程序员有哪些值得 考的证书" class="table-of-contents__link toc-highlight">程序员有哪些值得考的证书？</a></li><li><a href="#如何准备软考" class="table-of-contents__link toc-highlight">如何准备软考？</a></li></ul></li><li><a href="#建议" class="table-of-contents__link toc-highlight">建议</a><ul><li><a href="#构建知识组合并对知识组合做定期投资" class="table-of-contents__link toc-highlight">构建知识组合并对知识组合做定期投资</a></li><li><a href="#减少抱怨改变自己" class="table-of-contents__link toc-highlight">减少抱怨，改变自己</a></li></ul></li><li><a href="#文章精选" class="table-of-contents__link toc-highlight">文章精选</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

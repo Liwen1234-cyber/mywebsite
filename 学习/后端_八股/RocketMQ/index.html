@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-学习/后端_八股/RocketMQ" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">RocketMQ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/学习/后端_八股/RocketMQ/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="RocketMQ | Coisini"><meta data-rh="true" name="description" content="为什么要使用MQ"><meta data-rh="true" property="og:description" content="为什么要使用MQ"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/学习/后端_八股/RocketMQ/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/学习/后端_八股/RocketMQ/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/学习/后端_八股/RocketMQ/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>RocketMQ</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="为什么要使用mq">为什么要使用MQ<a href="#为什么要使用mq" class="hash-link" aria-label="Direct link to 为什么要使用MQ" title="Direct link to 为什么要使用MQ">​</a></h2>
+<p><strong>核心</strong>：解耦,异步,削峰</p>
+<ol>
+<li>解耦:如果不用MQ,那么在A系统向其他系统发送数据时,就会导致A系统与其他系统产生严重耦合,A系统需要向多个系统发送数据,而且多个系统(包含新的系统)也需要A的数据;而使用MQ之后,A系统不需要知道其他系统的存在,只需要向MQ提供数据,其他系统(包含新的系统)也不需要知道发送者的存在,只需要订阅MQ或者进MQ里消费数据即可。就是一个系统或者一个模块，调用了多个系统或者模块,互相之间的调用很复杂,维护起来很麻烦。<strong>但是其实这个调用是不需要直接同步调用接口的</strong>,所以可以用 MQ 给它异步化解耦。</li>
+<li>异步:如果不用MQ,假设 A 系统接收一个请求，需要在自己本地写库，还需要在 BCD 三个系统写库,那么 A 系统的响应时间就是四个系统的整个处理时间的总和。而使用 MQ 之后,A 系统只需要把请求发送到 MQ,处理完自己的业务逻辑后就可以返回给用户响应,响应时间大大缩短。其他系统则可以在 MQ 里面消费后再处理自己的业务逻辑。</li>
+<li>削峰:对高峰期流量进行缓冲</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mq有什么优缺点">MQ有什么优缺点<a href="#mq有什么优缺点" class="hash-link" aria-label="Direct link to MQ有什么优缺点" title="Direct link to MQ有什么优缺点">​</a></h2>
+<p><strong>优点</strong>就是上面的核心</p>
+<p><strong>缺点</strong>:</p>
+<ul>
+<li>系统可用性降低:系统引入的依赖越多,越容易出现系统崩溃,一旦MQ出现问题,整个系统都会瘫痪。</li>
+<li>系统复杂度提升:引入MQ之后,系统的复杂度也会提升,还需要考虑消息的重复消费,消息的丢失,消息的传递的顺序等问题</li>
+<li>一致性问题:MQ的消息传递是异步的, 无法保证MQ后面的系统消费的消息与处理的结果一致,也就是与生产者发送消息不能完全保持一致性。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="kafkaactivemqrabbitmqrocketmq-都有什么区别">Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别<a href="#kafkaactivemqrabbitmqrocketmq-都有什么区别" class="hash-link" aria-label="Direct link to Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别" title="Direct link to Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别">​</a></h2>
+<ul>
+<li>对于吞吐量来说kafka和RocketMQ支撑高吞吐，ActiveMQ和RabbitMQ比他们低一个数量级。</li>
+<li>对于延迟量来说RabbitMQ是最低的。</li>
+<li>对于持久化消息,ActiveMQ和RabbitMQ支持持久化,持久化消息是指机器在不可抗力下掉电后,消息不丢失</li>
+<li>对于高并发,RabbitMQ和RocketMQ都支持，RabbitMQ的并发量更高,原因是它的实现语言是天生具备高并发高可用的 erlang 语言。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="一消息队列模型保证消息的顺序性">一、消息队列模型(保证消息的顺序性)<a href="#一消息队列模型保证消息的顺序性" class="hash-link" aria-label="Direct link to 一、消息队列模型(保证消息的顺序性)" title="Direct link to 一、消息队列模型(保证消息的顺序性)">​</a></h2>
+<p>消息有序指的是可以按照消息的发送顺序来消费(FIFO)。RocketMQ可以严格的保证消息有序，可以分为分区有序或者全局有序。</p>
+<p>消息错乱的原因:在默认的情况下消息发送会采取Round Robin轮询方式把消息发送到不同的queue(分区队列)；而消费消息的时候从多个queue上拉取消息，这种情况发送和消费是不能保证顺序。</p>
+<p>保证顺序性:控制发送的顺序消息只依次(FIFO)发送到同一个queue中，消费的时候只从这个queue上依次拉取，则就保证了顺序</p>
+<ol>
+<li>全局有序：发送和消费参与的queue只有一个</li>
+<li>分区有序：多个queue参与，相对每个queue，消息都是有序的</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="二高效读写机制">二、高效读写机制<a href="#二高效读写机制" class="hash-link" aria-label="Direct link to 二、高效读写机制" title="Direct link to 二、高效读写机制">​</a></h2>
+<p>RocketMQ采用多种技术实现高效的消息存储和读写：</p>
+<ol>
+<li>
+<p><strong>文件系统存储</strong>：</p>
+<ul>
+<li>相比数据库存储(如ActiveMQ)，避免了数据库瓶颈</li>
+<li>采用<strong>消息刷盘机制</strong>进行持久化存储</li>
+</ul>
+</li>
+<li>
+<p>RocketMQ通过顺序写入大幅提高吞吐量</p>
+</li>
+<li>
+<p><strong>零拷贝技术</strong>：
+<img decoding="async" loading="lazy" src="/assets/images/RocketMQ-02-6d8ffc5c2f1fbb9bdf4ebd2c5855fbd0.png" width="845" height="222" class="img_ev3q"></p>
+<ul>
+<li>数据传输(从磁盘到网卡)由传统4次复制简化为3次复制,跳过了用户态这个环节,使用MappedByteBuffer实现</li>
+<li>预留存储空间，用于保存数据（1G存储空间起步）</li>
+</ul>
+</li>
+<li>
+<p><strong>存储结构优化</strong>：</p>
+<ul>
+<li>消息数据存储区域：包含topic、queueId和message</li>
+<li>消费逻辑队列：维护minOffset、maxOffset和consumerOffset</li>
+<li>索引系统：包括key索引和创建时间索引 --&gt;</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="三刷盘机制">三、刷盘机制<a href="#三刷盘机制" class="hash-link" aria-label="Direct link to 三、刷盘机制" title="Direct link to 三、刷盘机制">​</a></h2>
+<p>RocketMQ提供两种消息刷盘方式：</p>
+<ol>
+<li>
+<p><strong>同步刷盘</strong>：</p>
+<ul>
+<li>流程：
+<ol>
+<li>生产者发送消息到MQ</li>
+<li>MQ挂起生产者线程</li>
+<li>将消息写入内存</li>
+<li>内存数据写入硬盘</li>
+<li>磁盘存储成功后返回ACK</li>
+<li>恢复生产者线程</li>
+<li>返回ACK给生产者</li>
+</ol>
+</li>
+<li>特点：安全性高，效率低，速度慢</li>
+</ul>
+</li>
+<li>
+<p><strong>异步刷盘</strong>：</p>
+<ul>
+<li>流程：
+<ol>
+<li>生产者发送消息到MQ</li>
+<li>MQ立即返回ACK</li>
+<li>异步将消息写入内存和磁盘</li>
+</ol>
+</li>
+<li>特点：安全性  较低，效率高，速度快</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="四死信队列机制">四、死信队列机制<a href="#四死信队列机制" class="hash-link" aria-label="Direct link to 四、死信队列机制" title="Direct link to 四、死信队列机制">​</a></h2>
+<ol>
+<li><strong>死信消息定义</strong>：消息消费重试达到指定次数(默认16次)后,无法被正常消费的消息成为死信消息</li>
+<li><strong>死信队列特征</strong>：首次出现死信时才在该group下创建死信队列，归属消费者组(GroupId)，不属于特定Topic,可以包含多个Topic的消息。</li>
+<li><strong>死信处理</strong>：消息不会被重复消费,3天后自动清除,可通过监控平台查找死信的messageId进行精准消费</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="如何保证高可用的">如何保证高可用的<a href="#如何保证高可用的" class="hash-link" aria-label="Direct link to 如何保证高可用的" title="Direct link to 如何保证高可用的">​</a></h2>
+<ol>
+<li>
+<p>NameServer作为轻量级路由中心，无状态且不存储消息数据，多个NameServer节点相互独立，任何节点宕机都不会影响整体服务,生产者和消费者配置多个NameServer地址，自动切换可用节点</p>
+</li>
+<li>
+<p>Broker的主从架构与自动切换</p>
+<ul>
+<li>主从同步:同步复制（SYNC_MASTER）​​：消息需同时写入主节点和从节点才返回成功，确保数据不丢失;异步复制（ASYNC_MASTER）​​：主节点写入后立即返回，从节点异步复制</li>
+<li>故障自动切换：基于Raft协议实现自动选主。当主节点宕机时，从节点通过多数派选举成为新主，切换时间可缩短至秒级;若同步副本数不足（如备节点故障），可自动降级为异步模式，优先保证可用性</li>
+</ul>
+</li>
+<li>
+<p>多Master架构</p>
+<ul>
+<li>消息生产:生产者将相同的topic绑定到多个group组，保障master挂掉  后，其他master仍可正常进行消息接收。</li>
+<li>消息消费:RocketMQ自身会根据master的压力确认是否由master承担消息读取的功能，当master繁忙时候，自动切换由slave承担数据读取的工作</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="如何保证消息的可靠传输如果消息丢了怎么办">如何保证消息的可靠传输？如果消息丢了怎么办<a href="#如何保证消息的可靠传输如果消息丢了怎么办" class="hash-link" aria-label="Direct link to 如何保证消息的可靠传输？如果消息丢了怎么办" title="Direct link to 如何保证消息的可靠传输？如果消息丢了怎么办">​</a></h2>
+<p>RocketMQ 通过全链路的多层次机制确保数据不丢失，涵盖生产者发送、Broker存储、消费者消费三个阶段</p>
+<ol>
+<li>生产者发送消息：采用同步发送，等待Broker返回写入成功响应，确保消息不丢失;或者采用事务消息,发送half消息，等待Broker返回写入成功响应，再发送commit消息，否则回滚。</li>
+<li>Broker存储消息：采用持久化存储和主从复制机制</li>
+<li>消费者消费消息：手动ACK确认消费,采用死信队列(失败转入人工处理),通过唯一标识符(msgId)来实现幂等性。</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="mq消息积压以及处理方案">MQ消息积压以及处理方案<a href="#mq消息积压以及处理方案" class="hash-link" aria-label="Direct link to MQ消息积压以及处理方案" title="Direct link to MQ消息积压以及处理方案">​</a></h2>
+<ol>
+<li>消费者方:首先修复消费者处理速度慢的根本原因,停止现有所有消费者实例，避免继续低效消费</li>
+<li>生产者方:新建topic引流，将消息引导到别的程序中,类似于洪水</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="让你来设计一个消息队列你会怎么设计">让你来设计一个消息队列，你会怎么设计<a href="#让  你来设计一个消息队列你会怎么设计" class="hash-link" aria-label="Direct link to 让你来设计一个消息队列，你会怎么设计" title="Direct link to 让你来设计一个消息队列，你会怎么设计">​</a></h2>
+<p>可以从以下几个角度来考虑一下：</p>
+<ol>
+<li>首先这个 mq 得支持可伸缩性，就是在需要的时候能快速扩容，就可以增加吞吐量和容量:可以设计个分布式的系统，参照一下 kafka 的设计理念，broker -&gt; topic -&gt; partition，每个partition 放一个机器，就存一部分数据。如果现在资源不够了，简单啊，给 topic 增加 partition，然后做数据迁移，增加机器，这样就可以存放更多数据，提供更高的吞吐量了</li>
+<li>其次,将 mq 的数据刷到磁盘中,采用顺序写来提高性能，这样就没有磁盘随机读写的寻址开销，</li>
+<li>再考虑高可用,brocker 主从架构。</li>
+<li>最后,消息的可靠传输,采用事务消息和死信队列来确保消息不丢失。</li>
+</ol>
+<p>双主双从集群搭建架构：</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/双主双从-65544fc8dd267449c1ffed846dd9ed07.png" width="358" height="369" class="img_ev3q"></p>
+<p>以上机制共同构成了RocketMQ高可靠、高性能的消息处理能力，开发者可根据业务需求选择合适的配置组合。</p>
+<p>完结!!!</p></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#为什么要使用mq" class="table-of-contents__link toc-highlight">为什么要使用MQ</a></li><li><a href="#mq有什么优缺点" class="table-of-contents__link toc-highlight">MQ有什么优缺点</a></li><li><a href="#kafkaactivemqrabbitmqrocketmq-都有什么区别" class="table-of-contents__link toc-highlight">Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别</a></li><li><a href="#一消息队列模型保证消息的顺序性" class="table-of-contents__link toc-highlight">一、消息队列模型(保证消息的顺序性)</a></li><li><a href="#二高效读写机制" class="table-of-contents__link toc-highlight">二、高效读写机制</a></li><li><a href="#三刷盘机制" class="table-of-contents__link toc-highlight">三、刷盘机制</a></li><li><a href="#四死信队列机制" class="table-of-contents__link toc-highlight">四、死信队列机制</a></li><li><a href="#如何保证高可用的" class="table-of-contents__link toc-highlight">如何保证高可用的</a></li><li><a href="#如何保证消息的可靠传输如果消息丢了怎么办" class="table-of-contents__link toc-highlight">如何保证消息的可靠传输？如果消息丢了怎么办</a></li><li><a href="#mq消息积压以及处理方案" class="table-of-contents__link toc-highlight">MQ消息积压以及处理方案</a></li><li><a href="#让你来设计一个消息队列你会怎么设计" class="table-of-contents__link toc-highlight">让你来设计一个消息队列，你会怎么设计</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

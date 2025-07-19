@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-周报/20250514" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Successive Bayesian Reconstructor for Channel Estimation in Fluid Antenna Systems | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/周报/20250514/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Successive Bayesian Reconstructor for Channel Estimation in Fluid Antenna Systems | Coisini"><meta data-rh="true" name="description" content="论文、代码"><meta data-rh="true" property="og:description" content="论文、代码"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/周报/20250514/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/周报/20250514/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/周报/20250514/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="theme-doc-markdown markdown"><header><h1>Successive Bayesian Reconstructor for Channel Estimation in Fluid Antenna Systems</h1></header>
+<blockquote>
+<p><a href="https://arxiv.org/abs/2312.06551" target="_blank" rel="noopener noreferrer">论文</a>、<a href="http://oa.ee.tsinghua.edu.cn/dailinglong/publications/publications.html" target="_blank" rel="noopener noreferrer">代码</a></p>
+</blockquote>
+<p>这篇论文介绍了<strong>用于流体天线系统 (FAS) 信道估计的逐次贝叶斯重构器 (S-BAR)</strong>。</p>
+<p><strong>什么是流体天线系统 (FAS)？</strong></p>
+<ul>
+<li>与传统 MIMO 系统中天线固定不同，FAS（也称为可移动天线 (MA) 系统）引入了一种可移动结构，允许少量流体天线在给定空间内自由切换位置。</li>
+<li>FAS 的可用位置（端口）间距可以非常小，接近无穷小。这种几乎连续可移动的特性使得 FAS 能够始终将天线放置在有利位置，从而充分挖掘给定空间的多样化和复用增益。</li>
+<li>相比于固定天线系统，FAS 在使用更少的天线和射频 (RF) 组件的情况下，可以保持高传输可靠性和大规模多址接入能力，有助于降低硬件成本和复杂度。</li>
+<li>目前，关于 FAS 的研究涵盖了性能分析、端口选择、波束成形设计和信道估计等多个方面。</li>
+</ul>
+<p><strong>信道估计在 FAS 中的挑战</strong></p>
+<ul>
+<li>为了充分发挥天线移动性带来的性能增益，流体天线应能在给定空间内几乎连续移动。</li>
+<li>FAS 的端口非常密集，导致端口信道维度很高。</li>
+<li>在一个相干时间内，获取信道状态信息 (CSI) 需要大量的导频信号。</li>
+<li>硬件结构的限制使得在一个相干时间内只有少数端口可以连接到射频链接收导频。</li>
+<li>因此，FAS 难以实时获取精确的 CSI，这成为其性能提升的瓶颈。</li>
+</ul>
+<p><strong>现有 FAS 信道估计方法及其局限性</strong></p>
+<ul>
+<li>已有一些减少导频的 FAS 信道估计方法被提出。</li>
+<li>例如：
+<ul>
+<li>SeLMMSE 方法：通过测量等间距端口的信道，并假设信道在短距离内慢变，使用零阶插值重构未测量端口的信道。</li>
+<li>压缩感知 (CS) 方法：假设 FAS 信道在角度域具有稀疏性。可以使用如正交匹配追踪 (OMP) 等算法来估计信道参数（如出射角 AoD、到达角 AoA 和路径增益）。</li>
+<li>基于最小二乘 (LS) 的方法：假设所有信道路径的 AoA 是已知的情况下，估计信道增益。</li>
+</ul>
+</li>
+<li>这些现有方法<strong>严重依赖于特定的信道假设</strong>，例如空间慢变、  角度域稀疏性或已知 AoA。</li>
+<li>当这些假设不合理时，<strong>模型失配可能导致不可预测的性能损失</strong>。</li>
+<li>此外，大多数现有方法是基于随机生成的开关矩阵，只包含少数选定端口的信息，可能需要大量导频来精确重构信道。</li>
+</ul>
+<p><strong>提出的 S-BAR 方法</strong></p>
+<ul>
+<li>论文提出了<strong>逐次贝叶斯重构器 (S-BAR)</strong> 作为<strong>解决 FAS 信道估计的通用方案</strong>。</li>
+<li><strong>核心思想</strong>：S-BAR 是<strong>先验辅助的</strong>，不像基于模型的估计器，它通过构建<strong>经验核</strong>来实现 CSI 获取。受贝叶斯回归启发，S-BAR 将 FAS 信道建模为<strong>随机过程</strong>，通过<strong>基于核的采样和回归</strong>可以逐次消除其不确定性。回归后的随机过程的<strong>预测均值</strong>可以被视为<strong>贝叶斯信道估计器</strong>。</li>
+<li>S-BAR <strong>不依赖于特定的信道模型假设</strong>，是<strong>非参数的</strong>。它利用了 FAS 天线的采样特性和密集端口间强信道相关的特性。</li>
+<li><strong>实现过程</strong>：S-BAR 分为两个阶段实现:
+<ul>
+<li><strong>第一阶段 (离线设计)</strong>：根据核（表征信道相关性，可以视为先验协方差）和噪声功率，设计开关矩阵 S 和重构权重 W。这一阶段通过<strong>贪婪采样</strong>思想，逐列设计开关矩阵，选择能使信道与接收导频之间的<strong>互信息增益 (MII)</strong> 最大化的端口进行测量。通过递归公式可以有效计算更新后的后验协方差来指导采样选择。虽然此阶段计算复杂度较高，但<strong>可以在线前离线完成</strong>。</li>
+<li><strong>第二阶段 (在线回归)</strong>：在基站使用离线设计好的开关矩阵 S 来接收导频信号 y。然后，使用离线计算好的权重 W 和接收到的导频 y，通过简单的加权求和 (ĥ = WHy) 来重构高维信道 h。这一阶段的计算复杂度较低，<strong>仅与端口数量 N 呈线性关系</strong>，且可以并行计算，时间复杂度与维度无关。</li>
+</ul>
+</li>
+</ul>
+<p><strong>核的选择</strong></p>
+<ul>
+<li>选择合适的核函数对于构建有效的回归模型至关重要，它决定了 S-BAR 的形状和灵活性。</li>
+<li><strong>协方差核</strong>：最理想的方法是使用信道的真实协方差 (Σcov) 作为核。这可以通过在 S-BAR 应用前利用现有信道数据集进行训练得到近似的 Σcov。</li>
+<li><strong>经验核</strong>：在难以获取显式 CSI 的情况下，基于接收导频训练经验核更实用。推荐两种经验核：
+<ul>
+<li><strong>指数核</strong>：适用于信道没有明显规律的情况，对异常值不敏感。</li>
+<li><strong>Bessel 核</strong>：适用于具有振荡或周期性模式的复值数据，可以适应具有重复波动的信道。</li>
+</ul>
+</li>
+<li>经验核的超参数可以通过基于最大似然 (ML) 的方法利用训练信道数据来确定，以更好地近似真实信道协方差。仿真结果表明，即使不使用理想的协方差核，经验核也能使 S-BAR 实现可观的性能。</li>
+</ul>
+<p><strong>性能分析和仿真结果</strong></p>
+<ul>
+<li><strong>估计精度</strong>：S-BAR 的均方误差 (MSE) 取决于核 Σ、开关矩阵 S、真实信道协方差 Σcov 和噪声功率 σ²。最小 MSE 只取决于真实信道协方差的特征值和噪声功率。当核恰好是真实协方差，并且所有端口信道都被完全观测时，可以达到这个理论下界。</li>
+<li><strong>仿真验证</strong>：在 QuaDRiGa 信道模型和空间稀疏聚类 (SSC) 信道模型下进行了仿真。
+<ul>
+<li><strong>估计行为</strong>：仿真图直观展示了 S-BAR 如何通过少量采样点重构高维信道，以及采样点如何优先选择不确定性较高的区域（如信道变化剧烈的拐点区域）。随着导频和天线数量增加，信道的后验方差减小，估计精度提高。</li>
+<li><strong>NMSE vs. SNR</strong>：S-BAR 在不同信道模型下都比现有方法 (FAS-OMP, FAS-ML, SeLMMSE) 具有更高的估计精度。这是因为 S-BAR 利用了信道的先验信息，且不受模型失配影响。使用经验核的 S-BAR 性能可以接近使用真实协方差核的性能。</li>
+<li><strong>NMSE vs. Pilots</strong>：为了达到相同的估计精度，S-BAR 所需的导频开销比现有方案显著降低，可减少约 50% 的导频开销。即使使用非最优的经验核，S-BAR 性能仍然优于现有方法。</li>
+<li><strong>EM 耦合影响</strong>：即使存在端口间的电磁 (EM) 耦合，S-BAR 仍能实现可观的估计性能。如果考虑耦合矩阵并使用修正的核，性能可以得到提升。</li>
+</ul>
+</li>
+</ul>
+<p><strong>结论</strong></p>
+<ul>
+<li>S-BAR 是首个将贝叶斯推理引入 FAS 信道估计的工作。</li>
+<li>它是一种通用的、非参数的解决方案，利用经验核和基于核的采样与回归来估计信道。</li>
+<li>仿真结果表明，在模型失配和模型匹配情况下，S-BAR 均能达到比依赖信道假设的现有方案更高的估计精度。</li>
+</ul>
+<p><strong>未来工作展望</strong></p>
+<ul>
+<li>将 S-BAR 扩展到 FAS 的宽带信道估计。</li>
+<li>将其应用于通用相控阵的信道估计。</li>
+<li>研究 RIS 与 FAS 的协作以提高 CSI 获取精度。</li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

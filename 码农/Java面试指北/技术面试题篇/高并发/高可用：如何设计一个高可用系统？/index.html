@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">高可用：如何设计一个高可用系统？ | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="高可用：如何设计一个高可用系统？ | Coisini"><meta data-rh="true" name="description" content="一篇短小的文章，面试经常遇到的这个问题。本文主要包括下面这些内容："><meta data-rh="true" property="og:description" content="一篇短小的文章，面试经常遇到的这个问题。本文主要包括下面这些内容："><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/技术面试题篇/高并发/高可用：如何设计一个高可用系统？/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>高可用：如何设计一个高可用系统？</h1></header>
+<p>一篇短小的文章，面试经常遇到的这个问题。本文主要包括下面这些内容：</p>
+<ol>
+<li>高可用的定义</li>
+<li>哪些情况可能会导致系统不可用？</li>
+<li>有些提高系统可用性的方法？只是简单的提一嘴，更具体内容在后续的文章中介绍，就拿限流来说，你需要搞懂：何为限流？如何限流？为什么要限流 ？如何做呢？说一下原理？。</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="什么是高可用可用性的判断标准是啥">什么是高可用？可用性的判断标准是啥？<a href="#什么是高可用可用性的判断标准是啥" class="hash-link" aria-label="Direct link to 什么是高可用？可用性的判断标准是啥？" title="Direct link to 什么是高可用？可用性的判断标准是啥？">​</a></h2>
+<p>高可用描述的是一个系统在大部分时间都是可用的，可以为我们提供服务的。高可用代表系统即使在发生硬件故障或者系统升级的时候，服务仍然是可用的。</p>
+<p>一般情况下，我们使用多少个 9 来评判一个系统的可用性，比如 99.9999% 就是代表该系统在所有的运行时间中只有 0.0001% 的时间是不可用的，这样的系统就是非常非常高可用的了！当然，也会有系统如果可用性不太好的话，可能连 9 都上不了。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="哪些情况会导致系统不可用">哪些情况会导致系统不可用？<a href="#哪些情况会导致系统不可用" class="hash-link" aria-label="Direct link to 哪些情况会导致系统不可用？" title="Direct link to 哪些情况会导致系统不可用？">​</a></h2>
+<ol>
+<li>黑客攻击；</li>
+<li>硬件故障，比如服务器坏掉。</li>
+<li>并发量/用户请求量激增导致整个服务宕掉或者部分服务不可用。</li>
+<li>代码中的坏味道导致内存泄漏或者其他问题导致程序挂掉。</li>
+<li>网站架构某个重要的角色比如 Nginx 或者数据库突然不可用。</li>
+<li>自然灾害或者人为破坏。</li>
+<li>......</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="有哪些提高系统可用性的方法">有哪些提高系统可用性的方法？<a href="#有哪些提高系统可用性的方法" class="hash-link" aria-label="Direct link to 有哪些提高系统可用性的方法？" title="Direct link to 有哪些提高系统可用性的方法？">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-注重代码质量测试严格把关">1. 注重代码质量，测试严格把关<a href="#1-注重代码质量测试严格把关" class="hash-link" aria-label="Direct link to 1. 注重代码质量，测试严格把关" title="Direct link to 1. 注重代码质量，测试严格把关">​</a></h3>
+<p>我觉得这个是最最最重要的，代码质量有问题比如比较常见的内存泄漏、循环依赖都是对系统可用性极大的损害。大家都喜欢谈限流、降级、熔断，但是我觉得从代码质量这个源头把关是首先要做好的一件很重要的事情。如何提高代码质量？比较实际可用的就是 CodeReview，不要在乎每天多花的那 1 个小时左右的时间，作用可大着呢！</p>
+<p>另外，安利这个对提高代码质量有实际效果的宝贝：</p>
+<ol>
+<li>sonarqube ：保证你写出更安全更干净的代码！（ps: 目前所在的项目基本都会用到这个插件）。</li>
+<li>Alibaba 开源的 Java 诊断工具 Arthas 也是很不错的选择。</li>
+<li>IDEA 自带的代码分析等工具进行代码扫描也是非常非常棒的。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2使用集群减少单点故障">2.使用集群，减少单点故障<a href="#2使用集群减少单点故障" class="hash-link" aria-label="Direct link to 2.使用集群，减少单点故障" title="Direct link to 2.使用集群，减少单点故障">​</a></h3>
+<p>先拿常用的 Redis 举个例子！我们如何保证我们的 Redis 缓存高可用呢？答案就是使用集群，避免单点故障。当我们使用一个 Redis 实例作为缓存的时候，这个 Redis 实例挂了之后，整个缓存服务可能就挂了。使用了集群之后，即使一台 Redis 实例，不到一秒就会有另外一台 Redis 实例顶上。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3限流">3.限流<a href="#3限流" class="hash-link" aria-label="Direct link to 3.限流" title="Direct link to 3.限流">​</a></h3>
+<p>流量控制（flow control），其原理是监控应用流量的 QPS 或并发线程数等指标，当达到指定的阈值时对流量进行控制，以避免被瞬时的流量高峰冲垮，从而保障应用的高可用性。——来自 alibaba-<a href="https://github.com/alibaba/Sentinel" target="_blank" rel="noopener noreferrer">Sentinel</a> 的 wiki。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="4超时和重试机制设置">4.超时和重试机制设置<a href="#4超时和重试机制设置" class="hash-link" aria-label="Direct link to 4.超时和重试机制设置" title="Direct link to 4.超时和重试机制设置">​</a></h3>
+<p>一旦用户请求超过某个时间的得不到响应，就抛出异常。这个是非常重要的，很多线上系统故障都是因为没有进行超时设置或者超时设置的方式不对导致的。我们在读取第三方服务的时候，尤其适合设置超时和重试机制。一般我们使用一些 RPC 框架的时候，这些框架都自带的超时重试的配置。如果不进行超时设置可能会导致请求响应速度慢，甚至导致请求堆积进而让系统无法在处理请求。重试的次数一般设为 3 次，再多次的重试没有好处，反而会加重服务器压力（部分场景使用失败重试机制会不太适合）。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="5熔断机制">5.熔断机制<a href="#5熔断机制" class="hash-link" aria-label="Direct link to 5.熔断机制" title="Direct link to 5.熔断机制">​</a></h3>
+<p>超时和重试机制设置之外，熔断机制也是很重要的。 熔断机制说的是系统自动收集所依赖服务的资源使用情况和性能指标，当所依赖的服务恶化或者调用失败次数达到某个阈值的时候就迅速失败，让当前系统立即切换依赖其他备用服务。 比较常用的是流量控制和熔断降级框架是 Netflix 的 Hystrix 和 alibaba 的 Sentinel。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="6异步调用">6.异步调用<a href="#6异步调用" class="hash-link" aria-label="Direct link to 6.异步调用" title="Direct link to 6.异步调用">​</a></h3>
+<p>异步调用的话我们不需要关心最后的结果，这样我们就可以用户请求完成之后就立即返回结果，具体处理我们可以后续再做，秒杀场景用这个还是蛮多的。但是，使用异步之后我们可能需要 <strong>适当修改业务流程进行配合</strong>，比如<strong>用户在提交订单之后，不能立即返回用户订单提交成功，需要在消息队列的订单消费者进程真正处理完该订单之后，甚至出库后，再通过电子邮件或短信通知用户订单成功</strong>。除了可以在程序中实现异步之外，我们常常还使用消息队列，消息队列可以通过异步处理提高系统性能（削峰、减少响应所需时间）并且可以降低系统耦合性。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="7使用缓存">7.使用缓存<a href="#7使用缓存" class="hash-link" aria-label="Direct link to 7.使用缓存" title="Direct link to 7.使用缓存">​</a></h3>
+<p>如果我们的系统属于并发量比较高的话，如果我们单纯使用数据库的话，当大量请求直接落到数据库可能数据库就会直接挂掉。使用缓存缓存热点数据，因为缓存存储在内存中，所以速度相当地快！</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="8其他">8.其他<a href="#8其他" class="hash-link" aria-label="Direct link to 8.其他" title="Direct link to 8.其他">​</a></h3>
+<ol>
+<li><strong>核心应用和服务优先使用更好的硬件</strong></li>
+<li><strong>监控系统资源使用情况增加报警设置。</strong></li>
+<li><strong>注意备份，必要时候回滚。</strong></li>
+<li><strong>灰度发布：</strong> 将服务器集群分成若干部分，每天只发布一部分机器，观察运行稳定没有故  障，第二天继续发布一部分机器，持续几天才把整个集群全部发布完毕，期间如果发现问题，只需要回滚已发布的一部分服务器即可</li>
+<li><strong>定期检查/更换硬件：</strong> 如果不是购买的云服务的话，定期还是需要对硬件进行一波检查的，对于一些需要更换或者升级的硬件，要及时更换或者升级。</li>
+<li>.....(想起来再补充！也欢迎各位欢迎补充！)</li>
+</ol>
+<blockquote>
+<p>更新: 2022-05-29 15:13:19<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/kah479" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/kah479</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#什么是高可用可用性的判断标准是啥" class="table-of-contents__link toc-highlight">什么是高可用？可用性的判断标准是啥？</a></li><li><a href="#哪些情况会导致系统不可用" class="table-of-contents__link toc-highlight">哪些情况会导致系统不可用？</a></li><li><a href="#有哪些提高系统可用性的方法" class="table-of-contents__link toc-highlight">有哪些提高系统可用性的方法？</a><ul><li><a href="#1-注重代码质量测试严格把关" class="table-of-contents__link toc-highlight">1. 注重代码质量，测试严格把关</a></li><li><a href="#2使用集群减少单点故障" class="table-of-contents__link toc-highlight">2.使用集群，减少单点故障</a></li><li><a href="#3限流" class="table-of-contents__link toc-highlight">3.限流</a></li><li><a href="#4超时和重试机制设置" class="table-of-contents__link toc-highlight">4.超时和重试机制设置</a></li><li><a href="#5熔断机制" class="table-of-contents__link toc-highlight">5.熔断机制</a></li><li><a href="#6  异步调用" class="table-of-contents__link toc-highlight">6.异步调用</a></li><li><a href="#7使用缓存" class="table-of-contents__link toc-highlight">7.使用缓存</a></li><li><a href="#8其他" class="table-of-contents__link toc-highlight">8.其他</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

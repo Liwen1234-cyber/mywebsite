@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/计算机基础/分布式" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">分布式 | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/计算机基础/分布式/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="分布式 | Coisini"><meta data-rh="true" name="description" content="一、分布式锁"><meta data-rh="true" property="og:description" content="一、分布式锁"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/计算机基础/分布式/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/分布式/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/计算机基础/分布式/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>分布式</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="一分布式锁">一、分布式锁<a href="#一分布式锁" class="hash-link" aria-label="Direct link to 一、分布式锁" title="Direct link to 一、分布式锁">​</a></h2>
+<p>在单机场景下，可以使用语言的内置锁来实现进程同步。但是在分布式场景下，需要同步的进程可能位于不同的节点上，那么就需要使用分布式锁。</p>
+<p>阻塞锁通常使用互斥量来实现：</p>
+<ul>
+<li>互斥量为 0 表示有其它进程在使用锁，此时处于锁定状态；</li>
+<li>互斥量为 1 表示未锁定状态。</li>
+</ul>
+<p>1 和 0 可以用一个整型值表示，也可以用某个数据是否存在表示。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据库的唯一索引">数据库的唯一索引<a href="#数据库的唯一索引" class="hash-link" aria-label="Direct link to 数据库的唯一索引" title="Direct link to 数据库的唯一索引">​</a></h3>
+<p>获得锁时向表中插入一条记录，释放锁时删除这条记录。唯一索引可以保证该记录只被插入一次，那么就可以用这个记录是否存在来判断是否处于锁定状态。</p>
+<p>存在以下几个问题：</p>
+<ul>
+<li>锁没有失效时间，解锁失败的话其它进程无法再获得该锁；</li>
+<li>只能是非阻塞锁，插入失败直接就报错了，无法重试；</li>
+<li>不可重入，已经获得锁的进程也必须重新获取锁。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="redis-的-setnx-指令">Redis 的 SETNX 指令<a href="#redis-的-setnx-指令" class="hash-link" aria-label="Direct link to Redis 的 SETNX 指令" title="Direct link to Redis 的 SETNX 指令">​</a></h3>
+<p>使用 SETNX（set if not exist）指令插入一个键值对，如果 Key 已经存在，那么会返回 False，否则插入成功并返回 True。</p>
+<p>SETNX 指令和数据库的唯一索引类似，保证了只存在一个 Key 的键值对，那么可以用一个 Key 的键值对是否存在来判断是否存于锁定状态。</p>
+<p>EXPIRE 指令可以为一个键值对设置一个过期时间，从而避免了数据库唯一索引实现方式中释放锁失败的问题。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="redis-的-redlock-算法">Redis 的 RedLock 算法<a href="#redis-的-redlock-算法" class="hash-link" aria-label="Direct link to Redis 的 RedLock 算法" title="Direct link to Redis 的 RedLock 算法">​</a></h3>
+<p>使用了多个 Redis 实例来实现分布式锁，这是为了保证在发生单点故障时仍然可用。</p>
+<ul>
+<li>尝试从 N 个互相独立 Redis 实例获取锁；</li>
+<li>计算获取锁消耗的时间，只有时间小于锁的过期时间，并且从大多数（N / 2 + 1）实例上获取了锁，才认为获取锁成功；</li>
+<li>如果获取锁失败，就到每个实例上释放锁。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="zookeeper-的有序节点">Zookeeper 的有序节点<a href="#zookeeper-的有序节点" class="hash-link" aria-label="Direct link to Zookeeper 的有序节点" title="Direct link to Zookeeper 的有序节点">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-zookeeper-抽象模型">1. Zookeeper 抽象模型<a href="#1-zookeeper-抽象模型" class="hash-link" aria-label="Direct link to 1. Zookeeper 抽象模型" title="Direct link to 1. Zookeeper 抽象模型">​</a></h4>
+<p>Zookeeper 提供了一种树形结构的命名空间，/app1/p_1 节点的父节点为 /app1。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/aefa8042-15fa-4e8b-9f50-20b282a2c624-e744d4c04378628a81028289f93be7a5.png" width="566" height="434" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-节点类型">2. 节点类型<a href="#2-节点类型" class="hash-link" aria-label="Direct link to 2. 节点类型" title="Direct link to 2. 节点类型">​</a></h4>
+<ul>
+<li>永久节点：不会因为会话结束或者超时而消失；</li>
+<li>临时节点：如果会话结束或者超时就会消失；</li>
+<li>有序节点：会在节点名的后面加一个数字后缀，并且是有序的，例如生成的有序节点为 /lock/node-0000000000，它的下一个有序节点则为 /lock/node-0000000001，以此类推。</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-监听器">3. 监听器<a href="#3-监听器" class="hash-link" aria-label="Direct link to 3. 监听  器" title="Direct link to 3. 监听器">​</a></h4>
+<p>为一个节点注册监听器，在节点状态发生改变时，会给客户端发送消息。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="4-分布式锁实现">4. 分布式锁实现<a href="#4-分布式锁实现" class="hash-link" aria-label="Direct link to 4. 分布式锁实现" title="Direct link to 4. 分布式锁实现">​</a></h4>
+<ul>
+<li>创建一个锁目录 /lock；</li>
+<li>当一个客户端需要获取锁时，在 /lock 下创建临时的且有序的子节点；</li>
+<li>客户端获取 /lock 下的子节点列表，判断自己创建的子节点是否为当前子节点列表中序号最小的子节点，如果是则认为获得锁；否则监听自己的前一个子节点，获得子节点的变更通知后重复此步骤直至获得锁；</li>
+<li>执行业务代码，完成后，删除对应的子节点。</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="5-会话超时">5. 会话超时<a href="#5-会话超时" class="hash-link" aria-label="Direct link to 5. 会话超时" title="Direct link to 5. 会话超时">​</a></h4>
+<p>如果一个已经获得锁的会话超时了，因为创建的是临时节点，所以该会话对应的临时节点会被删除，其它会话就可以获得锁了。可以看到，这种实现方式不会出现数据库的唯一索引实现方式释放锁失败的问题。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="6-羊群效应">6. 羊群效应<a href="#6-羊群效应" class="hash-link" aria-label="Direct link to 6. 羊群效应" title="Direct link to 6. 羊群效应">​</a></h4>
+<p>一个节点未获得锁，只需要监听自己的前一个子节点，这是因为如果监听所有的子节点，那么任意一个子节点状态改变，其它所有子节点都会收到通知（羊群效应，一只羊动起来，其它羊也会一哄而上），而我们只希望它的后一个子节点收到通知。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="二分布式事务">二、分布式事务<a href="#二分布式事务" class="hash-link" aria-label="Direct link to 二、分布式事务" title="Direct link to 二、分布式事务">​</a></h2>
+<p>指事务的操作位于不同的节点上，需要保证事务的 ACID 特性。</p>
+<p>例如在下单场景下，库存和订单如果不在同一个节点上，就涉及分布式事务。</p>
+<p>分布式锁和分布式事务区别：</p>
+<ul>
+<li>锁问题的关键在于进程操作的互斥关系，例如多个进程同时修改账户的余额，如果没有互斥关系则会导致该账户的余额不正确。</li>
+<li>而事务问题的关键则在于事务涉及的一系列操作需要满足 ACID 特性，例如要满足原子性操作则需要这些操作要么都执行，要么都不执行。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2pc">2PC<a href="#2pc" class="hash-link" aria-label="Direct link to 2PC" title="Direct link to 2PC">​</a></h3>
+<p>两阶段提交（Two-phase Commit，2PC），通过引入协调者（Coordinator）来协调参与者的行为，并最终决定这些参与者是否要真正执行事务。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-运行过程">1. 运行过程<a href="#1-运行过程" class="hash-link" aria-label="Direct link to 1. 运行过程" title="Direct link to 1. 运行过程">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="11-准备阶段">1.1 准备阶段<a href="#11-准备阶段" class="hash-link" aria-label="Direct link to 1.1 准备阶段" title="Direct link to 1.1 准备阶段">​</a></h5>
+<p>协调者询问参与者事务是否执行成功，参与者发回事务执行结果。询问可以看成一种投票，需要参与者都同意才能执行。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/44d33643-1004-43a3-b99a-4d688a08d0a1-7adc2ef06555e45d5b2de63958ddc0d3.png" width="1006" height="366" class="img_ev3q"></p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="12-提交阶段">1.2 提交阶段<a href="#12- 提交阶段" class="hash-link" aria-label="Direct link to 1.2 提交阶段" title="Direct link to 1.2 提交阶段">​</a></h5>
+<p>如果事务在每个参与者上都执行成功，事务协调者发送通知让参与者提交事务；否则，协调者发送通知让参与者回滚事务。</p>
+<p>需要注意的是，在准备阶段，参与者执行了事务，但是还未提交。只有在提交阶段接收到协调者发来的通知后，才进行提交或者回滚。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/d2ae9932-e2b1-4191-8ee9-e573f36d3895-eaaf1a6e8f97cb0dbc30acc845f2b052.png" width="996" height="360" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-存在的问题">2. 存在的问题<a href="#2-存在的问题" class="hash-link" aria-label="Direct link to 2. 存在的问题" title="Direct link to 2. 存在的问题">​</a></h4>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="21-同步阻塞">2.1 同步阻塞<a href="#21-同步阻塞" class="hash-link" aria-label="Direct link to 2.1 同步阻塞" title="Direct link to 2.1 同步阻塞">​</a></h5>
+<p>所有事务参与者在等待其它参与者响应的时候都处于同步阻塞等待状态，无法进行其它操作。</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="22-单点问题">2.2 单点问题<a href="#22-单点问题" class="hash-link" aria-label="Direct link to 2.2 单点问题" title="Direct link to 2.2 单点问题">​</a></h5>
+<p>协调者在 2PC 中起到非常大的作用，发生故障将会造成很大影响。特别是在提交阶段发生故障，所有参与者会一直同步阻塞等待，无法完成其它操作。</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="23-数据不一致">2.3 数据不一致<a href="#23-数据不一致" class="hash-link" aria-label="Direct link to 2.3 数据不一致" title="Direct link to 2.3 数据不一致">​</a></h5>
+<p>在提交阶段，如果协调者只发送了部分 Commit 消息，此时网络发生异常，那么只有 部分参与者接收到 Commit 消息，也就是说只有部分参与者提交了事务，使得系统数据不一致。</p>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="24-太过保守">2.4 太过保守<a href="#24-太过保守" class="hash-link" aria-label="Direct link to 2.4 太过保守" title="Direct link to 2.4 太过保守">​</a></h5>
+<p>任意一个节点失败就会导致整个事务失败，没有完善的容错机制。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="本地消息表">本地消息表<a href="#本地消息表" class="hash-link" aria-label="Direct link to 本地消息表" title="Direct link to 本地消息表">​</a></h3>
+<p>本地消息表与业务数据表处于同一个数据库中，这样就能利用本地事务来保证在对这两个表的操作满足事务特性，并且使用了消息队列来保证最终一致性。</p>
+<ol>
+<li>在分布式事务操作的一方完成写业务数据的操作之后向本地消息表发送一个消息，本地事务能保证这个消息一定会被写入本地消息表中。</li>
+<li>之后将本地消息表中的消息转发到消息队列中，如果转发成功则将消息从本地消息表中删除，否则继续重新转发。</li>
+<li>在分布式事务操作的另一方从消息队列中读取一个消息，并执行消息中的操作。</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="/assets/images/476329d4-e2ef-4f7b-8ac9-a52a6f784600-aa81739f25b001c526d63f2a91bcb54f.png" width="1258" height="459" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="三cap">三、CAP<a href="#三cap" class="hash-link" aria-label="Direct link to 三、CAP" title="Direct link to 三、CAP">​</a></h2>
+<p>分布式系统不可能同时满足一致性（C：Consistency）、可用性（A：Availability）和分区容忍性（P：Partition Tolerance），最多只能同时满足其中两项。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/a14268b3-b937-4ffa-a34a-4cc53071686b-3993e4a0910671cc269ab8f6ef51181e.jpg" width="683" height="734" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="一致性">一致性<a href="#一致性" class="hash-link" aria-label="Direct link to 一致性" title="Direct link to 一致性">​</a></h3>
+<p>一致性指的是多个数据副本是否能保持一致的特性，在一致性的条件下，系统在执行数据更新操作之后能够从一致性状态转移到另一个一致性状态。</p>
+<p>对系统的一个数据更新成功之后，如果所有用户都能够读取到最新的值，该系统就被认为具有强一致性。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="可用性">可用性<a href="#可用性" class="hash-link" aria-label="Direct link to 可用性" title="Direct link to 可用性">​</a></h3>
+<p>可用性指分布式系统在面对各种异常时可以提供正常服务的能力，可以用系统可用时间占总时间的比值来衡量，4 个 9 的可用性表示系统 99.99% 的时间是可用的。</p>
+<p>在可用性条件下，要求系统提供的服务一直处于可用的状态，对于用户的每一个操作请求总是能够在有限的时间内返回结果。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="分区容忍性">分区容忍性<a href="#分区容忍性" class="hash-link" aria-label="Direct link to 分区容忍性" title="Direct link to 分区容忍性">​</a></h3>
+<p>网络分区指分布式系统中的节点被划分为多个区域，每个区域内部可以通信，但是区域之间无法通信。</p>
+<p>在分区容忍性条件下，分布式系统在遇到任何网络分区故障的时候，仍然需要能对外提供一致性和可用性的服务，除非是整个网络环境都发生了故障。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="权衡">权衡<a href="#权衡" class="hash-link" aria-label="Direct link to 权衡" title="Direct link to 权衡">​</a></h3>
+<p>在分布式系统中，分区容忍性必不可少，因为需要总是假设网络是不可靠的。因此，CAP 理论实际上是要在可用性和一致性之间做权衡。</p>
+<p>可用性和一致性往往是冲突的，很难使它们同时满足。在多个节点之间进行数据同步时，</p>
+<ul>
+<li>为了保证一致性（CP），不能访问未同步完成的节点，也就失去了部分可用性；</li>
+<li>为了保证可用性（AP），允许读取所有节点的数据，但是数据可能不一致。</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="四base">四、BASE<a href="#四base" class="hash-link" aria-label="Direct link to 四、BASE" title="Direct link to 四、BASE">​</a></h2>
+<p>BASE 是基本可用（Basically Available）、软状态（Soft State）和最终一致性（Eventually Consistent）三个短语的缩写。</p>
+<p>BASE 理论是对 CAP 中一致性和可用性权衡的结果，它的核心思想是：即使无法做到强一致性，但每个应用都可以根据自身业务特点，采用适当的方式来使系统达到最终一致性。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="基本可用">基本可用<a href="#基本可用" class="hash-link" aria-label="Direct link to 基本可用" title="Direct link to 基本可用">​</a></h3>
+<p>指分布式系统在出现故障的时候，保证核心可用，允许损失部分可用性。</p>
+<p>例如，电商在做促销时，为了保证购物系统的稳定性，部分消费者可能会被引导到一个降级的页面。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="软状态">软状态<a href="#软状态" class="hash-link" aria-label="Direct link to 软状态" title="Direct link to 软状态">​</a></h3>
+<p>指允许系统中的数据存在中间状态，并认为该中间状态不会影响系统整体可用性，即允许系统不同节点的数据副本之间进行同步的过程存在时延。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最终一致性">最终一致性<a href="#最终一致性" class="hash-link" aria-label="Direct link to 最终一致性" title="Direct link to 最终一致性">​</a></h3>
+<p>最终一致性强调的是系统中所有的数据副本，在经过一段时间的同步后，最终能达到一致的状态。</p>
+<p>ACID 要求强一致性，通常运用在传统的数据库系统上。而 BASE 要求最终一致性，通过牺牲强一致性来达到可用性，通常运用在大型分布式系统中。</p>
+<p>在实际的分布式场景中，不同业务单元和组件对一致性的要求是不同的，因此 ACID 和 BASE 往往会结合在一起使用。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="五paxos">五、Paxos<a href="#五paxos" class="hash-link" aria-label="Direct link to 五、Paxos" title="Direct link to 五、Paxos">​</a></h2>
+<p>用于达成共识性问题，即对多个节点产生的值，该算法能保证只选出唯一一个值。</p>
+<p>主要有三类节点：</p>
+<ul>
+<li>提议者（Proposer）：提议一个值；</li>
+<li>接受者（Acceptor）：对每个提议进行投票；</li>
+<li>告知者（Learner）：被告知投票的结果，不参与投票过程。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/b988877c-0f0a-4593-916d-de2081320628-4d5c1e6605458a7f116b29d2542fedf3.jpg" width="635" height="373" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="执行过程">执行过程<a href="#执行过程" class="hash-link" aria-label="Direct link to 执行过程" title="Direct link to 执行过程">​</a></h3>
+<p>规定一个提议包含两个字段：[n, v]，其中 n 为序号（具有唯一性），v 为提议值。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-prepare-阶段">1. Prepare 阶段<a href="#1-prepare-阶段" class="hash-link" aria-label="Direct link to 1. Prepare 阶段" title="Direct link to 1. Prepare 阶段">​</a></h4>
+<p>下图演示了两个 Proposer 和三个 Acceptor 的系统中运行该算法的初始过程，每个 Proposer 都会向所有 Acceptor 发送 Prepare 请求。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/1a9977e4-2f5c-49a6-aec9-f3027c9f46a7-8e72220104193a2355389eff1a14b328.png" width="538" height="475" class="img_ev3q"></p>
+<p>当 Acceptor 接收到一个 Prepare 请求，包含的提议为 [n1, v1]，并且之前还未接收过 Prepare 请求，那么发送一个 Prepare 响应，设置当前接收到的提议为 [n1, v1]，并且保证以后不会再接受序号小于 n1 的提议。</p>
+<p>如下图，Acceptor X 在收到 [n=2, v=8] 的 Prepare 请求时，由于之前没有接收过提议，因此就发送一个 [no previous] 的 Prepare 响应，设置当前接收到的提议为 [n=2, v=8]，并且保证以后不会再接受序号小于 2 的提议。其它的 Acceptor 类似。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/fb44307f-8e98-4ff7-a918-31dacfa564b4-a9728e212ce3a6e1a94db1fc500e500e.jpg" width="744" height="470" class="img_ev3q"></p>
+<p>如果 Acceptor 接收到一个 Prepare 请求，包含的提议为 [n2, v2]，并且之前已经接收过提议 [n1, v1]。如果 n1 &gt; n2，那么就丢弃该提议请求；否则，发送 Prepare 响应，该 Prepare 响应包含之前已经接收过的提议 [n1, v1]，设置当前接收到的提议为 [n2, v2]，并且保证以后不会再接受序号小于 n2 的提议。</p>
+<p>如下图，Acceptor Z 收到 Proposer A 发来的 [n=2, v=8] 的 Prepare 请求，由于之前已经接收过 [n=4, v=5] 的提议，并且 n &gt; 2，因此就抛弃该提议请求；Acceptor X 收到 Proposer B 发来的 [n=4, v=5] 的 Prepare 请求，因为之前接收到的提议为 [n=2, v=8]，并且 2 &lt;= 4，因此就发送 [n=2, v=8] 的 Prepare 响应，设置当前接收到的提议为 [n=4, v=5]，并且保证以后不会再接受序号小于 4 的提议。Acceptor Y 类似。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/2bcc58ad-bf7f-485c-89b5-e7cafc211ce2-004f5f6fc1098b8deea4b4e4503aaf31.jpg" width="712" height="463" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-accept-阶段">2. Accept 阶段<a href="#2-accept-阶段" class="hash-link" aria-label="Direct link to 2. Accept 阶段" title="Direct link to 2. Accept 阶段">​</a></h4>
+<p>当一个 Proposer 接收到超过一半 Acceptor 的 Prepare 响应时，就可以发送 Accept 请求。</p>
+<p>Proposer A 接收到两个 Prepare 响应之后，就发送 [n=2, v=8] Accept 请求。该 Accept 请求会被所有 Acceptor 丢弃，因为此时所有 Acceptor 都保证不接受序号小于 4 的提议。</p>
+<p>Proposer B 过后也收到了两个 Prepare 响应，因此也开始发送 Accept 请求。需要注意的是，Accept 请求的 v 需要取它收到的最大提议编号对应的 v 值，也就是 8。因此它发送 [n=4, v=8] 的 Accept 请求。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/9b838aee-0996-44a5-9b0f-3d1e3e2f5100-4564b82b2baa6615bc7c97d8d9b9f251.png" width="481" height="477" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="3-learn-阶段">3. Learn 阶段<a href="#3-learn-阶段" class="hash-link" aria-label="Direct link to 3. Learn 阶段" title="Direct link to 3. Learn 阶段">​</a></h4>
+<p>Acceptor 接收到 Accept 请求时，如果序号大于等于该 Acceptor 承诺的最小序号，那么就发送 Learn 提议给所有的 Learner。当 Learner 发现有大多数的 Acceptor 接收了某个提议，那么该提议的提议值就被 Paxos 选择出来。</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/bf667594-bb4b-4634-bf9b-0596a45415ba-88cc38d27fea0f72cc0bf4019230efb9.jpg" width="663" height="353" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="约束条件">约束条件<a href="#约束条件" class="hash-link" aria-label="Direct link to 约束条件" title="Direct link to 约束条件">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="1-正确性">1. 正确性<a href="#1-正确性" class="hash-link" aria-label="Direct link to 1. 正确性" title="Direct link to 1. 正确性">​</a></h4>
+<p>指只有一个提议值会生效。</p>
+<p>因为 Paxos 协议要求每个生效的提议被多数 Acceptor 接收，并且 Acceptor 不会接受两个不同的提议，因此可以保证正确性。</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="2-可终止性">2. 可终止性<a href="#2-可终止性" class="hash-link" aria-label="Direct link to 2. 可终止性" title="Direct link to 2. 可终止性">​</a></h4>
+<p>指最后总会有一个提议生效。</p>
+<p>Paxos 协议能够让 Proposer 发送的提议朝着能被大多数 Acceptor 接受的那个提议靠拢，因此能够保证可终止性。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="六raft">六、Raft<a href="#六raft" class="hash-link" aria-label="Direct link to 六、Raft" title="Direct link to 六、Raft">​</a></h2>
+<p>Raft 也是分布式一致性协议，主要是用来竞选主节点。</p>
+<ul>
+<li><a href="http://thesecretlivesofdata.com/raft" target="_blank" rel="noopener noreferrer">Raft: Understandable Distributed Consensus</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="单个-candidate-的竞选">单个 Candidate 的竞选<a href="#单个-candidate-的竞选" class="hash-link" aria-label="Direct link to 单个 Candidate 的竞选" title="Direct link to 单个 Candidate 的竞选">​</a></h3>
+<p>有三种节点：Follower、Candidate 和 Leader。Leader 会周期性的发送心跳包给 Follower。每个 Follower 都设置了一个随机的竞选超时时间，一般为 150ms~300ms，如果在这个时间内没有收到 Leader 的心跳包，就会变成 Candidate，进入竞选阶段。</p>
+<ul>
+<li>下图展示一个分布式系统的最初阶段，此时只有 Follower 没有 Leader。Node A 等待一个随机的竞选超时时间之后，没收到 Leader 发来的心跳包，因此进入竞选阶段。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521118015898-d223b038139f005e7959a250b93d478f.gif" width="825" height="435" class="img_ev3q"></p>
+<ul>
+<li>此时 Node A 发送投票  请求给其它所有节点。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521118445538-fbdbc79f4ef0d38711220f9158897dbd.gif" width="825" height="435" class="img_ev3q"></p>
+<ul>
+<li>其它节点会对请求进行回复，如果超过一半的节点回复了，那么该 Candidate 就会变成 Leader。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521118483039-0df48d3796e427f4378757d5d7f2642f.gif" width="825" height="435" class="img_ev3q"></p>
+<ul>
+<li>之后 Leader 会周期性地发送心跳包给 Follower，Follower 接收到心跳包，会重新开始计时。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521118640738-00b9fbc26ddfdef40fcf962a4d3170f2.gif" width="825" height="435" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="多个-candidate-竞选">多个 Candidate 竞选<a href="#多个-candidate-竞选" class="hash-link" aria-label="Direct link to 多个 Candidate 竞选" title="Direct link to 多个 Candidate 竞选">​</a></h3>
+<ul>
+<li>如果有多个 Follower 成为 Candidate，并且所获得票数相同，那么就需要重新开始投票。例如下图中 Node B 和 Node D 都获得两票，需要重新开始投票。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521119203347-29e13a2d77eecfa09ea12727b6eccdd6.gif" width="825" height="435" class="img_ev3q"></p>
+<ul>
+<li>由于每个节点设置的随机竞选超时时间不同，因此下一次再次出现多个 Candidate 并获得同样票数的概率很低。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111521119368714-bd693890c081e131e21196acca9e835a.gif" width="825" height="435" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据同步">数据同步<a href="#数据同步" class="hash-link" aria-label="Direct link to 数据同步" title="Direct link to 数据同步">​</a></h3>
+<ul>
+<li>来自客户端的修改都会被传入 Leader。注意该修改 还未被提交，只是写入日志中。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/71550414107576-6ba005d65bbd20b7aabbea7f18a5d43d.gif" width="825" height="447" class="img_ev3q"></p>
+<ul>
+<li>Leader 会把修改复制到所有 Follower。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/91550414131331-95225930fc75d5b62ceecee955537e44.gif" width="825" height="447" class="img_ev3q"></p>
+<ul>
+<li>Leader 会等待大多数的 Follower 也进行了修改，然后才将修改提交。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/101550414151983-7990399a7d0ef2ed84c1d8d58f34f6bb.gif" width="825" height="447" class="img_ev3q"></p>
+<ul>
+<li>此时 Leader 会通知的所有 Follower 让它们也提交修改，此时所有节点的值达成一致。</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="/assets/images/111550414182638-e0b7b8f835a690911e117b644b8a6c2e.gif" width="825" height="447" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="参考">参考<a href="#参考" class="hash-link" aria-label="Direct link to 参考" title="Direct link to 参考">​</a></h2>
+<ul>
+<li>倪超. 从 Paxos 到 ZooKeeper : 分布式一致性原理与实践 [M]. 电子工业出版社, 2015.</li>
+<li><a href="https://redis.io/topics/distlock" target="_blank" rel="noopener noreferrer">Distributed locks with Redis</a></li>
+<li><a href="http://www.linkedkeeper.com/detail/blog.action?bid=1023" target="_blank" rel="noopener noreferrer">浅谈分布式锁</a></li>
+<li><a href="http://www.dengshenyu.com/java/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/2017/10/23/zookeeper-distributed-lock.html" target="_blank" rel="noopener noreferrer">基于 Zookeeper 的分布式锁</a></li>
+<li><a href="https://www.cnblogs.com/savorboard/p/distributed-system-transaction-consistency.html" target="_blank" rel="noopener noreferrer">聊聊分布式事务，再说说解决方案</a></li>
+<li><a href="https://coolshell.cn/articles/10910.html" target="_blank" rel="noopener noreferrer">分布式系统的事务处理</a></li>
+<li><a href="https://juejin.im/entry/577c6f220a2b5800573492be" target="_blank" rel="noopener noreferrer">深入理解分布式事务</a></li>
+<li><a href="http://www.colooshiki.com/index.php/2017/04/20/what-is-cap-theorem-in-distributed-database-system/" target="_blank" rel="noopener noreferrer">What is CAP theorem in distributed database system?</a></li>
+<li><a href="http://harry.me/blog/2014/12/27/neat-algorithms-paxos/" target="_blank" rel="noopener noreferrer">NEAT ALGORITHMS - PAXOS</a></li>
+<li><a href="https://angus.nyc/2012/paxos-by-example/" target="_blank" rel="noopener noreferrer">Paxos By Example</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#一分布式锁" class="table-of-contents__link toc-highlight">一、分布式锁</a><ul><li><a href="#数据库的唯一索引" class="table-of-contents__link toc-highlight">数据库的唯一索引</a></li><li><a href="#redis-的-setnx-指令" class="table-of-contents__link toc-highlight">Redis 的 SETNX 指令</a></li><li><a href="#redis-的-redlock-算法" class="table-of-contents__link toc-highlight">Redis 的 RedLock 算法</a></li><li><a href="#zookeeper-的有序节点" class="table-of-contents__link toc-highlight">Zookeeper 的有序节点</a></li></ul></li><li><a href="#二分布式事务" class="table-of-contents__link toc-highlight">二、分布式事务</a><ul><li><a href="#2pc" class="table-of-contents__link toc-highlight">2PC</a></li><li><a href="#本地消息表" class="table-of-contents__link toc-highlight">本地消息表</a></li></ul></li><li><a href="#三cap" class="table-of-contents__link toc-highlight">三、CAP</a><ul><li><a href="#一致性" class="table-of-contents__link toc-highlight">一致性</a></li><li><a href="#可用性" class="table-of-contents__link toc-highlight">可用性</a></li><li><a href="#分区容忍性" class="table-of-contents__link toc-highlight">分区容忍性</a></li><li><a href="#权衡" class="table-of-contents__link toc-highlight">权衡</a></li></ul></li><li><a href="#四base" class="table-of-contents__link toc-highlight">四、BASE</a><ul><li><a href="#基本可用" class="table-of-contents__link toc-highlight">基本可用</a></li><li><a href="#软状态" class="table-of-contents__link toc-highlight">软状态</a></li><li><a href="#最终一致性" class="table-of-contents__link toc-highlight">最终一致性</a></li></ul></li><li><a href="#五paxos" class="table-of-contents__link toc-highlight">五、Paxos</a><ul><li><a href="#执行过程" class="table-of-contents__link toc-highlight">执行过程</a></li><li><a href="#约束条件" class="table-of-contents__link toc-highlight">约束条件</a></li></ul></li><li><a href="#六raft" class="table-of-contents__link toc-highlight">六、Raft</a><ul><li><a href="#单个-candidate-的竞选" class="table-of-contents__link toc-highlight">单个 Candidate 的竞选</a></li><li><a href="#多个-candidate-竞选" class="table-of-contents__link toc-highlight">多个 Candidate 竞选</a></li><li><a href="#数据同步" class="table-of-contents__link toc-highlight">数据同步</a></li></ul></li><li><a href="#参考" class="table-of-contents__link toc-highlight">参考</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">华为|字节|腾讯|京东|网易|滴滴面经分享（6个offer） | Coisini</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="华为|字节|腾讯|京东|网易|滴滴面经分享（6个offer） | Coisini"><meta data-rh="true" name="description" content="本文是一位读者的面经分享。希望这篇文章的内容可以对小伙伴们有帮助！"><meta data-rh="true" property="og:description" content="本文是一位读者的面经分享。希望这篇文章的内容可以对小伙伴们有帮助！"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）/"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）/" hreflang="en"><link data-rh="true" rel="alternate" href="https://doc.minddiy.top/码农/Java面试指北/面经篇/大厂/华为_字节_腾讯_京东_网易_滴滴面经分享（6个offer）/" hreflang="x-default"><meta name="google-site-verification" content="1FUPX6Qo4y3ecU623ShEurhgnjhSTjK49rRMhEDlzFA">
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/js/matomo.js" async defer="defer"></script><link rel="stylesheet" href="/assets/css/styles.79037026.css">
+<script src="/assets/js/runtime~main.468f2b27.js" defer="defer"></script>
+<script src="/assets/js/main.4763ab3e.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="Chialisp Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Coisini</b></a></div><div class="navbar__items navbar__items--right"><a href="https://minddiy.top" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Main site<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>华为|字节|腾讯|京东|网易|滴滴面经分享（6个offer）</h1></header>
+<p>本文是一位读者的面经分享。希望这篇文章的内容可以对小伙伴们有帮助！</p>
+<p><strong>每个人成功的经历都不可复制， 我们可以借鉴吸收别人的经验为己所用。</strong></p>
+<p>另外，把自己上岸的经历分享出来是一件非常棒的事情，我在这里实名为这位读者点个赞👍</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="个人介绍">个人介绍<a href="#个人介绍" class="hash-link" aria-label="Direct link to 个人介绍" title="Direct link to 个人介绍">​</a></h3>
+<p>目前大三，本科就读于电子科技大学。</p>
+<p>我在大一进入学校实验室学习，负责数据收集、日常开发、NLP。用到的技术包括：</p>
+<ul>
+<li>语言：Java、Python</li>
+<li>技术：
+<ul>
+<li>爬虫：协程、异步OI、正则表达式</li>
+<li>后端：SpringBoot、MyBatis、MySQL</li>
+<li>前端：HTML、CSS、JavaScript、BootStrap</li>
+<li>深度学习：Pytorch、Keras</li>
+</ul>
+</li>
+</ul>
+<p>在实验室接触的比较广泛，不过感觉不够深入，于是在大二下开始深入后端技术。</p>
+<p>我在大二下开始做了些开源项目并深入Java相关技术，深入学习了： Java核心技术、Java虚拟机、Java并发编程、设计模式、MySQL、Spring、SpringBoot、Mybatis。</p>
+<p>在大三上期，11月开始准备Java实习相关事务：</p>
+<p>一个月的面试后，陆续拿到了字节，网易、京东、滴滴、腾讯和某区块链公司的6个实习offer。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="复习经历">复习经历<a href="#复习经历" class="hash-link" aria-label="Direct link to 复习经历" title="Direct link to 复习经历">​</a></h3>
+<p>因为之前就深入学习过，所以总的复习时间也不长，大概是一周左右，后面是通过边面试边查漏补缺的方式来补短板。</p>
+<blockquote>
+<p>前两天的复习内容：</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="java基础">Java基础<a href="#java基础" class="hash-link" aria-label="Direct link to Java基础" title="Direct link to Java基础">​</a></h4>
+<ul>
+<li>面向对象特性：封装，多态（动态绑定，向上转型），继承</li>
+<li>泛型，类型擦除</li>
+<li>反射，原理，优缺点</li>
+<li><code>static</code>，<code>final</code> 关键字</li>
+<li><code>String</code>，<code>StringBuffer</code>，<code>StringBuilder</code>底层区别</li>
+<li>BIO、NIO、AIO</li>
+<li><code>Object</code> 类的方法</li>
+<li>自动拆箱和自动装箱</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="java集合框架">Java集合框架<a href="#java集合框架" class="hash-link" aria-label="Direct link to Java集合框架" title="Direct link to Java集合框架">​</a></h4>
+<ul>
+<li>List ：<code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code>、<code>CopyOnWriteArrayList</code></li>
+<li>Set：<code>HashSet</code>、<code>TreeSet</code>、<code>LinkedHashSet</code></li>
+<li>Queue：<code>PriorityQueue</code></li>
+<li>Map：<code>HashMap</code>，<code>TreeMap</code>，<code>LinkedHashMap</code></li>
+<li>fast-fail，fast-safe机制</li>
+<li>源码分析（底层数据结构，插入、扩容过程）、线程安全。</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="java虚拟机">Java虚拟机<a href="#java虚拟机" class="hash-link" aria-label="Direct link to Java虚拟机" title="Direct link to Java虚拟机">​</a></h4>
+<ul>
+<li>类加载机制、双亲委派模式、3种类加载器（<code>BootStrapClassLoader</code>，<code>ExtensionClassLoader</code>，<code>ApplicationClassLoader</code>）</li>
+<li>运行时内存分区（PC，Java虚拟机栈，本地方法栈，堆，方法区（永久代，元空间））</li>
+<li>JMM：Java内存模型</li>
+<li>引用计数、可达性分析</li>
+<li>垃圾回收算法：标记-清除，标记-整理，复制</li>
+<li>垃圾回收器：比较，区别（Serial，ParNew，Parallel Scavenge ，CMS，G1）Stop The World</li>
+<li>强、软、弱、虚引用</li>
+<li>内存溢出、内存泄漏排查</li>
+<li>JVM调优，常用命令</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="java并发">Java并发<a href="#java并发" class="hash-link" aria-label="Direct link to Java并发" title="Direct link to Java并发">​</a></h4>
+<ul>
+<li>三种线程初始化方法（<code>Thread</code>、<code>Callable</code>，<code>Runnable</code>）区别</li>
+<li>线程池（<code>ThreadPoolExecutor</code>，7大参数，原理，四种拒绝策略，四个变型：Fixed，Single，Cached，Scheduled）
+<ul>
+<li>有界、无界任务队列，手写<code>BlockingQueue</code>。</li>
+<li>乐观锁：CAS（优缺点，ABA问题，DCAS）</li>
+<li>悲观锁：
+<ul>
+<li><code>Synchronized</code>：
+<ul>
+<li>使用：方法（静态，一般方法），代码块（this，<code>ClassName.class</code>）</li>
+<li>1.6优化：锁粗化，锁消除，自适应自旋锁，偏向锁，轻量级锁</li>
+<li>锁升级的过程和细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁（不可逆）</li>
+<li>重量级锁的原理（<code>monitor</code>对象，<code>monitorenter</code>,<code>monitorexit</code>）</li>
+<li><code>ReentrantLock</code>：和<code>Synchronized</code>区别？（公平锁、非公平锁、可中断锁....）、原理、用法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ThreadLocal</code> ：底层数据结构：<code>ThreadLocalMap</code>、原理、应用场景。</li>
+<li><code>Atomic</code> 类（原理，应用场景）</li>
+<li>AQS：原理、<code>Semaphore</code>、<code>CountDownLatch</code>、<code>CyclicBarrier</code></li>
+<li><code>Volatile</code>：原理：有序性，可见性</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>第三天的复习内容：</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="mysql">MySQL<a href="#mysql" class="hash-link" aria-label="Direct link to MySQL" title="Direct link to MySQL">​</a></h4>
+<ul>
+<li>架构：Server层，引擎层（缓存，连接器，分析器，优化器，处理器）</li>
+<li>引擎：InnoDB，MyISAM，Memory区别</li>
+<li>聚簇索引，非聚簇索引区别（从二叉平衡搜索树复习（AVL，红黑树）到B树，最后B+树）</li>
+<li>MySQL、SQL优化方法</li>
+<li>覆盖索引，最左前缀匹配</li>
+<li>当前读，快照读</li>
+<li>MVCC原理（事务ID，隐藏字段，Undo，ReadView）</li>
+<li>Gap Lock、Next-Key Lock、Record Lock</li>
+<li>三大范式</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="sql">SQL<a href="#sql" class="hash-link" aria-label="Direct link to SQL" title="Direct link to SQL">​</a></h4>
+<ul>
+<li>常用SQL</li>
+<li>连接：自连接，内连接（等值，非等值，自然连接），外连接（左，右，全）</li>
+<li>Group BY 和 Having</li>
+<li>Explain</li>
+</ul>
+<blockquote>
+<p>第四天的复习内容：</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="spring">Spring<a href="#spring" class="hash-link" aria-label="Direct link to Spring" title="Direct link to Spring">​</a></h4>
+<ul>
+<li>AOP原理（JDK动态代理，CGLIB动态代理）和 IOC原理</li>
+<li>Spring Bean生命周期</li>
+<li>SpringMVC 原理</li>
+<li>SpringBoot常用注解</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="设计模式">设计模式<a href="#设计模式" class="hash-link" aria-label="Direct link to 设计模式" title="Direct link to 设计模式">​</a></h4>
+<ul>
+<li>三种类型：创建、结构、行为</li>
+<li>单例模式：饿汉，懒汉，DCL</li>
+<li>简单工厂，工厂方法，抽象工厂</li>
+<li>代理模式</li>
+<li>装饰器模式</li>
+<li>观察者模式</li>
+<li>策略模式</li>
+<li>迭代器模式</li>
+<li>....</li>
+</ul>
+<blockquote>
+<p>第五天的复习内容：</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="计算机网络">计算机网络<a href="#计算机网络" class="hash-link" aria-label="Direct link to 计算机网络" title="Direct link to 计算机网络">​</a></h4>
+<ul>
+<li>OSI模型、TCP/IP模型</li>
+<li>TCP和UDP区别</li>
+<li>TCP可靠性传输原理：重传、流量控制、拥塞控制、序列号与确认应达号、校验和</li>
+<li>三次握手、四次挥手过程、原理</li>
+<li>timewait、closewait</li>
+<li>HTTP
+<ul>
+<li>报文格式</li>
+<li>1.0 1.1 2.0</li>
+<li>状态码</li>
+<li>无状态解决（Cookie Session原理）</li>
+</ul>
+</li>
+<li>HTTPS
+<ul>
+<li>CA证书</li>
+<li>对称 加密</li>
+<li>非对称加密</li>
+</ul>
+</li>
+<li>DNS解析过程，原理</li>
+<li>IP协议、ICMP协议（Ping、Tracert）、ARP协议、路由协议</li>
+<li>攻击手段与防范：XSS、CSRF、SQL注入、DOS、DDOS</li>
+</ul>
+<blockquote>
+<p>第六天的复习内容：</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="操作系统">操作系统<a href="#操作系统" class="hash-link" aria-label="Direct link to 操作系统" title="Direct link to 操作系统">​</a></h4>
+<ul>
+<li>进程、线程和协程区别</li>
+<li>进程通信方式（管道，消息队列，共享内存，信号，信号量，socket）</li>
+<li>进程调度算法（先来先服务，短作业优先，时间片轮换，多级反馈队列，优先级调度）</li>
+<li>内存管理：分页（页面置换算法：手写LRU）、分段、虚拟内存</li>
+</ul>
+<blockquote>
+<p>第七天和以后的复习内容：</p>
+</blockquote>
+<p>每天做点刷算法题(剑指offer、LeetCode 面试Hot题) +查漏补缺。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="字节跳动">字节跳动<a href="#字节跳动" class="hash-link" aria-label="Direct link to 字节跳动" title="Direct link to 字节跳动">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面">第一面<a href="#第一面" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍，介绍项目</li>
+<li>协程、线程、进程区别</li>
+<li>手写LRU（要求用泛型写）、手写DCL</li>
+<li>DNS解析过程</li>
+<li>输入一个URL到浏览器，整体流程</li>
+<li>谈谈Java虚拟机你的认识？垃圾回收算法？垃圾回收器</li>
+<li>知道哪些Java的锁？CAS的缺点？</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面">第二面<a href="#第二面" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍、介绍项目</li>
+<li>手写最大堆</li>
+<li>设计模式了解吗？几大类型？谈谈工厂模式？</li>
+<li>谈一下Java集合框架？HashMap线程安全的吗？会出现什么问题？</li>
+<li>说说MySQL的架构？</li>
+<li>InnoDB和MyISAM区别？</li>
+<li>知道聚簇索引和非聚簇索引吗？B树和B+树区别？</li>
+<li>一道LeetCode难问题：接雨水（动态规划解决）</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第三面">第三面<a href="#第三面" class="hash-link" aria-label="Direct link to 第三面" title="Direct link to 第三面">​</a></h4>
+<ol>
+<li>自我介绍、介绍开源项目</li>
+<li>线程池了解吗？原理？可以写个BlockingQueue吗？</li>
+<li>说说fast-fail和fast-safe？</li>
+<li>了解死锁吗？怎么解决？</li>
+<li>进程间通信方式？哪种最高效？</li>
+<li>说说MYSQL优化策略？</li>
+<li>说了一下部门介绍，主要业务，说可能会转GO等等</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第四面hr">第四面（HR）<a href="#第四面hr" class="hash-link" aria-label="Direct link to 第四面（HR）" title="Direct link to 第四面（HR）">​</a></h4>
+<ol>
+<li>介绍自己</li>
+<li>团队怎么协作？有没有矛盾？怎么解决的？</li>
+<li>入职时间？实习多久？</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="华为">华为<a href="#华为" class="hash-link" aria-label="Direct link to 华为" title="Direct link to 华为">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面-1">第一面<a href="#第一面-1" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>谈项目（谈了很久）</li>
+<li>HTTP 的无状态怎么解决？（Cookie Session）</li>
+<li>TCP如何保证可靠性传输？（校验和，序列号和确认应答号，重传，流量控制，拥塞控制）</li>
+<li>ARP过程？</li>
+<li>进程调度算法？</li>
+<li>一道动态规划题目：不同路径</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面-1">第二面<a href="#第二面-1" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>谈项目（你觉得收获最大的项目）</li>
+<li>谈谈Spring AOP 和 IOC</li>
+<li>谈谈你知道的MySQL所有内容</li>
+<li>手写个归并排序</li>
+<li>谈谈你对分布式系统的认识？</li>
+<li>谈谈你对华为的认识？华为的文化和价值观？</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="hr">HR<a href="#hr" class="hash-link" aria-label="Direct link to HR" title="Direct link to HR">​</a></h4>
+<p>技术面试都通过了，问HR怎么样，说应该没问题，等了一星期offer，最后发offer的时候，HR说我的性格测试没通过，Offer审批不下来，人傻了。因为华为在成都，字节在北京，而且技术官的意向是很稳能进华为，我想着在家近的地方实习，在等待的一周中就把字节拒了，最后华为没发到offer，直接架空，崩溃！第一次找实习没太多经验，策略不对，心里很难受，不过调整了一下，继续了新的面试</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="网易">网易<a href="#网易" class="hash-link" aria-label="Direct link to 网易" title="Direct link to 网易">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面-2">第一面<a href="#第一面-2" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍一个对自己影响深刻的项目</li>
+<li>说说进程间调度的算法</li>
+<li>说说匿名函数</li>
+<li>说说协程、线程、进程。</li>
+<li>你对游戏引擎了解多少？</li>
+<li>手写地杰斯特拉算法？</li>
+<li>了解A*算法吗？</li>
+<li>说说Python和Java的区别？</li>
+<li>Java是怎么进行垃圾回收的？</li>
+<li>然后聊了很多生活上的问题，非技术问题。</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面-2">第二面<a href="#第二面-2" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍项目</li>
+<li>说说深度优先搜索算法、回溯算法</li>
+<li>一道算法题：一个走迷宫问题，DFS+回溯解决。</li>
+<li>你对C熟悉吗？Lua使用过吗？</li>
+<li>介绍业务，主要工作内容。</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="hr面">HR面<a href="#hr面" class="hash-link" aria-label="Direct link to HR面" title="Direct link to HR面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍一个项目中遇到的问题，怎么解决的？</li>
+<li>介绍一下博客？开源项目？为什么花时间做这些？</li>
+<li>大学最成功的一件事？</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="滴滴">滴滴<a href="#滴滴" class="hash-link" aria-label="Direct link to 滴滴" title="Direct link to 滴滴">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面-3">第一面<a href="#第一面-3" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍、介绍项目</li>
+<li>Java面向对象的三大特性？</li>
+<li>了解Java哪些锁？Synchronized优化内容？锁升级过程？</li>
+<li>谈谈Java虚拟机？类加载机制？</li>
+<li>知道双亲委派模式吗？有什么好处？</li>
+<li>Java运行时内存分区？</li>
+<li>死锁了解吗？如何解决？</li>
+<li>哪些对象可以作为GC ROOTS？</li>
+<li>了解的设计模式？手写一下DCL吧</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面-3">第二面<a href="#第二面-3" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍项目（难点以及怎么解决的？）</li>
+<li>谈谈MySQL的各种引擎？</li>
+<li>覆盖索引和非覆盖索引区别？</li>
+<li>MYSQL优化方法有哪些？</li>
+<li>讲讲HashMap的原理，put过程？resize过程？线程安全吗？死循环问题？</li>
+<li>了解什么中间件吗？</li>
+<li>讲讲Java里面的锁？</li>
+<li>一道算法题：最长公共子串</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="hr面-1">HR面<a href="#hr面-1" class="hash-link" aria-label="Direct link to HR面" title="Direct link to HR面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>到岗时间</li>
+<li>自己的优势</li>
+<li>大学最失败的一件事</li>
+<li>对加班的看法</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="京东">京东<a href="#京东" class="hash-link" aria-label="Direct link to 京东" title="Direct link to 京东">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面-4">第一面<a href="#第一面-4" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>谈项目</li>
+<li>TCP如何保证可靠传输？拥塞控制算法？</li>
+<li>讲讲Spring的AOP？</li>
+<li>SpringBoot常用哪些注解？</li>
+<li>谈谈Java虚拟机？</li>
+<li>垃圾回收算法有哪些？</li>
+<li>了解哪些垃圾回收器？讲一下CMS垃圾回收过程</li>
+<li>算法题：
+<ol>
+<li>两个栈实现队列</li>
+<li>最近公共祖先节点</li>
+</ol>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面-4">第二面<a href="#第二面-4" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>讲讲Java集合框架，HashMap原理。</li>
+<li>知道哪些锁？</li>
+<li>谈谈公平锁和非公平锁？</li>
+<li>Synchronized和ReentrantLock区别</li>
+<li>MySQL的索引为什么快？有哪些索引？原理数据结构？</li>
+<li>MySQL有哪些优化的策略？</li>
+<li>死锁了解吗？</li>
+<li>ThreadLocal了解吗？原理？</li>
+<li>手写一个堆排序。</li>
+<li>一道算法题：完全平方数（动态 规划）</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="hr面-2">HR面<a href="#hr面-2" class="hash-link" aria-label="Direct link to HR面" title="Direct link to HR面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>多久可以到岗？实习时间？</li>
+<li>对加班看法？</li>
+<li>如何团队分工的？</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="腾讯">腾讯<a href="#腾讯" class="hash-link" aria-label="Direct link to 腾讯" title="Direct link to 腾讯">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第一面-5">第一面<a href="#第一面-5" class="hash-link" aria-label="Direct link to 第一面" title="Direct link to 第一面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍项目</li>
+<li>说说协程和线程区别？</li>
+<li>Java虚拟机的作用？垃圾回收的过程？</li>
+<li>了解的垃圾回收器？</li>
+<li>手写快排</li>
+<li>算法题：按K位反转链表</li>
+<li>一百亿个数，n个机器，怎么排序？（桶排序）</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="第二面-5">第二面<a href="#第二面-5" class="hash-link" aria-label="Direct link to 第二面" title="Direct link to 第二面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>介绍项目</li>
+<li>TCP和UDP区别？如何保证可靠性？</li>
+<li>HTTP的状态码记得哪些？</li>
+<li>ICMP是哪层的？有什么用？</li>
+<li>会哪些框架？</li>
+<li>Spring的AOP认识？</li>
+<li>MySQL InnoDB和MyISAM区别？</li>
+<li>谈谈各种索引？为什么用B+树不用B树？</li>
+<li>死锁的条件？如何解决？</li>
+<li>OOM怎么排查？</li>
+<li>介绍业务</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="hr面-3">HR面<a href="#hr面-3" class="hash-link" aria-label="Direct link to HR面" title="Direct link to HR面">​</a></h4>
+<ol>
+<li>自我介绍</li>
+<li>多久能来实习？实习多久？</li>
+<li>加班看法？</li>
+<li>看你掌握技术挺多，如何快速学习一个技术的？</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="#总结" class="hash-link" aria-label="Direct link to 总结" title="Direct link to 总结">​</a></h3>
+<p>因为之前学的也比较深入，复习时间也没用太多，主要就是写点算法题保持手感。</p>
+<p>面试中遇到的问题，9成都已经复习了，而且也比较基础，也都在掌握之中。</p>
+<p>像中间件、微服务这些我没写在简历上，不是很会，面试官也不会刻意刁难你，实习的话，感觉大厂可能更注重基础和对知识的深入度，面试了一个月收货还是挺多的，希望总结一下面经，帮到更多的人~</p>
+<p>准备大厂面试的话，注重基础，多练算法题，基本上就没问题了！加油！</p>
+<blockquote>
+<p>更新: 2022-05-29 15:24:39<br>
+原文: <a href="https://www.yuque.com/snailclimb/mf2z3k/ht7ocg" target="_blank" rel="noopener noreferrer">https://www.yuque.com/snailclimb/mf2z3k/ht7ocg</a></p>
+</blockquote></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#个人介绍" class="table-of-contents__link toc-highlight">个人介绍</a></li><li><a href="#复习经历" class="table-of-contents__link toc-highlight">复习经历</a></li><li><a href="#字节跳动" class="table-of-contents__link toc-highlight">字节跳动</a></li><li><a href="#华为" class="table-of-contents__link toc-highlight">华为</a></li><li><a href="#网易" class="table-of-contents__link toc-highlight">网易</a></li><li><a href="#滴滴" class="table-of-contents__link toc-highlight">滴滴</a></li><li><a href="#京东" class="table-of-contents__link toc-highlight">京东</a></li><li><a href="#腾讯" class="table-of-contents__link toc-highlight">腾讯</a></li><li><a href="#总结" class="table-of-contents__link toc-highlight">总结</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
